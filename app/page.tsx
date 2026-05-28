@@ -1,65 +1,98 @@
-import Image from "next/image";
-
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <div style={{ backgroundColor: '#0b0f19', color: '#f8fafc', minHeight: '100vh', fontFamily: 'sans-serif', margin: 0, padding: 0 }}>
+      
+      {/* Üst Menü / Navbar */}
+      <nav style={{ backgroundColor: '#111827', borderBottom: '1px solid #1f2937', padding: '20px 40px', position: 'sticky', top: 0, zIndex: 100 }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', justifyContent: 'between', alignItems: 'center', flexWrap: 'wrap', gap: '20px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+            <span style={{ fontSize: '22px', fontWeight: 'bold', color: '#38bdf8', letterSpacing: '-0.5px' }}>
+              Timo to Work International B.V.
+            </span>
+          </div>
+          <div style={{ display: 'flex', gap: '25px', fontWeight: 500 }}>
+            <a href="#about" style={{ color: '#9ca3af', textDecoration: 'none', transition: '0.2s' }}>Hakkımızda</a>
+            <a href="#services" style={{ color: '#f8fafc', textDecoration: 'none', transition: '0.2s' }}>Hizmetlerimiz</a>
+            <a href="#contact" style={{ color: '#9ca3af', textDecoration: 'none', transition: '0.2s' }}>İletişim</a>
+          </div>
+        </div>
+      </nav>
+
+      {/* Karşılama Alanı / Hero Section */}
+      <header style={{ background: 'linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%)', padding: '100px 20px', textAlign: 'center', borderBottom: '1px solid #1f2937' }}>
+        <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+          <h1 style={{ fontSize: '48px', fontWeight: 800, marginBottom: '20px', color: '#ffffff', letterSpacing: '-1px' }}>
+            Timo to Work International B.V.
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p style={{ fontSize: '18px', color: '#94a3b8', lineHeight: '1.6', maxWidth: '600px', margin: '0 auto' }}>
+            Küresel pazarlarda güvenilir iş gücü çözümleri, sınır ötesi danışmanlık ve uluslararası ticaret entegrasyonu.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </header>
+
+      {/* Hizmetler Bölümü */}
+      <main style={{ maxWidth: '1200px', margin: '0 auto', padding: '80px 20px' }} id="services">
+        <div style={{ textAlign: 'center', marginBottom: '60px' }}>
+          <h2 style={{ fontSize: '36px', fontWeight: 700, color: '#ffffff', marginBottom: '10px' }}>Faaliyet Alanlarımız & Hizmetlerimiz</h2>
+          <p style={{ color: '#64748b', fontSize: '16px' }}>Timo to Work International B.V. çatısı altında sunduğumuz global çözümler</p>
+        </div>
+
+        {/* 5'li Kart Grid Düzeni */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '30px' }}>
+          
+          {/* Kart 1: Messebau */}
+          <div style={{ backgroundColor: '#111827', padding: '35px', borderRadius: '16px', border: '1px solid #1f2937', transition: '0.3s' }}>
+            <div style={{ width: '45px', height: '45px', backgroundColor: 'rgba(56,189,248,0.1)', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '22px', marginBottom: '20px', border: '1px solid rgba(56,189,248,0.2)' }}>📉</div>
+            <h3 style={{ fontSize: '20px', fontWeight: 700, marginBottom: '12px', color: '#ffffff' }}>Messebau & Projektplanung</h3>
+            <p style={{ color: '#94a3b8', fontSize: '14px', lineHeight: '1.6', margin: 0 }}>
+              Fuar standı tasarımı, kurulumu ve tüm proje süreçlerini baştan sona planlıyor; ilk fikirden anahtar teslim uygulamaya kadar profesyonel çözümler sunuyoruz.
+            </p>
+          </div>
+
+          {/* Kart 2: Personalbereitstellung */}
+          <div style={{ backgroundColor: '#111827', padding: '35px', borderRadius: '16px', border: '1px solid #1f2937', transition: '0.3s' }}>
+            <div style={{ width: '45px', height: '45px', backgroundColor: 'rgba(249,115,22,0.1)', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '22px', marginBottom: '20px', border: '1px solid rgba(249,115,22,0.2)' }}>👥</div>
+            <h3 style={{ fontSize: '20px', fontWeight: 700, marginBottom: '12px', color: '#ffffff' }}>Personalbereitstellung</h3>
+            <p style={{ color: '#94a3b8', fontSize: '14px', lineHeight: '1.6', margin: 0 }}>
+              Fuar süreçleri, lojistik operasyonlar, kurulum ve söküm işleri için ihtiyaç duyduğunuz nitelikli ve uzman iş gücünü profesyonelce sağlıyoruz.
+            </p>
+          </div>
+
+          {/* Kart 3: Logistik & Hotelmanagement */}
+          <div style={{ backgroundColor: '#111827', padding: '35px', borderRadius: '16px', border: '1px solid #1f2937', transition: '0.3s' }}>
+            <div style={{ width: '45px', height: '45px', backgroundColor: 'rgba(168,85,247,0.1)', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '22px', marginBottom: '20px', border: '1px solid rgba(168,85,247,0.2)' }}>🗺️</div>
+            <h3 style={{ fontSize: '20px', fontWeight: 700, marginBottom: '12px', color: '#ffffff' }}>Logistik & Hotelmanagement</h3>
+            <p style={{ color: '#94a3b8', fontSize: '14px', lineHeight: '1.6', margin: 0 }}>
+              Konaklama organizasyonlarından saha operasyonlarına kadar tüm süreçlerin yerinde, pürüzsüz ve kusursuz bir şekilde yürütülmesini yönetiyoruz.
+            </p>
+          </div>
+
+          {/* Kart 4: İthalat */}
+          <div style={{ backgroundColor: '#111827', padding: '35px', borderRadius: '16px', border: '1px solid #1f2937', transition: '0.3s' }}>
+            <div style={{ width: '45px', height: '45px', backgroundColor: 'rgba(34,197,94,0.1)', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '22px', marginBottom: '20px', border: '1px solid rgba(34,197,94,0.2)' }}>📥</div>
+            <h3 style={{ fontSize: '20px', fontWeight: 700, marginBottom: '12px', color: '#ffffff' }}>Uluslararası İthalat (Import)</h3>
+            <p style={{ color: '#94a3b8', fontSize: '14px', lineHeight: '1.6', margin: 0 }}>
+              Dünya genelindeki üreticilerden en kaliteli ürün ve ham maddelerin tedarik süreçlerini, yasal mevzuatlara tam uyumlu olarak sınır ötesi operasyonlarla yönetiyoruz.
+            </p>
+          </div>
+
+          {/* Kart 5: İhracat */}
+          <div style={{ backgroundColor: '#111827', padding: '35px', borderRadius: '16px', border: '1px solid #1f2937', transition: '0.3s' }}>
+            <div style={{ width: '45px', height: '45px', backgroundColor: 'rgba(99,102,241,0.1)', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '22px', marginBottom: '20px', border: '1px solid rgba(99,102,241,0.2)' }}>📤</div>
+            <h3 style={{ fontSize: '20px', fontWeight: 700, marginBottom: '12px', color: '#ffffff' }}>Küresel İhracat (Export)</h3>
+            <p style={{ color: '#94a3b8', fontSize: '14px', lineHeight: '1.6', margin: 0 }}>
+              Ürün ve hizmetleri uluslararası pazarlarla buluşturuyor, gümrükleme, hedef pazar analizi ve lojistik ağ yönetimini uçtan uca organize ediyoruz.
+            </p>
+          </div>
+
         </div>
       </main>
+
+      {/* Alt Bilgi / Footer */}
+      <footer style={{ backgroundColor: '#111827', color: '#64748b', padding: '30px 20px', textAlign: 'center', fontSize: '14px', borderTop: '1px solid #1f2937' }}>
+        <p>© 2026 Time to Work International B.V. Tüm Hakları Saklıdır.</p>
+      </footer>
+
     </div>
   );
 }
