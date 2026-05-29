@@ -18,15 +18,15 @@ const translations = {
     heroSub: "Küresel pazarlarda güvenilir iş gücü çözümleri, sınır ötesi danışmanlık ve uluslararası ticaret entegrasyonu.",
     sectionTitle: "Faaliyet Alanlarımız & Hizmetlerimiz",
     sectionSub: "Timo to Work International B.V. çatısı altında sunduğumuz global çözümler",
-    card1Title: "Messebau & Projektplanung",
+    card1Title: "Fuar Standı Tasarımı & Proje Planlama",
     card1Desc: "Fuar standı tasarımı, kurulumu ve tüm proje süreçlerini baştan sona planlıyor; ilk fikirden anahtar teslim uygulamaya kadar profesyonel çözümler sunuyoruz.",
-    card2Title: "Personalbereitstellung",
+    card2Title: "Nitelikli İş Gücü Sağlama",
     card2Desc: "Fuar süreçleri, lojistik operasyonlar, kurulum ve söküm işleri için ihtiyaç duyduğunuz nitelikli ve uzman iş gücünü profesyonelce sağlıyoruz.",
-    card3Title: "Logistik & Hotelmanagement",
+    card3Title: "Lojistik & Konaklama Yönetimi",
     card3Desc: "Konaklama organizasyonlarından saha operasyonlarına kadar tüm süreçlerin yerinde, pürüzsüz ve kusursuz bir şekilde yürütülmesini yönetiyoruz.",
-    card4Title: "Uluslararası İthalat (Import)",
+    card4Title: "Uluslararası İthalat Operasyonları",
     card4Desc: "Dünya genelindeki üreticilerden en kaliteli ürün ve ham maddelerin tedarik süreçlerini, yasal mevzuatlara tam uyumlu olarak sınır ötesi operasyonlarla yönetiyoruz.",
-    card5Title: "Küresel İhracat (Export)",
+    card5Title: "Küresel İhracat Çözümleri",
     card5Desc: "Ürün ve hizmetleri uluslararası pazarlarla buluşturuyor, gümrükleme, hedef pazar analizi ve lojistik ağ yönetimini uçtan uca organize ediyoruz.",
     formTitle: "Bizimle İletişime Geçin",
     formSub: "Küresel ticaret ve hizmet çözümlerimiz için formu doldurabilirsiniz.",
@@ -86,7 +86,19 @@ const translations = {
     aboutText1: "Timo to Work International B.V. olarak, köklü hizmet geçmişimiz ve sektördeki derin tecrübemizle fuar lojistiği, stand kurulumu (Messebau) ve nitelikli iş gücü tedariği (Personalbereitstellung) alanlarında Avrupa standartlarında çözümler sunuyoruz.",
     aboutText2: "Almanya ve Hollanda merkezli operasyonlarımızla, iş ortaklarımızın ihtiyaçlarına en hızlı ve profesyonel çözümleri üretirken; küresel vizyonumuz doğrultusunda uluslararası ithalat ve ihracat danışmanlığı süreçlerini de uçtan uca yönetiyoruz.",
     aboutText3: "İlkelerimiz her zaman güven, kalite ve zamanında teslimat üzerine kuruludur. Sınır ötesi operasyonel gücümüzle projelerinizi geleceğe taşıyoruz.",
-    stayInTouch: "İletişimde Kalın"
+    stayInTouch: "İletişimde Kalın",
+    galCard1Title: "Messebau Projeleri",
+    galCard1Sub: "Stand Tasarım & Kurulum",
+    galCard2Title: "Nitelikli İş Gücü",
+    galCard2Sub: "Uzman Kadro Tedariği",
+    galCard3Title: "Uluslararası Lojistik",
+    galCard3Sub: "Sınır Ötesi Taşıma & Depolama",
+    galCard4Title: "Küresel İthalat Operasyonları",
+    galCard4Sub: "Tedarik Zinciri Yönetimi",
+    galCard5Title: "Uluslararası İhracat",
+    galCard5Sub: "Global Pazar Entegrasyonu",
+    galCard6Title: "Avrupa Operasyon Merkezleri",
+    galCard6Sub: "Amsterdam & Almanya Koordinasyon"
   },
   de: {
     brand: "Timo to Work",
@@ -168,7 +180,19 @@ const translations = {
     aboutText1: "Als Timo to Work International B.V. bieten wir mit unserer langjährigen Servicehistorie und fundierten Branchenerfahrung Lösungen auf europäischem Niveau in den Bereichen Messelogistik, Standbau (Messebau) und qualifizierte Personalbereitstellung.",
     aboutText2: "Mit unseren Aktivitäten in Deutschland und den Niederlanden bieten wir schnellste und professionelle Lösungen für die Bedürfnisse unserer Geschäftspartner, während wir im Einklang mit unserer globalen Vision auch internationale Import- und Exportberatungsprozesse von Ende zu Ende steuern.",
     aboutText3: "Unsere Prinzipien basieren stets auf Vertrauen, Qualität und pünktlicher Lieferung. Mit unserer grenzüberschreitenden operativen Stärke tragen wir Ihre Projekte in die Zukunft.",
-    stayInTouch: "Bleiben Sie in Kontakt"
+    stayInTouch: "Bleiben Sie in Kontakt",
+    galCard1Title: "Messebau-Projekte",
+    galCard1Sub: "Standdesign & Installation",
+    galCard2Title: "Qualifizierte Arbeitskräfte",
+    galCard2Sub: "Experten-Personalbereitstellung",
+    galCard3Title: "Internationale Logistik",
+    galCard3Sub: "Grenzüberschreitender Transport & Lagerung",
+    galCard4Title: "Globale Importgeschäfte",
+    galCard4Sub: "Lieferkettenmanagement",
+    galCard5Title: "Internationaler Export",
+    galCard5Sub: "Globale Marktintegration",
+    galCard6Title: "Europäische Betriebsleiter",
+    galCard6Sub: "Amsterdam & Deutschland Koordination"
   },
   en: {
     brand: "Timo to Work",
@@ -184,15 +208,15 @@ const translations = {
     heroSub: "Reliable workforce solutions, cross-border consultancy, and international trade integration in global markets.",
     sectionTitle: "Our Fields of Activity & Services",
     sectionSub: "Global solutions we offer under the umbrella of Timo to Work International B.V.",
-    card1Title: "Messebau & Projektplanung",
+    card1Title: "Exhibition Stand Design & Project Planning",
     card1Desc: "We plan, design, and realize exhibition stands – providing professional solutions from the initial idea to final implementation.",
-    card2Title: "Personalbereitstellung",
+    card2Title: "Personnel Provision & Workforce Solutions",
     card2Desc: "We professionally provide the qualified and expert workforce you need for exhibition processes, logistics, installation, and dismantling.",
-    card3Title: "Logistik & Hotelmanagement",
+    card3Title: "Logistics & Accommodation Management",
     card3Desc: "We seamlessly manage everything from accommodation organizations to on-site operations smoothly and flawlessly.",
-    card4Title: "International Import",
+    card4Title: "International Import Operations",
     card4Desc: "We manage the procurement processes of top-quality products and raw materials from global manufacturers, fully complying with international legal regulations.",
-    card5Title: "Global Export",
+    card5Title: "Global Export Solutions",
     card5Desc: "We connect products and services with international markets, organizing customs clearance, target market analysis, and end-to-end logistics network management.",
     formTitle: "Contact Us",
     formSub: "Fill out the form for our global trade and service solutions.",
@@ -250,7 +274,19 @@ const translations = {
     aboutText1: "As Timo to Work International B.V., we offer European-standard solutions in exhibition logistics, stand construction (Messebau), and qualified workforce provision (Personalbereitstellung), backed by our deep-rooted service history and industry experience.",
     aboutText2: "With our operations based in Germany and the Netherlands, we produce the fastest and most professional solutions for our business partners' needs, while managing international import and export consultancy processes end-to-end in line with our global vision.",
     aboutText3: "Our principles are always built on trust, quality, and timely delivery. We carry your projects into the future with our cross-border operational strength.",
-    stayInTouch: "Stay in Touch"
+    stayInTouch: "Stay in Touch",
+    galCard1Title: "Messebau Projects",
+    galCard1Sub: "Stand Design & Installation",
+    galCard2Title: "Qualified Workforce",
+    galCard2Sub: "Expert Personnel Provision",
+    galCard3Title: "International Logistics",
+    galCard3Sub: "Cross-Border Transport & Storage",
+    galCard4Title: "Global Import Operations",
+    galCard4Sub: "Supply Chain Management",
+    galCard5Title: "International Export",
+    galCard5Sub: "Global Market Integration",
+    galCard6Title: "European Operation Centers",
+    galCard6Sub: "Amsterdam & Germany Coordination"
   }
 };
 
@@ -260,27 +296,55 @@ export default function Home() {
   const t = translations[lang];
 
   return (
-    <div style={{ backgroundColor: '#0b0f19', color: '#f8fafc', minHeight: '100vh', fontFamily: 'sans-serif', margin: 0, padding: 0 }}>
+    <div style={{ 
+      backgroundColor: '#0b0f19', 
+      color: '#f8fafc', 
+      minHeight: '100vh', 
+      width: '100%',
+      overflowX: 'hidden',
+      fontFamily: 'sans-serif', 
+      margin: 0, 
+      padding: 0 
+    }}>
       
       {/* Üst Menü / Navbar */}
       <nav style={{ backgroundColor: '#1a1a1a', borderBottom: '1px solid #2d2d2d', padding: '15px 40px', position: 'sticky', top: 0, zIndex: 100 }}>
         <div style={{ maxWidth: '1400px', margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           
-          {/* Sol Taraf: Kategoriler (Görseldeki Sıralama) */}
-          <div style={{ display: 'flex', gap: '22px', alignItems: 'center', flexWrap: 'wrap' }}>
-            <a href="#" style={{ color: '#ffffff', textDecoration: 'none', fontSize: '15px', fontWeight: 500 }}>{t.navHome}</a>
-            <a href="#about" style={{ color: '#a0a0a0', textDecoration: 'none', fontSize: '15px', fontWeight: 500 }}>{t.navAbout}</a>
-            <a href="#services" style={{ color: '#a0a0a0', textDecoration: 'none', fontSize: '15px', fontWeight: 500 }}>{t.navServices}</a>
-            <a href="#gallery" style={{ color: '#a0a0a0', textDecoration: 'none', fontSize: '15px', fontWeight: 500 }}>{t.navGallery}</a>
-            <a href="#appointment" style={{ color: '#a0a0a0', textDecoration: 'none', fontSize: '15px', fontWeight: 500 }}>{t.navAppointment}</a>
-            <a href="#contact" style={{ color: '#a0a0a0', textDecoration: 'none', fontSize: '15px', fontWeight: 500 }}>{t.navContact}</a>
-            <a href="#apply" style={{ color: '#a0a0a0', textDecoration: 'none', fontSize: '15px', fontWeight: 500 }}>{t.navApplyForm}</a>
+          {/* Sol Taraf: Kurumsal Logo & Kategoriler Yapısı */}
+          <div style={{ display: 'flex', gap: '35px', alignItems: 'center', flexWrap: 'wrap' }}>
+            
+            {/* Şık ve Profesyonel Logo Alanı */}
+            <a href="#" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', transition: '0.2s' }}>
+              <img 
+                src="/logo.png" 
+                alt="Timo to Work Logo" 
+                style={{ 
+                  height: '40px', 
+                  width: 'auto', 
+                  objectFit: 'contain',
+                  backgroundColor: '#ffffff', // Eğer logonun arkası şeffaf değilse patlamasın diye koruyucu şık beyaz zemin
+                  padding: '4px 8px',
+                  borderRadius: '6px'
+                }} 
+              />
+            </a>
+
+            {/* Menü Linkleri */}
+            <div style={{ display: 'flex', gap: '22px', alignItems: 'center' }}>
+              <a href="#" style={{ color: '#ffffff', textDecoration: 'none', fontSize: '15px', fontWeight: 500 }}>{t.navHome}</a>
+              <a href="#about" style={{ color: '#a0a0a0', textDecoration: 'none', fontSize: '15px', fontWeight: 500 }}>{t.navAbout}</a>
+              <a href="#services" style={{ color: '#a0a0a0', textDecoration: 'none', fontSize: '15px', fontWeight: 500 }}>{t.navServices}</a>
+              <a href="#gallery" style={{ color: '#a0a0a0', textDecoration: 'none', fontSize: '15px', fontWeight: 500 }}>{t.navGallery}</a>
+              <a href="#appointment" style={{ color: '#a0a0a0', textDecoration: 'none', fontSize: '15px', fontWeight: 500 }}>{t.navAppointment}</a>
+              <a href="#contact" style={{ color: '#a0a0a0', textDecoration: 'none', fontSize: '15px', fontWeight: 500 }}>{t.navContact}</a>
+              <a href="#apply" style={{ color: '#a0a0a0', textDecoration: 'none', fontSize: '15px', fontWeight: 500 }}>{t.navApplyForm}</a>
+            </div>
+
           </div>
           
           {/* Sağ Taraf: Dil Seçimi, Şimdi Arayın Butonu ve Tema İkonu */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-            
-            {/* Dil Seçici (Açılır Seçim Kutusu Şeklinde - Görseldeki Uyum İçin) */}
             <select 
               value={lang} 
               onChange={(e) => setLang(e.target.value as 'tr' | 'de' | 'en')}
@@ -291,12 +355,10 @@ export default function Home() {
               <option value="tr">🇹🇷 Turkish</option>
             </select>
 
-            {/* Gradyan Geçişli "Şimdi Arayın" Butonu (Görseldeki Renk Tonu) */}
             <a href="tel:+491636090266" style={{ background: 'linear-gradient(90deg, #7c3aed 0%, #ef4444 100%)', color: '#ffffff', textDecoration: 'none', padding: '10px 24px', borderRadius: '25px', fontWeight: 'bold', fontSize: '14px', display: 'inline-block', boxShadow: '0 4px 15px rgba(124, 58, 237, 0.3)', transition: '0.3s' }}>
               {t.btnCallNow}
             </a>
 
-            {/* Tema İkonu (Görseldeki Turuncu Daire İçindeki Güneş) */}
             <button style={{ backgroundColor: '#f97316', border: 'none', width: '36px', height: '36px', borderRadius: '50%', display: 'flex', alignItems: 'center', justify: 'center', cursor: 'pointer', color: '#ffffff', fontSize: '18px' }}>
               ☀️
             </button>
@@ -323,7 +385,7 @@ export default function Home() {
           
           {/* Sol Taraf: Kurumsal Logo veya Şık Koyu Vizyon Alanı */}
           <div style={{ backgroundColor: '#0b0f19', border: '1px solid #1f2937', borderRadius: '24px', padding: '50px 40px', textAlign: 'center', boxShadow: '0 20px 40px -15px rgba(0,0,0,0.3)' }}>
-            <div style={{ fontSize: '64px', marginBottom: '20px' }}>🌍</div>
+            <img src="/logo.png" alt="Timo to Work Logo" style={{ maxWidth: '180px', height: 'auto', marginBottom: '20px', display: 'inline-block' }} />
             <h3 style={{ fontSize: '24px', fontWeight: 700, color: '#38bdf8', marginBottom: '15px' }}>Timo to Work</h3>
             <p style={{ color: '#64748b', fontSize: '14px', margin: 0, textTransform: 'uppercase', letterSpacing: '1px' }}>International B.V.</p>
           </div>
@@ -397,7 +459,7 @@ export default function Home() {
         </div>
       </main>
 
-      {/* ----------------- GALERİ BÖLÜMÜ (GERÇEK FOTOĞRAFLAR) ----------------- */}
+      {/* ----------------- GALERİ BÖLÜMÜ (TAM DİNAMİK DİL DESTEKLİ) ----------------- */}
       <section id="gallery" style={{ backgroundColor: '#0b0f19', padding: '80px 20px', borderTop: '1px solid #1f2937' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           
@@ -410,118 +472,70 @@ export default function Home() {
           {/* 6'lı Modern Fotoğraf Grid Düzeni */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '25px' }}>
             
-            {/* Görsel 1 - Messebau (Modern Fuar Alanı Yapısı) */}
+            {/* Görsel 1 - Messebau */}
             <div style={{ 
-              position: 'relative', 
-              height: '260px', 
-              borderRadius: '16px', 
-              overflow: 'hidden', 
-              border: '1px solid #1f2937', 
-              display: 'flex', 
-              flexDirection: 'column', 
-              justify: 'end', 
-              padding: '25px', 
+              position: 'relative', height: '260px', borderRadius: '16px', overflow: 'hidden', border: '1px solid #1f2937', 
+              display: 'flex', flexDirection: 'column', justifyContent: 'end', padding: '25px', 
               backgroundImage: 'linear-gradient(to top, rgba(11,15,25,0.95) 0%, rgba(11,15,25,0.2) 100%), url("https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80")',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center'
+              backgroundSize: 'cover', backgroundPosition: 'center'
             }}>
-              <h4 style={{ color: '#ffffff', margin: '0 0 5px 0', fontSize: '18px', fontWeight: 600 }}>Messebau Projeleri</h4>
-              <span style={{ color: '#38bdf8', fontSize: '13px', fontWeight: 500 }}>Stand Tasarım & Kurulum</span>
+              <h4 style={{ color: '#ffffff', margin: '0 0 5px 0', fontSize: '18px', fontWeight: 600 }}>{t.galCard1Title}</h4>
+              <span style={{ color: '#38bdf8', fontSize: '13px', fontWeight: 500 }}>{t.galCard1Sub}</span>
             </div>
 
-            {/* Görsel 2 - Personalbereitstellung (Yenilenmiş Kesin Çalışan Görsel) */}
+            {/* Görsel 2 - Personalbereitstellung */}
             <div style={{ 
-              position: 'relative', 
-              height: '260px', 
-              borderRadius: '16px', 
-              overflow: 'hidden', 
-              border: '1px solid #1f2937', 
-              display: 'flex', 
-              flexDirection: 'column', 
-              justify: 'end', 
-              padding: '25px', 
+              position: 'relative', height: '260px', borderRadius: '16px', overflow: 'hidden', border: '1px solid #1f2937', 
+              display: 'flex', flexDirection: 'column', justifyContent: 'end', padding: '25px', 
               backgroundImage: 'linear-gradient(to top, rgba(11,15,25,0.95) 0%, rgba(11,15,25,0.2) 100%), url("https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=600&q=80")',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center'
+              backgroundSize: 'cover', backgroundPosition: 'center'
             }}>
-              <h4 style={{ color: '#ffffff', margin: '0 0 5px 0', fontSize: '18px', fontWeight: 600 }}>Nitelikli İş Gücü</h4>
-              <span style={{ color: '#38bdf8', fontSize: '13px', fontWeight: 500 }}>Uzman Kadro Tedariği</span>
+              <h4 style={{ color: '#ffffff', margin: '0 0 5px 0', fontSize: '18px', fontWeight: 600 }}>{t.galCard2Title}</h4>
+              <span style={{ color: '#38bdf8', fontSize: '13px', fontWeight: 500 }}>{t.galCard2Sub}</span>
             </div>
 
-            {/* Görsel 3 - Logistik (Uluslararası Taşımacılık / Tırlar) */}
+            {/* Görsel 3 - Logistik */}
             <div style={{ 
-              position: 'relative', 
-              height: '260px', 
-              borderRadius: '16px', 
-              overflow: 'hidden', 
-              border: '1px solid #1f2937', 
-              display: 'flex', 
-              flexDirection: 'column', 
-              justify: 'end', 
-              padding: '25px', 
+              position: 'relative', height: '260px', borderRadius: '16px', overflow: 'hidden', border: '1px solid #1f2937', 
+              display: 'flex', flexDirection: 'column', justifyContent: 'end', padding: '25px', 
               backgroundImage: 'linear-gradient(to top, rgba(11,15,25,0.95) 0%, rgba(11,15,25,0.2) 100%), url("https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=600&q=80")',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center'
+              backgroundSize: 'cover', backgroundPosition: 'center'
             }}>
-              <h4 style={{ color: '#ffffff', margin: '0 0 5px 0', fontSize: '18px', fontWeight: 600 }}>Uluslararası Lojistik</h4>
-              <span style={{ color: '#38bdf8', fontSize: '13px', fontWeight: 500 }}>Sınır Ötesi Taşıma & Depolama</span>
+              <h4 style={{ color: '#ffffff', margin: '0 0 5px 0', fontSize: '18px', fontWeight: 600 }}>{t.galCard3Title}</h4>
+              <span style={{ color: '#38bdf8', fontSize: '13px', fontWeight: 500 }}>{t.galCard3Sub}</span>
             </div>
 
-            {/* Görsel 4 - Import (Konteyner Limanı / Global Tedarik) */}
+            {/* Görsel 4 - Import */}
             <div style={{ 
-              position: 'relative', 
-              height: '260px', 
-              borderRadius: '16px', 
-              overflow: 'hidden', 
-              border: '1px solid #1f2937', 
-              display: 'flex', 
-              flexDirection: 'column', 
-              justify: 'end', 
-              padding: '25px', 
+              position: 'relative', height: '260px', borderRadius: '16px', overflow: 'hidden', border: '1px solid #1f2937', 
+              display: 'flex', flexDirection: 'column', justifyContent: 'end', padding: '25px', 
               backgroundImage: 'linear-gradient(to top, rgba(11,15,25,0.95) 0%, rgba(11,15,25,0.2) 100%), url("https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=600&q=80")',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center'
+              backgroundSize: 'cover', backgroundPosition: 'center'
             }}>
-              <h4 style={{ color: '#ffffff', margin: '0 0 5px 0', fontSize: '18px', fontWeight: 600 }}>Küresel İthalat Operasyonları</h4>
-              <span style={{ color: '#38bdf8', fontSize: '13px', fontWeight: 500 }}>Tedarik Zinciri Yönetimi</span>
+              <h4 style={{ color: '#ffffff', margin: '0 0 5px 0', fontSize: '18px', fontWeight: 600 }}>{t.galCard4Title}</h4>
+              <span style={{ color: '#38bdf8', fontSize: '13px', fontWeight: 500 }}>{t.galCard4Sub}</span>
             </div>
 
-            {/* Görsel 5 - Export (Hava / Kara Lojistik Entegrasyonu) */}
+            {/* Görsel 5 - Export */}
             <div style={{ 
-              position: 'relative', 
-              height: '260px', 
-              borderRadius: '16px', 
-              overflow: 'hidden', 
-              border: '1px solid #1f2937', 
-              display: 'flex', 
-              flexDirection: 'column', 
-              justify: 'end', 
-              padding: '25px', 
+              position: 'relative', height: '260px', borderRadius: '16px', overflow: 'hidden', border: '1px solid #1f2937', 
+              display: 'flex', flexDirection: 'column', justifyContent: 'end', padding: '25px', 
               backgroundImage: 'linear-gradient(to top, rgba(11,15,25,0.95) 0%, rgba(11,15,25,0.2) 100%), url("https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80")',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center'
+              backgroundSize: 'cover', backgroundPosition: 'center'
             }}>
-              <h4 style={{ color: '#ffffff', margin: '0 0 5px 0', fontSize: '18px', fontWeight: 600 }}>Uluslararası İhracat</h4>
-              <span style={{ color: '#38bdf8', fontSize: '13px', fontWeight: 500 }}>Global Pazar Entegrasyonu</span>
+              <h4 style={{ color: '#ffffff', margin: '0 0 5px 0', fontSize: '18px', fontWeight: 600 }}>{t.galCard5Title}</h4>
+              <span style={{ color: '#38bdf8', fontSize: '13px', fontWeight: 500 }}>{t.galCard5Sub}</span>
             </div>
 
-            {/* Görsel 6 - Avrupa Ofisleri / İş Yönetimi */}
+            {/* Görsel 6 - Ofisler */}
             <div style={{ 
-              position: 'relative', 
-              height: '260px', 
-              borderRadius: '16px', 
-              overflow: 'hidden', 
-              border: '1px solid #1f2937', 
-              display: 'flex', 
-              flexDirection: 'column', 
-              justify: 'end', 
-              padding: '25px', 
+              position: 'relative', height: '260px', borderRadius: '16px', overflow: 'hidden', border: '1px solid #1f2937', 
+              display: 'flex', flexDirection: 'column', justifyContent: 'end', padding: '25px', 
               backgroundImage: 'linear-gradient(to top, rgba(11,15,25,0.95) 0%, rgba(11,15,25,0.2) 100%), url("https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80")',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center'
+              backgroundSize: 'cover', backgroundPosition: 'center'
             }}>
-              <h4 style={{ color: '#ffffff', margin: '0 0 5px 0', fontSize: '18px', fontWeight: 600 }}>Avrupa Operasyon Merkezleri</h4>
-              <span style={{ color: '#38bdf8', fontSize: '13px', fontWeight: 500 }}>Amsterdam & Almanya Koordinasyon</span>
+              <h4 style={{ color: '#ffffff', margin: '0 0 5px 0', fontSize: '18px', fontWeight: 600 }}>{t.galCard6Title}</h4>
+              <span style={{ color: '#38bdf8', fontSize: '13px', fontWeight: 500 }}>{t.galCard6Sub}</span>
             </div>
 
           </div>
