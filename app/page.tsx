@@ -397,7 +397,7 @@ export default function Home() {
         </div>
       </main>
 
-      {/* ----------------- GALERİ BÖLÜMÜ ----------------- */}
+      {/* ----------------- GALERİ BÖLÜMÜ (GERÇEK FOTOĞRAFLAR) ----------------- */}
       <section id="gallery" style={{ backgroundColor: '#0b0f19', padding: '80px 20px', borderTop: '1px solid #1f2937' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           
@@ -410,46 +410,118 @@ export default function Home() {
           {/* 6'lı Modern Fotoğraf Grid Düzeni */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '25px' }}>
             
-            {/* Görsel 1 - Messebau */}
-            <div style={{ position: 'relative', height: '240px', backgroundColor: '#111827', borderRadius: '16px', overflow: 'hidden', border: '1px solid #1f2937', display: 'flex', flexDirection: 'column', justifyContent: 'end', padding: '20px', backgroundImage: 'linear-gradient(to top, rgba(11,15,25,0.9), rgba(11,15,25,0.3))' }}>
-              <div style={{ fontSize: '32px', marginBottom: '10px' }}>🏗️</div>
+            {/* Görsel 1 - Messebau (Modern Fuar Alanı Yapısı) */}
+            <div style={{ 
+              position: 'relative', 
+              height: '260px', 
+              borderRadius: '16px', 
+              overflow: 'hidden', 
+              border: '1px solid #1f2937', 
+              display: 'flex', 
+              flexDirection: 'column', 
+              justify: 'end', 
+              padding: '25px', 
+              backgroundImage: 'linear-gradient(to top, rgba(11,15,25,0.95) 0%, rgba(11,15,25,0.2) 100%), url("https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80")',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center'
+            }}>
               <h4 style={{ color: '#ffffff', margin: '0 0 5px 0', fontSize: '18px', fontWeight: 600 }}>Messebau Projeleri</h4>
-              <span style={{ color: '#64748b', fontSize: '13px' }}>Stand Tasarım & Kurulum</span>
+              <span style={{ color: '#38bdf8', fontSize: '13px', fontWeight: 500 }}>Stand Tasarım & Kurulum</span>
             </div>
 
-            {/* Görsel 2 - Personalbereitstellung */}
-            <div style={{ position: 'relative', height: '240px', backgroundColor: '#111827', borderRadius: '16px', overflow: 'hidden', border: '1px solid #1f2937', display: 'flex', flexDirection: 'column', justifyContent: 'end', padding: '20px', backgroundImage: 'linear-gradient(to top, rgba(11,15,25,0.9), rgba(11,15,25,0.3))' }}>
-              <div style={{ fontSize: '32px', marginBottom: '10px' }}>👔</div>
+            {/* Görsel 2 - Personalbereitstellung (Yenilenmiş Kesin Çalışan Görsel) */}
+            <div style={{ 
+              position: 'relative', 
+              height: '260px', 
+              borderRadius: '16px', 
+              overflow: 'hidden', 
+              border: '1px solid #1f2937', 
+              display: 'flex', 
+              flexDirection: 'column', 
+              justify: 'end', 
+              padding: '25px', 
+              backgroundImage: 'linear-gradient(to top, rgba(11,15,25,0.95) 0%, rgba(11,15,25,0.2) 100%), url("https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=600&q=80")',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center'
+            }}>
               <h4 style={{ color: '#ffffff', margin: '0 0 5px 0', fontSize: '18px', fontWeight: 600 }}>Nitelikli İş Gücü</h4>
-              <span style={{ color: '#64748b', fontSize: '13px' }}>Uzman Kadro Tedariği</span>
+              <span style={{ color: '#38bdf8', fontSize: '13px', fontWeight: 500 }}>Uzman Kadro Tedariği</span>
             </div>
 
-            {/* Görsel 3 - Logistik */}
-            <div style={{ position: 'relative', height: '240px', backgroundColor: '#111827', borderRadius: '16px', overflow: 'hidden', border: '1px solid #1f2937', display: 'flex', flexDirection: 'column', justifyContent: 'end', padding: '20px', backgroundImage: 'linear-gradient(to top, rgba(11,15,25,0.9), rgba(11,15,25,0.3))' }}>
-              <div style={{ fontSize: '32px', marginBottom: '10px' }}>🚛</div>
+            {/* Görsel 3 - Logistik (Uluslararası Taşımacılık / Tırlar) */}
+            <div style={{ 
+              position: 'relative', 
+              height: '260px', 
+              borderRadius: '16px', 
+              overflow: 'hidden', 
+              border: '1px solid #1f2937', 
+              display: 'flex', 
+              flexDirection: 'column', 
+              justify: 'end', 
+              padding: '25px', 
+              backgroundImage: 'linear-gradient(to top, rgba(11,15,25,0.95) 0%, rgba(11,15,25,0.2) 100%), url("https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=600&q=80")',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center'
+            }}>
               <h4 style={{ color: '#ffffff', margin: '0 0 5px 0', fontSize: '18px', fontWeight: 600 }}>Uluslararası Lojistik</h4>
-              <span style={{ color: '#64748b', fontSize: '13px' }}>Sınır Ötesi Taşıma & Depolama</span>
+              <span style={{ color: '#38bdf8', fontSize: '13px', fontWeight: 500 }}>Sınır Ötesi Taşıma & Depolama</span>
             </div>
 
-            {/* Görsel 4 - Import */}
-            <div style={{ position: 'relative', height: '240px', backgroundColor: '#111827', borderRadius: '16px', overflow: 'hidden', border: '1px solid #1f2937', display: 'flex', flexDirection: 'column', justifyContent: 'end', padding: '20px', backgroundImage: 'linear-gradient(to top, rgba(11,15,25,0.9), rgba(11,15,25,0.3))' }}>
-              <div style={{ fontSize: '32px', marginBottom: '10px' }}>🛳️</div>
+            {/* Görsel 4 - Import (Konteyner Limanı / Global Tedarik) */}
+            <div style={{ 
+              position: 'relative', 
+              height: '260px', 
+              borderRadius: '16px', 
+              overflow: 'hidden', 
+              border: '1px solid #1f2937', 
+              display: 'flex', 
+              flexDirection: 'column', 
+              justify: 'end', 
+              padding: '25px', 
+              backgroundImage: 'linear-gradient(to top, rgba(11,15,25,0.95) 0%, rgba(11,15,25,0.2) 100%), url("https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=600&q=80")',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center'
+            }}>
               <h4 style={{ color: '#ffffff', margin: '0 0 5px 0', fontSize: '18px', fontWeight: 600 }}>Küresel İthalat Operasyonları</h4>
-              <span style={{ color: '#64748b', fontSize: '13px' }}>Tedarik Zinciri Yönetimi</span>
+              <span style={{ color: '#38bdf8', fontSize: '13px', fontWeight: 500 }}>Tedarik Zinciri Yönetimi</span>
             </div>
 
-            {/* Görsel 5 - Export */}
-            <div style={{ position: 'relative', height: '240px', backgroundColor: '#111827', borderRadius: '16px', overflow: 'hidden', border: '1px solid #1f2937', display: 'flex', flexDirection: 'column', justifyContent: 'end', padding: '20px', backgroundImage: 'linear-gradient(to top, rgba(11,15,25,0.9), rgba(11,15,25,0.3))' }}>
-              <div style={{ fontSize: '32px', marginBottom: '10px' }}>✈️</div>
+            {/* Görsel 5 - Export (Hava / Kara Lojistik Entegrasyonu) */}
+            <div style={{ 
+              position: 'relative', 
+              height: '260px', 
+              borderRadius: '16px', 
+              overflow: 'hidden', 
+              border: '1px solid #1f2937', 
+              display: 'flex', 
+              flexDirection: 'column', 
+              justify: 'end', 
+              padding: '25px', 
+              backgroundImage: 'linear-gradient(to top, rgba(11,15,25,0.95) 0%, rgba(11,15,25,0.2) 100%), url("https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80")',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center'
+            }}>
               <h4 style={{ color: '#ffffff', margin: '0 0 5px 0', fontSize: '18px', fontWeight: 600 }}>Uluslararası İhracat</h4>
-              <span style={{ color: '#64748b', fontSize: '13px' }}>Global Pazar Entegrasyonu</span>
+              <span style={{ color: '#38bdf8', fontSize: '13px', fontWeight: 500 }}>Global Pazar Entegrasyonu</span>
             </div>
 
-            {/* Görsel 6 - Merkez Ofis / Almanya & Hollanda */}
-            <div style={{ position: 'relative', height: '240px', backgroundColor: '#111827', borderRadius: '16px', overflow: 'hidden', border: '1px solid #1f2937', display: 'flex', flexDirection: 'column', justifyContent: 'end', padding: '20px', backgroundImage: 'linear-gradient(to top, rgba(11,15,25,0.9), rgba(11,15,25,0.3))' }}>
-              <div style={{ fontSize: '32px', marginBottom: '10px' }}>🏢</div>
+            {/* Görsel 6 - Avrupa Ofisleri / İş Yönetimi */}
+            <div style={{ 
+              position: 'relative', 
+              height: '260px', 
+              borderRadius: '16px', 
+              overflow: 'hidden', 
+              border: '1px solid #1f2937', 
+              display: 'flex', 
+              flexDirection: 'column', 
+              justify: 'end', 
+              padding: '25px', 
+              backgroundImage: 'linear-gradient(to top, rgba(11,15,25,0.95) 0%, rgba(11,15,25,0.2) 100%), url("https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80")',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center'
+            }}>
               <h4 style={{ color: '#ffffff', margin: '0 0 5px 0', fontSize: '18px', fontWeight: 600 }}>Avrupa Operasyon Merkezleri</h4>
-              <span style={{ color: '#64748b', fontSize: '13px' }}>Amsterdam & Almanya Koordinasyon</span>
+              <span style={{ color: '#38bdf8', fontSize: '13px', fontWeight: 500 }}>Amsterdam & Almanya Koordinasyon</span>
             </div>
 
           </div>
