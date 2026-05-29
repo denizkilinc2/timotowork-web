@@ -80,7 +80,12 @@ const translations = {
     optSelect: "Seçiniz",
     optYes: "Evet",
     optNo: "Hayır",
-    jobBtn: "Şimdi Başvur"
+    jobBtn: "Şimdi Başvur",
+    aboutTitle: "Hakkımızda",
+    aboutSub: "Geçmişten gelen hizmet mirasıyla küresel pazarda güvenilir bir ortak",
+    aboutText1: "Timo to Work International B.V. olarak, köklü hizmet geçmişimiz ve sektördeki derin tecrübemizle fuar lojistiği, stand kurulumu (Messebau) ve nitelikli iş gücü tedariği (Personalbereitstellung) alanlarında Avrupa standartlarında çözümler sunuyoruz.",
+    aboutText2: "Almanya ve Hollanda merkezli operasyonlarımızla, iş ortaklarımızın ihtiyaçlarına en hızlı ve profesyonel çözümleri üretirken; küresel vizyonumuz doğrultusunda uluslararası ithalat ve ihracat danışmanlığı süreçlerini de uçtan uca yönetiyoruz.",
+    aboutText3: "İlkelerimiz her zaman güven, kalite ve zamanında teslimat üzerine kuruludur. Sınır ötesi operasyonel gücümüzle projelerinizi geleceğe taşıyoruz."
   },
   de: {
     brand: "Timo to Work",
@@ -156,7 +161,12 @@ const translations = {
     optSelect: "Bitte auswählen",
     optYes: "Ja",
     optNo: "Nein",
-    jobBtn: "Jetzt bewerben"
+    jobBtn: "Jetzt bewerben",
+    aboutTitle: "Über uns",
+    aboutSub: "Ein zuverlässiger Partner auf dem globalen Markt mit einem starken Dienstleistungserbe",
+    aboutText1: "Als Timo to Work International B.V. bieten wir mit unserer langjährigen Servicehistorie und fundierten Branchenerfahrung Lösungen auf europäischem Niveau in den Bereichen Messelogistik, Standbau (Messebau) und qualifizierte Personalbereitstellung.",
+    aboutText2: "Mit unseren Aktivitäten in Deutschland und den Niederlanden bieten wir schnellste und professionelle Lösungen für die Bedürfnisse unserer Geschäftspartner, während wir im Einklang mit unserer globalen Vision auch internationale Import- und Exportberatungsprozesse von Ende zu Ende steuern.",
+    aboutText3: "Unsere Prinzipien basieren stets auf Vertrauen, Qualität und pünktlicher Lieferung. Mit unserer grenzüberschreitenden operativen Stärke tragen wir Ihre Projekte in die Zukunft."
   },
   en: {
     brand: "Timo to Work",
@@ -232,7 +242,12 @@ const translations = {
     optSelect: "Select",
     optYes: "Yes",
     optNo: "No",
-    jobBtn: "Apply Now"
+    jobBtn: "Apply Now",
+    aboutTitle: "About Us",
+    aboutSub: "A reliable partner in the global market with a strong heritage of service",
+    aboutText1: "As Timo to Work International B.V., we offer European-standard solutions in exhibition logistics, stand construction (Messebau), and qualified workforce provision (Personalbereitstellung), backed by our deep-rooted service history and industry experience.",
+    aboutText2: "With our operations based in Germany and the Netherlands, we produce the fastest and most professional solutions for our business partners' needs, while managing international import and export consultancy processes end-to-end in line with our global vision.",
+    aboutText3: "Our principles are always built on trust, quality, and timely delivery. We carry your projects into the future with our cross-border operational strength."
   }
 };
 
@@ -274,7 +289,7 @@ export default function Home() {
             </select>
 
             {/* Gradyan Geçişli "Şimdi Arayın" Butonu (Görseldeki Renk Tonu) */}
-            <a href="tel:+4900000000" style={{ background: 'linear-gradient(90deg, #7c3aed 0%, #ef4444 100%)', color: '#ffffff', textDecoration: 'none', padding: '10px 24px', borderRadius: '25px', fontWeight: 'bold', fontSize: '14px', display: 'inline-block', boxShadow: '0 4px 15px rgba(124, 58, 237, 0.3)', transition: '0.3s' }}>
+            <a href="tel:+491636090266" style={{ background: 'linear-gradient(90deg, #7c3aed 0%, #ef4444 100%)', color: '#ffffff', textDecoration: 'none', padding: '10px 24px', borderRadius: '25px', fontWeight: 'bold', fontSize: '14px', display: 'inline-block', boxShadow: '0 4px 15px rgba(124, 58, 237, 0.3)', transition: '0.3s' }}>
               {t.btnCallNow}
             </a>
 
@@ -298,6 +313,38 @@ export default function Home() {
           </p>
         </div>
       </header>
+
+      {/* ----------------- HAKKIMIZDA BÖLÜMÜ ----------------- */}
+      <section id="about" style={{ backgroundColor: '#111827', padding: '90px 20px', borderBottom: '1px solid #1f2937' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '50px', alignItems: 'center' }}>
+          
+          {/* Sol Taraf: Kurumsal Logo veya Şık Koyu Vizyon Alanı */}
+          <div style={{ backgroundColor: '#0b0f19', border: '1px solid #1f2937', borderRadius: '24px', padding: '50px 40px', textAlign: 'center', boxShadow: '0 20px 40px -15px rgba(0,0,0,0.3)' }}>
+            <div style={{ fontSize: '64px', marginBottom: '20px' }}>🌍</div>
+            <h3 style={{ fontSize: '24px', fontWeight: 700, color: '#38bdf8', marginBottom: '15px' }}>Timo to Work</h3>
+            <p style={{ color: '#64748b', fontSize: '14px', margin: 0, textTransform: 'uppercase', letterSpacing: '1px' }}>International B.V.</p>
+          </div>
+
+          {/* Sağ Taraf: Kurumsal Hikaye Metinleri */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+            <div>
+              <span style={{ color: '#38bdf8', fontSize: '14px', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '1.5px', display: 'block', marginBottom: '10px' }}>{t.aboutTitle}</span>
+              <h2 style={{ fontSize: '36px', fontWeight: 700, color: '#ffffff', marginBottom: '15px', lineHeight: '1.3' }}>{t.aboutSub}</h2>
+            </div>
+            
+            <p style={{ color: '#94a3b8', fontSize: '16px', lineHeight: '1.8', margin: 0 }}>
+              {t.aboutText1}
+            </p>
+            <p style={{ color: '#94a3b8', fontSize: '16px', lineHeight: '1.8', margin: 0 }}>
+              {t.aboutText2}
+            </p>
+            <p style={{ color: '#64748b', fontSize: '15px', lineHeight: '1.8', margin: 0, fontStyle: 'italic', borderLeft: '3px solid #38bdf8', paddingLeft: '15px' }}>
+              {t.aboutText3}
+            </p>
+          </div>
+
+        </div>
+      </section>
 
       {/* Hizmetler Bölümü */}
       <main style={{ maxWidth: '1200px', margin: '0 auto', padding: '80px 20px' }} id="services">
@@ -647,26 +694,55 @@ export default function Home() {
               </p>
             </div>
 
+            {/* İletişim Detayları Listesi (Görseldeki Gerçek Bilgilerle Güncellendi) */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', color: '#f8fafc', fontSize: '15px' }}>
               <div style={{ display: 'flex', alignItems: 'start', gap: '15px' }}>
                 <span style={{ fontSize: '20px' }}>📍</span>
                 <div>
-                  <strong style={{ display: 'block', color: '#38bdf8' }}>Merkez Ofis Adresi</strong>
-                  <span style={{ color: '#94a3b8', fontSize: '14px' }}>Timo to Work International B.V.[cite: 1]<br />Amsterdam / Netherlands</span>
+                  <strong style={{ display: 'block', color: '#38bdf8' }}>
+                    {lang === 'tr' ? 'Adres' : lang === 'de' ? 'Adresse' : 'Address'}
+                  </strong>
+                  <span style={{ color: '#94a3b8', fontSize: '14px', lineHeight: '1.5' }}>
+                    Hindenburgstr. 236,<br />
+                    41061 Mönchengladbach,<br />
+                    {lang === 'tr' ? 'Almanya' : lang === 'de' ? 'Deutschland' : 'Germany'}
+                  </span>
                 </div>
               </div>
+
               <div style={{ display: 'flex', alignItems: 'start', gap: '15px' }}>
                 <span style={{ fontSize: '20px' }}>📞</span>
                 <div>
-                  <strong style={{ display: 'block', color: '#38bdf8' }}>Telefon & İletişim</strong>
-                  <span style={{ color: '#94a3b8', fontSize: '14px' }}>+31 (0) XX XXX XX XX / +49 (0) XX XXX XX XX</span>
+                  <strong style={{ display: 'block', color: '#38bdf8' }}>
+                    {lang === 'tr' ? 'Şimdi Arayın' : lang === 'de' ? 'Jetzt anrufen' : 'Call Now'}
+                  </strong>
+                  <a href="tel:+491636090266" style={{ color: '#94a3b8', fontSize: '14px', textDecoration: 'none' }}>
+                    +49 (0) 163 6090266
+                  </a>
                 </div>
               </div>
+
               <div style={{ display: 'flex', alignItems: 'start', gap: '15px' }}>
                 <span style={{ fontSize: '20px' }}>✉️</span>
                 <div>
-                  <strong style={{ display: 'block', color: '#38bdf8' }}>E-Posta</strong>
-                  <span style={{ color: '#94a3b8', fontSize: '14px' }}>info@timotowork.com</span>
+                  <strong style={{ display: 'block', color: '#38bdf8' }}>
+                    {lang === 'tr' ? 'E-Posta / Bizimle İletişimde Kalın' : lang === 'de' ? 'E-Mail / Bleiben Sie in Kontakt' : 'Email / Stay in Touch'}
+                  </strong>
+                  <a href="mailto:info@mge-dienstleistungen-gmbh.de" style={{ color: '#94a3b8', fontSize: '14px', textDecoration: 'none' }}>
+                    info@mge-dienstleistungen-gmbh.de
+                  </a>
+                </div>
+              </div>
+
+              <div style={{ display: 'flex', alignItems: 'start', gap: '15px' }}>
+                <span style={{ fontSize: '20px' }}>⏰</span>
+                <div>
+                  <strong style={{ display: 'block', color: '#38bdf8' }}>
+                    {lang === 'tr' ? 'Çalışma Saatleri' : lang === 'de' ? 'Öffnungszeiten' : 'Opening Hours'}
+                  </strong>
+                  <span style={{ color: '#94a3b8', fontSize: '14px' }}>
+                    {lang === 'tr' ? 'Pazartesi - Cuma: 09:00 - 18:00' : lang === 'de' ? 'Montag - Freitag: 09:00 - 18:00' : 'Monday - Friday: 09:00 - 18:00'}
+                  </span>
                 </div>
               </div>
             </div>
