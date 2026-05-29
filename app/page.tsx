@@ -472,14 +472,70 @@ export default function Home() {
             </div>
           </motion.div>
 
-          {/* Sağ Sütun: Premium Soyut Endüstri/Gelecek Görseli (Boşluğu Yok Eden Alan) */}
-          <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8 }} style={{ position: 'relative', width: '100%', height: '400px', borderRadius: '24px', overflow: 'hidden', border: '1px solid #1f2937', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.5)' }}>
-            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, #0f172a 0%, rgba(15,23,42,0) 40%)', zIndex: 1 }}></div>
+          {/* Sağ Sütun: Önünde Yer Tabelası Olan Modern Holding Binası (image_f3a759.jpg yerine) */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }} 
+            animate={{ opacity: 1, scale: 1 }} 
+            transition={{ duration: 0.8 }} 
+            style={{ 
+              position: 'relative', 
+              width: '100%', 
+              height: '420px', 
+              borderRadius: '24px', 
+              overflow: 'hidden', 
+              border: `1px solid ${theme.border}`, 
+              boxShadow: '0 25px 50px -12px rgba(0,0,0,0.5)' 
+            }}
+          >
+            {/* Sol taraftaki şık koyu geçiş gradyanı */}
+            <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(to right, ${darkMode ? '#0f172a' : '#f1f5f9'} 0%, rgba(15,23,42,0) 40%)`, zIndex: 1, pointerEvents: 'none' }}></div>
+            
+            {/* Lüks Holding Genel Merkez Binası */}
             <img 
-              src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=800&q=80" 
-              alt="Global Operations" 
+              src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80" 
+              alt="Timo to Work Head Office" 
               style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             />
+
+            {/* 🏢 BİNANIN ÖNÜNDEKİ MİNİMALİST VE MODERN DİJİTAL PANEL */}
+            <div style={{
+              position: 'absolute',
+              bottom: '30px',
+              right: '30px',
+              backgroundColor: 'rgba(15, 23, 42, 0.65)',
+              backdropFilter: 'blur(20px)', // Daha derin bir cam efekti
+              border: '1px solid rgba(255, 255, 255, 0.1)', // İnce lüks beyaz çizgi
+              borderRadius: '16px',
+              padding: '20px 28px',
+              boxShadow: '0 30px 60px -15px rgba(0, 0, 0, 0.8), inset 0 1px 1px rgba(255,255,255,0.1)',
+              zIndex: 2,
+              textAlign: 'left'
+            }}>
+              {/* Canlı Sinyal Noktası (Modern Operasyon Göstergesi) */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
+                <span style={{ 
+                  width: '8px', 
+                  height: '8px', 
+                  backgroundColor: '#38bdf8', 
+                  borderRadius: '50%', 
+                  display: 'inline-block',
+                  boxShadow: '0 0 10px #38bdf8'
+                }}></span>
+                <span style={{ fontSize: '10px', color: '#94a3b8', fontWeight: 600, letterSpacing: '3px', textTransform: 'uppercase' }}>
+                  Live Operations
+                </span>
+              </div>
+              
+              {/* Şirket Adı Baş Harfleri ve Kısaltması */}
+              <h3 style={{ margin: 0, fontSize: '24px', fontWeight: 800, color: '#ffffff', letterSpacing: '-0.5px', lineHeight: '1' }}>
+                TTW <span style={{ color: '#38bdf8', fontWeight: 300 }}>International</span>
+              </h3>
+              
+              {/* Lokasyon Alt Bilgisi */}
+              <p style={{ margin: '8px 0 0 0', fontSize: '11px', color: '#64748b', fontWeight: 500, letterSpacing: '0.5px' }}>
+                Germany & Netherlands Hub
+              </p>
+            </div>
           </motion.div>
 
         </div>
@@ -1020,6 +1076,39 @@ export default function Home() {
         </div>
       </footer>
 
+      {/* 💬 PREMIUM SABİT WHATSAPP CANLI DESTEK BUTONU */}
+      <motion.a
+        href="https://wa.me/491636090266" // Eski sitedeki kurumsal iletişim numaranız
+        target="_blank"
+        rel="noopener noreferrer"
+        initial={{ opacity: 0, scale: 0.6, y: 50 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ delay: 1, duration: 0.5, ease: 'easeOut' }}
+        whileHover={{ scale: 1.1, boxShadow: '0 0 25px rgba(34, 197, 94, 0.6)' }}
+        style={{
+          position: 'fixed',
+          bottom: '30px',
+          left: '30px', // Sağ taraftaki tabela panelini kapatmaması için sol alt köşeye şıkça yerleştirildi
+          zIndex: 999,
+          backgroundColor: '#22c55e',
+          color: '#ffffff',
+          width: '60px',
+          height: '60px',
+          borderRadius: '50%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontSize: '32px',
+          textDecoration: 'none',
+          boxShadow: '0 10px 30px rgba(34, 197, 94, 0.4)',
+          cursor: 'pointer',
+          transition: 'box-shadow 0.3s ease'
+        }}
+        title="WhatsApp ile İletişime Geçin"
+      >
+        {/* WhatsApp Yeşil Temalı Modern İkon / Emoji */}
+        <span style={{ transform: 'translateY(1px)' }}>💬</span>
+      </motion.a>
     </div>
   );
 }
