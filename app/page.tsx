@@ -92,7 +92,17 @@ const translations = {
     galCard5Title: "Uluslararası İhracat",
     galCard5Sub: "Global Pazar Entegrasyonu",
     galCard6Title: "Avrupa Operasyon Merkezleri",
-    galCard6Sub: "Amsterdam & Almanya Koordinasyon"
+    galCard6Sub: "Amsterdam & Almanya Koordinasyon",
+    statCard1: "Tamamlanan Fuar Standı",
+    statCard2: "Aktif Uzman Personel",
+    statCard3: "Uluslararası Ticaret Ülkesi",
+    statCard4: "Müşteri Memnuniyeti",
+    stepTitle: "Operasyonel Süreç Adımları",
+    card1Steps: ["Konsept ve 3D Stand Tasarımı", "Malzeme Seçimi ve Üretim", "Lojistik ve Fuar Alanına Nakliye", "Yerinde Kurulum ve Anahtar Teslim", "Fuar Sonrası Söküm ve Depolama"],
+    card2Steps: ["Uzman Montaj Kadrosu Tedariği", "Sertifikalı Forklift ve Ekipman Operatörleri", "Çok Dilli Fuar Host ve Hostesleri", "Yasal Mevzuat ve AÜG Sözleşme Yönetimi"],
+    card3Steps: ["Avrupa Genelinde Otel ve Konaklama Organizasyonu", "VIP Transfer ve Ekip Lojistiği", "Saha Koordinasyon ve Süreç Yönetimi", "7/24 Yerinde Destek ve Asistanlık"],
+    card4Steps: ["Global Üretici ve Tedarikçi Analizi", "Gümrükleme ve Uluslararası Mevzuat Yönetimi", "Kalite Kontrol ve Teslimat Takibi", "Sınır Ötesi Lojistik Organizasyonu"],
+    card5Steps: ["Hedef Pazar Analizi ve Müşteri Bulma", "Uluslararası Sözleşme ve Hukuki Danışmanlık", "Gümrük ve İhracat Beyanname İşlemleri", "Uçtan Uca Lojistik ve Dağıtım Ağı"]
   },
   de: {
     brand: "Timo to Work",
@@ -181,7 +191,17 @@ const translations = {
     galCard5Title: "Internationaler Export",
     galCard5Sub: "Globale Marktintegration",
     galCard6Title: "Europäische Betriebsleiter",
-    galCard6Sub: "Amsterdam & Deutschland Koordination"
+    galCard6Sub: "Amsterdam & Deutschland Koordination",
+    statCard1: "Abgeschlossene Messestände",
+    statCard2: "Aktive Fachkräfte",
+    statCard3: "Internationale Handelsländer",
+    statCard4: "Kundenzufriedenheit",
+    stepTitle: "Operative Prozessschritte",
+    card1Steps: ["Konzept & 3D-Standdesign", "Materialauswahl & Produktion", "Logistik & Transport zum Messegelände", "Montage vor Ort & Schlüsselfertige Übergabe", "Demontage & Einlagerung nach der Messe"],
+    card2Steps: ["Bereitstellung von erfahrenen Monteuren", "Zertifizierte Stapler- & Gerätefahrer", "Mehrsprachiges Messepersonal (Hostessen/Hosts)", "Rechtliche Absicherung & AÜG-Konformität"],
+    card3Steps: ["Hotel- & Unterkunftsmanagement in Europa", "VIP-Transfer & Teamlogistik", "Koordination vor Ort & Prozessleitung", "7/24 Support & Assistenz vor Ort"],
+    card4Steps: ["Globale Hersteller- & Lieferantenanalyse", "Zollabwicklung & Außenhandelsrecht", "Qualitätskontrolle & Lieferantenüberwachung", "Grenzüberschreitende Logistikorganisation"],
+    card5Steps: ["Zielmarktanalyse & Kundenakquise", "Internationale Verträge & Rechtsberatung", "Zoll- & Exportanmeldungen", "End-to-End Logistik & Vertriebsnetzwerk"]
   },
   en: {
     brand: "Timo to Work",
@@ -270,7 +290,17 @@ const translations = {
     galCard5Title: "International Export",
     galCard5Sub: "Global Market Integration",
     galCard6Title: "European Operation Centers",
-    galCard6Sub: "Amsterdam & Germany Coordination"
+    galCard6Sub: "Amsterdam & Germany Coordination",
+    statCard1: "Completed Exhibition Stands",
+    statCard2: "Active Specialist Personnel",
+    statCard3: "International Trade Countries",
+    statCard4: "Customer Satisfaction",
+    stepTitle: "Operational Process Steps",
+    card1Steps: ["Concept & 3D Stand Design", "Material Selection & Production", "Logistics & Transport to Exhibition Ground", "On-site Installation & Turnkey Delivery", "Dismantling & Storage Post-Exhibition"],
+    card2Steps: ["Provision of Expert Installation Crews", "Certified Forklift & Equipment Operators", "Multilingual Exhibition Hosts & Hostesses", "Legal Compliance & AÜG Contract Management"],
+    card3Steps: ["Hotel & Accommodation Management Across Europe", "VIP Transfer & Team Logistics", "On-site Coordination & Process Management", "24/7 On-site Support & Assistance"],
+    card4Steps: ["Global Manufacturer & Supplier Analysis", "Customs Clearance & Trade Regulation Management", "Quality Control & Delivery Tracking", "Cross-Border Logistics Organization"],
+    card5Steps: ["Target Market Analysis & Client Acquisition", "International Contracts & Legal Consultancy", "Customs & Export Declarations", "End-to-End Logistics & Distribution Network"]
   }
 };
 
@@ -282,6 +312,7 @@ const fadeInUpVariants = {
 
 export default function Home() {
   const [lang, setLang] = useState<'tr' | 'de' | 'en'>('de');
+  const [activeCard, setActiveCard] = useState<number | null>(null);
   const t = translations[lang];
 
   return (
@@ -346,22 +377,163 @@ export default function Home() {
         </div>
       </motion.section>
 
-      {/* HİZMETLER BÖLÜMÜ (ANIMASYONLU) */}
-      <motion.main id="services" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.15 }} variants={fadeInUpVariants} style={{ maxWidth: '1200px', margin: '0 auto', padding: '80px 20px' }}>
+      {/* ----------------- BAŞARI İSTATİSTİKLERİ SAYACI (ANIMASYONLU) ----------------- */}
+      <motion.section 
+        initial="hidden" 
+        whileInView="visible" 
+        viewport={{ once: true, amount: 0.3 }} 
+        variants={fadeInUpVariants} 
+        style={{ backgroundColor: '#0f172a', padding: '60px 20px', borderBottom: '1px solid #1f2937' }}
+      >
+        <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '30px', textAlign: 'center' }}>
+          
+          {/* İstatistik 1 - Fuar Standı */}
+          <div style={{ padding: '20px', backgroundColor: '#0b0f19', borderRadius: '16px', border: '1px solid #1f2937', boxShadow: '0 10px 25px -5px rgba(0,0,0,0.3)' }}>
+            <div style={{ fontSize: '42px', fontWeight: 800, color: '#38bdf8', marginBottom: '8px', letterSpacing: '-1px' }}>+150</div>
+            <div style={{ color: '#94a3b8', fontSize: '15px', fontWeight: 500 }}>{t.statCard1}</div>
+          </div>
+
+          {/* İstatistik 2 - Personel */}
+          <div style={{ padding: '20px', backgroundColor: '#0b0f19', borderRadius: '16px', border: '1px solid #1f2937', boxShadow: '0 10px 25px -5px rgba(0,0,0,0.3)' }}>
+            <div style={{ fontSize: '42px', fontWeight: 800, color: '#38bdf8', marginBottom: '8px', letterSpacing: '-1px' }}>+500</div>
+            <div style={{ color: '#94a3b8', fontSize: '15px', fontWeight: 500 }}>{t.statCard2}</div>
+          </div>
+
+          {/* İstatistik 3 - Ülke */}
+          <div style={{ padding: '20px', backgroundColor: '#0b0f19', borderRadius: '16px', border: '1px solid #1f2937', boxShadow: '0 10px 25px -5px rgba(0,0,0,0.3)' }}>
+            <div style={{ fontSize: '42px', fontWeight: 800, color: '#38bdf8', marginBottom: '8px', letterSpacing: '-1px' }}>12</div>
+            <div style={{ color: '#94a3b8', fontSize: '15px', fontWeight: 500 }}>{t.statCard3}</div>
+          </div>
+
+          {/* İstatistik 4 - Memnuniyet */}
+          <div style={{ padding: '20px', backgroundColor: '#0b0f19', borderRadius: '16px', border: '1px solid #1f2937', boxShadow: '0 10px 25px -5px rgba(0,0,0,0.3)' }}>
+            <div style={{ fontSize: '42px', fontWeight: 800, color: '#f97316', marginBottom: '8px', letterSpacing: '-1px' }}>100%</div>
+            <div style={{ color: '#94a3b8', fontSize: '15px', fontWeight: 500 }}>{t.statCard4}</div>
+          </div>
+
+        </div>
+      </motion.section>
+
+      {/* HİZMETLER BÖLÜMÜ (AKILLI AKORDEON SİSTEMİ) */}
+      <motion.main 
+        id="services" 
+        initial="hidden" 
+        whileInView="visible" 
+        viewport={{ once: true, amount: 0.1 }} 
+        variants={fadeInUpVariants} 
+        style={{ maxWidth: '1200px', margin: '0 auto', padding: '80px 20px' }}
+      >
         <div style={{ textAlign: 'center', marginBottom: '60px' }}>
           <h2 style={{ fontSize: '36px', fontWeight: 700, color: '#ffffff', marginBottom: '10px' }}>{t.sectionTitle}</h2>
           <p style={{ color: '#64748b', fontSize: '16px' }}>{t.sectionSub}</p>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '30px' }}>
-          {[1, 2, 3, 4, 5].map((num) => (
-            <div key={num} style={{ backgroundColor: '#111827', padding: '35px', borderRadius: '16px', border: '1px solid #1f2937' }}>
-              <div style={{ width: '45px', height: '45px', backgroundColor: 'rgba(56,189,248,0.1)', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '22px', marginBottom: '20px' }}>
-                {num === 1 ? '📉' : num === 2 ? '👥' : num === 3 ? '🗺️' : num === 4 ? '📥' : '📤'}
+
+        {/* 5'li Gelişmiş Etkileşimli Grid */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+          {[1, 2, 3, 4, 5].map((num) => {
+            const isOpen = activeCard === num;
+            const steps = (t as any)[`card${num}Steps`] || [];
+
+            return (
+              <div 
+                key={num} 
+                style={{ 
+                  backgroundColor: '#111827', 
+                  borderRadius: '16px', 
+                  border: isOpen ? '1px solid #38bdf8' : '1px solid #1f2937', 
+                  overflow: 'hidden',
+                  transition: 'border-color 0.3s ease',
+                  boxShadow: isOpen ? '0 10px 30px -10px rgba(56,189,248,0.2)' : 'none'
+                }}
+              >
+                {/* Tıklanabilir Üst Başlık Alanı */}
+                <div 
+                  onClick={() => setActiveCard(isOpen ? null : num)}
+                  style={{ 
+                    padding: '30px', 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    justifyContent: 'space-between', 
+                    cursor: 'pointer',
+                    userSelect: 'none'
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+                    <div style={{ 
+                      width: '50px', 
+                      height: '50px', 
+                      backgroundColor: isOpen ? 'rgba(56,189,248,0.15)' : 'rgba(56,189,248,0.05)', 
+                      borderRadius: '12px', 
+                      display: 'flex', 
+                      alignItems: 'center', 
+                      justifyContent: 'center', 
+                      fontSize: '24px',
+                      transition: '0.3s'
+                    }}>
+                      {num === 1 ? '📉' : num === 2 ? '👥' : num === 3 ? '🗺️' : num === 4 ? '📥' : '📤'}
+                    </div>
+                    <div>
+                      <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#ffffff', margin: '0 0 6px 0' }}>
+                        {(t as any)[`card${num}Title`]}
+                      </h3>
+                      <p style={{ color: '#94a3b8', fontSize: '14px', margin: 0, lineHeight: '1.5' }}>
+                        {(t as any)[`card${num}Desc`]}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Sağdaki Açma/Kapama Oku */}
+                  <div style={{ 
+                    fontSize: '18px', 
+                    color: isOpen ? '#38bdf8' : '#64748b',
+                    transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                    transition: 'transform 0.3s ease'
+                  }}>
+                    ▼
+                  </div>
+                </div>
+
+                {/* Aşağı Doğru Açılan Şık Süreç Detayları */}
+                {isOpen && (
+                  <motion.div 
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    transition={{ duration: 0.3, ease: 'easeInOut' }}
+                    style={{ backgroundColor: '#0b0f19', borderTop: '1px solid #1f2937' }}
+                  >
+                    <div style={{ padding: '30px 40px' }}>
+                      <h4 style={{ color: '#38bdf8', fontSize: '15px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '20px' }}>
+                        📋 {t.stepTitle}
+                      </h4>
+                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '15px' }}>
+                        {steps.map((step: string, sIdx: number) => (
+                          <div 
+                            key={sIdx} 
+                            style={{ 
+                              display: 'flex', 
+                              alignItems: 'center', 
+                              gap: '12px', 
+                              backgroundColor: '#111827', 
+                              padding: '14px 18px', 
+                              borderRadius: '10px',
+                              border: '1px solid #1f2937'
+                            }}
+                          >
+                            <span style={{ color: '#f97316', fontWeight: 'bold', fontSize: '14px' }}>
+                              0{sIdx + 1}.
+                            </span>
+                            <span style={{ color: '#e2e8f0', fontSize: '14px', fontWeight: 500 }}>
+                              {step}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
               </div>
-              <h3 style={{ fontSize: '20px', fontWeight: 700, marginBottom: '12px', color: '#ffffff' }}>{(t as any)[`card${num}Title`]}</h3>
-              <p style={{ color: '#94a3b8', fontSize: '14px', lineHeight: '1.6', margin: 0 }}>{(t as any)[`card${num}Desc`]}</p>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </motion.main>
 
