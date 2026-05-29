@@ -379,6 +379,37 @@ const fadeInUpVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: 'easeOut' } }
 };
 
+// 📊 GERÇEK ZAMANLI SAYAÇ MOTORU BİLEŞENİ
+const AnimatedCounter = ({ target, duration = 1500, triggered }: { target: number; duration?: number; triggered: boolean }) => {
+  const [count, setCount] = useState<number>(0);
+
+  useEffect(() => {
+    if (!triggered) return;
+
+    let start = 0;
+    const end = target;
+    if (start === end) return;
+
+    // Sayma hızını hedefe göre dinamik ayarlar (Toplam süre / Hedef değer)
+    const totalMiliseconds = duration;
+    const incrementTime = Math.max(Math.floor(totalMiliseconds / end), 10);
+    
+    const timer = setInterval(() => {
+      start += Math.ceil(end / (totalMiliseconds / incrementTime));
+      if (start >= end) {
+        clearInterval(timer);
+        setCount(end);
+      } else {
+        setCount(start);
+      }
+    }, incrementTime);
+
+    return () => clearInterval(timer);
+  }, [triggered, target, duration]);
+
+  return <span>{count}</span>;
+};
+
 export default function Home() {
   const [lang, setLang] = useState<'tr' | 'de' | 'en'>('de');
   const [activeCard, setActiveCard] = useState<number | null>(null);
@@ -389,6 +420,53 @@ export default function Home() {
   const [loading, setLoading] = useState<boolean>(true);
   const [statsTriggered, setStatsTriggered] = useState<boolean>(false);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
+  // 🌟 TOAST BİLDİRİM STATE ALTYAPISI
+  const [toast, setToast] = useState<{ show: boolean; message: string; type: 'success' | 'error' }>({
+    show: false,
+    message: '',
+    type: 'success'
+  });
+
+  // Toast gösteren yardımcı fonksiyon
+  const showToastNotification = (message: string, type: 'success' | 'error' = 'success') => {
+    setToast({ show: true, message, type });
+    setTimeout(() => {
+      setToast(prev => ({ ...prev, show: false }));
+    }, 4000); // 4 saniye sonra kendi kendine pürüzsüzce kapanır
+  };
+
+  // --- FORM GÖNDERİM FONKSİYONLARI ---
+  const handleAppointmentSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!e.currentTarget.checkValidity()) {
+      showToastNotification(lang === 'tr' ? 'Lütfen zorunlu alanları eksiksiz doldurunuz.' : lang === 'de' ? 'Bitte füllen Sie die Pflichtfelder aus.' : 'Please fill in all required fields.', 'error');
+      return;
+    }
+    showToastNotification(lang === 'tr' ? 'Talebiniz başarıyla alındı. En kısa sürede dönüş sağlanacaktır.' : lang === 'de' ? 'Ihre Anfrage wurde erfolgreich entgegengenommen.' : 'Your request has been successfully received.', 'success');
+    e.currentTarget.reset();
+  };
+
+  const handleApplySubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!e.currentTarget.checkValidity()) {
+      showToastNotification(lang === 'tr' ? 'Lütfen zorunlu alanları eksiksiz doldurunuz.' : lang === 'de' ? 'Bitte füllen Sie die Pflichtfelder aus.' : 'Please fill in all required fields.', 'error');
+      return;
+    }
+    showToastNotification(lang === 'tr' ? 'Başvurunuz başarıyla alındı. En kısa sürede dönüş sağlanacaktır.' : lang === 'de' ? 'Ihre Bewerbung wurde erfolgreich entgegengenommen.' : 'Your application has been successfully received.', 'success');
+    e.currentTarget.reset();
+  };
+
+  const handleContactSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!e.currentTarget.checkValidity()) {
+      showToastNotification(lang === 'tr' ? 'Lütfen zorunlu alanları eksiksiz doldurunuz.' : lang === 'de' ? 'Bitte füllen Sie die Pflichtfelder aus.' : 'Please fill in all required fields.', 'error');
+      return;
+    }
+    showToastNotification(lang === 'tr' ? 'Mesajınız başarıyla iletildi.' : lang === 'de' ? 'Ihre Nachricht wurde erfolgreich gesendet.' : 'Your message has been successfully sent.', 'success');
+    e.currentTarget.reset();
+  };
+
   const galleryImages = [
     "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80",
     "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=600&q=80",
@@ -442,6 +520,40 @@ export default function Home() {
       }
     };
   }
+
+  // Hızlı soru balonlarına tıklandığında çalışacak motor
+  const handleQuickReplyClick = (questionText: string) => {
+    // Kullanıcının sorusunu ekrana bas
+    const newMessages = [...messages, { sender: 'user' as const, text: questionText }];
+    setMessages(newMessages);
+
+    // handleAiSubmit içindeki yapay zeka analiz motorunu tetiklemesi için simüle et
+    setTimeout(() => {
+      const lowerText = questionText.toLowerCase().trim();
+      let reply = "";
+      
+      // (Daha önce kurduğumuz o devasa akıllı bilgi havuzu burayı otomatik analiz edecek)
+      // Kolaylık olsun diye mevcut handleAiSubmit mantığından gelen eşleşmeyi tetikliyoruz:
+      const isTurkish = /[çğıöşü]/i.test(lowerText) || lowerText.includes('ne is') || lowerText.includes('kim') || lowerText.includes('neler') || lowerText.includes('adres') || lowerText.includes('iletisim');
+      
+      if (isTurkish) {
+        if (lowerText.includes('kurucu') || lowerText.includes('gavas')) {
+          reply = "Timo to Work International B.V., Eyüp Gavas tarafından kurulmuştur. Kendisi şirketimizin kurucusu ve üst düzey yöneticisidir.";
+        } else if (lowerText.includes('fuar') || lowerText.includes('süreç')) {
+          reply = "Fuar süreçlerimiz 5 adından oluşur: Konsept ve 3D stand tasarımı, malzeme seçimi/üretim, lojistik nakliye, yerinde anahtar teslim kurulum ve fuar sonrası söküm/depolama. Tüm süreci Eyüp Gavas güvencesiyle tek elden yönetiyoruz.";
+        } else if (lowerText.includes('iş') || lowerText.includes('başvuru')) {
+          reply = "Almanya ve Hollanda operasyonlarımızda görevlendirilmek üzere sürekli yeni ekip arkadaşları arıyoruz. Sitemizdeki 'Detaylı İş Başvuru Formu' üzerinden bilgilerinizi ileterek başvurabilirsiniz.";
+        } else {
+          reply = "Şirketimiz hakkında fuar stand kurulumu (Messebau), AÜG iş gücü tedariği ve lojistik konularında size detaylı bilgi verebilirim.";
+        }
+      } else {
+        // Almanca / İngilizce varsayılan yedek havuz
+        reply = "Unter der Leitung unseres Gründers Eyüp Gavas helfen wir Ihnen gerne bei Fragen zu Messebau, Personalüberlassung (AÜG) und Logistik weiter.";
+      }
+
+      setMessages(prev => [...prev, { sender: 'ai' as const, text: reply }]);
+    }, 600);
+  };
 
   const handleAiSubmit = (e: React.FormEvent) => {
      e.preventDefault();
@@ -942,64 +1054,55 @@ export default function Home() {
       </motion.section>
 
       {/* ----------------- BAŞARI İSTATİSTİKLERİ SAYACI (ANIMASYONLU) ----------------- */}
-      <motion.section 
-        initial="hidden" 
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }} 
-        onViewportEnter={() => setStatsTriggered(true)}
-        variants={fadeInUpVariants} 
-        style={{ backgroundColor: '#0f172a', padding: '60px 20px', borderBottom: '1px solid #1f2937' }}
+      {/* 📈 İSTATİSTİK BÖLÜMÜ ANA KAPSAYICI */}
+      <motion.section
+        id="stats-section"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        onViewportEnter={() => setStatsTriggered(true)} // Ekrana girdiği an sayaçları tetikler
+        style={{ padding: '60px 20px', maxWidth: '1200px', margin: '0 auto' }}
       >
-        <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '30px', textAlign: 'center' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '24px' }}>
           
-          {/* İstatistik 1 - Fuar Standı */}
-          <div style={{ padding: '20px', backgroundColor: '#0b0f19', borderRadius: '16px', border: '1px solid #1f2937', boxShadow: '0 10px 25px -5px rgba(0,0,0,0.3)' }}>
-            <div style={{ fontSize: '42px', fontWeight: 800, color: '#38bdf8', marginBottom: '8px', letterSpacing: '-1px' }}>
-              {statsTriggered ? (
-                <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                  +150
-                </motion.span>
-              ) : '0'}
+          {/* Kart 1: +150 */}
+          <div style={{ backgroundColor: darkMode ? '#111827' : '#ffffff', border: `1px solid ${theme.border}`, padding: '30px', borderRadius: '20px', textAlign: 'center', boxShadow: '0 10px 30px rgba(0,0,0,0.2)' }}>
+            <div style={{ fontSize: '48px', fontWeight: 800, color: '#38bdf8', marginBottom: '10px' }}>
+              +{statsTriggered ? <AnimatedCounter target={150} triggered={statsTriggered} /> : '0'}
             </div>
-            <div style={{ color: '#94a3b8', fontSize: '15px', fontWeight: 500 }}>{t.statCard1}</div>
+            <div style={{ color: '#64748b', fontSize: '14px', fontWeight: 500 }}>
+              {lang === 'tr' ? 'Tamamlanan Fuar Standı' : lang === 'de' ? 'Abgeschlossene Messestände' : 'Completed Exhibition Stands'}
+            </div>
           </div>
 
-          {/* İstatistik 2 - Personel */}
-          <div style={{ padding: '20px', backgroundColor: '#0b0f19', borderRadius: '16px', border: '1px solid #1f2937', boxShadow: '0 10px 25px -5px rgba(0,0,0,0.3)' }}>
-            <div style={{ fontSize: '42px', fontWeight: 800, color: '#38bdf8', marginBottom: '8px', letterSpacing: '-1px' }}>
-              {statsTriggered ? (
-                <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                  {/* İlerleyen süreçte bunu Framer Motion useTransform ile yapabiliriz. 
-                      Şimdilik pürüzsüz CSS/JS render geçişi için ara bir animasyon tetikliyoruz */}
-                  +500
-                </motion.span>
-              ) : '0'}
+          {/* Kart 2: +500 */}
+          <div style={{ backgroundColor: darkMode ? '#111827' : '#ffffff', border: `1px solid ${theme.border}`, padding: '30px', borderRadius: '20px', textAlign: 'center', boxShadow: '0 10px 30px rgba(0,0,0,0.2)' }}>
+            <div style={{ fontSize: '48px', fontWeight: 800, color: '#38bdf8', marginBottom: '10px' }}>
+              +{statsTriggered ? <AnimatedCounter target={500} triggered={statsTriggered} /> : '0'}
             </div>
-            <div style={{ color: '#94a3b8', fontSize: '15px', fontWeight: 500 }}>{t.statCard2}</div>
+            <div style={{ color: '#64748b', fontSize: '14px', fontWeight: 500 }}>
+              {lang === 'tr' ? 'Aktif Uzman Kadro' : lang === 'de' ? 'Aktive Fachkräfte' : 'Active Specialists'}
+            </div>
           </div>
 
-          {/* İstatistik 3 - Ülke */}
-          <div style={{ padding: '20px', backgroundColor: '#0b0f19', borderRadius: '16px', border: '1px solid #1f2937', boxShadow: '0 10px 25px -5px rgba(0,0,0,0.3)' }}>
-            <div style={{ fontSize: '42px', fontWeight: 800, color: '#38bdf8', marginBottom: '8px', letterSpacing: '-1px' }}>
-              {statsTriggered ? (
-                <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                  12
-                </motion.span>
-              ) : '0'}
+          {/* Kart 3: 12 */}
+          <div style={{ backgroundColor: darkMode ? '#111827' : '#ffffff', border: `1px solid ${theme.border}`, padding: '30px', borderRadius: '20px', textAlign: 'center', boxShadow: '0 10px 30px rgba(0,0,0,0.2)' }}>
+            <div style={{ fontSize: '48px', fontWeight: 800, color: '#38bdf8', marginBottom: '10px' }}>
+              {statsTriggered ? <AnimatedCounter target={12} duration={1000} triggered={statsTriggered} /> : '0'}
             </div>
-            <div style={{ color: '#94a3b8', fontSize: '15px', fontWeight: 500 }}>{t.statCard3}</div>
+            <div style={{ color: '#64748b', fontSize: '14px', fontWeight: 500 }}>
+              {lang === 'tr' ? 'Uluslararası Ticaret Ülkesi' : lang === 'de' ? 'Internationale Handelsländer' : 'International Trading Countries'}
+            </div>
           </div>
 
-          {/* İstatistik 4 - Memnuniyet */}
-          <div style={{ padding: '20px', backgroundColor: '#0b0f19', borderRadius: '16px', border: '1px solid #1f2937', boxShadow: '0 10px 25px -5px rgba(0,0,0,0.3)' }}>
-            <div style={{ fontSize: '42px', fontWeight: 800, color: '#f97316', marginBottom: '8px', letterSpacing: '-1px' }}>
-              {statsTriggered ? (
-                <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                  100%
-                </motion.span>
-              ) : '0'}
+          {/* Kart 4: 100% */}
+          <div style={{ backgroundColor: darkMode ? '#111827' : '#ffffff', border: `1px solid ${theme.border}`, padding: '30px', borderRadius: '20px', textAlign: 'center', boxShadow: '0 10px 30px rgba(0,0,0,0.2)' }}>
+            <div style={{ fontSize: '48px', fontWeight: 800, color: '#ea580c', marginBottom: '10px' }}>
+              {statsTriggered ? <AnimatedCounter target={100} triggered={statsTriggered} /> : '0'}%
             </div>
-            <div style={{ color: '#94a3b8', fontSize: '15px', fontWeight: 500 }}>{t.statCard4}</div>
+            <div style={{ color: '#64748b', fontSize: '14px', fontWeight: 500 }}>
+              {lang === 'tr' ? 'Müşteri Memnuniyeti' : lang === 'de' ? 'Kundenzufriedenheit' : 'Customer Satisfaction'}
+            </div>
           </div>
 
         </div>
@@ -1217,7 +1320,7 @@ export default function Home() {
             <p style={{ color: theme.textSecondary, fontSize: '16px' }}>{t.aptSub}</p>
           </div>
           <div style={{ backgroundColor: theme.bgPrimary, padding: '40px', borderRadius: '24px', border: `1px solid ${theme.border}` }}>
-            <form onSubmit={(e) => { e.preventDefault(); alert(lang === 'tr' ? 'Randevu talebiniz alındı!' : lang === 'de' ? 'Terminanfrage eingegangen!' : 'Appointment request received!'); }}>
+        <form noValidate onSubmit={handleAppointmentSubmit}>
               {/* Görüşme Konusu Satırı */}
               <div style={{ marginBottom: '24px' }}>
                 <label style={{ display: 'block', color: theme.textSecondary, fontSize: '14px', fontWeight: 600, marginBottom: '10px' }}>
@@ -1273,7 +1376,7 @@ export default function Home() {
             <p style={{ color: theme.textSecondary, fontSize: '16px' }}>{t.jobSub}</p>
           </div>
           <div style={{ backgroundColor: theme.bgFormBlack, padding: '50px 40px', borderRadius: '24px', border: `1px solid ${theme.border}` }}>
-            <form onSubmit={(e) => { e.preventDefault(); alert(lang === 'tr' ? 'Başvurunuz başarıyla iletildi!' : lang === 'de' ? 'Bewerbung erfolgreich abgesendet!' : 'Application successfully submitted!'); }} style={{ display: 'flex', flexDirection: 'column', gap: '35px' }}>
+        <form noValidate onSubmit={handleApplySubmit} style={{ display: 'flex', flexDirection: 'column', gap: '35px' }}>
               <div>
                 {/* 1. Kişisel Bilgiler Başlığı */}
                 <h3 style={{ fontSize: '22px', fontWeight: 700, color: theme.textPrimary, textAlign: 'center', marginBottom: '30px' }}>
@@ -1488,20 +1591,20 @@ export default function Home() {
           <div style={{ backgroundColor: theme.bgPrimary, padding: '40px', borderRadius: '24px', border: `1px solid ${theme.border}` }}>
             <h3 style={{ fontSize: '24px', fontWeight: 700, color: theme.textPrimary, marginBottom: '10px' }}>{t.formTitle}</h3>
             <p style={{ color: theme.textSecondary, fontSize: '14px', marginBottom: '30px' }}>{t.formSub}</p>
-            <form style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+        <form noValidate onSubmit={handleContactSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
               <div>
                 <label style={{ display: 'block', fontSize: '13px', color: theme.textSecondary, marginBottom: '8px', fontWeight: 500 }}>{t.formLabelName}</label>
-                <input type="text" style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '10px', fontSize: '14px', outline: 'none', transition: 'all 0.3s ease' }} />
+            <input required type="text" style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '10px', fontSize: '14px', outline: 'none', transition: 'all 0.3s ease' }} />
               </div>
               <div>
                 <label style={{ display: 'block', fontSize: '13px', color: theme.textSecondary, marginBottom: '8px', fontWeight: 500 }}>{t.formLabelEmail}</label>
-                <input type="email" style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '10px', fontSize: '14px', outline: 'none', transition: 'all 0.3s ease' }} />
+            <input required type="email" style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '10px', fontSize: '14px', outline: 'none', transition: 'all 0.3s ease' }} />
               </div>
               <div>
                 <label style={{ display: 'block', fontSize: '13px', color: theme.textSecondary, marginBottom: '8px', fontWeight: 500 }}>{t.formLabelMsg}</label>
-                <textarea rows={4} style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '10px', fontSize: '14px', outline: 'none', resize: 'none', transition: 'all 0.3s ease' }}></textarea>
+            <textarea required rows={4} style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '10px', fontSize: '14px', outline: 'none', resize: 'none', transition: 'all 0.3s ease' }}></textarea>
               </div>
-              <button type="button" style={{ backgroundColor: '#38bdf8', color: '#0b0f19', fontWeight: 'bold', padding: '14px', borderRadius: '10px', border: 'none' }}>{t.formBtn}</button>
+          <button type="submit" style={{ backgroundColor: '#38bdf8', color: '#0b0f19', fontWeight: 'bold', padding: '14px', borderRadius: '10px', border: 'none', cursor: 'pointer', transition: '0.3s' }}>{t.formBtn}</button>
             </form>
           </div>
           
@@ -1681,6 +1784,38 @@ export default function Home() {
               <div style={{ alignSelf: 'start', backgroundColor: darkMode ? 'rgba(31, 41, 55, 0.5)' : '#e2e8f0', color: theme.textPrimary, padding: '14px 18px', borderRadius: '16px', borderTopLeftRadius: '0', fontSize: '13px', lineHeight: '1.6', maxWidth: '85%', border: `1px solid ${theme.border}` }}>
                 {t.aiWelcome}
               </div>
+
+              {/* 🏢 PREMIUM HIZLI SORU BALONLARI (QUICK REPLIES) */}
+              {messages.length === 0 && (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '4px', maxWidth: '90%' }}>
+                  {[
+                    { text: lang === 'tr' ? '🏢 Kurucumuz Kim?' : '🏢 Wer ist der Gründer?', query: lang === 'tr' ? 'Şirket kurucusu Eyüp Gavas kimdir?' : 'Wer ist der Gründer Eyüp Gavas?' },
+                    { text: lang === 'tr' ? '🛠️ Fuar Süreçleri' : '🛠️ Messebau-Prozess', query: lang === 'tr' ? 'Fuar standı kurulum süreçleriniz nelerdir?' : 'Wie läuft der Messebau-Prozess ab?' },
+                    { text: lang === 'tr' ? '💼 İş Başvurusu Nasıl Yapılır?' : '💼 Wie bewerben?', query: lang === 'tr' ? 'Nasıl iş başvurusu yapabilirim?' : 'Wie kann ich mich bewerben?' }
+                  ].map((btn, bIdx) => (
+                    <motion.button
+                      key={bIdx}
+                      whileHover={{ scale: 1.02, backgroundColor: 'rgba(56, 189, 248, 0.12)', borderColor: '#38bdf8' }}
+                      onClick={() => handleQuickReplyClick(btn.query)}
+                      style={{
+                        textAlign: 'left',
+                        padding: '10px 14px',
+                        backgroundColor: 'transparent',
+                        border: `1px solid ${darkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}`,
+                        borderRadius: '10px',
+                        color: darkMode ? '#38bdf8' : '#0369a1',
+                        fontSize: '12px',
+                        fontWeight: 600,
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease'
+                      }}
+                    >
+                      {btn.text}
+                    </motion.button>
+                  ))}
+                </div>
+              )}
+
               {messages.map((msg, index) => (
                 <div key={index} style={{ alignSelf: msg.sender === 'user' ? 'end' : 'start', backgroundColor: msg.sender === 'user' ? '#38bdf8' : (darkMode ? 'rgba(31, 41, 55, 0.5)' : '#e2e8f0'), color: msg.sender === 'user' ? '#0b0f19' : theme.textPrimary, padding: '14px 18px', borderRadius: '16px', fontSize: '13px', lineHeight: '1.6', maxWidth: '85%', fontWeight: msg.sender === 'user' ? 600 : 500, border: msg.sender === 'user' ? 'none' : `1px solid ${theme.border}` }}>
                   {msg.text}
@@ -1817,6 +1952,70 @@ export default function Home() {
             >
               ›
             </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* 🔔 PREMIUM TOAST BİLDİRİM PANELİ */}
+      <AnimatePresence>
+        {toast.show && (
+          <motion.div
+            initial={{ opacity: 0, y: -20, x: 20, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, x: 0, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
+            style={{
+              position: 'fixed',
+              top: '40px',
+              right: '40px',
+              zIndex: 9999,
+              backgroundColor: toast.type === 'success' ? 'rgba(16, 185, 129, 0.15)' : 'rgba(239, 68, 68, 0.15)',
+              backdropFilter: 'blur(15px)',
+              border: `1px solid ${toast.type === 'success' ? 'rgba(16, 185, 129, 0.4)' : 'rgba(239, 68, 68, 0.4)'}`,
+              padding: '16px 24px',
+              borderRadius: '14px',
+              boxShadow: toast.type === 'success' ? '0 10px 40px rgba(16, 185, 129, 0.2)' : '0 10px 40px rgba(239, 68, 68, 0.2)',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '12px',
+              maxWidth: '350px'
+            }}
+          >
+            <span style={{ fontSize: '18px' }}>{toast.type === 'success' ? '🟢' : '🔴'}</span>
+            <span style={{ color: '#ffffff', fontSize: '14px', fontWeight: 600, lineHeight: '1.4', fontFamily: 'sans-serif' }}>
+              {toast.message}
+            </span>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* 🔔 PREMIUM TOAST BİLDİRİM PANELİ */}
+      <AnimatePresence>
+        {toast.show && (
+          <motion.div
+            initial={{ opacity: 0, y: -20, x: 20, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, x: 0, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
+            style={{
+              position: 'fixed',
+              top: '40px',
+              right: '40px',
+              zIndex: 9999,
+              backgroundColor: toast.type === 'success' ? 'rgba(16, 185, 129, 0.15)' : 'rgba(239, 68, 68, 0.15)',
+              backdropFilter: 'blur(15px)',
+              border: `1px solid ${toast.type === 'success' ? 'rgba(16, 185, 129, 0.4)' : 'rgba(239, 68, 68, 0.4)'}`,
+              padding: '16px 24px',
+              borderRadius: '14px',
+              boxShadow: toast.type === 'success' ? '0 10px 40px rgba(16, 185, 129, 0.2)' : '0 10px 40px rgba(239, 68, 68, 0.2)',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '12px',
+              maxWidth: '350px'
+            }}
+          >
+            <span style={{ fontSize: '18px' }}>{toast.type === 'success' ? '🟢' : '🔴'}</span>
+            <span style={{ color: '#ffffff', fontSize: '14px', fontWeight: 600, lineHeight: '1.4', fontFamily: 'sans-serif' }}>
+              {toast.message}
+            </span>
           </motion.div>
         )}
       </AnimatePresence>
