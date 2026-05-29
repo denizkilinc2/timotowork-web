@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 // TÜM SİTENİN ÇEVİRİ VERİSİ
@@ -389,6 +389,30 @@ export default function Home() {
   const t = translations[lang];
 
   const [scrolled, setScrolled] = useState<boolean>(false);
+  const [activeSection, setActiveSection] = useState<string>('home');
+
+  // Sayfa kaydırıldıkça hangi bölümde olunduğunu otomatik tespit eden mekanizma
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['home', 'about', 'services', 'gallery', 'appointment', 'contact', 'apply'];
+      const scrollPosition = window.scrollY + 120; // Navbar yüksekliği için ofset biniş payı
+
+      for (const section of sections) {
+        const el = document.getElementById(section === 'home' ? 'navbar-top' : section);
+        if (el) {
+          const top = el.offsetTop;
+          const height = el.offsetHeight;
+          if (scrollPosition >= top && scrollPosition < top + height) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   if (typeof window !== 'undefined') {
     window.onscroll = () => {
@@ -550,25 +574,82 @@ export default function Home() {
   return (
     <div style={{ backgroundColor: theme.bgPrimary, color: theme.textPrimary, minHeight: '100vh', width: '100%', overflowX: 'hidden', fontFamily: 'sans-serif', margin: 0, padding: 0 }}>
       
-      {/* Üst Menü / Navbar */}
-      <nav style={{ backgroundColor: '#1a1a1a', borderBottom: '1px solid #2d2d2d', padding: '15px 40px', position: 'sticky', top: 0, zIndex: 100 }}>
+      {/* Üst Menü / Navbar (image_c8f75e.png menüsünün sabitlenen cam mimarisi) */}
+      <nav style={{ 
+        backgroundColor: darkMode ? 'rgba(26, 26, 26, 0.75)' : 'rgba(255, 255, 255, 0.8)', 
+        backdropFilter: 'blur(20px)', // Arkadan geçen yazıları flulaştıran elit efekt
+        borderBottom: `1px solid ${theme.border}`, 
+        padding: '15px 40px', 
+        position: 'fixed', // Sayfa boyunca yukarıda sabit kalmasını sağlar
+        top: 0, 
+        left: 0,
+        right: 0,
+        zIndex: 1000, // Sitedeki her şeyin üstünde kalması için
+        transition: 'background-color 0.3s ease, border-color 0.3s ease'
+      }}>
         <div style={{ maxWidth: '1400px', margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          
           <div style={{ display: 'flex', gap: '35px', alignItems: 'center', flexWrap: 'wrap' }}>
+            {/* Logo Alanı */}
             <a href="#" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
               <img src="/logo.png" alt="Timo to Work Logo" style={{ height: '40px', width: 'auto', objectFit: 'contain', backgroundColor: '#ffffff', padding: '4px 8px', borderRadius: '6px' }} />
             </a>
-            <div style={{ display: 'flex', gap: '22px', alignItems: 'center' }}>
-              <a href="#" style={{ color: darkMode ? '#ffffff' : '#0f172a', textDecoration: 'none', fontSize: '15px', fontWeight: 500 }}>{t.navHome}</a>
-              <a href="#about" style={{ color: darkMode ? '#a0a0a0' : '#64748b', textDecoration: 'none', fontSize: '15px', fontWeight: 500 }}>{t.navAbout}</a>
-              <a href="#services" style={{ color: darkMode ? '#a0a0a0' : '#64748b', textDecoration: 'none', fontSize: '15px', fontWeight: 500 }}>{t.navServices}</a>
-              <a href="#gallery" style={{ color: darkMode ? '#a0a0a0' : '#64748b', textDecoration: 'none', fontSize: '15px', fontWeight: 500 }}>{t.navGallery}</a>
-              <a href="#appointment" style={{ color: darkMode ? '#a0a0a0' : '#64748b', textDecoration: 'none', fontSize: '15px', fontWeight: 500 }}>{t.navAppointment}</a>
-              <a href="#contact" style={{ color: darkMode ? '#a0a0a0' : '#64748b', textDecoration: 'none', fontSize: '15px', fontWeight: 500 }}>{t.navContact}</a>
-              <a href="#apply" style={{ color: darkMode ? '#a0a0a0' : '#64748b', textDecoration: 'none', fontSize: '15px', fontWeight: 500 }}>{t.navApplyForm}</a>
+            
+            {/* Menü Linkleri (Kullanıcı kolaylığı için kilitlenen ve yumuşak kayan grup) */}
+            <div style={{ display: 'flex', gap: '24px', alignItems: 'center' }}>
+              {[
+                { id: 'home', text: t.navHome, href: '#' },
+                { id: 'about', text: t.navAbout, href: '#about' },
+                { id: 'services', text: t.navServices, href: '#services' },
+                { id: 'gallery', text: t.navGallery, href: '#gallery' },
+                { id: 'appointment', text: t.navAppointment, href: '#appointment' },
+                { id: 'contact', text: t.navContact, href: '#contact' },
+                { id: 'apply', text: t.navApplyForm, href: '#apply' }
+              ].map((item) => {
+                const isActive = activeSection === item.id;
+                return (
+                  <a 
+                    key={item.id}
+                    href={item.href} 
+                    style={{ 
+                      color: isActive ? '#38bdf8' : (darkMode ? '#94a3b8' : '#475569'), 
+                      textDecoration: 'none', 
+                      fontSize: '14px', 
+                      fontWeight: isActive ? 700 : 500,
+                      position: 'relative',
+                      padding: '8px 0',
+                      transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                      letterSpacing: '0.3px'
+                    }}
+                  >
+                    {item.text}
+
+                    {/* Aktif bölüm altındaki parlayan neon çizgi */}
+                    {isActive && (
+                      <motion.div 
+                        layoutId="activeIndicator"
+                        style={{
+                          position: 'absolute',
+                          bottom: '-4px',
+                          left: 0,
+                          right: 0,
+                          height: '2px',
+                          background: 'linear-gradient(90deg, #38bdf8 0%, #7c3aed 100%)',
+                          borderRadius: '2px',
+                          boxShadow: '0 2px 10px rgba(56, 189, 248, 0.5)'
+                        }}
+                        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                      />
+                    )}
+                  </a>
+                );
+              })}
             </div>
           </div>
+
+          {/* Sağ Alan (Dil, Telefon, Tema Butonu) */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-            <select value={lang} onChange={(e) => setLang(e.target.value as 'tr' | 'de' | 'en')} style={{ backgroundColor: '#2a2a2a', color: '#ffffff', border: '1px solid #444', padding: '6px 12px', borderRadius: '6px', cursor: 'pointer', fontSize: '14px', outline: 'none' }}>
+            <select value={lang} onChange={(e) => setLang(e.target.value as 'tr' | 'de' | 'en')} style={{ backgroundColor: darkMode ? '#2a2a2a' : '#e2e8f0', color: theme.textPrimary, border: `1px solid ${theme.border}`, padding: '6px 12px', borderRadius: '6px', cursor: 'pointer', fontSize: '14px', outline: 'none' }}>
               <option value="de">🇩🇪 Deutsch</option>
               <option value="en">🇺🇸 English</option>
               <option value="tr">🇹🇷 Turkish</option>
@@ -576,32 +657,16 @@ export default function Home() {
             <a href="tel:+491636090266" style={{ background: 'linear-gradient(90deg, #7c3aed 0%, #ef4444 100%)', color: '#ffffff', textDecoration: 'none', padding: '10px 24px', borderRadius: '25px', fontWeight: 'bold', fontSize: '14px', display: 'inline-block', boxShadow: '0 4px 15px rgba(124, 58, 237, 0.3)' }}>
               {t.btnCallNow}
             </a>
-            {/* image_1ba3a7.png görselindeki buton dinamik hale getirildi */}
-            <button 
-              onClick={() => setDarkMode(!darkMode)}
-              style={{ 
-                backgroundColor: darkMode ? '#f97316' : '#1e1b4b', 
-                border: 'none', 
-                width: '36px', 
-                height: '36px', 
-                borderRadius: '50%', 
-                display: 'flex', 
-                alignItems: 'center', 
-                justifyContent: 'center', 
-                cursor: 'pointer', 
-                color: '#ffffff', 
-                fontSize: '18px',
-                transition: 'all 0.3s ease'
-              }}
-            >
+            <button onClick={() => setDarkMode(!darkMode)} style={{ backgroundColor: darkMode ? '#f97316' : '#1e1b4b', border: 'none', width: '36px', height: '36px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: '#ffffff', fontSize: '18px', transition: 'all 0.3s ease' }}>
               {darkMode ? '☀️' : '🌙'}
             </button>
           </div>
+
         </div>
       </nav>
 
       {/* ----------------- GÖSTERİŞLİ BÖLÜNMÜŞ EKRAN HERO (ANA SAYFA) ----------------- */}
-      <header style={{ 
+      <header id="navbar-top" style={{ 
         background: theme.bgHeader, 
         padding: '120px 40px', 
         borderBottom: `1px solid ${theme.border}`,
