@@ -125,7 +125,20 @@ const translations = {
     aiTitle: "TTW Yapay Zeka Asistanı",
     aiSub: "Şirketimiz ve hizmetlerimiz hakkında her şeyi sorabilirsiniz.",
     aiPlaceholder: "Bir soru yazın...",
-    aiWelcome: "Merhaba! Ben TTW Yapay Zeka Asistanı. Size fuar standı kurulumu, lojistik, uzman kadro tedariği veya ithalat/ihracat süreçlerimiz hakkında nasıl yardımcı olabilirim?"
+    aiWelcome: "Merhaba! Ben TTW Yapay Zeka Asistanı. Size fuar standı kurulumu, lojistik, uzman kadro tedariği veya ithalat/ihracat süreçlerimiz hakkında nasıl yardımcı olabilirim?",
+    formSchool: "Okul / Üniversite *",
+    formCity: "Şehir / Eyalet *",
+    formStart: "Başlangıç *",
+    formEnd: "Bitiş *",
+    formStatus: "Mezuniyet Durumu *",
+    formSelect: "Seçiniz",
+    formDiploma: "Diploma Mevcut mu?",
+    formDiplomaYes: "Evet",
+    formDiplomaNo: "Hayır",
+    mapLiveOps: "Mönchengladbach Merkez Ofisi - Canlı Operasyon",
+    founderTitle: "Kurucumuzun Mesajı",
+    founderRole: "Yönetim Kurulu Başkanı / Kurucu",
+    founderText: "Timo to Work International B.V. olarak, Avrupa ve küresel pazarda fuar stand kurulumundan uluslararası lojistiğe kadar her alanda güven, kalite ve estetiği bir araya getiriyoruz. Sürdürülebilir başarıyı uzman kadromuzla inşa etmeye devam ediyoruz."
   },
   de: {
     brand: "Timo to Work",
@@ -247,7 +260,20 @@ const translations = {
     aiTitle: "TTW KI-Assistent",
     aiSub: "Fragen Sie alles über unser Unternehmen und unsere Dienstleistungen.",
     aiPlaceholder: "Schreiben Sie eine Frage...",
-    aiWelcome: "Hallo! Ich bin der TTW KI-Assistent. Wie kann ich Ihnen bei Messebau, Logistik, Personalbereitstellung oder Import/Export-Prozessen helfen?"
+    aiWelcome: "Hallo! Ich bin der TTW KI-Assistent. Wie kann ich Ihnen bei Messebau, Logistik, Personalbereitstellung oder Import/Export-Prozessen helfen?",
+    formSchool: "Schule / Universität *",
+    formCity: "Stadt / Bundesland *",
+    formStart: "Beginn *",
+    formEnd: "Ende *",
+    formStatus: "Abschlussstatus *",
+    formSelect: "Bitte auswählen",
+    formDiploma: "Diplom vorhanden?",
+    formDiplomaYes: "Ja",
+    formDiplomaNo: "Nein",
+    mapLiveOps: "Hauptsitz Mönchengladbach - Live-Betrieb",
+    founderTitle: "Botschaft des Gründers",
+    founderRole: "Vorstandsvorsitzender / Gründer",
+    founderText: "Als Timo to Work International B.V. vereinen wir im europäischen und globalen Markt Vertrauen, Qualität und Ästhetik in allen Bereichen, vom Ausstellungsstandbau bis zur internationalen Logistik. Gemeinsam mit unserem Expertenteam bauen wir weiterhin an nachhaltigem Erfolg."
   },
   en: {
     brand: "Timo to Work",
@@ -369,7 +395,20 @@ const translations = {
     aiTitle: "TTW AI Assistant",
     aiSub: "Ask anything about our company and services.",
     aiPlaceholder: "Type a question...",
-    aiWelcome: "Hello! I am the TTW AI Assistant. How can I help you with exhibition stand design, logistics, personnel provision, or import/export processes?"
+    aiWelcome: "Hello! I am the TTW AI Assistant. How can I help you with exhibition stand design, logistics, personnel provision, or import/export processes?",
+    formSchool: "School / University *",
+    formCity: "City / State *",
+    formStart: "Start Date *",
+    formEnd: "End Date *",
+    formStatus: "Graduation Status *",
+    formSelect: "Please Select",
+    formDiploma: "Diploma Available?",
+    formDiplomaYes: "Yes",
+    formDiplomaNo: "No",
+    mapLiveOps: "HQ Mönchengladbach - Live Operations",
+    founderTitle: "Founder's Message",
+    founderRole: "Chairman of the Board / Founder",
+    founderText: "As Timo to Work International B.V., we combine trust, quality, and aesthetics in every field from exhibition stand construction to international logistics in the European and global markets. We continue to build sustainable success with our expert team."
   }
 };
 
@@ -995,63 +1034,57 @@ export default function Home() {
         </div>
       </header>
 
-      {/* ----------------- LÜKS BENTO-STYLE HAKKIMIZDA BÖLÜMÜ ----------------- */}
-      <motion.section 
-        id="about" 
-        initial="hidden" 
-        whileInView="visible" 
-        viewport={{ once: true, amount: 0.2 }} 
-        variants={fadeInUpVariants} 
-        style={{ backgroundColor: theme.bgSecondary, padding: '100px 40px', borderBottom: `1px solid ${theme.border}` }}
-      >
-        <div style={{ maxWidth: '1400px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(450px, 1fr))', gap: '60px', alignItems: 'start' }}>
+      {/* 🏢 HAKKIMIZDA & KURUCUMUZ BÖLÜMÜ */}
+      <section id="about" style={{ padding: '100px 20px', backgroundColor: darkMode ? '#0b0f19' : '#f8fafc', transition: 'all 0.3s' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', gap: '60px', alignItems: 'center', flexWrap: 'wrap' }}>
           
-          {/* Sol Taraf: Şirket Hikayesi ve Büyük Logo Kartı */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
-            <div>
-              <span style={{ color: '#38bdf8', fontSize: '14px', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '1.5px', display: 'block', marginBottom: '10px' }}>{t.aboutTitle}</span>
-              <h2 style={{ fontSize: '38px', fontWeight: 700, color: theme.textPrimary, marginBottom: '0', lineHeight: '1.25' }}>{t.aboutSub}</h2>
-            </div>
-            
-            <p style={{ color: theme.textSecondary, fontSize: '16px', lineHeight: '1.8', margin: 0 }}>{t.aboutText1}</p>
-            <p style={{ color: theme.textSecondary, fontSize: '16px', lineHeight: '1.8', margin: 0 }}>{t.aboutText2}</p>
-            
-            <div style={{ display: 'flex', alignItems: 'center', gap: '20px', backgroundColor: theme.bgPrimary, padding: '25px', borderRadius: '16px', border: `1px solid ${theme.border}` }}>
-              <img src="/logo.png" alt="Timo to Work Logo" style={{ height: '50px', width: 'auto', backgroundColor: '#ffffff', padding: '4px 8px', borderRadius: '6px' }} />
-              <div>
-                <h4 style={{ color: theme.textPrimary, margin: '0 0 4px 0', fontSize: '16px', fontWeight: 700 }}>Timo to Work International B.V.</h4>
-                <p style={{ color: theme.textSecondary, fontSize: '13px', margin: 0, fontStyle: 'italic' }}>{t.aboutText3}</p>
-              </div>
-            </div>
+          {/* Sol Sütun: Şirket Hikayesi */}
+          <div style={{ flex: '1', minWidth: '320px' }}>
+            <span style={{ color: '#38bdf8', textTransform: 'uppercase', fontSize: '14px', fontWeight: 700, letterSpacing: '2px', display: 'block', marginBottom: '12px' }}>
+              {lang === 'tr' ? 'BİZ KİMİZ?' : lang === 'de' ? 'WER WIR SIND?' : 'WHO WE ARE?'}
+            </span>
+            <h2 style={{ fontSize: '36px', fontWeight: 800, color: theme.textPrimary, marginBottom: '24px', lineHeight: '1.2' }}>
+              Timo to Work International B.V.
+            </h2>
+            <p style={{ color: theme.textSecondary, fontSize: '16px', lineHeight: '1.8', marginBottom: '20px' }}>
+              {(t as any).aboutText || "Avrupa operasyonlarımızla fuar lojistiğinden uluslararası iş gücü tedariğine kadar küresel standartlarda hizmet sunuyoruz."}
+            </p>
           </div>
 
-          {/* Sağ Taraf: Vizyon & Misyon Bento Hücreleri (Boşluğu Tamamen Dolduran Alan) */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '25px', width: '100%' }}>
-            <h3 style={{ fontSize: '22px', fontWeight: 700, color: theme.textPrimary, margin: '0 0 5px 0', display: 'flex', alignItems: 'center', gap: '10px' }}>
-              🎯 {t.visionTitle}
-            </h3>
+          {/* Sağ Sütun: Premium Kurucu Alanı (profil.png Entegrasyonu) */}
+          <div style={{ flex: '1', minWidth: '320px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <div style={{ display: 'flex', gap: '30px', alignItems: 'center', backgroundColor: darkMode ? '#111827' : '#ffffff', padding: '30px', borderRadius: '24px', border: `1px solid ${theme.border}`, boxShadow: '0 20px 40px rgba(0,0,0,0.15)', maxWidth: '550px', width: '100%' }}>
+              
+              {/* profil.png Dikey Fotoğraf Kartı */}
+              <div style={{ width: '150px', flexShrink: 0, borderRadius: '16px', overflow: 'hidden', border: `1px solid ${theme.border}`, boxShadow: '0 10px 20px rgba(0,0,0,0.2)' }}>
+                <img 
+                  src="/profil.png" 
+                  alt="Eyüp Gavas" 
+                  style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'cover' }} 
+                />
+              </div>
 
-            {/* Hücre 1 */}
-            <div style={{ padding: '25px', backgroundColor: theme.bgPrimary, borderRadius: '16px', border: `1px solid ${theme.border}`, transition: '0.3s' }}>
-              <h4 style={{ color: '#38bdf8', fontSize: '16px', fontWeight: 700, margin: '0 0 8px 0' }}>01. {t.vision1Name}</h4>
-              <p style={{ color: theme.textSecondary, fontSize: '14px', margin: 0, lineHeight: '1.6' }}>{t.vision1Desc}</p>
-            </div>
+              {/* Kurucu Bilgileri ve İmzası */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <h4 style={{ fontSize: '14px', fontWeight: 700, color: '#38bdf8', textTransform: 'uppercase', margin: 0, letterSpacing: '1px' }}>
+                  {t.founderTitle}
+                </h4>
+                <h3 style={{ fontSize: '22px', fontWeight: 800, color: theme.textPrimary, margin: 0 }}>
+                  Eyüp Gavas
+                </h3>
+                <span style={{ fontSize: '12px', fontWeight: 600, color: '#64748b', fontStyle: 'italic' }}>
+                  {t.founderRole}
+                </span>
+                <p style={{ color: theme.textSecondary, fontSize: '13px', lineHeight: '1.6', margin: '8px 0 0 0' }}>
+                  "{t.founderText}"
+                </p>
+              </div>
 
-            {/* Hücre 2 */}
-            <div style={{ padding: '25px', backgroundColor: theme.bgPrimary, borderRadius: '16px', border: `1px solid ${theme.border}`, transition: '0.3s' }}>
-              <h4 style={{ color: '#f97316', fontSize: '16px', fontWeight: 700, margin: '0 0 8px 0' }}>02. {t.vision2Name}</h4>
-              <p style={{ color: theme.textSecondary, fontSize: '14px', margin: 0, lineHeight: '1.6' }}>{t.vision2Desc}</p>
-            </div>
-
-            {/* Hücre 3 */}
-            <div style={{ padding: '25px', backgroundColor: theme.bgPrimary, borderRadius: '16px', border: `1px solid ${theme.border}`, transition: '0.3s' }}>
-              <h4 style={{ color: '#a855f7', fontSize: '16px', fontWeight: 700, margin: '0 0 8px 0' }}>03. {t.vision3Name}</h4>
-              <p style={{ color: theme.textSecondary, fontSize: '14px', margin: 0, lineHeight: '1.6' }}>{t.vision3Desc}</p>
             </div>
           </div>
 
         </div>
-      </motion.section>
+      </section>
 
       {/* ----------------- BAŞARI İSTATİSTİKLERİ SAYACI (ANIMASYONLU) ----------------- */}
       {/* 📈 İSTATİSTİK BÖLÜMÜ ANA KAPSAYICI */}
@@ -1327,10 +1360,10 @@ export default function Home() {
                   {t.aptTopic}
                 </label>
                 <select required style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none', cursor: 'pointer' }}>
-                  <option>Messebau & Projektplanung</option>
-                  <option>Personalbereitstellung (AÜG)</option>
-                  <option>Logistik & Transport</option>
-                  <option>Import & Export Solutions</option>
+                  <option value="messebau">{t.card1Title}</option>
+                  <option value="personal">{t.card2Title}</option>
+                  <option value="logistics">{t.card3Title}</option>
+                  <option value="import">{t.card4Title}</option>
                 </select>
               </div>
 
@@ -1420,7 +1453,7 @@ export default function Home() {
                     <div>
                       <label style={{ display: 'block', color: theme.textPrimary, fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>{t.lblGender}</label>
                       <select required style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none', cursor: 'pointer' }}>
-                        <option value="">{t.optSelect}</option>
+                        <option value="">{t.formSelect}</option>
                         <option value="male">{t.lblGender1}</option>
                         <option value="female">{t.lblGender2}</option>
                         <option value="other">{t.lblGender3}</option>
@@ -1437,7 +1470,7 @@ export default function Home() {
                     <div>
                       <label style={{ display: 'block', color: theme.textPrimary, fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>{t.lblJobType}</label>
                       <select style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none', cursor: 'pointer' }}>
-                        <option value="">{t.optSelect}</option>
+                        <option value="">{t.formSelect}</option>
                         <option value="full">{t.lblJobType1}</option>
                         <option value="part">{t.lblJobType2}</option>
                       </select>
@@ -1445,7 +1478,7 @@ export default function Home() {
                     <div>
                       <label style={{ display: 'block', color: theme.textPrimary, fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>{t.lblSalary}</label>
                       <select style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none', cursor: 'pointer' }}>
-                        <option value="">{t.optSelect}</option>
+                        <option value="">{t.formSelect}</option>
                         <option value="2000-3000">2000€ - 3000€</option>
                         <option value="3000-4000">3000€ - 4000€</option>
                         <option value="4000+">4000€+</option>
@@ -1468,9 +1501,9 @@ export default function Home() {
                   <div style={{ flex: 1 }}>
                     <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: theme.textPrimary, marginBottom: '8px' }}>{t.lblExperience}</label>
                     <select style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '10px', fontSize: '14px', outline: 'none', cursor: 'pointer', transition: 'all 0.3s ease' }}>
-                      <option value="">{t.optSelect}</option>
-                      <option value="yes">{t.optYes}</option>
-                      <option value="no">{t.optNo}</option>
+                      <option value="">{t.formSelect}</option>
+                      <option value="yes">{t.formDiplomaYes}</option>
+                      <option value="no">{t.formDiplomaNo}</option>
                     </select>
                   </div>
                   <div style={{ flex: 1 }}>
@@ -1489,7 +1522,7 @@ export default function Home() {
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', width: '100%', marginBottom: '24px' }}>
                   <div>
                     <label style={{ display: 'block', color: theme.textPrimary, fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>
-                      {t.lblSchool}
+                      {t.formSchool}
                     </label>
                     <input 
                       required
@@ -1500,7 +1533,7 @@ export default function Home() {
                   </div>
                   <div>
                     <label style={{ display: 'block', color: theme.textPrimary, fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>
-                      {t.lblCity}
+                      {t.formCity}
                     </label>
                     <input 
                       required
@@ -1514,7 +1547,7 @@ export default function Home() {
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', width: '100%', marginBottom: '24px' }}>
                   <div>
                     <label style={{ display: 'block', color: theme.textPrimary, fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>
-                      {t.lblVon}
+                      {t.formStart}
                     </label>
                     <input 
                       required
@@ -1524,7 +1557,7 @@ export default function Home() {
                   </div>
                   <div>
                     <label style={{ display: 'block', color: theme.textPrimary, fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>
-                      {t.lblBis}
+                      {t.formEnd}
                     </label>
                     <input 
                       required
@@ -1538,10 +1571,10 @@ export default function Home() {
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', width: '100%', marginBottom: '32px' }}>
                   <div>
                     <label style={{ display: 'block', color: theme.textPrimary, fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>
-                      {t.lblAbschluss}
+                      {t.formStatus}
                     </label>
                     <select required style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none', cursor: 'pointer' }}>
-                      <option value="">{t.optSelect}</option>
+                      <option value="">{t.formSelect}</option>
                       <option value="highschool">{t.lblAbschluss1}</option>
                       <option value="bachelor">{t.lblAbschluss2}</option>
                       <option value="master">{t.lblAbschluss3}</option>
@@ -1549,12 +1582,12 @@ export default function Home() {
                   </div>
                   <div>
                     <label style={{ display: 'block', color: theme.textPrimary, fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>
-                      {t.lblDiplom}
+                      {t.formDiploma}
                     </label>
                     <select style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none', cursor: 'pointer' }}>
-                      <option value="">{t.optSelect}</option>
-                      <option value="yes">{t.optYes}</option>
-                      <option value="no">{t.optNo}</option>
+                      <option value="">{t.formSelect}</option>
+                      <option value="yes">{t.formDiplomaYes}</option>
+                      <option value="no">{t.formDiplomaNo}</option>
                     </select>
                   </div>
                 </div>
@@ -1658,7 +1691,7 @@ export default function Home() {
                 cursor: 'pointer',
                 transition: 'border-color 0.3s ease'
               }}
-              title={lang === 'tr' ? 'Google Haritalar\'da Aç' : 'In Google Maps öffnen'}
+              title={lang === 'tr' ? 'Google Haritalar\'da Aç' : lang === 'de' ? 'In Google Maps öffnen' : 'Open in Google Maps'}
             >
               {/* Google Maps Embed Iframe (Koyu Mod Efektli / Saturation Ayarlı) */}
               <iframe
@@ -1730,7 +1763,7 @@ export default function Home() {
                   />
                 </div>
                 <span style={{ color: '#ffffff', fontSize: '11px', fontWeight: 600, letterSpacing: '0.3px' }}>
-                  {lang === 'tr' ? 'Mönchengladbach Merkez Ofisi - Canlı Operasyon' : 'HQ Mönchengladbach - Live Operations'}
+                  {t.mapLiveOps}
                 </span>
               </div>
             </motion.a>
@@ -1789,9 +1822,9 @@ export default function Home() {
               {messages.length === 0 && (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '4px', maxWidth: '90%' }}>
                   {[
-                    { text: lang === 'tr' ? '🏢 Kurucumuz Kim?' : '🏢 Wer ist der Gründer?', query: lang === 'tr' ? 'Şirket kurucusu Eyüp Gavas kimdir?' : 'Wer ist der Gründer Eyüp Gavas?' },
-                    { text: lang === 'tr' ? '🛠️ Fuar Süreçleri' : '🛠️ Messebau-Prozess', query: lang === 'tr' ? 'Fuar standı kurulum süreçleriniz nelerdir?' : 'Wie läuft der Messebau-Prozess ab?' },
-                    { text: lang === 'tr' ? '💼 İş Başvurusu Nasıl Yapılır?' : '💼 Wie bewerben?', query: lang === 'tr' ? 'Nasıl iş başvurusu yapabilirim?' : 'Wie kann ich mich bewerben?' }
+                    { text: lang === 'tr' ? '🏢 Kurucumuz Kim?' : lang === 'de' ? '🏢 Wer ist der Gründer?' : '🏢 Who is our Founder?', query: lang === 'tr' ? 'Şirket kurucusu Eyüp Gavas kimdir?' : lang === 'de' ? 'Wer ist der Gründer Eyüp Gavas?' : 'Who is the founder Eyüp Gavas?' },
+                    { text: lang === 'tr' ? '🛠️ Fuar Süreçleri' : lang === 'de' ? '🛠️ Messebau-Prozess' : '🛠️ Exhibition Processes', query: lang === 'tr' ? 'Fuar standı kurulum süreçleriniz nelerdir?' : lang === 'de' ? 'Wie läuft der Messebau-Prozess ab?' : 'What are your exhibition stand installation processes?' },
+                    { text: lang === 'tr' ? '💼 İş Başvurusu Nasıl Yapılır?' : lang === 'de' ? '💼 Wie bewerben?' : '💼 How to Apply?', query: lang === 'tr' ? 'Nasıl iş başvurusu yapabilirim?' : lang === 'de' ? 'Wie kann ich mich bewerben?' : 'How can I apply for a job?' }
                   ].map((btn, bIdx) => (
                     <motion.button
                       key={bIdx}
