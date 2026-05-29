@@ -121,7 +121,11 @@ const translations = {
     vision2Name: "Hız & Esneklik",
     vision2Desc: "İhtiyaç duyulan iş gücünü ve lojistiği anında mobilize etme.",
     vision3Name: "Sürdürülebilir Ortaklık",
-    vision3Desc: "Avrupa pazarında uzun vadeli, köklü ticari ilişkiler."
+    vision3Desc: "Avrupa pazarında uzun vadeli, köklü ticari ilişkiler.",
+    aiTitle: "TTW Yapay Zeka Asistanı",
+    aiSub: "Şirketimiz ve hizmetlerimiz hakkında her şeyi sorabilirsiniz.",
+    aiPlaceholder: "Bir soru yazın...",
+    aiWelcome: "Merhaba! Ben TTW Yapay Zeka Asistanı. Size fuar standı kurulumu, lojistik, uzman kadro tedariği veya ithalat/ihracat süreçlerimiz hakkında nasıl yardımcı olabilirim?"
   },
   de: {
     brand: "Timo to Work",
@@ -239,7 +243,11 @@ const translations = {
     vision2Name: "Geschwindigkeit & Flexibilität",
     vision2Desc: "Sofortige Mobilisierung von benötigten Arbeitskräften und Logistik.",
     vision3Name: "Nachhaltige Partnerschaft",
-    vision3Desc: "Langfristige, tief verwurzelte Handelsbeziehungen auf dem europäischen Markt."
+    vision3Desc: "Langfristige, tief verwurzelte Handelsbeziehungen auf dem europäischen Markt.",
+    aiTitle: "TTW KI-Assistent",
+    aiSub: "Fragen Sie alles über unser Unternehmen und unsere Dienstleistungen.",
+    aiPlaceholder: "Schreiben Sie eine Frage...",
+    aiWelcome: "Hallo! Ich bin der TTW KI-Assistent. Wie kann ich Ihnen bei Messebau, Logistik, Personalbereitstellung oder Import/Export-Prozessen helfen?"
   },
   en: {
     brand: "Timo to Work",
@@ -357,7 +365,11 @@ const translations = {
     vision2Name: "Speed & Flexibility",
     vision2Desc: "Instant mobilization of required workforce and logistics.",
     vision3Name: "Sustainable Partnership",
-    vision3Desc: "Long-term, deep-rooted commercial relationships in the European market."
+    vision3Desc: "Long-term, deep-rooted commercial relationships in the European market.",
+    aiTitle: "TTW AI Assistant",
+    aiSub: "Ask anything about our company and services.",
+    aiPlaceholder: "Type a question...",
+    aiWelcome: "Hello! I am the TTW AI Assistant. How can I help you with exhibition stand design, logistics, personnel provision, or import/export processes?"
   }
 };
 
@@ -371,7 +383,158 @@ export default function Home() {
   const [lang, setLang] = useState<'tr' | 'de' | 'en'>('de');
   const [activeCard, setActiveCard] = useState<number | null>(null);
   const [darkMode, setDarkMode] = useState<boolean>(true);
+  const [aiOpen, setAiOpen] = useState<boolean>(false);
+  const [messages, setMessages] = useState<Array<{ sender: 'user' | 'ai', text: string }>>([]);
+  const [inputValue, setInputValue] = useState<string>('');
   const t = translations[lang];
+
+  const [scrolled, setScrolled] = useState<boolean>(false);
+
+  if (typeof window !== 'undefined') {
+    window.onscroll = () => {
+      if (window.scrollY > 80) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+  }
+
+  const handleAiSubmit = (e: React.FormEvent) => {
+     e.preventDefault();
+     if (!inputValue.trim()) return;
+
+     const userText = inputValue.trim();
+     const newMessages = [...messages, { sender: 'user' as const, text: userText }];
+     setMessages(newMessages);
+     setInputValue('');
+
+     setTimeout(() => {
+       const lowerText = userText.toLowerCase().trim();
+       let reply = "";
+
+       // Gelişmiş Dil Algılama Motoru
+       const isTurkish = /[çğıöşü]/i.test(lowerText) || lowerText.includes('ne is') || lowerText.includes('kim') || lowerText.includes('neler') || lowerText.includes('adres') || lowerText.includes('iletisim') || lowerText.includes('sirket') || lowerText.includes('tamam') || lowerText.includes('tesekkur');
+       const isGerman = lowerText.includes('was macht') || lowerText.includes('wer ist') || lowerText.includes('gründer') || lowerText.includes('adresse') || lowerText.includes('kontakt') || lowerText.includes('danke') || lowerText.includes('tschüss');
+       
+       const replyLang = isTurkish ? 'tr' : (isGerman ? 'de' : lang);
+
+       if (replyLang === 'tr') {
+         // --- TÜRKÇE GELİŞMİŞ BİLGİ HAVUZU & SOHBET SONLANDIRMA ---
+         
+         // Nezaket ve Sohbet Sonlandırma Kökleri (image_f326d7.png Çözümü)
+         if (lowerText === 'tamam' || lowerText === 'ok' || lowerText.includes('anladım') || lowerText.includes('Harika') || lowerText.includes('süper')) {
+           reply = "Harika! Başka bir sorunuz olursa kurucumuz Eyüp Gavas liderliğindeki TTW ekibi olarak her zaman buradayız. Yardımcı olabileceğim başka bir konu var mı?";
+         }
+         else if (lowerText.includes('teşekkür') || lowerText.includes('sağol') || lowerText.includes('tesekkur')) {
+           reply = "Rica ederim! Timo to Work International B.V. adına size yardımcı olmaktan mutluluk duydum. İyi günler dilerim!";
+         }
+         else if (lowerText.includes('görüşürüz') || lowerText.includes('hoşça kal') || lowerText.includes('baybay') || lowerText.includes('kapat')) {
+           reply = "Görüşmek üzere! İhtiyacınız olduğunda sağ üstteki 'Şimdi Arayın' butonundan veya sol alttaki WhatsApp hattımızdan bize her zaman ulaşabilirsiniz. Kendinize iyi bakın!";
+         }
+         else if (lowerText.includes('merhaba') || lowerText.includes('selam')) {
+           reply = "Merhaba! TTW Yapay Zeka Asistanı'na hoş geldiniz. Şirketimiz, fuar stand kurulum süreçlerimiz (Messebau), AÜG iş gücü tedariğimiz veya iş başvurularınız hakkında size nasıl yardımcı olabilirim?";
+         }
+         
+         // Kurumsal ve Stratejik Bilgiler
+         else if (lowerText.includes('kurucu') || lowerText.includes('sahibi') || lowerText.includes('eyüp') || lowerText.includes('gavas') || lowerText.includes('kim kurdu') || lowerText.includes('yönetici')) {
+           reply = "Timo to Work International B.V., kurucumuz ve üst düzey yöneticimiz Eyüp Gavas tarafından yönetilmektedir. Kendisi Avrupa pazarında fuar lojistiği, AÜG iş gücü mobilizasyonu ve uluslararası ticaret entegrasyonu süreçlerine liderlik etmektedir.";
+         }
+         else if (lowerText.includes('ne iş') || lowerText.includes('hizmet') || lowerText.includes('neler yapıyor') || lowerText.includes('faaliyet') || lowerText.includes('şirket nedir')) {
+           reply = "Şirketimiz 5 ana uzmanlık alanında faaliyet gösterir: 1) Fuar Standı Tasarımı & Proje Planlama (Messebau), 2) AÜG yasal mevzuatına uygun Nitelikli İş Gücü Sağlama, 3) Lojistik & Konaklama Yönetimi (Avrupa genelinde transfer/otel), 4) Uluslararası İthalat Operasyonları, 5) Küresel İhracat Çözümleri.";
+         }
+         else if (lowerText.includes('fuar') || lowerText.includes('stand') || lowerText.includes('messebau') || lowerText.includes('tasarım')) {
+           reply = "Fuar süreçlerimiz 5 adımdan oluşur: Konsept ve 3D stand tasarımı, malzeme seçimi/üretim, lojistik nakliye, yerinde anahtar teslim kurulum ve fuar sonrası söküm/depolama. Tüm süreci Eyüp Gavas güvencesiyle tek elden yönetiyoruz.";
+         }
+         else if (lowerText.includes('personel') || lowerText.includes('iş gücü') || lowerText.includes('kadro') || lowerText.includes('tedarik')) {
+           reply = "Avrupa'daki fuar, kurulum ve lojistik projeleriniz için uzman montaj kadrosu, sertifikalı forklift operatörleri ve çok dilli fuar host/hostesleri sağlıyoruz. Tüm kadromuz Alman İş Gücü Sağlama Kanunu (AÜG) ile tam uyumludur.";
+         }
+         else if (lowerText.includes('vizyon') || lowerText.includes('misyon') || lowerText.includes('değer') || lowerText.includes('hedef')) {
+           reply = "Şirketimizin 3 temel kurumsal değeri vardır: 1) Küresel Güven (%100 yasal yasal uyumluluk), 2) Hız ve Esneklik (İş gücü ve lojistiği anında mobilize etme), 3) Sürdürülebilir Ortaklık (Avrupa pazarında uzun vadeli köklü ticari ilişkiler).";
+         }
+         else if (lowerText.includes('yasal') || lowerText.includes('aüg') || lowerText.includes('sertifika') || lowerText.includes('uyumluluk') || lowerText.includes('kanun') || lowerText.includes('gdpr') || lowerText.includes('iso')) {
+           reply = "TTW International, en üst düzey kurumsal uyumluluğa sahiptir: Almanya AÜG standartlarına tam uyum, Avrupa Birliği GDPR (DSGVO) veri güvencesi, ISO 9001 uluslararası kalite standartları ve sınır ötesi projeler için tam donanımlı AB Çalışma İzni süreçleri yasallığımızın tescilidir.";
+         }
+         else if (lowerText.includes('randevu') || lowerText.includes('görüşme') || lowerText.includes('toplantı')) {
+           reply = "Projelerinizi planlamak için sitemizdeki 'Online Randevu Talebi' alanını kullanabilirsiniz. Görüşme konusunu (Messebau, Personalbereitstellung vb.), tarih ve saat dilimini seçerek saniyeler içinde talep oluşturabilirsiniz.";
+         }
+         else if (lowerText.includes('iş arıyorum') || lowerText.includes('başvuru') || lowerText.includes('çalışmak') || lowerText.includes('form') || lowerText.includes('cv')) {
+           reply = "Almanya ve Hollanda operasyonlarımızda görevlendirilmek üzere sürekli yeni ekip arkadaşları arıyoruz. Sitemizdeki 'Detaylı İş Başvuru Formu' üzerinden kişisel bilgilerinizi, SV-Nummer (Sosyal Güvenlik No), çalışma türü tercihinizi ve eğitim durumunuzu eksiksiz doldurarak bize iletebilirsiniz.";
+         }
+         else if (lowerText.includes('adres') || lowerText.includes('nerede') || lowerText.includes('konum') || lowerText.includes('merkez') || lowerText.includes('hollanda') || lowerText.includes('almanya')) {
+           reply = "Şirketimizin ana operasyon merkezi Almanya'dadır. Resmi Adresimiz: Hindenburgstr. 236, 41061 Mönchengladbach, Deutschland. Ayrıca Amsterdam ve Almanya koordinasyon merkezlerimiz aktiftir.";
+         }
+         else if (lowerText.includes('iletişim') || lowerText.includes('telefon') || lowerText.includes('e-posta') || lowerText.includes('mail') || lowerText.includes('numara')) {
+           reply = "Bize doğrudan +49 (0) 163 6090266 numaralı telefondan ulaşabilir, info@mge-dienstleistungen.de adresine e-posta gönderebilir veya sol alttaki parlayan WhatsApp Canlı Destek butonunu kullanabilirsiniz.";
+         }
+         else {
+           reply = "Sorunuzu tam olarak eşleştiremedim. Ancak Kurucumuz Eyüp Gavas yönetimindeki TTW International hakkında; Fuar Stand Kurulumu (Messebau), AÜG İş Gücü Tedariği, Lojistik, Randevu Planlama veya İş Başvurusu konularında spesifik sorular sorarak bilgi alabilirsiniz.";
+         }
+       } 
+       else if (replyLang === 'de') {
+         // --- ALMANCA GELİŞMİŞ BİLGİ HAVUZU & SOHBET SONLANDIRMA ---
+         if (lowerText === 'tamam' || lowerText === 'ok' || lowerText.includes('verstanden') || lowerText.includes('alles klar') || lowerText.includes('super')) {
+           reply = "Wunderbar! Wenn Sie weitere Fragen haben, ist das TTW-Team unter der Leitung unseres Gründers Eyüp Gavas jederzeit für Sie da. Kann ich Ihnen noch bei etwas anderem helfen?";
+         }
+         else if (lowerText.includes('danke') || lowerText.includes('vielen dank')) {
+           reply = "Gern geschehen! Im Namen von Timo to Work International B.V. freue ich mich, Ihnen geholfen zu haben. Ich wünsche Ihnen einen schönen Tag!";
+         }
+         else if (lowerText.includes('tschüss') || lowerText.includes('auf wiedersehen') || lowerText.includes('bye')) {
+           reply = "Auf Wiedersehen! Sie können uns jederzeit über den 'Jetzt anrufen'-Button oben rechts oder über unseren WhatsApp-Support unten links erreichen. Machen Sie es gut!";
+         }
+         else if (lowerText.includes('gründer') || lowerText.includes('inhaber') || lowerText.includes('eyüp') || lowerText.includes('gavas')) {
+           reply = "Timo to Work International B.V. wird von Gründer und Geschäftsführer Eyüp Gavas geleitet. Er führt die Prozesse in den Bereichen Messelogistik, AÜG-Personalbereitstellung und internationalen Handel in Europa an.";
+         }
+         else if (lowerText.includes('was macht') || lowerText.includes('dienstleistung') || lowerText.includes('tätigkeit') || lowerText.includes('unternehmen')) {
+           reply = "Wir bieten High-End-Lösungen in 5 Bereichen: 1) Messebau & Projektplanung, 2) Rechtssichere Personalbereitstellung (nach AÜG), 3) Logistik- & Hotelmanagement (Europa-Transfers), 4) Internationaler Import, 5) Globaler Export.";
+         }
+         else if (lowerText.includes('messe') || lowerText.includes('stand') || lowerText.includes('messebau')) {
+           reply = "Unser Messebau-Prozess umfasst Konzept & 3D-Design, Materialauswahl, Logistik/Transport, Montage vor Ort und schlüsselfertige Übergabe sowie anschließende Demontage und Einlagerung.";
+         }
+         else if (lowerText.includes('bewerbung') || lowerText.includes('job') || lowerText.includes('arbeit')) {
+           reply = "Für unsere Aktivitäten in Deutschland und den Niederlanden suchen wir stets qualifizierte Mitarbeiter. Nutzen Sie unser Online-Bewerbungsformular, um Ihre Daten direkt an unser Team zu übermitteln.";
+         }
+         else if (lowerText.includes('aüg') || lowerText.includes('recht') || lowerText.includes('konformität') || lowerText.includes('dsgvo')) {
+           reply = "Wir garantieren höchste Konformität: Volle Einhaltung des Arbeitnehmerüberlassungsgesetzes (AÜG), DSGVO-Datensicherheit, ISO 9001 Qualitätsstandards und voll ausgestattete EU-Arbeitserlaubnis-Prozesse.";
+         }
+         else if (lowerText.includes('adresse') || lowerText.includes('wo') || lowerText.includes('standort')) {
+           reply = "Unser Hauptsitz liegt in Deutschland: Hindenburgstr. 236, 41061 Mönchengladbach, Deutschland. Wir koordinieren auch Standorte in Amsterdam.";
+         }
+         else if (lowerText.includes('kontakt') || lowerText.includes('telefon') || lowerText.includes('e-mail')) {
+           reply = "Sie erreichen uns direkt unter +49 (0) 163 6090266, per E-Mail an info@mge-dienstleistungen.de oder über den integrierten WhatsApp-Button.";
+         }
+         else {
+           reply = "Ich konnte Ihre Anfrage nicht exakt zuordnen. Unter der Leitung von Eyüp Gavas helfen wir Ihnen jedoch gerne bei Fragen zu Messebau, Personalüberlassung (AÜG), Logistik oder Bewerbungen weiter.";
+         }
+       } 
+       else {
+         // --- İNGİLİZCE GELİŞMİŞ BİLGİ HAVUZU & SOHBET SONLANDIRMA ---
+         if (lowerText === 'ok' || lowerText === 'okay' || lowerText.includes('understand') || lowerText.includes('great') || lowerText.includes('perfect')) {
+           reply = "Perfect! If you have any more questions, the TTW team under founder Eyüp Gavas is always here to help. Is there anything else I can assist you with?";
+         }
+         else if (lowerText.includes('thank')) {
+           reply = "You're welcome! On behalf of Timo to Work International B.V., it was a pleasure helping you. Have a great day!";
+         }
+         else if (lowerText.includes('bye') || lowerText.includes('goodbye')) {
+           reply = "Goodbye! Feel free to reach out anytime using the 'Call Now' button or our live WhatsApp link. Take care!";
+         }
+         if (lowerText.includes('founder') || lowerText.includes('owner') || lowerText.includes('eyüp') || lowerText.includes('gavas')) {
+           reply = "TTW International B.V. was founded and is led by senior executive Eyüp Gavas, pioneering exhibition logistics, temporary staffing (AÜG), and global cross-border trade.";
+         }
+         else if (lowerText.includes('service') || lowerText.includes('what do') || lowerText.includes('business')) {
+           reply = "We specialize in 5 global fields: Exhibition Stand Design & Build (Messebau), Qualified Personnel Provision (AÜG compliant), Logistics & Accommodation Management, International Import, and Global Export Solutions.";
+         }
+         else if (lowerText.includes('contact') || lowerText.includes('phone') || lowerText.includes('email') || lowerText.includes('address')) {
+           reply = "Reach us at +49 (0) 163 6090266, info@mge-dienstleistungen.de, or visit our headquarters at Hindenburgstr. 236, 41061 Mönchengladbach, Germany.";
+         }
+         else {
+           reply = "I couldn't match your exact request. However, under our founder Eyüp Gavas, I can guide you thoroughly regarding exhibition stands, AÜG temporary staffing, European logistics, or job applications.";
+         }
+       }
+
+       setMessages(prev => [...prev, { sender: 'ai' as const, text: reply }]);
+     }, 600);
+   };
 
   const theme = {
     bgPrimary: darkMode ? '#0b0f19' : '#f8fafc',
@@ -1076,39 +1239,116 @@ export default function Home() {
         </div>
       </footer>
 
-      {/* 💬 PREMIUM SABİT WHATSAPP CANLI DESTEK BUTONU */}
-      <motion.a
-        href="https://wa.me/491636090266" // Eski sitedeki kurumsal iletişim numaranız
-        target="_blank"
-        rel="noopener noreferrer"
-        initial={{ opacity: 0, scale: 0.6, y: 50 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ delay: 1, duration: 0.5, ease: 'easeOut' }}
-        whileHover={{ scale: 1.1, boxShadow: '0 0 25px rgba(34, 197, 94, 0.6)' }}
-        style={{
-          position: 'fixed',
-          bottom: '30px',
-          left: '30px', // Sağ taraftaki tabela panelini kapatmaması için sol alt köşeye şıkça yerleştirildi
-          zIndex: 999,
-          backgroundColor: '#22c55e',
-          color: '#ffffff',
-          width: '60px',
-          height: '60px',
-          borderRadius: '50%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          fontSize: '32px',
-          textDecoration: 'none',
-          boxShadow: '0 10px 30px rgba(34, 197, 94, 0.4)',
-          cursor: 'pointer',
-          transition: 'box-shadow 0.3s ease'
-        }}
-        title="WhatsApp ile İletişime Geçin"
-      >
-        {/* WhatsApp Yeşil Temalı Modern İkon / Emoji */}
-        <span style={{ transform: 'translateY(1px)' }}>💬</span>
-      </motion.a>
+      {/*  HOLDING STANDARTLARINDA PREMIUM CANLI DESTEK PANELI (SAĞ ALT KÖŞE) */}
+      <div style={{ position: 'fixed', bottom: '35px', right: '35px', zIndex: 1000, display: 'flex', flexDirection: 'column', gap: '15px', alignItems: 'end', fontFamily: 'sans-serif' }}>
+        
+        {/* --- 1. YAPAY ZEKA ASİSTANI BÖLÜMÜ --- */}
+        {aiOpen && (
+          <motion.div 
+            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            style={{
+              width: '380px',
+              height: '500px',
+              backgroundColor: darkMode ? 'rgba(17, 24, 39, 0.85)' : 'rgba(255, 255, 255, 0.85)',
+              backdropFilter: 'blur(25px)',
+              border: `1px solid ${darkMode ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)'}`,
+              borderRadius: '24px',
+              boxShadow: '0 30px 60px -15px rgba(0,0,0,0.6)',
+              display: 'flex',
+              flexDirection: 'column',
+              overflow: 'hidden',
+              marginBottom: '10px'
+            }}
+          >
+            {/* Asistan Üst Barı */}
+            <div style={{ padding: '24px', backgroundColor: darkMode ? 'rgba(11, 15, 25, 0.6)' : 'rgba(241, 245, 249, 0.6)', borderBottom: `1px solid ${theme.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div>
+                <h4 style={{ margin: 0, fontSize: '15px', fontWeight: 700, color: theme.textPrimary, letterSpacing: '-0.3px' }}>{t.aiTitle}</h4>
+                <p style={{ margin: '4px 0 0 0', fontSize: '11px', color: '#64748b', fontWeight: 500 }}>{t.aiSub}</p>
+              </div>
+              <button onClick={() => setAiOpen(false)} style={{ background: 'none', border: 'none', color: '#64748b', fontSize: '22px', cursor: 'pointer', lineHeight: '1' }}>×</button>
+            </div>
+
+            {/* Mesaj Alanı */}
+            <div style={{ flex: 1, padding: '24px', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              <div style={{ alignSelf: 'start', backgroundColor: darkMode ? 'rgba(31, 41, 55, 0.5)' : '#e2e8f0', color: theme.textPrimary, padding: '14px 18px', borderRadius: '16px', borderTopLeftRadius: '0', fontSize: '13px', lineHeight: '1.6', maxWidth: '85%', border: `1px solid ${theme.border}` }}>
+                {t.aiWelcome}
+              </div>
+              {messages.map((msg, index) => (
+                <div key={index} style={{ alignSelf: msg.sender === 'user' ? 'end' : 'start', backgroundColor: msg.sender === 'user' ? '#38bdf8' : (darkMode ? 'rgba(31, 41, 55, 0.5)' : '#e2e8f0'), color: msg.sender === 'user' ? '#0b0f19' : theme.textPrimary, padding: '14px 18px', borderRadius: '16px', fontSize: '13px', lineHeight: '1.6', maxWidth: '85%', fontWeight: msg.sender === 'user' ? 600 : 500, border: msg.sender === 'user' ? 'none' : `1px solid ${theme.border}` }}>
+                  {msg.text}
+                </div>
+              ))}
+            </div>
+
+            {/* Girdi Alanı */}
+            <form onSubmit={handleAiSubmit} style={{ padding: '18px', backgroundColor: darkMode ? 'rgba(11, 15, 25, 0.6)' : 'rgba(241, 245, 249, 0.6)', borderTop: `1px solid ${theme.border}`, display: 'flex', gap: '10px' }}>
+              <input type="text" value={inputValue} onChange={(e) => setInputValue(e.target.value)} placeholder={t.aiPlaceholder} style={{ flex: 1, padding: '12px 18px', backgroundColor: darkMode ? 'rgba(0,0,0,0.2)' : '#ffffff', border: `1px solid ${theme.border}`, borderRadius: '12px', color: theme.textPrimary, fontSize: '13px', outline: 'none' }} />
+              <button type="submit" style={{ backgroundColor: '#38bdf8', border: 'none', borderRadius: '12px', width: '42px', height: '42px', color: '#0b0f19', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '16px' }}>➔</button>
+            </form>
+          </motion.div>
+        )}
+
+        {/* LÜKS YAPAY ZEKA BUTONU */}
+        <motion.button
+          onClick={() => setAiOpen(!aiOpen)}
+          whileHover={{ scale: 1.02, backgroundColor: darkMode ? 'rgba(31, 41, 55, 0.9)' : '#ffffff' }}
+          style={{
+            backgroundColor: darkMode ? 'rgba(17, 24, 39, 0.75)' : 'rgba(255, 255, 255, 0.85)',
+            backdropFilter: 'blur(15px)',
+            border: `1px solid ${darkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}`,
+            padding: scrolled ? '15px' : '12px 24px',
+            borderRadius: '30px',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '12px',
+            cursor: 'pointer',
+            boxShadow: '0 20px 40px -10px rgba(0,0,0,0.3)',
+            transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)'
+          }}
+        >
+          {/* Geometrik Akıllı Asistan İkonu */}
+          <div style={{ position: 'relative', display: 'flex', alignItems: 'center', justify: 'center' }}>
+            <span style={{ fontSize: '18px', color: '#38bdf8', animation: 'spin 8s linear infinite' }}>✦</span>
+          </div>
+          {!scrolled && (
+            <span style={{ fontSize: '13px', fontWeight: 700, color: theme.textPrimary, letterSpacing: '0.5px', textTransform: 'uppercase' }}>
+              {lang === 'tr' ? 'Yapay Zeka Asistanı' : lang === 'de' ? 'KI-Assistent' : 'AI Assistant'}
+            </span>
+          )}
+        </motion.button>
+
+        {/* --- 2. LÜKS WHATSAPP DESTEK BUTONU --- */}
+        <motion.a
+          href="https://wa.me/491636090266"
+          target="_blank"
+          rel="noopener noreferrer"
+          whileHover={{ scale: 1.02, backgroundColor: 'rgba(34, 197, 94, 0.15)' }}
+          style={{
+            backgroundColor: darkMode ? 'rgba(17, 24, 39, 0.75)' : 'rgba(255, 255, 255, 0.85)',
+            backdropFilter: 'blur(15px)',
+            border: '1px solid rgba(34, 197, 94, 0.3)',
+            padding: scrolled ? '15px' : '12px 24px',
+            borderRadius: '30px',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '12px',
+            textDecoration: 'none',
+            boxShadow: '0 20px 40px -10px rgba(0,0,0,0.2)',
+            transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)'
+          }}
+        >
+          {/* İnce ve Minimalist İletişim İkonu */}
+          <span style={{ fontSize: '16px', color: '#22c55e' }}>🟢</span>
+          {!scrolled && (
+            <span style={{ fontSize: '13px', fontWeight: 700, color: theme.textPrimary, letterSpacing: '0.5px', textTransform: 'uppercase' }}>
+              {lang === 'tr' ? 'WhatsApp İletişim' : lang === 'de' ? 'WhatsApp Support' : 'WhatsApp Support'}
+            </span>
+          )}
+        </motion.a>
+
+      </div>
     </div>
   );
 }
