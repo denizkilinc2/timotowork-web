@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 // TÜM SİTENİN ÇEVİRİ VERİSİ
 const translations = {
@@ -386,6 +386,25 @@ export default function Home() {
   const [aiOpen, setAiOpen] = useState<boolean>(false);
   const [messages, setMessages] = useState<Array<{ sender: 'user' | 'ai', text: string }>>([]);
   const [inputValue, setInputValue] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(true);
+  const [statsTriggered, setStatsTriggered] = useState<boolean>(false);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const galleryImages = [
+    "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80",
+    "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=600&q=80",
+    "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=600&q=80",
+    "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=600&q=80",
+    "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80",
+    "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80"
+  ];
+
+  useEffect(() => {
+    // Sayfa tamamen yüklendiğinde yükleme ekranını kapat (Simülatif lüks gecikme payı ile)
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1800);
+    return () => clearTimeout(timer);
+  }, []);
   const t = translations[lang];
 
   const [scrolled, setScrolled] = useState<boolean>(false);
@@ -577,8 +596,72 @@ export default function Home() {
   };
 
   return (
-    <div style={{ backgroundColor: theme.bgPrimary, color: theme.textPrimary, minHeight: '100vh', width: '100%', overflowX: 'hidden', fontFamily: 'sans-serif', margin: 0, padding: 0 }}>
+    <div style={{ backgroundColor: theme.bgPrimary, color: theme.textPrimary, minHeight: '100vh', width: '100%', overflowX: 'hidden', fontFamily: 'sans-serif', margin: 0, padding: 0, transition: 'background-color 0.3s, color 0.3s' }}>
       
+      {/* 🎬 PREMIUM HOLDING PRELOADER */}
+      <AnimatePresence>
+        {loading && (
+          <motion.div
+            initial={{ opacity: 1 }}
+            exit={{ 
+              y: '-100%', 
+              transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] } 
+            }}
+            style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              width: '100vw',
+              height: '100vh',
+              backgroundColor: '#0b0f19',
+              zIndex: 9999,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              overflow: 'hidden'
+            }}
+          >
+            {/* Parlayan ve Dönen Logo Kapsayıcısı */}
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ 
+                scale: [0.9, 1, 0.9], 
+                opacity: 1,
+                boxShadow: ['0 0 20px rgba(56,189,248,0.2)', '0 0 50px rgba(124,58,237,0.4)', '0 0 20px rgba(56,189,248,0.2)']
+              }}
+              transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
+              style={{
+                backgroundColor: '#ffffff',
+                padding: '20px 40px',
+                borderRadius: '16px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginBottom: '24px'
+              }}
+            >
+              <img src="/logo.png" alt="Timo to Work" style={{ height: '55px', width: 'auto' }} />
+            </motion.div>
+
+            {/* Elit Yükleniyor Çizgisi */}
+            <div style={{ width: '140px', height: '2px', backgroundColor: 'rgba(255,255,255,0.1)', borderRadius: '2px', position: 'relative', overflow: 'hidden' }}>
+              <motion.div 
+                animate={{ left: ['-100%', '100%'] }}
+                transition={{ repeat: Infinity, duration: 1.5, ease: 'easeInOut' }}
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  width: '60%',
+                  height: '100%',
+                  background: 'linear-gradient(90deg, transparent, #38bdf8, transparent)'
+                }}
+              />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Üst Menü / Navbar (image_c8f75e.png menüsünün sabitlenen cam mimarisi) */}
       <nav style={{ 
         backgroundColor: darkMode ? 'rgba(26, 26, 26, 0.75)' : 'rgba(255, 255, 255, 0.8)', 
@@ -861,8 +944,9 @@ export default function Home() {
       {/* ----------------- BAŞARI İSTATİSTİKLERİ SAYACI (ANIMASYONLU) ----------------- */}
       <motion.section 
         initial="hidden" 
-        whileInView="visible" 
+        whileInView="visible"
         viewport={{ once: true, amount: 0.3 }} 
+        onViewportEnter={() => setStatsTriggered(true)}
         variants={fadeInUpVariants} 
         style={{ backgroundColor: '#0f172a', padding: '60px 20px', borderBottom: '1px solid #1f2937' }}
       >
@@ -870,25 +954,51 @@ export default function Home() {
           
           {/* İstatistik 1 - Fuar Standı */}
           <div style={{ padding: '20px', backgroundColor: '#0b0f19', borderRadius: '16px', border: '1px solid #1f2937', boxShadow: '0 10px 25px -5px rgba(0,0,0,0.3)' }}>
-            <div style={{ fontSize: '42px', fontWeight: 800, color: '#38bdf8', marginBottom: '8px', letterSpacing: '-1px' }}>+150</div>
+            <div style={{ fontSize: '42px', fontWeight: 800, color: '#38bdf8', marginBottom: '8px', letterSpacing: '-1px' }}>
+              {statsTriggered ? (
+                <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                  +150
+                </motion.span>
+              ) : '0'}
+            </div>
             <div style={{ color: '#94a3b8', fontSize: '15px', fontWeight: 500 }}>{t.statCard1}</div>
           </div>
 
           {/* İstatistik 2 - Personel */}
           <div style={{ padding: '20px', backgroundColor: '#0b0f19', borderRadius: '16px', border: '1px solid #1f2937', boxShadow: '0 10px 25px -5px rgba(0,0,0,0.3)' }}>
-            <div style={{ fontSize: '42px', fontWeight: 800, color: '#38bdf8', marginBottom: '8px', letterSpacing: '-1px' }}>+500</div>
+            <div style={{ fontSize: '42px', fontWeight: 800, color: '#38bdf8', marginBottom: '8px', letterSpacing: '-1px' }}>
+              {statsTriggered ? (
+                <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                  {/* İlerleyen süreçte bunu Framer Motion useTransform ile yapabiliriz. 
+                      Şimdilik pürüzsüz CSS/JS render geçişi için ara bir animasyon tetikliyoruz */}
+                  +500
+                </motion.span>
+              ) : '0'}
+            </div>
             <div style={{ color: '#94a3b8', fontSize: '15px', fontWeight: 500 }}>{t.statCard2}</div>
           </div>
 
           {/* İstatistik 3 - Ülke */}
           <div style={{ padding: '20px', backgroundColor: '#0b0f19', borderRadius: '16px', border: '1px solid #1f2937', boxShadow: '0 10px 25px -5px rgba(0,0,0,0.3)' }}>
-            <div style={{ fontSize: '42px', fontWeight: 800, color: '#38bdf8', marginBottom: '8px', letterSpacing: '-1px' }}>12</div>
+            <div style={{ fontSize: '42px', fontWeight: 800, color: '#38bdf8', marginBottom: '8px', letterSpacing: '-1px' }}>
+              {statsTriggered ? (
+                <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                  12
+                </motion.span>
+              ) : '0'}
+            </div>
             <div style={{ color: '#94a3b8', fontSize: '15px', fontWeight: 500 }}>{t.statCard3}</div>
           </div>
 
           {/* İstatistik 4 - Memnuniyet */}
           <div style={{ padding: '20px', backgroundColor: '#0b0f19', borderRadius: '16px', border: '1px solid #1f2937', boxShadow: '0 10px 25px -5px rgba(0,0,0,0.3)' }}>
-            <div style={{ fontSize: '42px', fontWeight: 800, color: '#f97316', marginBottom: '8px', letterSpacing: '-1px' }}>100%</div>
+            <div style={{ fontSize: '42px', fontWeight: 800, color: '#f97316', marginBottom: '8px', letterSpacing: '-1px' }}>
+              {statsTriggered ? (
+                <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                  100%
+                </motion.span>
+              ) : '0'}
+            </div>
             <div style={{ color: '#94a3b8', fontSize: '15px', fontWeight: 500 }}>{t.statCard4}</div>
           </div>
 
@@ -1086,17 +1196,10 @@ export default function Home() {
             <p style={{ color: theme.textSecondary, fontSize: '16px' }}>{t.gallerySub}</p>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '25px' }}>
-            {[1, 2, 3, 4, 5, 6].map((idx) => {
-              const urls = [
-                "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80",
-                "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=600&q=80",
-                "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=600&q=80",
-                "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=600&q=80",
-                "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80",
-                "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80"
-              ];
+            {galleryImages.map((url, index) => {
+              const idx = index + 1;
               return (
-                <div key={idx} style={{ position: 'relative', height: '260px', borderRadius: '16px', overflow: 'hidden', border: '1px solid #1f2937', display: 'flex', flexDirection: 'column', justifyContent: 'end', padding: '25px', backgroundImage: `linear-gradient(to top, rgba(11,15,25,0.95) 0%, rgba(11,15,25,0.2) 100%), url("${urls[idx-1]}")`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+                <div key={index} onClick={() => setLightboxIndex(index)} style={{ cursor: 'pointer', position: 'relative', height: '260px', borderRadius: '16px', overflow: 'hidden', border: '1px solid #1f2937', display: 'flex', flexDirection: 'column', justifyContent: 'end', padding: '25px', backgroundImage: `linear-gradient(to top, rgba(11,15,25,0.95) 0%, rgba(11,15,25,0.2) 100%), url("${url}")`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
                   <h4 style={{ color: '#ffffff', margin: '0 0 5px 0', fontSize: '18px', fontWeight: 600 }}>{(t as any)[`galCard${idx}Title`]}</h4>
                   <span style={{ color: '#38bdf8', fontSize: '13px', fontWeight: 500 }}>{(t as any)[`galCard${idx}Sub`]}</span>
                 </div>
@@ -1487,6 +1590,46 @@ export default function Home() {
                   {lang === 'tr' ? 'Haritada Yol Tarifi Al ➔' : lang === 'de' ? 'Auf der Karte anzeigen ➔' : 'Get Directions ➔'}
                 </span>
               </div>
+              
+              {/* 🟢 CANLI RADAR VE RADAR METNİ KATMANI */}
+              <div style={{
+                position: 'absolute',
+                top: '16px',
+                left: '16px',
+                backgroundColor: 'rgba(15, 23, 42, 0.8)',
+                backdropFilter: 'blur(10px)',
+                padding: '8px 14px',
+                borderRadius: '20px',
+                border: '1px solid rgba(255,255,255,0.08)',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '10px'
+              }}>
+                {/* Parlayan Yeşil Radar Halkası Efekti */}
+                <div style={{ position: 'relative', width: '8px', height: '8px' }}>
+                  <div style={{
+                    position: 'absolute',
+                    width: '100%',
+                    height: '100%',
+                    backgroundColor: '#22c55e',
+                    borderRadius: '50%'
+                  }} />
+                  <motion.div 
+                    animate={{ scale: [1, 2.5, 1], opacity: [0.8, 0, 0.8] }}
+                    transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
+                    style={{
+                      position: 'absolute',
+                      width: '100%',
+                      height: '100%',
+                      backgroundColor: '#22c55e',
+                      borderRadius: '50%'
+                    }}
+                  />
+                </div>
+                <span style={{ color: '#ffffff', fontSize: '11px', fontWeight: 600, letterSpacing: '0.3px' }}>
+                  {lang === 'tr' ? 'Mönchengladbach Merkez Ofisi - Canlı Operasyon' : 'HQ Mönchengladbach - Live Operations'}
+                </span>
+              </div>
             </motion.a>
           {/* Sağ Sütun Bitişi */}
           </div>
@@ -1612,6 +1755,71 @@ export default function Home() {
         </motion.a>
 
       </div>
+
+      {/* 🌌 ULTRA-MODERN SINEMATIK LIGHTBOX MODÜLÜ */}
+      <AnimatePresence>
+        {lightboxIndex !== null && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              width: '100vw',
+              height: '100vh',
+              backgroundColor: 'rgba(3, 7, 18, 0.95)',
+              backdropFilter: 'blur(15px)',
+              zIndex: 1100,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+          >
+            {/* Kapatma Butonu */}
+            <button 
+              onClick={() => setLightboxIndex(null)}
+              style={{ position: 'absolute', top: '30px', right: '40px', background: 'none', border: 'none', color: '#ffffff', fontSize: '35px', cursor: 'pointer', opacity: 0.7 }}
+            >
+              ×
+            </button>
+
+            {/* Sol Ok Butonu */}
+            <button 
+              onClick={() => setLightboxIndex((lightboxIndex - 1 + galleryImages.length) % galleryImages.length)}
+              style={{ position: 'absolute', left: '40px', background: 'none', border: 'none', color: '#ffffff', fontSize: '40px', cursor: 'pointer', opacity: 0.7 }}
+            >
+              ‹
+            </button>
+
+            {/* Devasa Görsel Kartı */}
+            <motion.img 
+              key={lightboxIndex}
+              initial={{ scale: 0.95, y: 10 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.95, y: 10 }}
+              src={galleryImages[lightboxIndex]} 
+              alt="Project Detail" 
+              style={{ 
+                maxWidth: '85%', 
+                maxHeight: '80vh', 
+                borderRadius: '16px', 
+                boxShadow: '0 30px 60px rgba(0,0,0,0.8)',
+                border: '1px solid rgba(255,255,255,0.1)'
+              }}
+            />
+
+            {/* Sağ Ok Butonu */}
+            <button 
+              onClick={() => setLightboxIndex((lightboxIndex + 1) % galleryImages.length)}
+              style={{ position: 'absolute', right: '40px', background: 'none', border: 'none', color: '#ffffff', fontSize: '40px', cursor: 'pointer', opacity: 0.7 }}
+            >
+              ›
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
