@@ -394,7 +394,7 @@ export default function Home() {
   // Sayfa kaydırıldıkça hangi bölümde olunduğunu otomatik tespit eden mekanizma
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'about', 'services', 'gallery', 'appointment', 'contact', 'apply'];
+      const sections = ['home', 'about', 'services', 'gallery', 'appointment', 'apply', 'contact'];
       const scrollPosition = window.scrollY + 120; // Navbar yüksekliği için ofset biniş payı
 
       for (const section of sections) {
@@ -569,6 +569,11 @@ export default function Home() {
     textPrimary: darkMode ? '#ffffff' : '#0f172a',
     textSecondary: darkMode ? '#94a3b8' : '#475569',
     border: darkMode ? '#1f2937' : '#e2e8f0',
+    
+    // 🌟 YENİ EKLEYECEĞİMİZ OKUNABİLİRLİK RENKLERİ:
+    inputBg: darkMode ? '#1e293b' : '#ffffff', // Kutuların içi artık kapkaranlık olmayacak
+    inputText: darkMode ? '#ffffff' : '#0f172a', // Kullanıcının yazdığı yazı rengi
+    inputPlaceholder: darkMode ? '#94a3b8' : '#64748b', // Örnek yazı (placeholder) rengi
   };
 
   return (
@@ -595,7 +600,7 @@ export default function Home() {
               <img src="/logo.png" alt="Timo to Work Logo" style={{ height: '40px', width: 'auto', objectFit: 'contain', backgroundColor: '#ffffff', padding: '4px 8px', borderRadius: '6px' }} />
             </a>
             
-            {/* Menü Linkleri (Kullanıcı kolaylığı için kilitlenen ve yumuşak kayan grup) */}
+            {/* Menü Linkleri - Sayfa Düzenine Uygun Sıralama (image_c8e897.png Güncellemesi) */}
             <div style={{ display: 'flex', gap: '24px', alignItems: 'center' }}>
               {[
                 { id: 'home', text: t.navHome, href: '#' },
@@ -603,8 +608,8 @@ export default function Home() {
                 { id: 'services', text: t.navServices, href: '#services' },
                 { id: 'gallery', text: t.navGallery, href: '#gallery' },
                 { id: 'appointment', text: t.navAppointment, href: '#appointment' },
-                { id: 'contact', text: t.navContact, href: '#contact' },
-                { id: 'apply', text: t.navApplyForm, href: '#apply' }
+                { id: 'apply', text: t.navApplyForm, href: '#apply' }, // Başvuru Formu yukarıda olduğu için sola alındı
+                { id: 'contact', text: t.navContact, href: '#contact' } // İletişim en altta olduğu için sağa alındı
               ].map((item) => {
                 const isActive = activeSection === item.id;
                 return (
@@ -694,8 +699,34 @@ export default function Home() {
               <a href="#apply" style={{ background: 'linear-gradient(90deg, #7c3aed 0%, #ef4444 100%)', color: '#ffffff', textDecoration: 'none', padding: '15px 35px', borderRadius: '30px', fontWeight: 'bold', fontSize: '15px', boxShadow: '0 4px 20px rgba(124, 58, 237, 0.4)', transition: '0.3s' }}>
                 {t.navApplyForm}
               </a>
-              <a href="#services" style={{ backgroundColor: 'transparent', color: '#ffffff', textDecoration: 'none', padding: '15px 35px', borderRadius: '30px', fontWeight: 'bold', fontSize: '15px', border: '1px solid #334155', transition: '0.3s' }}>
-                {t.heroBtnSecondary}
+              {/* 🎯 image_c70afe.png AYDINLIK MOD OKUNABİLİRLİK GÜNCELLEMESİ */}
+              <a
+                href="#services"
+                style={{
+                  display: 'inline-block',
+                  padding: '14px 28px',
+                  borderRadius: '30px',
+                  backgroundColor: 'transparent',
+                  // Aydınlık modda koyu lacivert, koyu modda beyaz yazı rengi
+                  color: darkMode ? '#ffffff' : '#0f172a', 
+                  // Çerçeve rengini de yazı rengiyle senkronize ediyoruz
+                  border: `1px solid ${darkMode ? 'rgba(255, 255, 255, 0.4)' : 'rgba(15, 23, 42, 0.4)'}`,
+                  fontWeight: 'bold',
+                  fontSize: '15px',
+                  textDecoration: 'none',
+                  textAlign: 'center',
+                  transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                  cursor: 'pointer'
+                }}
+                // Üzerine gelindiğinde (hover) arka planı hafifçe doldurarak derinlik katabiliriz
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(15,23,42,0.05)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'transparent';
+                }}
+              >
+                {lang === 'tr' ? 'Hizmetlerimizi İnceleyin' : lang === 'de' ? 'Dienstleistungen' : 'Explore Services'}
               </a>
             </div>
           </motion.div>
@@ -1083,32 +1114,49 @@ export default function Home() {
             <p style={{ color: theme.textSecondary, fontSize: '16px' }}>{t.aptSub}</p>
           </div>
           <div style={{ backgroundColor: theme.bgPrimary, padding: '40px', borderRadius: '24px', border: `1px solid ${theme.border}` }}>
-            <form onSubmit={(e) => { e.preventDefault(); alert(lang === 'tr' ? 'Randevu talebiniz alındı!' : lang === 'de' ? 'Terminanfrage eingegangen!' : 'Appointment request received!'); }} style={{ display: 'flex', flexDirection: 'column', gap: '25px' }}>
-              <div>
-                <label style={{ display: 'block', fontSize: '14px', color: theme.textSecondary, marginBottom: '10px', fontWeight: 500 }}>{t.aptTopic}</label>
-                <select required style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.bgSecondary, border: `1px solid ${theme.border}`, borderRadius: '12px', color: theme.textPrimary, outline: 'none', cursor: 'pointer' }}>
-                  <option value="messebau">Messebau & Projektplanung</option>
-                  <option value="personal">Personalbereitstellung</option>
-                  <option value="logistik">Logistik & Hotelmanagement</option>
-                  <option value="import-export">Import & Export Consultancy</option>
+            <form onSubmit={(e) => { e.preventDefault(); alert(lang === 'tr' ? 'Randevu talebiniz alındı!' : lang === 'de' ? 'Terminanfrage eingegangen!' : 'Appointment request received!'); }}>
+              {/* Görüşme Konusu Satırı */}
+              <div style={{ marginBottom: '24px' }}>
+                <label style={{ display: 'block', color: theme.textSecondary, fontSize: '14px', fontWeight: 600, marginBottom: '10px' }}>
+                  {t.aptTopic}
+                </label>
+                <select required style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none', cursor: 'pointer' }}>
+                  <option>Messebau & Projektplanung</option>
+                  <option>Personalbereitstellung (AÜG)</option>
+                  <option>Logistik & Transport</option>
+                  <option>Import & Export Solutions</option>
                 </select>
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '20px' }}>
+
+              {/* İKİLİ SATIR: Tarih Seçimi & Saat Dilimi (image_c792f8.png Birleşiklik Çözümü) */}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', width: '100%', marginBottom: '32px' }}>
                 <div>
-                  <label style={{ display: 'block', fontSize: '14px', color: theme.textSecondary, marginBottom: '10px', fontWeight: 500 }}>{t.aptDate}</label>
-                  <input required type="date" style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.bgSecondary, border: `1px solid ${theme.border}`, borderRadius: '12px', color: theme.textPrimary, outline: 'none', cursor: 'pointer' }} />
+                  <label style={{ display: 'block', color: theme.textSecondary, fontSize: '14px', fontWeight: 600, marginBottom: '10px' }}>
+                    {t.aptDate}
+                  </label>
+                  <input 
+                    required
+                    type="date" 
+                    style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none' }}
+                  />
                 </div>
                 <div>
-                  <label style={{ display: 'block', fontSize: '14px', color: theme.textSecondary, marginBottom: '10px', fontWeight: 500 }}>{t.aptTime}</label>
-                  <select required style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.bgSecondary, border: `1px solid ${theme.border}`, borderRadius: '12px', color: theme.textPrimary, outline: 'none', cursor: 'pointer' }}>
-                    <option value="09:00">09:00 - 11:00</option>
-                    <option value="11:00">11:00 - 13:00</option>
-                    <option value="14:00">14:00 - 16:00</option>
-                    <option value="16:00">16:00 - 18:00</option>
+                  <label style={{ display: 'block', color: theme.textSecondary, fontSize: '14px', fontWeight: 600, marginBottom: '10px' }}>
+                    {t.aptTime}
+                  </label>
+                  <select required style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none', cursor: 'pointer' }}>
+                    <option>09:00 - 11:00</option>
+                    <option>11:00 - 13:00</option>
+                    <option>14:00 - 16:00</option>
+                    <option>16:00 - 18:00</option>
                   </select>
                 </div>
               </div>
-              <button type="submit" style={{ backgroundColor: '#38bdf8', color: '#0b0f19', fontWeight: 'bold', padding: '16px', borderRadius: '12px', border: 'none', cursor: 'pointer', fontSize: '16px' }}>{t.aptBtn}</button>
+
+              {/* Buton Alanı */}
+              <button type="submit" style={{ width: '100%', padding: '16px', backgroundColor: '#38bdf8', color: '#0b0f19', border: 'none', borderRadius: '14px', fontSize: '16px', fontWeight: 'bold', cursor: 'pointer', transition: '0.3s' }}>
+                {t.aptBtn}
+              </button>
             </form>
           </div>
         </div>
@@ -1124,103 +1172,169 @@ export default function Home() {
           <div style={{ backgroundColor: theme.bgFormBlack, padding: '50px 40px', borderRadius: '24px', border: `1px solid ${theme.border}` }}>
             <form onSubmit={(e) => { e.preventDefault(); alert(lang === 'tr' ? 'Başvurunuz başarıyla iletildi!' : lang === 'de' ? 'Bewerbung erfolgreich abgesendet!' : 'Application successfully submitted!'); }} style={{ display: 'flex', flexDirection: 'column', gap: '35px' }}>
               <div>
-                <h3 style={{ fontSize: '24px', fontWeight: 700, color: theme.textPrimary, textAlign: 'center', marginBottom: '25px' }}>{t.secPersonal}</h3>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))', gap: '25px' }}>
-                  <div>
-                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: theme.textPrimary, marginBottom: '8px' }}>{t.lblFullName}</label>
-                    <input required type="text" placeholder="Anderson Mikoo" style={{ width: '100%', padding: '14px', backgroundColor: theme.bgCardInner, border: 'none', borderRadius: '8px', color: '#000000', outline: 'none' }} />
+                {/* 1. Kişisel Bilgiler Başlığı */}
+                <h3 style={{ fontSize: '22px', fontWeight: 700, color: theme.textPrimary, textAlign: 'center', marginBottom: '30px' }}>
+                  {t.secPersonal}
+                </h3>
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
+                  
+                  {/* Satır 1: Tam Adınız & Doğum Tarihi */}
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', width: '100%', marginBottom: '24px' }}>
+                    <div>
+                      <label style={{ display: 'block', color: theme.textPrimary, fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>{t.lblFullName}</label>
+                      <input required type="text" placeholder="Anderson Mikoo" style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none' }} />
+                    </div>
+                    <div>
+                      <label style={{ display: 'block', color: theme.textPrimary, fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>{t.lblDate}</label>
+                      <input required type="date" style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none' }} />
+                    </div>
                   </div>
-                  <div>
-                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: theme.textPrimary, marginBottom: '8px' }}>{t.lblDate}</label>
-                    <input required type="date" style={{ width: '100%', padding: '14px', backgroundColor: theme.bgCardInner, border: 'none', borderRadius: '8px', color: '#000000', outline: 'none' }} />
+
+                  {/* Satır 2: E-Posta & Telefon */}
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', width: '100%', marginBottom: '24px' }}>
+                    <div>
+                      <label style={{ display: 'block', color: theme.textPrimary, fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>{t.lblEmail}</label>
+                      <input required type="email" placeholder="user@website.com" style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none' }} />
+                    </div>
+                    <div>
+                      <label style={{ display: 'block', color: theme.textPrimary, fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>{t.lblPhone}</label>
+                      <input required type="tel" placeholder="+1 212-695-1962" style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none' }} />
+                    </div>
                   </div>
-                  <div>
-                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: theme.textPrimary, marginBottom: '8px' }}>{t.lblEmail}</label>
-                    <input required type="email" placeholder="user@website.com" style={{ width: '100%', padding: '14px', backgroundColor: theme.bgCardInner, border: 'none', borderRadius: '8px', color: '#000000', outline: 'none' }} />
+
+                  {/* Satır 3: Tam Adresiniz (Tekli Geniş Alan) */}
+                  <div style={{ marginBottom: '24px', width: '100%' }}>
+                    <label style={{ display: 'block', color: theme.textPrimary, fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>{t.lblAddress}</label>
+                    <input required type="text" style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none' }} />
                   </div>
-                  <div>
-                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: theme.textPrimary, marginBottom: '8px' }}>{t.lblPhone}</label>
-                    <input required type="tel" placeholder="+1 212-695-1962" style={{ width: '100%', padding: '14px', backgroundColor: theme.bgCardInner, border: 'none', borderRadius: '8px', color: '#000000', outline: 'none' }} />
+
+                  {/* Satır 4: Cinsiyet & Sosyal Güvenlik Numarası */}
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', width: '100%', marginBottom: '24px' }}>
+                    <div>
+                      <label style={{ display: 'block', color: theme.textPrimary, fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>{t.lblGender}</label>
+                      <select required style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none', cursor: 'pointer' }}>
+                        <option value="">{t.optSelect}</option>
+                        <option value="male">{t.lblGender1}</option>
+                        <option value="female">{t.lblGender2}</option>
+                        <option value="other">{t.lblGender3}</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label style={{ display: 'block', color: theme.textPrimary, fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>{t.lblSvNum}</label>
+                      <input type="text" placeholder="SV-Nummer" style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none' }} />
+                    </div>
                   </div>
-                  <div style={{ gridColumn: '1 / -1' }}>
-                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: theme.textPrimary, marginBottom: '8px' }}>{t.lblAddress}</label>
-                    <input required type="text" style={{ width: '100%', padding: '14px', backgroundColor: theme.bgCardInner, border: 'none', borderRadius: '8px', color: '#000000', outline: 'none' }} />
+
+                  {/* Satır 5: Çalışma Türü & Maaş Beklentisi */}
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', width: '100%', marginBottom: '24px' }}>
+                    <div>
+                      <label style={{ display: 'block', color: theme.textPrimary, fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>{t.lblJobType}</label>
+                      <select style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none', cursor: 'pointer' }}>
+                        <option value="">{t.optSelect}</option>
+                        <option value="full">{t.lblJobType1}</option>
+                        <option value="part">{t.lblJobType2}</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label style={{ display: 'block', color: theme.textPrimary, fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>{t.lblSalary}</label>
+                      <select style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none', cursor: 'pointer' }}>
+                        <option value="">{t.optSelect}</option>
+                        <option value="2000-3000">2000€ - 3000€</option>
+                        <option value="3000-4000">3000€ - 4000€</option>
+                        <option value="4000+">4000€+</option>
+                      </select>
+                    </div>
                   </div>
-                  <div>
-                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: theme.textPrimary, marginBottom: '8px' }}>{t.lblGender}</label>
-                    <select required style={{ width: '100%', padding: '14px', backgroundColor: theme.bgCardInner, border: 'none', borderRadius: '8px', color: '#000000', outline: 'none', cursor: 'pointer' }}>
-                      <option value="">{t.optSelect}</option>
-                      <option value="male">{t.lblGender1}</option>
-                      <option value="female">{t.lblGender2}</option>
-                      <option value="other">{t.lblGender3}</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: theme.textPrimary, marginBottom: '8px' }}>{t.lblSvNum}</label>
-                    <input type="text" placeholder="SV-Nummer" style={{ width: '100%', padding: '14px', backgroundColor: theme.bgCardInner, border: 'none', borderRadius: '8px', color: '#000000', outline: 'none' }} />
-                  </div>
-                  <div>
-                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: theme.textPrimary, marginBottom: '8px' }}>{t.lblJobType}</label>
-                    <select style={{ width: '100%', padding: '14px', backgroundColor: theme.bgCardInner, border: 'none', borderRadius: '8px', color: '#000000', outline: 'none', cursor: 'pointer' }}>
-                      <option value="">{t.optSelect}</option>
-                      <option value="full">{t.lblJobType1}</option>
-                      <option value="part">{t.lblJobType2}</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: theme.textPrimary, marginBottom: '8px' }}>{t.lblSalary}</label>
-                    <select style={{ width: '100%', padding: '14px', backgroundColor: theme.bgCardInner, border: 'none', borderRadius: '8px', color: '#000000', outline: 'none', cursor: 'pointer' }}>
-                      <option value="">{t.optSelect}</option>
-                      <option value="2000-3000">2000€ - 3000€</option>
-                      <option value="3000-4000">3000€ - 4000€</option>
-                      <option value="4000+">4000€+</option>
-                    </select>
-                  </div>
-                  <div style={{ gridColumn: '1 / -1' }}>
-                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: theme.textPrimary, marginBottom: '8px' }}>{t.lblPosition}</label>
-                    <input type="text" placeholder="..." style={{ width: '100%', padding: '14px', backgroundColor: theme.bgCardInner, border: 'none', borderRadius: '8px', color: '#000000', outline: 'none' }} />
+
+                  {/* Satır 6: Başvurulan Pozisyon (Tekli Geniş Alan) */}
+                  <div style={{ marginBottom: '32px', width: '100%' }}>
+                    <label style={{ display: 'block', color: theme.textPrimary, fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>{t.lblPosition}</label>
+                    <input type="text" placeholder="..." style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none' }} />
                   </div>
                 </div>
               </div>
               <div style={{ borderTop: `1px solid ${theme.border}`, paddingTop: '25px' }}>
                 <h3 style={{ fontSize: '24px', fontWeight: 700, color: theme.textPrimary, textAlign: 'center', marginBottom: '25px' }}>{t.secPermit}</h3>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                  <div>
+                
+                {/* Yan Yana Duran Kutuların Kapsayıcısı */}
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '24px', width: '100%', marginBottom: '10px' }}>
+                  <div style={{ flex: 1 }}>
                     <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: theme.textPrimary, marginBottom: '8px' }}>{t.lblExperience}</label>
-                    <select style={{ width: '100%', padding: '14px', backgroundColor: theme.bgCardInner, border: 'none', borderRadius: '8px', color: '#000000', outline: 'none', cursor: 'pointer' }}>
+                    <select style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '10px', fontSize: '14px', outline: 'none', cursor: 'pointer', transition: 'all 0.3s ease' }}>
                       <option value="">{t.optSelect}</option>
                       <option value="yes">{t.optYes}</option>
                       <option value="no">{t.optNo}</option>
                     </select>
                   </div>
-                  <div>
+                  <div style={{ flex: 1 }}>
                     <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: theme.textPrimary, marginBottom: '8px' }}>{t.lblExpDates}</label>
-                    <input type="text" placeholder="..." style={{ width: '100%', padding: '14px', backgroundColor: theme.bgCardInner, border: 'none', borderRadius: '8px', color: '#000000', outline: 'none' }} />
+                    <input type="text" placeholder="..." style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '10px', fontSize: '14px', outline: 'none', transition: 'all 0.3s ease' }} />
                   </div>
                 </div>
               </div>
               <div style={{ borderTop: `1px solid ${theme.border}`, paddingTop: '25px' }}>
-                <h3 style={{ fontSize: '24px', fontWeight: 700, color: theme.textPrimary, textAlign: 'center', marginBottom: '25px' }}>{t.secEducation}</h3>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))', gap: '25px' }}>
+                {/* 3. Eğitim Bilgileri Başlığı */}
+                <h3 style={{ fontSize: '22px', fontWeight: 700, color: theme.textPrimary, textAlign: 'center', marginBottom: '30px', marginTop: '40px' }}>
+                  {t.secEducation}
+                </h3>
+    
+                {/* Satır 1: Okul / Şehir */}
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', width: '100%', marginBottom: '24px' }}>
                   <div>
-                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: theme.textPrimary, marginBottom: '8px' }}>{t.lblSchool}</label>
-                    <input required type="text" placeholder="Alex High School" style={{ width: '100%', padding: '14px', backgroundColor: theme.bgCardInner, border: 'none', borderRadius: '8px', color: '#000000', outline: 'none' }} />
+                    <label style={{ display: 'block', color: theme.textPrimary, fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>
+                      {t.lblSchool}
+                    </label>
+                    <input 
+                      required
+                      type="text" 
+                      placeholder="Alex High School"
+                      style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none' }}
+                    />
                   </div>
                   <div>
-                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: theme.textPrimary, marginBottom: '8px' }}>{t.lblCity}</label>
-                    <input required type="text" style={{ width: '100%', padding: '14px', backgroundColor: theme.bgCardInner, border: 'none', borderRadius: '8px', color: '#000000', outline: 'none' }} />
+                    <label style={{ display: 'block', color: theme.textPrimary, fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>
+                      {t.lblCity}
+                    </label>
+                    <input 
+                      required
+                      type="text" 
+                      style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none' }}
+                    />
+                  </div>
+                </div>
+    
+                {/* Satır 2: Başlangıç / Bitiş */}
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', width: '100%', marginBottom: '24px' }}>
+                  <div>
+                    <label style={{ display: 'block', color: theme.textPrimary, fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>
+                      {t.lblVon}
+                    </label>
+                    <input 
+                      required
+                      type="date" 
+                      style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none' }}
+                    />
                   </div>
                   <div>
-                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: theme.textPrimary, marginBottom: '8px' }}>{t.lblVon}</label>
-                    <input required type="date" style={{ width: '100%', padding: '14px', backgroundColor: theme.bgCardInner, border: 'none', borderRadius: '8px', color: '#000000', outline: 'none' }} />
+                    <label style={{ display: 'block', color: theme.textPrimary, fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>
+                      {t.lblBis}
+                    </label>
+                    <input 
+                      required
+                      type="date" 
+                      style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none' }}
+                    />
                   </div>
+                </div>
+    
+                {/* Satır 3: Mezuniyet Durumu / Diploma */}
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', width: '100%', marginBottom: '32px' }}>
                   <div>
-                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: theme.textPrimary, marginBottom: '8px' }}>{t.lblBis}</label>
-                    <input required type="date" style={{ width: '100%', padding: '14px', backgroundColor: theme.bgCardInner, border: 'none', borderRadius: '8px', color: '#000000', outline: 'none' }} />
-                  </div>
-                  <div>
-                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: theme.textPrimary, marginBottom: '8px' }}>{t.lblAbschluss}</label>
-                    <select required style={{ width: '100%', padding: '14px', backgroundColor: theme.bgCardInner, border: 'none', borderRadius: '8px', color: '#000000', outline: 'none', cursor: 'pointer' }}>
+                    <label style={{ display: 'block', color: theme.textPrimary, fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>
+                      {t.lblAbschluss}
+                    </label>
+                    <select required style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none', cursor: 'pointer' }}>
                       <option value="">{t.optSelect}</option>
                       <option value="highschool">{t.lblAbschluss1}</option>
                       <option value="bachelor">{t.lblAbschluss2}</option>
@@ -1228,8 +1342,10 @@ export default function Home() {
                     </select>
                   </div>
                   <div>
-                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: theme.textPrimary, marginBottom: '8px' }}>{t.lblDiplom}</label>
-                    <select style={{ width: '100%', padding: '14px', backgroundColor: theme.bgCardInner, border: 'none', borderRadius: '8px', color: '#000000', outline: 'none', cursor: 'pointer' }}>
+                    <label style={{ display: 'block', color: theme.textPrimary, fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>
+                      {t.lblDiplom}
+                    </label>
+                    <select style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none', cursor: 'pointer' }}>
                       <option value="">{t.optSelect}</option>
                       <option value="yes">{t.optYes}</option>
                       <option value="no">{t.optNo}</option>
@@ -1237,11 +1353,31 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <button type="submit" style={{ backgroundColor: '#2563eb', color: '#ffffff', fontWeight: 'bold', padding: '16px', borderRadius: '8px', border: 'none', cursor: 'pointer', fontSize: '16px', width: 'fit-content' }}>{t.jobBtn}</button>
-            </form>
-          </div>
-        </div>
-      </motion.section>
+              
+              {/* Formun en altındaki buton satırı */}
+              <div style={{ marginTop: '30px' }}>
+                <button 
+                  type="submit" 
+                  style={{ 
+                    backgroundColor: '#2563eb', 
+                    color: '#ffffff', 
+                    padding: '14px 28px', 
+                    borderRadius: '10px', 
+                    border: 'none', 
+                    fontWeight: 'bold', 
+                    cursor: 'pointer',
+                    fontSize: '15px'
+                  }}
+                >
+                  {t.btnSubmit || "Şimdi Başvur"}
+                </button>
+              </div>
+
+            </form> {/* FORM BURADA DÜZGÜNCE KAPANMALI */}
+          </div> {/* Formu saran iç siyah/gri kutunun div kapanışı */}
+
+        </div> {/* Section içindeki maksimum genişliği (maxWidth) belirleyen ana div kapanışı */}
+      </motion.section> {/* BAŞVURU FORMU BÖLÜMÜNÜN KAPANIŞI */}
 
       {/* İLETİŞİM BÖLÜMÜ */}
       <section id="contact" style={{ backgroundColor: theme.bgSecondary, padding: '80px 20px', borderTop: `1px solid ${theme.border}` }}>
@@ -1252,40 +1388,43 @@ export default function Home() {
             <form style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
               <div>
                 <label style={{ display: 'block', fontSize: '13px', color: theme.textSecondary, marginBottom: '8px', fontWeight: 500 }}>{t.formLabelName}</label>
-                <input type="text" style={{ width: '100%', padding: '12px 16px', backgroundColor: theme.bgSecondary, border: `1px solid ${theme.border}`, borderRadius: '10px', color: theme.textPrimary, outline: 'none' }} />
+                <input type="text" style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '10px', fontSize: '14px', outline: 'none', transition: 'all 0.3s ease' }} />
               </div>
               <div>
                 <label style={{ display: 'block', fontSize: '13px', color: theme.textSecondary, marginBottom: '8px', fontWeight: 500 }}>{t.formLabelEmail}</label>
-                <input type="email" style={{ width: '100%', padding: '12px 16px', backgroundColor: theme.bgSecondary, border: `1px solid ${theme.border}`, borderRadius: '10px', color: theme.textPrimary, outline: 'none' }} />
+                <input type="email" style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '10px', fontSize: '14px', outline: 'none', transition: 'all 0.3s ease' }} />
               </div>
               <div>
                 <label style={{ display: 'block', fontSize: '13px', color: theme.textSecondary, marginBottom: '8px', fontWeight: 500 }}>{t.formLabelMsg}</label>
-                <textarea rows={4} style={{ width: '100%', padding: '12px 16px', backgroundColor: theme.bgSecondary, border: `1px solid ${theme.border}`, borderRadius: '10px', color: theme.textPrimary, outline: 'none', resize: 'none' }}></textarea>
+                <textarea rows={4} style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '10px', fontSize: '14px', outline: 'none', resize: 'none', transition: 'all 0.3s ease' }}></textarea>
               </div>
               <button type="button" style={{ backgroundColor: '#38bdf8', color: '#0b0f19', fontWeight: 'bold', padding: '14px', borderRadius: '10px', border: 'none' }}>{t.formBtn}</button>
             </form>
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+          
+          {/* Sağ Sütun: Kurumsal Bilgiler ve Şık Tıklanabilir Harita (image_c8dcd4.png Alanı) */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '30px', justifyContent: 'space-between' }}>
             <div>
-              <h3 style={{ fontSize: '24px', fontWeight: 700, color: theme.textPrimary, marginBottom: '20px' }}>{t.brand}</h3>
-              <p style={{ color: theme.textSecondary, fontSize: '15px', lineHeight: '1.7', marginBottom: '30px' }}>{t.companyDesc}</p>
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', color: '#f8fafc', fontSize: '15px' }}>
-              <div style={{ display: 'flex', alignItems: 'start', gap: '15px' }}>
+              <h3 style={{ fontSize: '24px', fontWeight: 700, color: '#ffffff', marginBottom: '20px' }}>{t.brand}</h3>
+              <p style={{ color: '#94a3b8', fontSize: '15px', lineHeight: '1.7', marginBottom: '30px' }}>{t.companyDesc}</p>
+              
+              {/* İletişim Detay Listesi */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', color: '#f8fafc', fontSize: '15px', marginBottom: '30px' }}>
+                <div style={{ display: 'flex', alignItems: 'start', gap: '15px' }}>
                 <span style={{ fontSize: '20px' }}>📍</span>
                 <div>
                   <strong style={{ display: 'block', color: '#38bdf8' }}>{lang === 'tr' ? 'Adres' : lang === 'de' ? 'Adresse' : 'Address'}</strong>
                   <span style={{ color: '#94a3b8', fontSize: '14px', lineHeight: '1.5' }}>Hindenburgstr. 236,<br />41061 Mönchengladbach,<br />{lang === 'tr' ? 'Almanya' : lang === 'de' ? 'Deutschland' : 'Germany'}</span>
                 </div>
               </div>
-              <div style={{ display: 'flex', alignItems: 'start', gap: '15px' }}>
+                <div style={{ display: 'flex', alignItems: 'start', gap: '15px' }}>
                 <span style={{ fontSize: '20px' }}>📞</span>
                 <div>
                   <strong style={{ display: 'block', color: '#38bdf8' }}>{lang === 'tr' ? 'Şimdi Arayın' : lang === 'de' ? 'Jetzt anrufen' : 'Call Now'}</strong>
                   <a href="tel:+491636090266" style={{ color: '#94a3b8', fontSize: '14px', textDecoration: 'none' }}>+49 (0) 163 6090266</a>
                 </div>
               </div>
-              <div style={{ display: 'flex', alignItems: 'start', gap: '15px' }}>
+                <div style={{ display: 'flex', alignItems: 'start', gap: '15px' }}>
                 <span style={{ fontSize: '20px' }}>✉️</span>
                 <div>
                   <strong style={{ display: 'block', color: '#38bdf8' }}>{t.stayInTouch}</strong>
@@ -1294,8 +1433,67 @@ export default function Home() {
               </div>
             </div>
           </div>
+
+            {/* 🗺️ PREMİUM, TIKLANABİLİR GOOGLE HARİTALAR ENTEGRASYONU */}
+            <motion.a 
+              href="https://maps.google.com/?q=Hindenburgstr.+236,+41061+Mönchengladbach,+Germany"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.01, borderColor: '#38bdf8' }}
+              style={{ 
+                display: 'block',
+                width: '100%',
+                height: '180px',
+                borderRadius: '16px',
+                overflow: 'hidden',
+                position: 'relative',
+                border: `1px solid ${theme.border}`,
+                boxShadow: '0 15px 30px -10px rgba(0,0,0,0.5)',
+                cursor: 'pointer',
+                transition: 'border-color 0.3s ease'
+              }}
+              title={lang === 'tr' ? 'Google Haritalar\'da Aç' : 'In Google Maps öffnen'}
+            >
+              {/* Google Maps Embed Iframe (Koyu Mod Efektli / Saturation Ayarlı) */}
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2503.2206775986423!2d6.435773277085731!3d51.19655633390314!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b8abc0b70eb209%3A0x9d90ecfe821869e9!2sHindenburgstraße%20236%2C%2041061%20Mönchengladbach%2C%20Almanya!5e0!3m2!1str!2str!4v1717012345678!5m2!1str!2str"
+                width="100%"
+                height="100%"
+                style={{ 
+                  border: 0, 
+                  filter: darkMode ? 'invert(90%) hue-rotate(180deg) saturate(60%) contrast(90%)' : 'none',
+                  pointerEvents: 'none' // Tıklamanın doğrudan iframe yerine üstteki 'a' linkine düşmesi için
+                }}
+                allowFullScreen={false}
+                loading="lazy"
+              />
+
+              {/* Harita Üzerindeki Lüks "Konumu Haritada Aç" Dijital Rozeti */}
+              <div style={{
+                position: 'absolute',
+                bottom: '12px',
+                left: '12px',
+                backgroundColor: 'rgba(15, 23, 42, 0.75)',
+                backdropFilter: 'blur(8px)',
+                padding: '8px 14px',
+                borderRadius: '8px',
+                border: '1px solid rgba(255,255,255,0.1)',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px'
+              }}>
+                <span style={{ width: '6px', height: '6px', backgroundColor: '#22c55e', borderRadius: '50%', boxShadow: '0 0 8px #22c55e' }}></span>
+                <span style={{ color: '#ffffff', fontSize: '11px', fontWeight: 600, letterSpacing: '0.5px' }}>
+                  {lang === 'tr' ? 'Haritada Yol Tarifi Al ➔' : lang === 'de' ? 'Auf der Karte anzeigen ➔' : 'Get Directions ➔'}
+                </span>
+              </div>
+            </motion.a>
+          {/* Sağ Sütun Bitişi */}
+          </div>
+
+        {/* İletişim İç Kapsayıcı Div Bitişi */}
         </div>
-      </section>
+      </section> {/* İLETİŞİM BÖLÜMÜ TAM BURADA DÜZGÜNCE KAPANMALI */}
 
       {/* Alt Bilgi / Footer Bar */}
       <footer style={{ backgroundColor: '#0b0f19', color: '#64748b', padding: '30px 20px', textAlign: 'center', fontSize: '14px', borderTop: '1px solid #1f2937' }}>
