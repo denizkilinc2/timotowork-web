@@ -370,10 +370,22 @@ const fadeInUpVariants = {
 export default function Home() {
   const [lang, setLang] = useState<'tr' | 'de' | 'en'>('de');
   const [activeCard, setActiveCard] = useState<number | null>(null);
+  const [darkMode, setDarkMode] = useState<boolean>(true);
   const t = translations[lang];
 
+  const theme = {
+    bgPrimary: darkMode ? '#0b0f19' : '#f8fafc',
+    bgSecondary: darkMode ? '#111827' : '#ffffff',
+    bgHeader: darkMode ? 'radial-gradient(circle at top right, rgba(30, 27, 75, 0.4) 0%, #0f172a 100%)' : 'radial-gradient(circle at top right, rgba(56, 189, 248, 0.05) 0%, #f1f5f9 100%)',
+    bgCardInner: darkMode ? '#0b0f19' : '#f1f5f9',
+    bgFormBlack: darkMode ? '#000000' : '#ffffff',
+    textPrimary: darkMode ? '#ffffff' : '#0f172a',
+    textSecondary: darkMode ? '#94a3b8' : '#475569',
+    border: darkMode ? '#1f2937' : '#e2e8f0',
+  };
+
   return (
-    <div style={{ backgroundColor: '#0b0f19', color: '#f8fafc', minHeight: '100vh', width: '100%', overflowX: 'hidden', fontFamily: 'sans-serif', margin: 0, padding: 0 }}>
+    <div style={{ backgroundColor: theme.bgPrimary, color: theme.textPrimary, minHeight: '100vh', width: '100%', overflowX: 'hidden', fontFamily: 'sans-serif', margin: 0, padding: 0 }}>
       
       {/* Üst Menü / Navbar */}
       <nav style={{ backgroundColor: '#1a1a1a', borderBottom: '1px solid #2d2d2d', padding: '15px 40px', position: 'sticky', top: 0, zIndex: 100 }}>
@@ -383,13 +395,13 @@ export default function Home() {
               <img src="/logo.png" alt="Timo to Work Logo" style={{ height: '40px', width: 'auto', objectFit: 'contain', backgroundColor: '#ffffff', padding: '4px 8px', borderRadius: '6px' }} />
             </a>
             <div style={{ display: 'flex', gap: '22px', alignItems: 'center' }}>
-              <a href="#" style={{ color: '#ffffff', textDecoration: 'none', fontSize: '15px', fontWeight: 500 }}>{t.navHome}</a>
-              <a href="#about" style={{ color: '#a0a0a0', textDecoration: 'none', fontSize: '15px', fontWeight: 500 }}>{t.navAbout}</a>
-              <a href="#services" style={{ color: '#a0a0a0', textDecoration: 'none', fontSize: '15px', fontWeight: 500 }}>{t.navServices}</a>
-              <a href="#gallery" style={{ color: '#a0a0a0', textDecoration: 'none', fontSize: '15px', fontWeight: 500 }}>{t.navGallery}</a>
-              <a href="#appointment" style={{ color: '#a0a0a0', textDecoration: 'none', fontSize: '15px', fontWeight: 500 }}>{t.navAppointment}</a>
-              <a href="#contact" style={{ color: '#a0a0a0', textDecoration: 'none', fontSize: '15px', fontWeight: 500 }}>{t.navContact}</a>
-              <a href="#apply" style={{ color: '#a0a0a0', textDecoration: 'none', fontSize: '15px', fontWeight: 500 }}>{t.navApplyForm}</a>
+              <a href="#" style={{ color: darkMode ? '#ffffff' : '#0f172a', textDecoration: 'none', fontSize: '15px', fontWeight: 500 }}>{t.navHome}</a>
+              <a href="#about" style={{ color: darkMode ? '#a0a0a0' : '#64748b', textDecoration: 'none', fontSize: '15px', fontWeight: 500 }}>{t.navAbout}</a>
+              <a href="#services" style={{ color: darkMode ? '#a0a0a0' : '#64748b', textDecoration: 'none', fontSize: '15px', fontWeight: 500 }}>{t.navServices}</a>
+              <a href="#gallery" style={{ color: darkMode ? '#a0a0a0' : '#64748b', textDecoration: 'none', fontSize: '15px', fontWeight: 500 }}>{t.navGallery}</a>
+              <a href="#appointment" style={{ color: darkMode ? '#a0a0a0' : '#64748b', textDecoration: 'none', fontSize: '15px', fontWeight: 500 }}>{t.navAppointment}</a>
+              <a href="#contact" style={{ color: darkMode ? '#a0a0a0' : '#64748b', textDecoration: 'none', fontSize: '15px', fontWeight: 500 }}>{t.navContact}</a>
+              <a href="#apply" style={{ color: darkMode ? '#a0a0a0' : '#64748b', textDecoration: 'none', fontSize: '15px', fontWeight: 500 }}>{t.navApplyForm}</a>
             </div>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
@@ -401,16 +413,35 @@ export default function Home() {
             <a href="tel:+491636090266" style={{ background: 'linear-gradient(90deg, #7c3aed 0%, #ef4444 100%)', color: '#ffffff', textDecoration: 'none', padding: '10px 24px', borderRadius: '25px', fontWeight: 'bold', fontSize: '14px', display: 'inline-block', boxShadow: '0 4px 15px rgba(124, 58, 237, 0.3)' }}>
               {t.btnCallNow}
             </a>
-            <button style={{ backgroundColor: '#f97316', border: 'none', width: '36px', height: '36px', borderRadius: '50%', display: 'flex', alignItems: 'center', justify: 'center', cursor: 'pointer', color: '#ffffff', fontSize: '18px' }}>☀️</button>
+            {/* image_1ba3a7.png görselindeki buton dinamik hale getirildi */}
+            <button 
+              onClick={() => setDarkMode(!darkMode)}
+              style={{ 
+                backgroundColor: darkMode ? '#f97316' : '#1e1b4b', 
+                border: 'none', 
+                width: '36px', 
+                height: '36px', 
+                borderRadius: '50%', 
+                display: 'flex', 
+                alignItems: 'center', 
+                justifyContent: 'center', 
+                cursor: 'pointer', 
+                color: '#ffffff', 
+                fontSize: '18px',
+                transition: 'all 0.3s ease'
+              }}
+            >
+              {darkMode ? '☀️' : '🌙'}
+            </button>
           </div>
         </div>
       </nav>
 
       {/* ----------------- GÖSTERİŞLİ BÖLÜNMÜŞ EKRAN HERO (ANA SAYFA) ----------------- */}
       <header style={{ 
-        background: 'radial-gradient(circle at top right, rgba(30, 27, 75, 0.4) 0%, #0f172a 100%)', 
+        background: theme.bgHeader, 
         padding: '120px 40px', 
-        borderBottom: '1px solid #1f2937',
+        borderBottom: `1px solid ${theme.border}`,
         position: 'relative',
         overflow: 'hidden'
       }}>
@@ -425,10 +456,10 @@ export default function Home() {
             <span style={{ display: 'inline-block', width: 'fit-content', backgroundColor: 'rgba(56,189,248,0.1)', color: '#38bdf8', padding: '8px 16px', borderRadius: '30px', fontSize: '13px', fontWeight: 700, letterSpacing: '1px', border: '1px solid rgba(56,189,248,0.2)' }}>
               {t.heroTag}
             </span>
-            <h1 style={{ fontSize: '54px', fontWeight: 800, color: '#ffffff', letterSpacing: '-1.5px', lineHeight: '1.15', margin: 0 }}>
+            <h1 style={{ fontSize: '54px', fontWeight: 800, color: theme.textPrimary, letterSpacing: '-1.5px', lineHeight: '1.15', margin: 0 }}>
               {t.heroTitle}
             </h1>
-            <p style={{ fontSize: '18px', color: '#94a3b8', lineHeight: '1.65', margin: 0, maxWidth: '600px' }}>
+            <p style={{ fontSize: '18px', color: theme.textSecondary, lineHeight: '1.65', margin: 0, maxWidth: '600px' }}>
               {t.heroSub}
             </p>
             <div style={{ display: 'flex', gap: '15px', flexWrap: 'wrap', marginTop: '10px' }}>
@@ -461,7 +492,7 @@ export default function Home() {
         whileInView="visible" 
         viewport={{ once: true, amount: 0.2 }} 
         variants={fadeInUpVariants} 
-        style={{ backgroundColor: '#111827', padding: '100px 40px', borderBottom: '1px solid #1f2937' }}
+        style={{ backgroundColor: theme.bgSecondary, padding: '100px 40px', borderBottom: `1px solid ${theme.border}` }}
       >
         <div style={{ maxWidth: '1400px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(450px, 1fr))', gap: '60px', alignItems: 'start' }}>
           
@@ -469,43 +500,43 @@ export default function Home() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
             <div>
               <span style={{ color: '#38bdf8', fontSize: '14px', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '1.5px', display: 'block', marginBottom: '10px' }}>{t.aboutTitle}</span>
-              <h2 style={{ fontSize: '38px', fontWeight: 700, color: '#ffffff', marginBottom: '0', lineHeight: '1.25' }}>{t.aboutSub}</h2>
+              <h2 style={{ fontSize: '38px', fontWeight: 700, color: theme.textPrimary, marginBottom: '0', lineHeight: '1.25' }}>{t.aboutSub}</h2>
             </div>
             
-            <p style={{ color: '#94a3b8', fontSize: '16px', lineHeight: '1.8', margin: 0 }}>{t.aboutText1}</p>
-            <p style={{ color: '#94a3b8', fontSize: '16px', lineHeight: '1.8', margin: 0 }}>{t.aboutText2}</p>
+            <p style={{ color: theme.textSecondary, fontSize: '16px', lineHeight: '1.8', margin: 0 }}>{t.aboutText1}</p>
+            <p style={{ color: theme.textSecondary, fontSize: '16px', lineHeight: '1.8', margin: 0 }}>{t.aboutText2}</p>
             
-            <div style={{ display: 'flex', alignItems: 'center', gap: '20px', backgroundColor: '#0b0f19', padding: '25px', borderRadius: '16px', border: '1px solid #1f2937' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '20px', backgroundColor: theme.bgPrimary, padding: '25px', borderRadius: '16px', border: `1px solid ${theme.border}` }}>
               <img src="/logo.png" alt="Timo to Work Logo" style={{ height: '50px', width: 'auto', backgroundColor: '#ffffff', padding: '4px 8px', borderRadius: '6px' }} />
               <div>
-                <h4 style={{ color: '#ffffff', margin: '0 0 4px 0', fontSize: '16px', fontWeight: 700 }}>Timo to Work International B.V.</h4>
-                <p style={{ color: '#64748b', fontSize: '13px', margin: 0, fontStyle: 'italic' }}>{t.aboutText3}</p>
+                <h4 style={{ color: theme.textPrimary, margin: '0 0 4px 0', fontSize: '16px', fontWeight: 700 }}>Timo to Work International B.V.</h4>
+                <p style={{ color: theme.textSecondary, fontSize: '13px', margin: 0, fontStyle: 'italic' }}>{t.aboutText3}</p>
               </div>
             </div>
           </div>
 
           {/* Sağ Taraf: Vizyon & Misyon Bento Hücreleri (Boşluğu Tamamen Dolduran Alan) */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '25px', width: '100%' }}>
-            <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#ffffff', margin: '0 0 5px 0', display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <h3 style={{ fontSize: '22px', fontWeight: 700, color: theme.textPrimary, margin: '0 0 5px 0', display: 'flex', alignItems: 'center', gap: '10px' }}>
               🎯 {t.visionTitle}
             </h3>
 
             {/* Hücre 1 */}
-            <div style={{ padding: '25px', backgroundColor: '#0b0f19', borderRadius: '16px', border: '1px solid #1f2937', transition: '0.3s' }}>
+            <div style={{ padding: '25px', backgroundColor: theme.bgPrimary, borderRadius: '16px', border: `1px solid ${theme.border}`, transition: '0.3s' }}>
               <h4 style={{ color: '#38bdf8', fontSize: '16px', fontWeight: 700, margin: '0 0 8px 0' }}>01. {t.vision1Name}</h4>
-              <p style={{ color: '#94a3b8', fontSize: '14px', margin: 0, lineHeight: '1.6' }}>{t.vision1Desc}</p>
+              <p style={{ color: theme.textSecondary, fontSize: '14px', margin: 0, lineHeight: '1.6' }}>{t.vision1Desc}</p>
             </div>
 
             {/* Hücre 2 */}
-            <div style={{ padding: '25px', backgroundColor: '#0b0f19', borderRadius: '16px', border: '1px solid #1f2937', transition: '0.3s' }}>
+            <div style={{ padding: '25px', backgroundColor: theme.bgPrimary, borderRadius: '16px', border: `1px solid ${theme.border}`, transition: '0.3s' }}>
               <h4 style={{ color: '#f97316', fontSize: '16px', fontWeight: 700, margin: '0 0 8px 0' }}>02. {t.vision2Name}</h4>
-              <p style={{ color: '#94a3b8', fontSize: '14px', margin: 0, lineHeight: '1.6' }}>{t.vision2Desc}</p>
+              <p style={{ color: theme.textSecondary, fontSize: '14px', margin: 0, lineHeight: '1.6' }}>{t.vision2Desc}</p>
             </div>
 
             {/* Hücre 3 */}
-            <div style={{ padding: '25px', backgroundColor: '#0b0f19', borderRadius: '16px', border: '1px solid #1f2937', transition: '0.3s' }}>
+            <div style={{ padding: '25px', backgroundColor: theme.bgPrimary, borderRadius: '16px', border: `1px solid ${theme.border}`, transition: '0.3s' }}>
               <h4 style={{ color: '#a855f7', fontSize: '16px', fontWeight: 700, margin: '0 0 8px 0' }}>03. {t.vision3Name}</h4>
-              <p style={{ color: '#94a3b8', fontSize: '14px', margin: 0, lineHeight: '1.6' }}>{t.vision3Desc}</p>
+              <p style={{ color: theme.textSecondary, fontSize: '14px', margin: 0, lineHeight: '1.6' }}>{t.vision3Desc}</p>
             </div>
           </div>
 
@@ -559,8 +590,8 @@ export default function Home() {
         style={{ maxWidth: '1200px', margin: '0 auto', padding: '80px 20px' }}
       >
         <div style={{ textAlign: 'center', marginBottom: '60px' }}>
-          <h2 style={{ fontSize: '36px', fontWeight: 700, color: '#ffffff', marginBottom: '10px' }}>{t.sectionTitle}</h2>
-          <p style={{ color: '#64748b', fontSize: '16px' }}>{t.sectionSub}</p>
+          <h2 style={{ fontSize: '36px', fontWeight: 700, color: theme.textPrimary, marginBottom: '10px' }}>{t.sectionTitle}</h2>
+          <p style={{ color: theme.textSecondary, fontSize: '16px' }}>{t.sectionSub}</p>
         </div>
 
         {/* 5'li Gelişmiş Etkileşimli Grid */}
@@ -573,9 +604,9 @@ export default function Home() {
               <div 
                 key={num} 
                 style={{ 
-                  backgroundColor: '#111827', 
+                  backgroundColor: theme.bgSecondary, 
                   borderRadius: '16px', 
-                  border: isOpen ? '1px solid #38bdf8' : '1px solid #1f2937', 
+                  border: isOpen ? '1px solid #38bdf8' : `1px solid ${theme.border}`, 
                   overflow: 'hidden',
                   transition: 'border-color 0.3s ease',
                   boxShadow: isOpen ? '0 10px 30px -10px rgba(56,189,248,0.2)' : 'none'
@@ -608,10 +639,10 @@ export default function Home() {
                       {num === 1 ? '📉' : num === 2 ? '👥' : num === 3 ? '🗺️' : num === 4 ? '📥' : '📤'}
                     </div>
                     <div>
-                      <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#ffffff', margin: '0 0 6px 0' }}>
+                      <h3 style={{ fontSize: '20px', fontWeight: 700, color: theme.textPrimary, margin: '0 0 6px 0' }}>
                         {(t as any)[`card${num}Title`]}
                       </h3>
-                      <p style={{ color: '#94a3b8', fontSize: '14px', margin: 0, lineHeight: '1.5' }}>
+                      <p style={{ color: theme.textSecondary, fontSize: '14px', margin: 0, lineHeight: '1.5' }}>
                         {(t as any)[`card${num}Desc`]}
                       </p>
                     </div>
@@ -634,7 +665,7 @@ export default function Home() {
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: 'auto', opacity: 1 }}
                     transition={{ duration: 0.3, ease: 'easeInOut' }}
-                    style={{ backgroundColor: '#0b0f19', borderTop: '1px solid #1f2937' }}
+                    style={{ backgroundColor: theme.bgPrimary, borderTop: `1px solid ${theme.border}` }}
                   >
                     <div style={{ padding: '30px 40px' }}>
                       <h4 style={{ color: '#38bdf8', fontSize: '15px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '20px' }}>
@@ -648,16 +679,16 @@ export default function Home() {
                               display: 'flex', 
                               alignItems: 'center', 
                               gap: '12px', 
-                              backgroundColor: '#111827', 
+                              backgroundColor: theme.bgSecondary, 
                               padding: '14px 18px', 
                               borderRadius: '10px',
-                              border: '1px solid #1f2937'
+                              border: `1px solid ${theme.border}`
                             }}
                           >
                             <span style={{ color: '#f97316', fontWeight: 'bold', fontSize: '14px' }}>
                               0{sIdx + 1}.
                             </span>
-                            <span style={{ color: '#e2e8f0', fontSize: '14px', fontWeight: 500 }}>
+                            <span style={{ color: theme.textPrimary, fontSize: '14px', fontWeight: 500 }}>
                               {step}
                             </span>
                           </div>
@@ -733,11 +764,11 @@ export default function Home() {
       </motion.section>
 
       {/* GALERİ BÖLÜMÜ (ANIMASYONLU) */}
-      <motion.section id="gallery" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.15 }} variants={fadeInUpVariants} style={{ backgroundColor: '#0b0f19', padding: '80px 20px', borderTop: '1px solid #1f2937' }}>
+      <motion.section id="gallery" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.15 }} variants={fadeInUpVariants} style={{ backgroundColor: theme.bgPrimary, padding: '80px 20px', borderTop: `1px solid ${theme.border}` }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '50px' }}>
-            <h2 style={{ fontSize: '36px', fontWeight: 700, color: '#ffffff', marginBottom: '10px' }}>{t.galleryTitle}</h2>
-            <p style={{ color: '#64748b', fontSize: '16px' }}>{t.gallerySub}</p>
+            <h2 style={{ fontSize: '36px', fontWeight: 700, color: theme.textPrimary, marginBottom: '10px' }}>{t.galleryTitle}</h2>
+            <p style={{ color: theme.textSecondary, fontSize: '16px' }}>{t.gallerySub}</p>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '25px' }}>
             {[1, 2, 3, 4, 5, 6].map((idx) => {
@@ -761,17 +792,17 @@ export default function Home() {
       </motion.section>
 
       {/* RANDEVU BÖLÜMÜ (ANIMASYONLU) */}
-      <motion.section id="appointment" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={fadeInUpVariants} style={{ backgroundColor: '#111827', padding: '80px 20px', borderTop: '1px solid #1f2937' }}>
+      <motion.section id="appointment" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={fadeInUpVariants} style={{ backgroundColor: theme.bgSecondary, padding: '80px 20px', borderTop: `1px solid ${theme.border}` }}>
         <div style={{ maxWidth: '800px', margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '40px' }}>
-            <h2 style={{ fontSize: '36px', fontWeight: 700, color: '#ffffff', marginBottom: '10px' }}>{t.aptTitle}</h2>
-            <p style={{ color: '#64748b', fontSize: '16px' }}>{t.aptSub}</p>
+            <h2 style={{ fontSize: '36px', fontWeight: 700, color: theme.textPrimary, marginBottom: '10px' }}>{t.aptTitle}</h2>
+            <p style={{ color: theme.textSecondary, fontSize: '16px' }}>{t.aptSub}</p>
           </div>
-          <div style={{ backgroundColor: '#0b0f19', padding: '40px', borderRadius: '24px', border: '1px solid #1f2937' }}>
+          <div style={{ backgroundColor: theme.bgPrimary, padding: '40px', borderRadius: '24px', border: `1px solid ${theme.border}` }}>
             <form onSubmit={(e) => { e.preventDefault(); alert(lang === 'tr' ? 'Randevu talebiniz alındı!' : lang === 'de' ? 'Terminanfrage eingegangen!' : 'Appointment request received!'); }} style={{ display: 'flex', flexDirection: 'column', gap: '25px' }}>
               <div>
-                <label style={{ display: 'block', fontSize: '14px', color: '#94a3b8', marginBottom: '10px', fontWeight: 500 }}>{t.aptTopic}</label>
-                <select required style={{ width: '100%', padding: '14px 16px', backgroundColor: '#111827', border: '1px solid #1f2937', borderRadius: '12px', color: '#ffffff', outline: 'none', cursor: 'pointer' }}>
+                <label style={{ display: 'block', fontSize: '14px', color: theme.textSecondary, marginBottom: '10px', fontWeight: 500 }}>{t.aptTopic}</label>
+                <select required style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.bgSecondary, border: `1px solid ${theme.border}`, borderRadius: '12px', color: theme.textPrimary, outline: 'none', cursor: 'pointer' }}>
                   <option value="messebau">Messebau & Projektplanung</option>
                   <option value="personal">Personalbereitstellung</option>
                   <option value="logistik">Logistik & Hotelmanagement</option>
@@ -780,12 +811,12 @@ export default function Home() {
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '20px' }}>
                 <div>
-                  <label style={{ display: 'block', fontSize: '14px', color: '#94a3b8', marginBottom: '10px', fontWeight: 500 }}>{t.aptDate}</label>
-                  <input required type="date" style={{ width: '100%', padding: '14px 16px', backgroundColor: '#111827', border: '1px solid #1f2937', borderRadius: '12px', color: '#ffffff', outline: 'none', cursor: 'pointer' }} />
+                  <label style={{ display: 'block', fontSize: '14px', color: theme.textSecondary, marginBottom: '10px', fontWeight: 500 }}>{t.aptDate}</label>
+                  <input required type="date" style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.bgSecondary, border: `1px solid ${theme.border}`, borderRadius: '12px', color: theme.textPrimary, outline: 'none', cursor: 'pointer' }} />
                 </div>
                 <div>
-                  <label style={{ display: 'block', fontSize: '14px', color: '#94a3b8', marginBottom: '10px', fontWeight: 500 }}>{t.aptTime}</label>
-                  <select required style={{ width: '100%', padding: '14px 16px', backgroundColor: '#111827', border: '1px solid #1f2937', borderRadius: '12px', color: '#ffffff', outline: 'none', cursor: 'pointer' }}>
+                  <label style={{ display: 'block', fontSize: '14px', color: theme.textSecondary, marginBottom: '10px', fontWeight: 500 }}>{t.aptTime}</label>
+                  <select required style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.bgSecondary, border: `1px solid ${theme.border}`, borderRadius: '12px', color: theme.textPrimary, outline: 'none', cursor: 'pointer' }}>
                     <option value="09:00">09:00 - 11:00</option>
                     <option value="11:00">11:00 - 13:00</option>
                     <option value="14:00">14:00 - 16:00</option>
@@ -800,40 +831,40 @@ export default function Home() {
       </motion.section>
 
       {/* BAŞVURU FORMU BÖLÜMÜ (ANIMASYONLU) */}
-      <motion.section id="apply" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeInUpVariants} style={{ backgroundColor: '#0b0f19', padding: '80px 20px', borderTop: '1px solid #1f2937' }}>
+      <motion.section id="apply" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeInUpVariants} style={{ backgroundColor: theme.bgPrimary, padding: '80px 20px', borderTop: `1px solid ${theme.border}` }}>
         <div style={{ maxWidth: '900px', margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '40px' }}>
-            <h2 style={{ fontSize: '36px', fontWeight: 700, color: '#ffffff', marginBottom: '10px' }}>{t.jobTitle}</h2>
-            <p style={{ color: '#64748b', fontSize: '16px' }}>{t.jobSub}</p>
+            <h2 style={{ fontSize: '36px', fontWeight: 700, color: theme.textPrimary, marginBottom: '10px' }}>{t.jobTitle}</h2>
+            <p style={{ color: theme.textSecondary, fontSize: '16px' }}>{t.jobSub}</p>
           </div>
-          <div style={{ backgroundColor: '#000000', padding: '50px 40px', borderRadius: '24px', border: '1px solid #1f2937' }}>
+          <div style={{ backgroundColor: theme.bgFormBlack, padding: '50px 40px', borderRadius: '24px', border: `1px solid ${theme.border}` }}>
             <form onSubmit={(e) => { e.preventDefault(); alert(lang === 'tr' ? 'Başvurunuz başarıyla iletildi!' : lang === 'de' ? 'Bewerbung erfolgreich abgesendet!' : 'Application successfully submitted!'); }} style={{ display: 'flex', flexDirection: 'column', gap: '35px' }}>
               <div>
-                <h3 style={{ fontSize: '24px', fontWeight: 700, color: '#ffffff', textAlign: 'center', marginBottom: '25px' }}>{t.secPersonal}</h3>
+                <h3 style={{ fontSize: '24px', fontWeight: 700, color: theme.textPrimary, textAlign: 'center', marginBottom: '25px' }}>{t.secPersonal}</h3>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))', gap: '25px' }}>
                   <div>
-                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: '#ffffff', marginBottom: '8px' }}>{t.lblFullName}</label>
-                    <input required type="text" placeholder="Anderson Mikoo" style={{ width: '100%', padding: '14px', backgroundColor: '#f8fafc', border: 'none', borderRadius: '8px', color: '#000000', outline: 'none' }} />
+                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: theme.textPrimary, marginBottom: '8px' }}>{t.lblFullName}</label>
+                    <input required type="text" placeholder="Anderson Mikoo" style={{ width: '100%', padding: '14px', backgroundColor: theme.bgCardInner, border: 'none', borderRadius: '8px', color: '#000000', outline: 'none' }} />
                   </div>
                   <div>
-                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: '#ffffff', marginBottom: '8px' }}>{t.lblDate}</label>
-                    <input required type="date" style={{ width: '100%', padding: '14px', backgroundColor: '#f8fafc', border: 'none', borderRadius: '8px', color: '#000000', outline: 'none' }} />
+                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: theme.textPrimary, marginBottom: '8px' }}>{t.lblDate}</label>
+                    <input required type="date" style={{ width: '100%', padding: '14px', backgroundColor: theme.bgCardInner, border: 'none', borderRadius: '8px', color: '#000000', outline: 'none' }} />
                   </div>
                   <div>
-                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: '#ffffff', marginBottom: '8px' }}>{t.lblEmail}</label>
-                    <input required type="email" placeholder="user@website.com" style={{ width: '100%', padding: '14px', backgroundColor: '#f8fafc', border: 'none', borderRadius: '8px', color: '#000000', outline: 'none' }} />
+                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: theme.textPrimary, marginBottom: '8px' }}>{t.lblEmail}</label>
+                    <input required type="email" placeholder="user@website.com" style={{ width: '100%', padding: '14px', backgroundColor: theme.bgCardInner, border: 'none', borderRadius: '8px', color: '#000000', outline: 'none' }} />
                   </div>
                   <div>
-                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: '#ffffff', marginBottom: '8px' }}>{t.lblPhone}</label>
-                    <input required type="tel" placeholder="+1 212-695-1962" style={{ width: '100%', padding: '14px', backgroundColor: '#f8fafc', border: 'none', borderRadius: '8px', color: '#000000', outline: 'none' }} />
+                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: theme.textPrimary, marginBottom: '8px' }}>{t.lblPhone}</label>
+                    <input required type="tel" placeholder="+1 212-695-1962" style={{ width: '100%', padding: '14px', backgroundColor: theme.bgCardInner, border: 'none', borderRadius: '8px', color: '#000000', outline: 'none' }} />
                   </div>
                   <div style={{ gridColumn: '1 / -1' }}>
-                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: '#ffffff', marginBottom: '8px' }}>{t.lblAddress}</label>
-                    <input required type="text" style={{ width: '100%', padding: '14px', backgroundColor: '#f8fafc', border: 'none', borderRadius: '8px', color: '#000000', outline: 'none' }} />
+                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: theme.textPrimary, marginBottom: '8px' }}>{t.lblAddress}</label>
+                    <input required type="text" style={{ width: '100%', padding: '14px', backgroundColor: theme.bgCardInner, border: 'none', borderRadius: '8px', color: '#000000', outline: 'none' }} />
                   </div>
                   <div>
-                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: '#ffffff', marginBottom: '8px' }}>{t.lblGender}</label>
-                    <select required style={{ width: '100%', padding: '14px', backgroundColor: '#f8fafc', border: 'none', borderRadius: '8px', color: '#000000', outline: 'none', cursor: 'pointer' }}>
+                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: theme.textPrimary, marginBottom: '8px' }}>{t.lblGender}</label>
+                    <select required style={{ width: '100%', padding: '14px', backgroundColor: theme.bgCardInner, border: 'none', borderRadius: '8px', color: '#000000', outline: 'none', cursor: 'pointer' }}>
                       <option value="">{t.optSelect}</option>
                       <option value="male">{t.lblGender1}</option>
                       <option value="female">{t.lblGender2}</option>
@@ -841,20 +872,20 @@ export default function Home() {
                     </select>
                   </div>
                   <div>
-                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: '#ffffff', marginBottom: '8px' }}>{t.lblSvNum}</label>
-                    <input type="text" placeholder="SV-Nummer" style={{ width: '100%', padding: '14px', backgroundColor: '#f8fafc', border: 'none', borderRadius: '8px', color: '#000000', outline: 'none' }} />
+                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: theme.textPrimary, marginBottom: '8px' }}>{t.lblSvNum}</label>
+                    <input type="text" placeholder="SV-Nummer" style={{ width: '100%', padding: '14px', backgroundColor: theme.bgCardInner, border: 'none', borderRadius: '8px', color: '#000000', outline: 'none' }} />
                   </div>
                   <div>
-                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: '#ffffff', marginBottom: '8px' }}>{t.lblJobType}</label>
-                    <select style={{ width: '100%', padding: '14px', backgroundColor: '#f8fafc', border: 'none', borderRadius: '8px', color: '#000000', outline: 'none', cursor: 'pointer' }}>
+                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: theme.textPrimary, marginBottom: '8px' }}>{t.lblJobType}</label>
+                    <select style={{ width: '100%', padding: '14px', backgroundColor: theme.bgCardInner, border: 'none', borderRadius: '8px', color: '#000000', outline: 'none', cursor: 'pointer' }}>
                       <option value="">{t.optSelect}</option>
                       <option value="full">{t.lblJobType1}</option>
                       <option value="part">{t.lblJobType2}</option>
                     </select>
                   </div>
                   <div>
-                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: '#ffffff', marginBottom: '8px' }}>{t.lblSalary}</label>
-                    <select style={{ width: '100%', padding: '14px', backgroundColor: '#f8fafc', border: 'none', borderRadius: '8px', color: '#000000', outline: 'none', cursor: 'pointer' }}>
+                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: theme.textPrimary, marginBottom: '8px' }}>{t.lblSalary}</label>
+                    <select style={{ width: '100%', padding: '14px', backgroundColor: theme.bgCardInner, border: 'none', borderRadius: '8px', color: '#000000', outline: 'none', cursor: 'pointer' }}>
                       <option value="">{t.optSelect}</option>
                       <option value="2000-3000">2000€ - 3000€</option>
                       <option value="3000-4000">3000€ - 4000€</option>
@@ -862,50 +893,50 @@ export default function Home() {
                     </select>
                   </div>
                   <div style={{ gridColumn: '1 / -1' }}>
-                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: '#ffffff', marginBottom: '8px' }}>{t.lblPosition}</label>
-                    <input type="text" placeholder="..." style={{ width: '100%', padding: '14px', backgroundColor: '#f8fafc', border: 'none', borderRadius: '8px', color: '#000000', outline: 'none' }} />
+                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: theme.textPrimary, marginBottom: '8px' }}>{t.lblPosition}</label>
+                    <input type="text" placeholder="..." style={{ width: '100%', padding: '14px', backgroundColor: theme.bgCardInner, border: 'none', borderRadius: '8px', color: '#000000', outline: 'none' }} />
                   </div>
                 </div>
               </div>
-              <div style={{ borderTop: '1px solid #1f2937', paddingTop: '25px' }}>
-                <h3 style={{ fontSize: '24px', fontWeight: 700, color: '#ffffff', textAlign: 'center', marginBottom: '25px' }}>{t.secPermit}</h3>
+              <div style={{ borderTop: `1px solid ${theme.border}`, paddingTop: '25px' }}>
+                <h3 style={{ fontSize: '24px', fontWeight: 700, color: theme.textPrimary, textAlign: 'center', marginBottom: '25px' }}>{t.secPermit}</h3>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
                   <div>
-                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: '#ffffff', marginBottom: '8px' }}>{t.lblExperience}</label>
-                    <select style={{ width: '100%', padding: '14px', backgroundColor: '#f8fafc', border: 'none', borderRadius: '8px', color: '#000000', outline: 'none', cursor: 'pointer' }}>
+                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: theme.textPrimary, marginBottom: '8px' }}>{t.lblExperience}</label>
+                    <select style={{ width: '100%', padding: '14px', backgroundColor: theme.bgCardInner, border: 'none', borderRadius: '8px', color: '#000000', outline: 'none', cursor: 'pointer' }}>
                       <option value="">{t.optSelect}</option>
                       <option value="yes">{t.optYes}</option>
                       <option value="no">{t.optNo}</option>
                     </select>
                   </div>
                   <div>
-                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: '#ffffff', marginBottom: '8px' }}>{t.lblExpDates}</label>
-                    <input type="text" placeholder="..." style={{ width: '100%', padding: '14px', backgroundColor: '#f8fafc', border: 'none', borderRadius: '8px', color: '#000000', outline: 'none' }} />
+                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: theme.textPrimary, marginBottom: '8px' }}>{t.lblExpDates}</label>
+                    <input type="text" placeholder="..." style={{ width: '100%', padding: '14px', backgroundColor: theme.bgCardInner, border: 'none', borderRadius: '8px', color: '#000000', outline: 'none' }} />
                   </div>
                 </div>
               </div>
-              <div style={{ borderTop: '1px solid #1f2937', paddingTop: '25px' }}>
-                <h3 style={{ fontSize: '24px', fontWeight: 700, color: '#ffffff', textAlign: 'center', marginBottom: '25px' }}>{t.secEducation}</h3>
+              <div style={{ borderTop: `1px solid ${theme.border}`, paddingTop: '25px' }}>
+                <h3 style={{ fontSize: '24px', fontWeight: 700, color: theme.textPrimary, textAlign: 'center', marginBottom: '25px' }}>{t.secEducation}</h3>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))', gap: '25px' }}>
                   <div>
-                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: '#ffffff', marginBottom: '8px' }}>{t.lblSchool}</label>
-                    <input required type="text" placeholder="Alex High School" style={{ width: '100%', padding: '14px', backgroundColor: '#f8fafc', border: 'none', borderRadius: '8px', color: '#000000', outline: 'none' }} />
+                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: theme.textPrimary, marginBottom: '8px' }}>{t.lblSchool}</label>
+                    <input required type="text" placeholder="Alex High School" style={{ width: '100%', padding: '14px', backgroundColor: theme.bgCardInner, border: 'none', borderRadius: '8px', color: '#000000', outline: 'none' }} />
                   </div>
                   <div>
-                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: '#ffffff', marginBottom: '8px' }}>{t.lblCity}</label>
-                    <input required type="text" style={{ width: '100%', padding: '14px', backgroundColor: '#f8fafc', border: 'none', borderRadius: '8px', color: '#000000', outline: 'none' }} />
+                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: theme.textPrimary, marginBottom: '8px' }}>{t.lblCity}</label>
+                    <input required type="text" style={{ width: '100%', padding: '14px', backgroundColor: theme.bgCardInner, border: 'none', borderRadius: '8px', color: '#000000', outline: 'none' }} />
                   </div>
                   <div>
-                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: '#ffffff', marginBottom: '8px' }}>{t.lblVon}</label>
-                    <input required type="date" style={{ width: '100%', padding: '14px', backgroundColor: '#f8fafc', border: 'none', borderRadius: '8px', color: '#000000', outline: 'none' }} />
+                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: theme.textPrimary, marginBottom: '8px' }}>{t.lblVon}</label>
+                    <input required type="date" style={{ width: '100%', padding: '14px', backgroundColor: theme.bgCardInner, border: 'none', borderRadius: '8px', color: '#000000', outline: 'none' }} />
                   </div>
                   <div>
-                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: '#ffffff', marginBottom: '8px' }}>{t.lblBis}</label>
-                    <input required type="date" style={{ width: '100%', padding: '14px', backgroundColor: '#f8fafc', border: 'none', borderRadius: '8px', color: '#000000', outline: 'none' }} />
+                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: theme.textPrimary, marginBottom: '8px' }}>{t.lblBis}</label>
+                    <input required type="date" style={{ width: '100%', padding: '14px', backgroundColor: theme.bgCardInner, border: 'none', borderRadius: '8px', color: '#000000', outline: 'none' }} />
                   </div>
                   <div>
-                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: '#ffffff', marginBottom: '8px' }}>{t.lblAbschluss}</label>
-                    <select required style={{ width: '100%', padding: '14px', backgroundColor: '#f8fafc', border: 'none', borderRadius: '8px', color: '#000000', outline: 'none', cursor: 'pointer' }}>
+                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: theme.textPrimary, marginBottom: '8px' }}>{t.lblAbschluss}</label>
+                    <select required style={{ width: '100%', padding: '14px', backgroundColor: theme.bgCardInner, border: 'none', borderRadius: '8px', color: '#000000', outline: 'none', cursor: 'pointer' }}>
                       <option value="">{t.optSelect}</option>
                       <option value="highschool">{t.lblAbschluss1}</option>
                       <option value="bachelor">{t.lblAbschluss2}</option>
@@ -913,8 +944,8 @@ export default function Home() {
                     </select>
                   </div>
                   <div>
-                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: '#ffffff', marginBottom: '8px' }}>{t.lblDiplom}</label>
-                    <select style={{ width: '100%', padding: '14px', backgroundColor: '#f8fafc', border: 'none', borderRadius: '8px', color: '#000000', outline: 'none', cursor: 'pointer' }}>
+                    <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: theme.textPrimary, marginBottom: '8px' }}>{t.lblDiplom}</label>
+                    <select style={{ width: '100%', padding: '14px', backgroundColor: theme.bgCardInner, border: 'none', borderRadius: '8px', color: '#000000', outline: 'none', cursor: 'pointer' }}>
                       <option value="">{t.optSelect}</option>
                       <option value="yes">{t.optYes}</option>
                       <option value="no">{t.optNo}</option>
@@ -929,31 +960,31 @@ export default function Home() {
       </motion.section>
 
       {/* İLETİŞİM BÖLÜMÜ */}
-      <section id="contact" style={{ backgroundColor: '#111827', padding: '80px 20px', borderTop: '1px solid #1f2937' }}>
+      <section id="contact" style={{ backgroundColor: theme.bgSecondary, padding: '80px 20px', borderTop: `1px solid ${theme.border}` }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '50px' }}>
-          <div style={{ backgroundColor: '#0b0f19', padding: '40px', borderRadius: '24px', border: '1px solid #1f2937' }}>
-            <h3 style={{ fontSize: '24px', fontWeight: 700, color: '#ffffff', marginBottom: '10px' }}>{t.formTitle}</h3>
-            <p style={{ color: '#64748b', fontSize: '14px', marginBottom: '30px' }}>{t.formSub}</p>
+          <div style={{ backgroundColor: theme.bgPrimary, padding: '40px', borderRadius: '24px', border: `1px solid ${theme.border}` }}>
+            <h3 style={{ fontSize: '24px', fontWeight: 700, color: theme.textPrimary, marginBottom: '10px' }}>{t.formTitle}</h3>
+            <p style={{ color: theme.textSecondary, fontSize: '14px', marginBottom: '30px' }}>{t.formSub}</p>
             <form style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
               <div>
-                <label style={{ display: 'block', fontSize: '13px', color: '#94a3b8', marginBottom: '8px', fontWeight: 500 }}>{t.formLabelName}</label>
-                <input type="text" style={{ width: '100%', padding: '12px 16px', backgroundColor: '#111827', border: '1px solid #1f2937', borderRadius: '10px', color: '#ffffff', outline: 'none' }} />
+                <label style={{ display: 'block', fontSize: '13px', color: theme.textSecondary, marginBottom: '8px', fontWeight: 500 }}>{t.formLabelName}</label>
+                <input type="text" style={{ width: '100%', padding: '12px 16px', backgroundColor: theme.bgSecondary, border: `1px solid ${theme.border}`, borderRadius: '10px', color: theme.textPrimary, outline: 'none' }} />
               </div>
               <div>
-                <label style={{ display: 'block', fontSize: '13px', color: '#94a3b8', marginBottom: '8px', fontWeight: 500 }}>{t.formLabelEmail}</label>
-                <input type="email" style={{ width: '100%', padding: '12px 16px', backgroundColor: '#111827', border: '1px solid #1f2937', borderRadius: '10px', color: '#ffffff', outline: 'none' }} />
+                <label style={{ display: 'block', fontSize: '13px', color: theme.textSecondary, marginBottom: '8px', fontWeight: 500 }}>{t.formLabelEmail}</label>
+                <input type="email" style={{ width: '100%', padding: '12px 16px', backgroundColor: theme.bgSecondary, border: `1px solid ${theme.border}`, borderRadius: '10px', color: theme.textPrimary, outline: 'none' }} />
               </div>
               <div>
-                <label style={{ display: 'block', fontSize: '13px', color: '#94a3b8', marginBottom: '8px', fontWeight: 500 }}>{t.formLabelMsg}</label>
-                <textarea rows={4} style={{ width: '100%', padding: '12px 16px', backgroundColor: '#111827', border: '1px solid #1f2937', borderRadius: '10px', color: '#ffffff', outline: 'none', resize: 'none' }}></textarea>
+                <label style={{ display: 'block', fontSize: '13px', color: theme.textSecondary, marginBottom: '8px', fontWeight: 500 }}>{t.formLabelMsg}</label>
+                <textarea rows={4} style={{ width: '100%', padding: '12px 16px', backgroundColor: theme.bgSecondary, border: `1px solid ${theme.border}`, borderRadius: '10px', color: theme.textPrimary, outline: 'none', resize: 'none' }}></textarea>
               </div>
               <button type="button" style={{ backgroundColor: '#38bdf8', color: '#0b0f19', fontWeight: 'bold', padding: '14px', borderRadius: '10px', border: 'none' }}>{t.formBtn}</button>
             </form>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
             <div>
-              <h3 style={{ fontSize: '24px', fontWeight: 700, color: '#ffffff', marginBottom: '20px' }}>{t.brand}</h3>
-              <p style={{ color: '#94a3b8', fontSize: '15px', lineHeight: '1.7', marginBottom: '30px' }}>{t.companyDesc}</p>
+              <h3 style={{ fontSize: '24px', fontWeight: 700, color: theme.textPrimary, marginBottom: '20px' }}>{t.brand}</h3>
+              <p style={{ color: theme.textSecondary, fontSize: '15px', lineHeight: '1.7', marginBottom: '30px' }}>{t.companyDesc}</p>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', color: '#f8fafc', fontSize: '15px' }}>
               <div style={{ display: 'flex', alignItems: 'start', gap: '15px' }}>
