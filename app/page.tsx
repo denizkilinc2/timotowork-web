@@ -85,7 +85,8 @@ const translations = {
     aboutSub: "Geçmişten gelen hizmet mirasıyla küresel pazarda güvenilir bir ortak",
     aboutText1: "Timo to Work International B.V. olarak, köklü hizmet geçmişimiz ve sektördeki derin tecrübemizle fuar lojistiği, stand kurulumu (Messebau) ve nitelikli iş gücü tedariği (Personalbereitstellung) alanlarında Avrupa standartlarında çözümler sunuyoruz.",
     aboutText2: "Almanya ve Hollanda merkezli operasyonlarımızla, iş ortaklarımızın ihtiyaçlarına en hızlı ve profesyonel çözümleri üretirken; küresel vizyonumuz doğrultusunda uluslararası ithalat ve ihracat danışmanlığı süreçlerini de uçtan uca yönetiyoruz.",
-    aboutText3: "İlkelerimiz her zaman güven, kalite ve zamanında teslimat üzerine kuruludur. Sınır ötesi operasyonel gücümüzle projelerinizi geleceğe taşıyoruz."
+    aboutText3: "İlkelerimiz her zaman güven, kalite ve zamanında teslimat üzerine kuruludur. Sınır ötesi operasyonel gücümüzle projelerinizi geleceğe taşıyoruz.",
+    stayInTouch: "İletişimde Kalın"
   },
   de: {
     brand: "Timo to Work",
@@ -166,7 +167,8 @@ const translations = {
     aboutSub: "Ein zuverlässiger Partner auf dem globalen Markt mit einem starken Dienstleistungserbe",
     aboutText1: "Als Timo to Work International B.V. bieten wir mit unserer langjährigen Servicehistorie und fundierten Branchenerfahrung Lösungen auf europäischem Niveau in den Bereichen Messelogistik, Standbau (Messebau) und qualifizierte Personalbereitstellung.",
     aboutText2: "Mit unseren Aktivitäten in Deutschland und den Niederlanden bieten wir schnellste und professionelle Lösungen für die Bedürfnisse unserer Geschäftspartner, während wir im Einklang mit unserer globalen Vision auch internationale Import- und Exportberatungsprozesse von Ende zu Ende steuern.",
-    aboutText3: "Unsere Prinzipien basieren stets auf Vertrauen, Qualität und pünktlicher Lieferung. Mit unserer grenzüberschreitenden operativen Stärke tragen wir Ihre Projekte in die Zukunft."
+    aboutText3: "Unsere Prinzipien basieren stets auf Vertrauen, Qualität und pünktlicher Lieferung. Mit unserer grenzüberschreitenden operativen Stärke tragen wir Ihre Projekte in die Zukunft.",
+    stayInTouch: "Bleiben Sie in Kontakt"
   },
   en: {
     brand: "Timo to Work",
@@ -247,7 +249,8 @@ const translations = {
     aboutSub: "A reliable partner in the global market with a strong heritage of service",
     aboutText1: "As Timo to Work International B.V., we offer European-standard solutions in exhibition logistics, stand construction (Messebau), and qualified workforce provision (Personalbereitstellung), backed by our deep-rooted service history and industry experience.",
     aboutText2: "With our operations based in Germany and the Netherlands, we produce the fastest and most professional solutions for our business partners' needs, while managing international import and export consultancy processes end-to-end in line with our global vision.",
-    aboutText3: "Our principles are always built on trust, quality, and timely delivery. We carry your projects into the future with our cross-border operational strength."
+    aboutText3: "Our principles are always built on trust, quality, and timely delivery. We carry your projects into the future with our cross-border operational strength.",
+    stayInTouch: "Stay in Touch"
   }
 };
 
@@ -725,11 +728,10 @@ export default function Home() {
               <div style={{ display: 'flex', alignItems: 'start', gap: '15px' }}>
                 <span style={{ fontSize: '20px' }}>✉️</span>
                 <div>
-                  <strong style={{ display: 'block', color: '#38bdf8' }}>
-                    {lang === 'tr' ? 'E-Posta / Bizimle İletişimde Kalın' : lang === 'de' ? 'E-Mail / Bleiben Sie in Kontakt' : 'Email / Stay in Touch'}
-                  </strong>
-                  <a href="mailto:info@mge-dienstleistungen-gmbh.de" style={{ color: '#94a3b8', fontSize: '14px', textDecoration: 'none' }}>
-                    info@mge-dienstleistungen-gmbh.de
+                  {/* Gerçek kurumsal e-posta adresi doğru şekilde güncellendi */}
+                  <strong style={{ display: 'block', color: '#38bdf8' }}>{t.stayInTouch}</strong>
+                  <a href="mailto:info@mge-dienstleistungen.de" style={{ color: '#94a3b8', fontSize: '14px', textDecoration: 'none' }}>
+                    info@mge-dienstleistungen.de
                   </a>
                 </div>
               </div>
