@@ -102,7 +102,26 @@ const translations = {
     card2Steps: ["Uzman Montaj Kadrosu Tedariği", "Sertifikalı Forklift ve Ekipman Operatörleri", "Çok Dilli Fuar Host ve Hostesleri", "Yasal Mevzuat ve AÜG Sözleşme Yönetimi"],
     card3Steps: ["Avrupa Genelinde Otel ve Konaklama Organizasyonu", "VIP Transfer ve Ekip Lojistiği", "Saha Koordinasyon ve Süreç Yönetimi", "7/24 Yerinde Destek ve Asistanlık"],
     card4Steps: ["Global Üretici ve Tedarikçi Analizi", "Gümrükleme ve Uluslararası Mevzuat Yönetimi", "Kalite Kontrol ve Teslimat Takibi", "Sınır Ötesi Lojistik Organizasyonu"],
-    card5Steps: ["Hedef Pazar Analizi ve Müşteri Bulma", "Uluslararası Sözleşme ve Hukuki Danışmanlık", "Gümrük ve İhracat Beyanname İşlemleri", "Uçtan Uca Lojistik ve Dağıtım Ağı"]
+    card5Steps: ["Hedef Pazar Analizi ve Müşteri Bulma", "Uluslararası Sözleşme ve Hukuki Danışmanlık", "Gümrük ve İhracat Beyanname İşlemleri", "Uçtan Uca Lojistik ve Dağıtım Ağı"],
+    badgeTitle: "Yasal Uyumluluk & Sertifikalar",
+    badgeSub: "Avrupa Birliği ve Almanya standartlarında tam yasal güvence ve regülasyon uyumluluğu",
+    badge1Name: "AÜG Uyumluluğu",
+    badge1Desc: "Alman İş Gücü Sağlama Kanunu standartlarına tam uyumlu operasyon yönetimi",
+    badge2Name: "GDPR Güvencesi",
+    badge2Desc: "Avrupa Birliği Genel Veri Koruma Regülasyonu'na uygun veri güvenliği altyapısı",
+    badge3Name: "ISO 9001 Standartları",
+    badge3Desc: "Uluslararası kalite yönetim ve sınır ötesi hizmet standardizasyonu",
+    badge4Name: "AB Çalışma İzni",
+    badge4Desc: "Sınır ötesi projelerde tam donanımlı ve yasal iş gücü mobilizasyonu",
+    heroTag: "⚡ GLOBAL OPERASYONEL GÜÇ",
+    heroBtnSecondary: "Hizmetlerimizi İnceleyin",
+    visionTitle: "Vizyon & Değerlerimiz",
+    vision1Name: "Küresel Güven",
+    vision1Desc: "Sınır ötesi tüm operasyonlarda %100 yasal uyumluluk.",
+    vision2Name: "Hız & Esneklik",
+    vision2Desc: "İhtiyaç duyulan iş gücünü ve lojistiği anında mobilize etme.",
+    vision3Name: "Sürdürülebilir Ortaklık",
+    vision3Desc: "Avrupa pazarında uzun vadeli, köklü ticari ilişkiler."
   },
   de: {
     brand: "Timo to Work",
@@ -201,7 +220,26 @@ const translations = {
     card2Steps: ["Bereitstellung von erfahrenen Monteuren", "Zertifizierte Stapler- & Gerätefahrer", "Mehrsprachiges Messepersonal (Hostessen/Hosts)", "Rechtliche Absicherung & AÜG-Konformität"],
     card3Steps: ["Hotel- & Unterkunftsmanagement in Europa", "VIP-Transfer & Teamlogistik", "Koordination vor Ort & Prozessleitung", "7/24 Support & Assistenz vor Ort"],
     card4Steps: ["Globale Hersteller- & Lieferantenanalyse", "Zollabwicklung & Außenhandelsrecht", "Qualitätskontrolle & Lieferantenüberwachung", "Grenzüberschreitende Logistikorganisation"],
-    card5Steps: ["Zielmarktanalyse & Kundenakquise", "Internationale Verträge & Rechtsberatung", "Zoll- & Exportanmeldungen", "End-to-End Logistik & Vertriebsnetzwerk"]
+    card5Steps: ["Zielmarktanalyse & Kundenakquise", "Internationale Verträge & Rechtsberatung", "Zoll- & Exportanmeldungen", "End-to-End Logistik & Vertriebsnetzwerk"],
+    badgeTitle: "Rechtliche Konformität & Zertifikate",
+    badgeSub: "Volle rechtliche Absicherung und Einhaltung der Standards der Europäischen Union und Deutschlands",
+    badge1Name: "AÜG-Konformität",
+    badge1Desc: "Volle Übereinstimmung mit den Standards des Arbeitnehmerüberlassungsgesetzes (AÜG)",
+    badge2Name: "DSGVO-Garantie",
+    badge2Desc: "Datensicherheitsinfrastruktur gemäß der Allgemeinen Datenschutzverordnung der EU",
+    badge3Name: "ISO 9001 Standards",
+    badge3Desc: "Internationale Qualitätsmanagement- und grenzüberschreitende Dienstleistungsstandardisierung",
+    badge4Name: "EU-Arbeitserlaubnis",
+    badge4Desc: "Volle rechtliche und ausgestattete Arbeitskraftmobilisierung bei grenzüberschreitenden Projekten",
+    heroTag: "⚡ GLOBALE OPERATIVE KRAFT",
+    heroBtnSecondary: "Unsere Dienstleistungen",
+    visionTitle: "Vision & Werte",
+    vision1Name: "Globales Vertrauen",
+    vision1Desc: "100% rechtliche Konformität bei allen grenzüberschreitenden Aktivitäten.",
+    vision2Name: "Geschwindigkeit & Flexibilität",
+    vision2Desc: "Sofortige Mobilisierung von benötigten Arbeitskräften und Logistik.",
+    vision3Name: "Nachhaltige Partnerschaft",
+    vision3Desc: "Langfristige, tief verwurzelte Handelsbeziehungen auf dem europäischen Markt."
   },
   en: {
     brand: "Timo to Work",
@@ -300,7 +338,26 @@ const translations = {
     card2Steps: ["Provision of Expert Installation Crews", "Certified Forklift & Equipment Operators", "Multilingual Exhibition Hosts & Hostesses", "Legal Compliance & AÜG Contract Management"],
     card3Steps: ["Hotel & Accommodation Management Across Europe", "VIP Transfer & Team Logistics", "On-site Coordination & Process Management", "24/7 On-site Support & Assistance"],
     card4Steps: ["Global Manufacturer & Supplier Analysis", "Customs Clearance & Trade Regulation Management", "Quality Control & Delivery Tracking", "Cross-Border Logistics Organization"],
-    card5Steps: ["Target Market Analysis & Client Acquisition", "International Contracts & Legal Consultancy", "Customs & Export Declarations", "End-to-End Logistics & Distribution Network"]
+    card5Steps: ["Target Market Analysis & Client Acquisition", "International Contracts & Legal Consultancy", "Customs & Export Declarations", "End-to-End Logistics & Distribution Network"],
+    badgeTitle: "Legal Compliance & Certificates",
+    badgeSub: "Full legal assurance and compliance with European Union and German regulations",
+    badge1Name: "AÜG Compliance",
+    badge1Desc: "Operation management in full compliance with the German Temporary Agency Work Act",
+    badge2Name: "GDPR Compliant",
+    badge2Desc: "Data security infrastructure aligned with the EU General Data Protection Regulation",
+    badge3Name: "ISO 9001 Standards",
+    badge3Desc: "International quality management and cross-border service standardization",
+    badge4Name: "EU Work Permit",
+    badge4Desc: "Fully equipped and legal workforce mobilization in cross-border projects",
+    heroTag: "⚡ GLOBAL OPERATIONAL POWER",
+    heroBtnSecondary: "Explore Services",
+    visionTitle: "Vision & Values",
+    vision1Name: "Global Trust",
+    vision1Desc: "100% legal compliance in all all cross-border operations.",
+    vision2Name: "Speed & Flexibility",
+    vision2Desc: "Instant mobilization of required workforce and logistics.",
+    vision3Name: "Sustainable Partnership",
+    vision3Desc: "Long-term, deep-rooted commercial relationships in the European market."
   }
 };
 
@@ -349,31 +406,109 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* Karşılama Alanı / Hero Section */}
-      <header style={{ background: 'linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%)', padding: '100px 20px', textAlign: 'center', borderBottom: '1px solid #1f2937' }}>
-        <motion.div initial="hidden" animate="visible" variants={fadeInUpVariants} style={{ maxWidth: '800px', margin: '0 auto' }}>
-          <h1 style={{ fontSize: '48px', fontWeight: 800, marginBottom: '20px', color: '#ffffff', letterSpacing: '-1px' }}>{t.heroTitle}</h1>
-          <p style={{ fontSize: '18px', color: '#94a3b8', lineHeight: '1.6', maxWidth: '600px', margin: '0 auto' }}>{t.heroSub}</p>
-        </motion.div>
+      {/* ----------------- GÖSTERİŞLİ BÖLÜNMÜŞ EKRAN HERO (ANA SAYFA) ----------------- */}
+      <header style={{ 
+        background: 'radial-gradient(circle at top right, rgba(30, 27, 75, 0.4) 0%, #0f172a 100%)', 
+        padding: '120px 40px', 
+        borderBottom: '1px solid #1f2937',
+        position: 'relative',
+        overflow: 'hidden'
+      }}>
+        {/* Arka Plan Parlama Efektleri */}
+        <div style={{ position: 'absolute', top: '-10%', right: '-10%', width: '500px', height: '500px', background: 'rgba(56, 189, 248, 0.08)', filter: 'blur(120px)', borderRadius: '50%', pointerEvents: 'none' }}></div>
+        <div style={{ position: 'absolute', bottom: '-10%', left: '-10%', width: '400px', height: '400px', background: 'rgba(124, 58, 237, 0.05)', filter: 'blur(100px)', borderRadius: '50%', pointerEvents: 'none' }}></div>
+
+        <div style={{ maxWidth: '1400px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(450px, 1fr))', gap: '60px', alignItems: 'center' }}>
+          
+          {/* Sol Sütun: Yazılar ve Etkileyici Butonlar */}
+          <motion.div initial="hidden" animate="visible" variants={fadeInUpVariants} style={{ display: 'flex', flexDirection: 'column', gap: '25px', textAlign: 'left' }}>
+            <span style={{ display: 'inline-block', width: 'fit-content', backgroundColor: 'rgba(56,189,248,0.1)', color: '#38bdf8', padding: '8px 16px', borderRadius: '30px', fontSize: '13px', fontWeight: 700, letterSpacing: '1px', border: '1px solid rgba(56,189,248,0.2)' }}>
+              {t.heroTag}
+            </span>
+            <h1 style={{ fontSize: '54px', fontWeight: 800, color: '#ffffff', letterSpacing: '-1.5px', lineHeight: '1.15', margin: 0 }}>
+              {t.heroTitle}
+            </h1>
+            <p style={{ fontSize: '18px', color: '#94a3b8', lineHeight: '1.65', margin: 0, maxWidth: '600px' }}>
+              {t.heroSub}
+            </p>
+            <div style={{ display: 'flex', gap: '15px', flexWrap: 'wrap', marginTop: '10px' }}>
+              <a href="#apply" style={{ background: 'linear-gradient(90deg, #7c3aed 0%, #ef4444 100%)', color: '#ffffff', textDecoration: 'none', padding: '15px 35px', borderRadius: '30px', fontWeight: 'bold', fontSize: '15px', boxShadow: '0 4px 20px rgba(124, 58, 237, 0.4)', transition: '0.3s' }}>
+                {t.navApplyForm}
+              </a>
+              <a href="#services" style={{ backgroundColor: 'transparent', color: '#ffffff', textDecoration: 'none', padding: '15px 35px', borderRadius: '30px', fontWeight: 'bold', fontSize: '15px', border: '1px solid #334155', transition: '0.3s' }}>
+                {t.heroBtnSecondary}
+              </a>
+            </div>
+          </motion.div>
+
+          {/* Sağ Sütun: Premium Soyut Endüstri/Gelecek Görseli (Boşluğu Yok Eden Alan) */}
+          <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8 }} style={{ position: 'relative', width: '100%', height: '400px', borderRadius: '24px', overflow: 'hidden', border: '1px solid #1f2937', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.5)' }}>
+            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, #0f172a 0%, rgba(15,23,42,0) 40%)', zIndex: 1 }}></div>
+            <img 
+              src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=800&q=80" 
+              alt="Global Operations" 
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            />
+          </motion.div>
+
+        </div>
       </header>
 
-      {/* HAKKIMIZDA BÖLÜMÜ (ANIMASYONLU) */}
-      <motion.section id="about" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={fadeInUpVariants} style={{ backgroundColor: '#111827', padding: '90px 20px', borderBottom: '1px solid #1f2937' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '50px', alignItems: 'center' }}>
-          <div style={{ backgroundColor: '#0b0f19', border: '1px solid #1f2937', borderRadius: '24px', padding: '50px 40px', textAlign: 'center', boxShadow: '0 20px 40px -15px rgba(0,0,0,0.3)' }}>
-            <img src="/logo.png" alt="Timo to Work Logo" style={{ maxWidth: '180px', height: 'auto', marginBottom: '20px', display: 'inline-block' }} />
-            <h3 style={{ fontSize: '24px', fontWeight: 700, color: '#38bdf8', marginBottom: '5px' }}>Timo to Work</h3>
-            <p style={{ color: '#64748b', fontSize: '14px', margin: 0, letterSpacing: '1px' }}>International B.V.</p>
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+      {/* ----------------- LÜKS BENTO-STYLE HAKKIMIZDA BÖLÜMÜ ----------------- */}
+      <motion.section 
+        id="about" 
+        initial="hidden" 
+        whileInView="visible" 
+        viewport={{ once: true, amount: 0.2 }} 
+        variants={fadeInUpVariants} 
+        style={{ backgroundColor: '#111827', padding: '100px 40px', borderBottom: '1px solid #1f2937' }}
+      >
+        <div style={{ maxWidth: '1400px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(450px, 1fr))', gap: '60px', alignItems: 'start' }}>
+          
+          {/* Sol Taraf: Şirket Hikayesi ve Büyük Logo Kartı */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
             <div>
               <span style={{ color: '#38bdf8', fontSize: '14px', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '1.5px', display: 'block', marginBottom: '10px' }}>{t.aboutTitle}</span>
-              <h2 style={{ fontSize: '36px', fontWeight: 700, color: '#ffffff', marginBottom: '15px', lineHeight: '1.3' }}>{t.aboutSub}</h2>
+              <h2 style={{ fontSize: '38px', fontWeight: 700, color: '#ffffff', marginBottom: '0', lineHeight: '1.25' }}>{t.aboutSub}</h2>
             </div>
+            
             <p style={{ color: '#94a3b8', fontSize: '16px', lineHeight: '1.8', margin: 0 }}>{t.aboutText1}</p>
             <p style={{ color: '#94a3b8', fontSize: '16px', lineHeight: '1.8', margin: 0 }}>{t.aboutText2}</p>
-            <p style={{ color: '#64748b', fontSize: '15px', lineHeight: '1.8', margin: 0, fontStyle: 'italic', borderLeft: '3px solid #38bdf8', paddingLeft: '15px' }}>{t.aboutText3}</p>
+            
+            <div style={{ display: 'flex', alignItems: 'center', gap: '20px', backgroundColor: '#0b0f19', padding: '25px', borderRadius: '16px', border: '1px solid #1f2937' }}>
+              <img src="/logo.png" alt="Timo to Work Logo" style={{ height: '50px', width: 'auto', backgroundColor: '#ffffff', padding: '4px 8px', borderRadius: '6px' }} />
+              <div>
+                <h4 style={{ color: '#ffffff', margin: '0 0 4px 0', fontSize: '16px', fontWeight: 700 }}>Timo to Work International B.V.</h4>
+                <p style={{ color: '#64748b', fontSize: '13px', margin: 0, fontStyle: 'italic' }}>{t.aboutText3}</p>
+              </div>
+            </div>
           </div>
+
+          {/* Sağ Taraf: Vizyon & Misyon Bento Hücreleri (Boşluğu Tamamen Dolduran Alan) */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '25px', width: '100%' }}>
+            <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#ffffff', margin: '0 0 5px 0', display: 'flex', alignItems: 'center', gap: '10px' }}>
+              🎯 {t.visionTitle}
+            </h3>
+
+            {/* Hücre 1 */}
+            <div style={{ padding: '25px', backgroundColor: '#0b0f19', borderRadius: '16px', border: '1px solid #1f2937', transition: '0.3s' }}>
+              <h4 style={{ color: '#38bdf8', fontSize: '16px', fontWeight: 700, margin: '0 0 8px 0' }}>01. {t.vision1Name}</h4>
+              <p style={{ color: '#94a3b8', fontSize: '14px', margin: 0, lineHeight: '1.6' }}>{t.vision1Desc}</p>
+            </div>
+
+            {/* Hücre 2 */}
+            <div style={{ padding: '25px', backgroundColor: '#0b0f19', borderRadius: '16px', border: '1px solid #1f2937', transition: '0.3s' }}>
+              <h4 style={{ color: '#f97316', fontSize: '16px', fontWeight: 700, margin: '0 0 8px 0' }}>02. {t.vision2Name}</h4>
+              <p style={{ color: '#94a3b8', fontSize: '14px', margin: 0, lineHeight: '1.6' }}>{t.vision2Desc}</p>
+            </div>
+
+            {/* Hücre 3 */}
+            <div style={{ padding: '25px', backgroundColor: '#0b0f19', borderRadius: '16px', border: '1px solid #1f2937', transition: '0.3s' }}>
+              <h4 style={{ color: '#a855f7', fontSize: '16px', fontWeight: 700, margin: '0 0 8px 0' }}>03. {t.vision3Name}</h4>
+              <p style={{ color: '#94a3b8', fontSize: '14px', margin: 0, lineHeight: '1.6' }}>{t.vision3Desc}</p>
+            </div>
+          </div>
+
         </div>
       </motion.section>
 
@@ -536,6 +671,66 @@ export default function Home() {
           })}
         </div>
       </motion.main>
+
+      {/* ----------------- YASAL UYUMLULUK & ROZETLER (ANIMASYONLU) ----------------- */}
+      <motion.section 
+        initial="hidden" 
+        whileInView="visible" 
+        viewport={{ once: true, amount: 0.2 }} 
+        variants={fadeInUpVariants} 
+        style={{ backgroundColor: '#111827', padding: '80px 20px', borderTop: '1px solid #1f2937', borderBottom: '1px solid #1f2937' }}
+      >
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          
+          {/* Bölüm Başlığı */}
+          <div style={{ textAlign: 'center', marginBottom: '50px' }}>
+            <h2 style={{ fontSize: '32px', fontWeight: 700, color: '#ffffff', marginBottom: '10px' }}>{t.badgeTitle}</h2>
+            <p style={{ color: '#64748b', fontSize: '16px', maxWidth: '700px', margin: '0 auto' }}>{t.badgeSub}</p>
+          </div>
+
+          {/* 4'lü Parlayan Rozet Grid Yapısı */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '25px' }}>
+            
+            {/* Rozet 1 - AÜG */}
+            <div style={{ padding: '30px 20px', backgroundColor: '#0b0f19', borderRadius: '20px', border: '1px solid rgba(56,189,248,0.2)', textAlign: 'center', boxShadow: '0 0 20px rgba(56,189,248,0.05)', transition: '0.3s' }}>
+              <div style={{ width: '60px', height: '60px', backgroundColor: 'rgba(56,189,248,0.1)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px auto', fontSize: '24px', border: '1px solid #38bdf8' }}>
+                ⚖️
+              </div>
+              <h4 style={{ color: '#ffffff', fontSize: '18px', fontWeight: 700, marginBottom: '10px' }}>{t.badge1Name}</h4>
+              <p style={{ color: '#94a3b8', fontSize: '13px', lineHeight: '1.6', margin: 0 }}>{t.badge1Desc}</p>
+            </div>
+
+            {/* Rozet 2 - GDPR */}
+            <div style={{ padding: '30px 20px', backgroundColor: '#0b0f19', borderRadius: '20px', border: '1px solid rgba(34,197,94,0.2)', textAlign: 'center', boxShadow: '0 0 20px rgba(34,197,94,0.05)', transition: '0.3s' }}>
+              <div style={{ width: '60px', height: '60px', backgroundColor: 'rgba(34,197,94,0.1)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px auto', fontSize: '24px', border: '1px solid #22c55e' }}>
+                🛡️
+              </div>
+              <h4 style={{ color: '#ffffff', fontSize: '18px', fontWeight: 700, marginBottom: '10px' }}>{t.badge2Name}</h4>
+              <p style={{ color: '#94a3b8', fontSize: '13px', lineHeight: '1.6', margin: 0 }}>{t.badge2Desc}</p>
+            </div>
+
+            {/* Rozet 3 - ISO 9001 */}
+            <div style={{ padding: '30px 20px', backgroundColor: '#0b0f19', borderRadius: '20px', border: '1px solid rgba(249,115,22,0.2)', textAlign: 'center', boxShadow: '0 0 20px rgba(249,115,22,0.05)', transition: '0.3s' }}>
+              <div style={{ width: '60px', height: '60px', backgroundColor: 'rgba(249,115,22,0.1)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px auto', fontSize: '24px', border: '1px solid #f97316' }}>
+                📜
+              </div>
+              <h4 style={{ color: '#ffffff', fontSize: '18px', fontWeight: 700, marginBottom: '10px' }}>{t.badge3Name}</h4>
+              <p style={{ color: '#94a3b8', fontSize: '13px', lineHeight: '1.6', margin: 0 }}>{t.badge3Desc}</p>
+            </div>
+
+            {/* Rozet 4 - AB Çalışma İzni */}
+            <div style={{ padding: '30px 20px', backgroundColor: '#0b0f19', borderRadius: '20px', border: '1px solid rgba(168,85,247,0.2)', textAlign: 'center', boxShadow: '0 0 20px rgba(168,85,247,0.05)', transition: '0.3s' }}>
+              <div style={{ width: '60px', height: '60px', backgroundColor: 'rgba(168,85,247,0.1)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px auto', fontSize: '24px', border: '1px solid #a855f7' }}>
+                🇪🇺
+              </div>
+              <h4 style={{ color: '#ffffff', fontSize: '18px', fontWeight: 700, marginBottom: '10px' }}>{t.badge4Name}</h4>
+              <p style={{ color: '#94a3b8', fontSize: '13px', lineHeight: '1.6', margin: 0 }}>{t.badge4Desc}</p>
+            </div>
+
+          </div>
+
+        </div>
+      </motion.section>
 
       {/* GALERİ BÖLÜMÜ (ANIMASYONLU) */}
       <motion.section id="gallery" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.15 }} variants={fadeInUpVariants} style={{ backgroundColor: '#0b0f19', padding: '80px 20px', borderTop: '1px solid #1f2937' }}>
