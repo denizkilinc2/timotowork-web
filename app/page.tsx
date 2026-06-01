@@ -775,7 +775,7 @@ export default function Home() {
         backgroundColor: darkMode ? 'rgba(26, 26, 26, 0.95)' : 'rgba(255, 255, 255, 0.95)', 
         backdropFilter: 'blur(20px)', 
         borderBottom: `1px solid ${theme.border}`, 
-        padding: isMobile ? '12px 16px' : '15px 40px', 
+        padding: '15px 40px', 
         position: 'fixed', 
         top: 0, 
         left: 0,
@@ -791,9 +791,8 @@ export default function Home() {
             <img src="/logo.png" alt="Timo to Work Logo" style={{ height: '40px', width: 'auto', objectFit: 'contain', backgroundColor: '#ffffff', padding: '4px 8px', borderRadius: '6px' }} />
           </a>
 
-          {/* MASAÜSTÜ: Orta linkler — isMobile false ise göster */}
-          {!isMobile && (
-            <div style={{ display: 'flex', gap: '24px', alignItems: 'center' }}>
+          {/* MASAÜSTÜ: Orta linkler — CSS ile gizle/göster (JS hydration sorunu yok) */}
+          <div className="nav-desktop-links" style={{ display: 'flex', gap: '24px', alignItems: 'center' }}>
               {[
                 { id: 'home', text: t.navHome, href: '#' },
                 { id: 'about', text: t.navAbout, href: '#about' },
@@ -813,12 +812,10 @@ export default function Home() {
                   </a>
                 );
               })}
-            </div>
-          )}
+          </div>
 
           {/* MASAÜSTÜ: Sağ alan */}
-          {!isMobile && (
-            <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+          <div className="nav-desktop-right" style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
               <select value={lang} onChange={(e) => setLang(e.target.value as 'tr' | 'de' | 'en')} style={{ backgroundColor: darkMode ? '#2a2a2a' : '#e2e8f0', color: theme.textPrimary, border: `1px solid ${theme.border}`, padding: '6px 12px', borderRadius: '6px', cursor: 'pointer', fontSize: '14px', outline: 'none' }}>
                 <option value="de">🇩🇪 DE</option>
                 <option value="en">🇺🇸 EN</option>
@@ -830,12 +827,10 @@ export default function Home() {
               <button onClick={() => setDarkMode(!darkMode)} style={{ backgroundColor: darkMode ? '#f97316' : '#1e1b4b', border: 'none', width: '36px', height: '36px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: '#ffffff', fontSize: '18px' }}>
                 {darkMode ? '☀️' : '🌙'}
               </button>
-            </div>
-          )}
+          </div>
 
-          {/* MOBİL: Sağ alan — lang seçici + hamburger */}
-          {isMobile && (
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          {/* MOBİL: Sağ alan — lang seçici + hamburger — CSS ile göster */}
+          <div className="nav-mobile-right" style={{ display: 'none', alignItems: 'center', gap: '8px' }}>
               <select 
                 value={lang} 
                 onChange={(e) => setLang(e.target.value as 'tr' | 'de' | 'en')} 
@@ -852,10 +847,8 @@ export default function Home() {
                   border: `1px solid ${theme.border}`,
                   borderRadius: '8px',
                   color: theme.textPrimary, 
-                  fontSize: '22px', 
                   cursor: 'pointer', 
-                  padding: '6px 10px',
-                  lineHeight: 1,
+                  padding: '0',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -863,12 +856,73 @@ export default function Home() {
                   touchAction: 'manipulation' as any,
                   minWidth: '44px',
                   minHeight: '44px',
+                  overflow: 'hidden',
                 }}
+                aria-label={mobileMenuOpen ? 'Menüyü kapat' : 'Menüyü aç'}
+                aria-expanded={mobileMenuOpen}
               >
-                {mobileMenuOpen ? '✕' : '☰'}
+                {/* Animasyonlu SVG Hamburger İkonu */}
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  style={{ display: 'block' }}
+                >
+                  {/* Üst çizgi */}
+                  <line
+                    x1="3"
+                    y1="6"
+                    x2="21"
+                    y2="6"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    style={{
+                      transformOrigin: '12px 6px',
+                      transition: 'transform 0.35s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.2s ease',
+                      transform: mobileMenuOpen
+                        ? 'translateY(6px) rotate(45deg)'
+                        : 'translateY(0) rotate(0deg)',
+                    }}
+                  />
+                  {/* Orta çizgi */}
+                  <line
+                    x1="3"
+                    y1="12"
+                    x2="21"
+                    y2="12"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    style={{
+                      transformOrigin: '12px 12px',
+                      transition: 'opacity 0.2s ease, transform 0.1s ease',
+                      opacity: mobileMenuOpen ? 0 : 1,
+                      transform: mobileMenuOpen ? 'scaleX(0)' : 'scaleX(1)',
+                    }}
+                  />
+                  {/* Alt çizgi */}
+                  <line
+                    x1="3"
+                    y1="18"
+                    x2="21"
+                    y2="18"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    style={{
+                      transformOrigin: '12px 18px',
+                      transition: 'transform 0.35s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.2s ease',
+                      transform: mobileMenuOpen
+                        ? 'translateY(-6px) rotate(-45deg)'
+                        : 'translateY(0) rotate(0deg)',
+                    }}
+                  />
+                </svg>
               </button>
             </div>
-          )}
 
         </div>
 
@@ -2058,6 +2112,17 @@ export default function Home() {
           scroll-behavior: smooth;
         }
         * { box-sizing: border-box; }
+
+        /* ── NAVBAR RESPONSIVE (CSS tabanlı — JS hydration yok) ── */
+        .nav-desktop-links { display: flex; }
+        .nav-desktop-right  { display: flex; }
+        .nav-mobile-right   { display: none !important; }
+
+        @media (max-width: 968px) {
+          .nav-desktop-links { display: none !important; }
+          .nav-desktop-right  { display: none !important; }
+          .nav-mobile-right   { display: flex !important; }
+        }
 
         @media (max-width: 768px) {
 
