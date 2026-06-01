@@ -418,6 +418,12 @@ const fadeInUpVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: 'easeOut' } }
 };
 
+// Mobilde animasyon yok — içerik direkt görünür
+const noAnimation = {
+  hidden: { opacity: 1, y: 0, x: 0, scale: 1 },
+  visible: { opacity: 1, y: 0, x: 0, scale: 1 }
+};
+
 // 📊 GERÇEK ZAMANLI SAYAÇ MOTORU BİLEŞENİ
 const AnimatedCounter = ({ target, duration = 1500, triggered }: { target: number; duration?: number; triggered: boolean }) => {
   const [count, setCount] = useState<number>(0);
@@ -451,13 +457,29 @@ const AnimatedCounter = ({ target, duration = 1500, triggered }: { target: numbe
 
 export default function Home() {
   const [lang, setLang] = useState<'tr' | 'de' | 'en'>('de');
+
+  // Next.js Hydration hatasını önlemek için Client-Side kontrol state'i
+  const [isMounted, setIsMounted] = useState<boolean>(false);
+  const [isMobile, setIsMobile] = useState<boolean>(() => {
+    if (typeof window !== 'undefined') return window.innerWidth <= 968;
+    return false;
+  });
+
+  useEffect(() => {
+    setIsMounted(true);
+    const checkMobile = () => setIsMobile(window.innerWidth <= 968);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
   const [activeCard, setActiveCard] = useState<number | null>(null);
   const [darkMode, setDarkMode] = useState<boolean>(true);
   const [aiOpen, setAiOpen] = useState<boolean>(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const [messages, setMessages] = useState<Array<{ sender: 'user' | 'ai', text: string }>>([]);
   const [inputValue, setInputValue] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(true);
-  const [statsTriggered, setStatsTriggered] = useState<boolean>(false);
+  const [statsTriggered, setStatsTriggered] = useState<boolean>(true);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   // 🌟 TOAST BİLDİRİM STATE ALTYAPISI
@@ -516,7 +538,13 @@ export default function Home() {
   ];
 
   useEffect(() => {
-    // Sayfa tamamen yüklendiğinde yükleme ekranını kapat (Simülatif lüks gecikme payı ile)
+    // 🎯 MOBİL KİLİTLENME KORUMASI: Ekran mobildeyse preloader'ı anında kapatır, render bile ettirmez
+    if (typeof window !== 'undefined' && window.innerWidth < 991) {
+      setLoading(false);
+      return;
+    }
+
+    // Bilgisayarda (PC) ise o şık kurumsal gecikme efekti aynen çalışmaya devam eder
     const timer = setTimeout(() => {
       setLoading(false);
     }, 1800);
@@ -530,8 +558,11 @@ export default function Home() {
   // Sayfa kaydırıldıkça hangi bölümde olunduğunu otomatik tespit eden mekanizma
   useEffect(() => {
     const handleScroll = () => {
+      // Scroll durumu
+      setScrolled(window.scrollY > 80);
+
       const sections = ['home', 'about', 'services', 'gallery', 'appointment', 'apply', 'contact'];
-      const scrollPosition = window.scrollY + 120; // Navbar yüksekliği için ofset biniş payı
+      const scrollPosition = window.scrollY + 120;
 
       for (const section of sections) {
         const el = document.getElementById(section === 'home' ? 'navbar-top' : section);
@@ -549,16 +580,6 @@ export default function Home() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  if (typeof window !== 'undefined') {
-    window.onscroll = () => {
-      if (window.scrollY > 80) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-  }
 
   // Hızlı soru balonlarına tıklandığında çalışacak motor
   const handleQuickReplyClick = (questionText: string) => {
@@ -749,92 +770,29 @@ export default function Home() {
   return (
     <div style={{ backgroundColor: theme.bgPrimary, color: theme.textPrimary, minHeight: '100vh', width: '100%', overflowX: 'hidden', fontFamily: 'sans-serif', margin: 0, padding: 0, transition: 'background-color 0.3s, color 0.3s' }}>
       
-      {/* 🎬 PREMIUM HOLDING PRELOADER */}
-      <AnimatePresence>
-        {loading && (
-          <motion.div
-            initial={{ opacity: 1 }}
-            exit={{ 
-              y: '-100%', 
-              transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] } 
-            }}
-            style={{
-              position: 'fixed',
-              top: 0,
-              left: 0,
-              width: '100vw',
-              height: '100vh',
-              backgroundColor: '#0b0f19',
-              zIndex: 9999,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              overflow: 'hidden'
-            }}
-          >
-            {/* Parlayan ve Dönen Logo Kapsayıcısı */}
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ 
-                scale: [0.9, 1, 0.9], 
-                opacity: 1,
-                boxShadow: ['0 0 20px rgba(56,189,248,0.2)', '0 0 50px rgba(124,58,237,0.4)', '0 0 20px rgba(56,189,248,0.2)']
-              }}
-              transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
-              style={{
-                backgroundColor: '#ffffff',
-                padding: '20px 40px',
-                borderRadius: '16px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                marginBottom: '24px'
-              }}
-            >
-              <img src="/logo.png" alt="Timo to Work" style={{ height: '55px', width: 'auto' }} />
-            </motion.div>
-
-            {/* Elit Yükleniyor Çizgisi */}
-            <div style={{ width: '140px', height: '2px', backgroundColor: 'rgba(255,255,255,0.1)', borderRadius: '2px', position: 'relative', overflow: 'hidden' }}>
-              <motion.div 
-                animate={{ left: ['-100%', '100%'] }}
-                transition={{ repeat: Infinity, duration: 1.5, ease: 'easeInOut' }}
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  width: '60%',
-                  height: '100%',
-                  background: 'linear-gradient(90deg, transparent, #38bdf8, transparent)'
-                }}
-              />
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Üst Menü / Navbar (image_c8f75e.png menüsünün sabitlenen cam mimarisi) */}
+      {/* 🌐 NAVBAR */}
       <nav style={{ 
-        backgroundColor: darkMode ? 'rgba(26, 26, 26, 0.75)' : 'rgba(255, 255, 255, 0.8)', 
-        backdropFilter: 'blur(20px)', // Arkadan geçen yazıları flulaştıran elit efekt
+        backgroundColor: darkMode ? 'rgba(26, 26, 26, 0.95)' : 'rgba(255, 255, 255, 0.95)', 
+        backdropFilter: 'blur(20px)', 
         borderBottom: `1px solid ${theme.border}`, 
-        padding: '15px 40px', 
-        position: 'fixed', // Sayfa boyunca yukarıda sabit kalmasını sağlar
+        padding: isMobile ? '12px 16px' : '15px 40px', 
+        position: 'fixed', 
         top: 0, 
         left: 0,
         right: 0,
-        zIndex: 1000, // Sitedeki her şeyin üstünde kalması için
-        transition: 'background-color 0.3s ease, border-color 0.3s ease'
+        zIndex: 1000, 
+        overflow: 'visible',
+        transition: 'background-color 0.3s ease'
       }}>
         <div style={{ maxWidth: '1400px', margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           
-          <div style={{ display: 'flex', gap: '35px', alignItems: 'center', flexWrap: 'wrap' }}>
-            {/* Logo Alanı */}
-            <a href="#" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
-              <img src="/logo.png" alt="Timo to Work Logo" style={{ height: '40px', width: 'auto', objectFit: 'contain', backgroundColor: '#ffffff', padding: '4px 8px', borderRadius: '6px' }} />
-            </a>
-            
-            {/* Menü Linkleri - Sayfa Düzenine Uygun Sıralama (image_c8e897.png Güncellemesi) */}
+          {/* Logo */}
+          <a href="#" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', flexShrink: 0 }}>
+            <img src="/logo.png" alt="Timo to Work Logo" style={{ height: '40px', width: 'auto', objectFit: 'contain', backgroundColor: '#ffffff', padding: '4px 8px', borderRadius: '6px' }} />
+          </a>
+
+          {/* MASAÜSTÜ: Orta linkler — isMobile false ise göster */}
+          {!isMobile && (
             <div style={{ display: 'flex', gap: '24px', alignItems: 'center' }}>
               {[
                 { id: 'home', text: t.navHome, href: '#' },
@@ -842,84 +800,155 @@ export default function Home() {
                 { id: 'services', text: t.navServices, href: '#services' },
                 { id: 'gallery', text: t.navGallery, href: '#gallery' },
                 { id: 'appointment', text: t.navAppointment, href: '#appointment' },
-                { id: 'apply', text: t.navApplyForm, href: '#apply' }, // Başvuru Formu yukarıda olduğu için sola alındı
-                { id: 'contact', text: t.navContact, href: '#contact' } // İletişim en altta olduğu için sağa alındı
+                { id: 'apply', text: t.navApplyForm, href: '#apply' },
+                { id: 'contact', text: t.navContact, href: '#contact' }
               ].map((item) => {
                 const isActive = activeSection === item.id;
                 return (
-                  <a 
-                    key={item.id}
-                    href={item.href} 
-                    style={{ 
-                      color: isActive ? '#38bdf8' : (darkMode ? '#94a3b8' : '#475569'), 
-                      textDecoration: 'none', 
-                      fontSize: '14px', 
-                      fontWeight: isActive ? 700 : 500,
-                      position: 'relative',
-                      padding: '8px 0',
-                      transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-                      letterSpacing: '0.3px'
-                    }}
-                  >
+                  <a key={item.id} href={item.href} style={{ color: isActive ? '#38bdf8' : (darkMode ? '#94a3b8' : '#475569'), textDecoration: 'none', fontSize: '14px', fontWeight: isActive ? 700 : 500, position: 'relative', padding: '8px 0', transition: 'all 0.3s' }}>
                     {item.text}
-
-                    {/* Aktif bölüm altındaki parlayan neon çizgi */}
                     {isActive && (
-                      <motion.div 
-                        layoutId="activeIndicator"
-                        style={{
-                          position: 'absolute',
-                          bottom: '-4px',
-                          left: 0,
-                          right: 0,
-                          height: '2px',
-                          background: 'linear-gradient(90deg, #38bdf8 0%, #7c3aed 100%)',
-                          borderRadius: '2px',
-                          boxShadow: '0 2px 10px rgba(56, 189, 248, 0.5)'
-                        }}
-                        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                      />
+                      <motion.div layoutId="activeIndicator" style={{ position: 'absolute', bottom: '-4px', left: 0, right: 0, height: '2px', background: 'linear-gradient(90deg, #38bdf8 0%, #7c3aed 100%)', borderRadius: '2px', boxShadow: '0 2px 10px rgba(56, 189, 248, 0.5)' }} transition={{ type: 'spring', stiffness: 380, damping: 30 }} />
                     )}
                   </a>
                 );
               })}
             </div>
-          </div>
+          )}
 
-          {/* Sağ Alan (Dil, Telefon, Tema Butonu) */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-            <select value={lang} onChange={(e) => setLang(e.target.value as 'tr' | 'de' | 'en')} style={{ backgroundColor: darkMode ? '#2a2a2a' : '#e2e8f0', color: theme.textPrimary, border: `1px solid ${theme.border}`, padding: '6px 12px', borderRadius: '6px', cursor: 'pointer', fontSize: '14px', outline: 'none' }}>
-              <option value="de">🇩🇪 Deutsch</option>
-              <option value="en">🇺🇸 English</option>
-              <option value="tr">🇹🇷 Turkish</option>
-            </select>
-            <a href="tel:+491636090266" style={{ background: 'linear-gradient(90deg, #7c3aed 0%, #ef4444 100%)', color: '#ffffff', textDecoration: 'none', padding: '10px 24px', borderRadius: '25px', fontWeight: 'bold', fontSize: '14px', display: 'inline-block', boxShadow: '0 4px 15px rgba(124, 58, 237, 0.3)' }}>
-              {t.btnCallNow}
-            </a>
-            <button onClick={() => setDarkMode(!darkMode)} style={{ backgroundColor: darkMode ? '#f97316' : '#1e1b4b', border: 'none', width: '36px', height: '36px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: '#ffffff', fontSize: '18px', transition: 'all 0.3s ease' }}>
-              {darkMode ? '☀️' : '🌙'}
-            </button>
-          </div>
+          {/* MASAÜSTÜ: Sağ alan */}
+          {!isMobile && (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+              <select value={lang} onChange={(e) => setLang(e.target.value as 'tr' | 'de' | 'en')} style={{ backgroundColor: darkMode ? '#2a2a2a' : '#e2e8f0', color: theme.textPrimary, border: `1px solid ${theme.border}`, padding: '6px 12px', borderRadius: '6px', cursor: 'pointer', fontSize: '14px', outline: 'none' }}>
+                <option value="de">🇩🇪 DE</option>
+                <option value="en">🇺🇸 EN</option>
+                <option value="tr">🇹🇷 TR</option>
+              </select>
+              <a href="tel:+491636090266" style={{ background: 'linear-gradient(90deg, #7c3aed 0%, #ef4444 100%)', color: '#ffffff', textDecoration: 'none', padding: '10px 24px', borderRadius: '25px', fontWeight: 'bold', fontSize: '14px', boxShadow: '0 4px 15px rgba(124, 58, 237, 0.3)' }}>
+                {t.btnCallNow}
+              </a>
+              <button onClick={() => setDarkMode(!darkMode)} style={{ backgroundColor: darkMode ? '#f97316' : '#1e1b4b', border: 'none', width: '36px', height: '36px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: '#ffffff', fontSize: '18px' }}>
+                {darkMode ? '☀️' : '🌙'}
+              </button>
+            </div>
+          )}
+
+          {/* MOBİL: Sağ alan — lang seçici + hamburger */}
+          {isMobile && (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <select 
+                value={lang} 
+                onChange={(e) => setLang(e.target.value as 'tr' | 'de' | 'en')} 
+                style={{ backgroundColor: darkMode ? '#2a2a2a' : '#e2e8f0', color: theme.textPrimary, border: `1px solid ${theme.border}`, padding: '6px 8px', borderRadius: '6px', cursor: 'pointer', fontSize: '13px', outline: 'none' }}
+              >
+                <option value="de">🇩🇪</option>
+                <option value="en">🇺🇸</option>
+                <option value="tr">🇹🇷</option>
+              </select>
+              <button 
+                onClick={() => setMobileMenuOpen(prev => !prev)}
+                style={{ 
+                  background: 'none', 
+                  border: `1px solid ${theme.border}`,
+                  borderRadius: '8px',
+                  color: theme.textPrimary, 
+                  fontSize: '22px', 
+                  cursor: 'pointer', 
+                  padding: '6px 10px',
+                  lineHeight: 1,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  WebkitTapHighlightColor: 'transparent' as any,
+                  touchAction: 'manipulation' as any,
+                  minWidth: '44px',
+                  minHeight: '44px',
+                }}
+              >
+                {mobileMenuOpen ? '✕' : '☰'}
+              </button>
+            </div>
+          )}
 
         </div>
+
+        {/* 📱 MOBİL MENÜ */}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div 
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.2 }}
+              style={{ position: 'fixed', top: '65px', left: 0, right: 0, backgroundColor: theme.bgSecondary, borderBottom: `1px solid ${theme.border}`, padding: '24px', display: 'flex', flexDirection: 'column', gap: '16px', boxShadow: '0 20px 30px rgba(0,0,0,0.15)', zIndex: 999 }}
+            >
+              {[
+                { text: t.navHome, href: '#' },
+                { text: t.navAbout, href: '#about' },
+                { text: t.navServices, href: '#services' },
+                { text: t.navGallery, href: '#gallery' },
+                { text: t.navAppointment, href: '#appointment' },
+                { text: t.navApplyForm, href: '#apply' },
+                { text: t.navContact, href: '#contact' }
+              ].map((link, lIdx) => (
+                <a key={lIdx} href={link.href} onClick={() => setMobileMenuOpen(false)} style={{ color: theme.textPrimary, textDecoration: 'none', fontSize: '16px', fontWeight: 600, paddingBottom: '8px', borderBottom: `1px solid ${theme.border}` }}>
+                  {link.text}
+                </a>
+              ))}
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '8px' }}>
+                <select value={lang} onChange={(e) => { setLang(e.target.value as any); setMobileMenuOpen(false); }} style={{ backgroundColor: theme.inputBg, color: theme.textPrimary, border: `1px solid ${theme.border}`, padding: '8px 16px', borderRadius: '8px', fontSize: '14px', outline: 'none' }}>
+                  <option value="de">Deutsch</option>
+                  <option value="en">English</option>
+                  <option value="tr">Türkçe</option>
+                </select>
+                <button onClick={() => { setDarkMode(!darkMode); setMobileMenuOpen(false); }} style={{ padding: '8px 16px', borderRadius: '8px', border: `1px solid ${theme.border}`, backgroundColor: 'transparent', color: theme.textPrimary, fontWeight: 'bold', cursor: 'pointer' }}>
+                  {darkMode ? '☀️ Light' : '🌙 Dark'}
+                </button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
 
+      {/* Mobil menü açıkken arka plan karartması */}
+      {mobileMenuOpen && (
+        <div 
+          onClick={() => setMobileMenuOpen(false)}
+          style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, zIndex: 998, background: 'transparent' }}
+        />
+      )}
+
       {/* ----------------- GÖSTERİŞLİ BÖLÜNMÜŞ EKRAN HERO (ANA SAYFA) ----------------- */}
-      <header id="navbar-top" style={{ 
+      <header id="navbar-top" className="hero-container-main" style={{ 
         background: theme.bgHeader, 
         padding: '120px 40px', 
         borderBottom: `1px solid ${theme.border}`,
         position: 'relative',
         overflow: 'hidden'
       }}>
+        <style>{`
+          @media (max-width: 768px) {
+            .hero-container-main { padding: 100px 16px 50px 16px !important; }
+            .hero-grid-wrapper { grid-template-columns: 1fr !important; gap: 30px !important; }
+            .hero-grid-wrapper h1 { font-size: 28px !important; letter-spacing: -0.5px !important; text-align: center !important; }
+            .hero-grid-wrapper p { font-size: 15px !important; text-align: center !important; max-width: 100% !important; }
+            .hero-grid-wrapper span { display: block !important; margin: 0 auto !important; text-align: center !important; }
+            .hero-btn-row { flex-direction: column !important; align-items: center !important; }
+            .hero-btn-row a { width: 100% !important; max-width: 300px !important; text-align: center !important; box-sizing: border-box !important; }
+            .hero-img-box { height: 220px !important; }
+            .hero-img-badge { bottom: 12px !important; right: 12px !important; left: 12px !important; padding: 10px 14px !important; }
+            .hero-img-badge h3 { font-size: 16px !important; }
+            .hero-text-col { align-items: center !important; }
+          }
+        `}</style>
         {/* Arka Plan Parlama Efektleri */}
         <div style={{ position: 'absolute', top: '-10%', right: '-10%', width: '500px', height: '500px', background: 'rgba(56, 189, 248, 0.08)', filter: 'blur(120px)', borderRadius: '50%', pointerEvents: 'none' }}></div>
         <div style={{ position: 'absolute', bottom: '-10%', left: '-10%', width: '400px', height: '400px', background: 'rgba(124, 58, 237, 0.05)', filter: 'blur(100px)', borderRadius: '50%', pointerEvents: 'none' }}></div>
 
-        <div style={{ maxWidth: '1400px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(450px, 1fr))', gap: '60px', alignItems: 'center' }}>
+        <div className="hero-grid-wrapper" style={{ maxWidth: '1400px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(450px, 100%), 1fr))', gap: '60px', alignItems: 'center' }}>
           
           {/* Sol Sütun: Yazılar ve Etkileyici Butonlar */}
-          <motion.div initial="hidden" animate="visible" variants={fadeInUpVariants} style={{ display: 'flex', flexDirection: 'column', gap: '25px', textAlign: 'left' }}>
+          <motion.div initial={{ opacity: 1, y: 0 }} animate={{ opacity: 1, y: 0 }} className="hero-text-col" style={{ display: 'flex', flexDirection: 'column', gap: '25px', textAlign: 'left' }}>
             <span style={{ display: 'inline-block', width: 'fit-content', backgroundColor: 'rgba(56,189,248,0.1)', color: '#38bdf8', padding: '8px 16px', borderRadius: '30px', fontSize: '13px', fontWeight: 700, letterSpacing: '1px', border: '1px solid rgba(56,189,248,0.2)' }}>
               {t.heroTag}
             </span>
@@ -929,7 +958,7 @@ export default function Home() {
             <p style={{ fontSize: '18px', color: theme.textSecondary, lineHeight: '1.65', margin: 0, maxWidth: '600px' }}>
               {t.heroSub}
             </p>
-            <div style={{ display: 'flex', gap: '15px', flexWrap: 'wrap', marginTop: '10px' }}>
+            <div className="hero-btn-row" style={{ display: 'flex', gap: '15px', flexWrap: 'wrap', marginTop: '10px' }}>
               <a href="#apply" style={{ background: 'linear-gradient(90deg, #7c3aed 0%, #ef4444 100%)', color: '#ffffff', textDecoration: 'none', padding: '15px 35px', borderRadius: '30px', fontWeight: 'bold', fontSize: '15px', boxShadow: '0 4px 20px rgba(124, 58, 237, 0.4)', transition: '0.3s' }}>
                 {t.navApplyForm}
               </a>
@@ -967,9 +996,9 @@ export default function Home() {
 
           {/* Sağ Sütun: Önünde Yer Tabelası Olan Modern Holding Binası (image_f3a759.jpg yerine) */}
           <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }} 
+            initial={{ opacity: 1, scale: 1 }} 
             animate={{ opacity: 1, scale: 1 }} 
-            transition={{ duration: 0.8 }} 
+            className="hero-img-box"
             style={{ 
               position: 'relative', 
               width: '100%', 
@@ -991,7 +1020,7 @@ export default function Home() {
             />
 
             {/* 🏢 BİNANIN ÖNÜNDEKİ MİNİMALİST VE MODERN DİJİTAL PANEL */}
-            <div style={{
+            <div className="hero-img-badge" style={{
               position: 'absolute',
               bottom: '30px',
               right: '30px',
@@ -1035,8 +1064,8 @@ export default function Home() {
       </header>
 
       {/* 🏢 HAKKIMIZDA & KURUCUMUZ BÖLÜMÜ */}
-      <section id="about" style={{ padding: '100px 20px', backgroundColor: darkMode ? '#0b0f19' : '#f8fafc', transition: 'all 0.3s' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', gap: '60px', alignItems: 'center', flexWrap: 'wrap' }}>
+      <section id="about" className="about-section-main" style={{ padding: '100px 20px', backgroundColor: darkMode ? '#0b0f19' : '#f8fafc', transition: 'all 0.3s' }}>
+        <div className="about-flex-wrapper" style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', gap: '60px', alignItems: 'center', flexWrap: 'wrap' }}>
           
           {/* Sol Sütun: Şirket Hikayesi */}
           <div style={{ flex: '1', minWidth: '320px' }}>
@@ -1090,9 +1119,8 @@ export default function Home() {
       {/* 📈 İSTATİSTİK BÖLÜMÜ ANA KAPSAYICI */}
       <motion.section
         id="stats-section"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
+        initial={{ opacity: 1, y: 0 }}
+        animate={{ opacity: 1, y: 0 }}
         onViewportEnter={() => setStatsTriggered(true)} // Ekrana girdiği an sayaçları tetikler
         style={{ padding: '60px 20px', maxWidth: '1200px', margin: '0 auto' }}
       >
@@ -1144,10 +1172,8 @@ export default function Home() {
       {/* HİZMETLER BÖLÜMÜ (AKILLI AKORDEON SİSTEMİ) */}
       <motion.main 
         id="services" 
-        initial="hidden" 
-        whileInView="visible" 
-        viewport={{ once: true, amount: 0.1 }} 
-        variants={fadeInUpVariants} 
+        initial={{ opacity: 1, y: 0 }} 
+        animate={{ opacity: 1, y: 0 }} 
         style={{ maxWidth: '1200px', margin: '0 auto', padding: '80px 20px' }}
       >
         <div style={{ textAlign: 'center', marginBottom: '60px' }}>
@@ -1176,6 +1202,7 @@ export default function Home() {
                 {/* Tıklanabilir Üst Başlık Alanı */}
                 <div 
                   onClick={() => setActiveCard(isOpen ? null : num)}
+                  className="service-card-header"
                   style={{ 
                     padding: '30px', 
                     display: 'flex', 
@@ -1232,7 +1259,7 @@ export default function Home() {
                       <h4 style={{ color: '#38bdf8', fontSize: '15px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '20px' }}>
                         📋 {t.stepTitle}
                       </h4>
-                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '15px' }}>
+                      <div className="service-steps-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '15px' }}>
                         {steps.map((step: string, sIdx: number) => (
                           <div 
                             key={sIdx} 
@@ -1266,10 +1293,8 @@ export default function Home() {
 
       {/* ----------------- YASAL UYUMLULUK & ROZETLER (ANIMASYONLU) ----------------- */}
       <motion.section 
-        initial="hidden" 
-        whileInView="visible" 
-        viewport={{ once: true, amount: 0.2 }} 
-        variants={fadeInUpVariants} 
+        initial={{ opacity: 1, y: 0 }} 
+        animate={{ opacity: 1, y: 0 }} 
         style={{ backgroundColor: '#111827', padding: '80px 20px', borderTop: '1px solid #1f2937', borderBottom: '1px solid #1f2937' }}
       >
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
@@ -1325,17 +1350,17 @@ export default function Home() {
       </motion.section>
 
       {/* GALERİ BÖLÜMÜ (ANIMASYONLU) */}
-      <motion.section id="gallery" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.15 }} variants={fadeInUpVariants} style={{ backgroundColor: theme.bgPrimary, padding: '80px 20px', borderTop: `1px solid ${theme.border}` }}>
+      <motion.section id="gallery" initial={{ opacity: 1, y: 0 }} animate={{ opacity: 1, y: 0 }} style={{ backgroundColor: theme.bgPrimary, padding: '80px 20px', borderTop: `1px solid ${theme.border}` }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '50px' }}>
             <h2 style={{ fontSize: '36px', fontWeight: 700, color: theme.textPrimary, marginBottom: '10px' }}>{t.galleryTitle}</h2>
             <p style={{ color: theme.textSecondary, fontSize: '16px' }}>{t.gallerySub}</p>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '25px' }}>
+          <div className="gallery-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '25px' }}>
             {galleryImages.map((url, index) => {
               const idx = index + 1;
               return (
-                <div key={index} onClick={() => setLightboxIndex(index)} style={{ cursor: 'pointer', position: 'relative', height: '260px', borderRadius: '16px', overflow: 'hidden', border: '1px solid #1f2937', display: 'flex', flexDirection: 'column', justifyContent: 'end', padding: '25px', backgroundImage: `linear-gradient(to top, rgba(11,15,25,0.95) 0%, rgba(11,15,25,0.2) 100%), url("${url}")`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+                <div key={index} onClick={() => setLightboxIndex(index)} className="gallery-card" style={{ cursor: 'pointer', position: 'relative', height: '260px', borderRadius: '16px', overflow: 'hidden', border: '1px solid #1f2937', display: 'flex', flexDirection: 'column', justifyContent: 'end', padding: '25px', backgroundImage: `linear-gradient(to top, rgba(11,15,25,0.95) 0%, rgba(11,15,25,0.2) 100%), url("${url}")`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
                   <h4 style={{ color: '#ffffff', margin: '0 0 5px 0', fontSize: '18px', fontWeight: 600 }}>{(t as any)[`galCard${idx}Title`]}</h4>
                   <span style={{ color: '#38bdf8', fontSize: '13px', fontWeight: 500 }}>{(t as any)[`galCard${idx}Sub`]}</span>
                 </div>
@@ -1346,7 +1371,7 @@ export default function Home() {
       </motion.section>
 
       {/* RANDEVU BÖLÜMÜ (ANIMASYONLU) */}
-      <motion.section id="appointment" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={fadeInUpVariants} style={{ backgroundColor: theme.bgSecondary, padding: '80px 20px', borderTop: `1px solid ${theme.border}` }}>
+      <motion.section id="appointment" initial={{ opacity: 1, y: 0 }} animate={{ opacity: 1, y: 0 }} style={{ backgroundColor: theme.bgSecondary, padding: '80px 20px', borderTop: `1px solid ${theme.border}` }}>
         <div style={{ maxWidth: '800px', margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '40px' }}>
             <h2 style={{ fontSize: '36px', fontWeight: 700, color: theme.textPrimary, marginBottom: '10px' }}>{t.aptTitle}</h2>
@@ -1368,7 +1393,7 @@ export default function Home() {
               </div>
 
               {/* İKİLİ SATIR: Tarih Seçimi & Saat Dilimi (image_c792f8.png Birleşiklik Çözümü) */}
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', width: '100%', marginBottom: '32px' }}>
+              <div className="appt-date-row" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', width: '100%', marginBottom: '32px' }}>
                 <div>
                   <label style={{ display: 'block', color: theme.textSecondary, fontSize: '14px', fontWeight: 600, marginBottom: '10px' }}>
                     {t.aptDate}
@@ -1402,13 +1427,13 @@ export default function Home() {
       </motion.section>
 
       {/* BAŞVURU FORMU BÖLÜMÜ (ANIMASYONLU) */}
-      <motion.section id="apply" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeInUpVariants} style={{ backgroundColor: theme.bgPrimary, padding: '80px 20px', borderTop: `1px solid ${theme.border}` }}>
+      <motion.section id="apply" initial={{ opacity: 1, y: 0 }} animate={{ opacity: 1, y: 0 }} style={{ backgroundColor: theme.bgPrimary, padding: '80px 20px', borderTop: `1px solid ${theme.border}` }}>
         <div style={{ maxWidth: '900px', margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '40px' }}>
             <h2 style={{ fontSize: '36px', fontWeight: 700, color: theme.textPrimary, marginBottom: '10px' }}>{t.jobTitle}</h2>
             <p style={{ color: theme.textSecondary, fontSize: '16px' }}>{t.jobSub}</p>
           </div>
-          <div style={{ backgroundColor: theme.bgFormBlack, padding: '50px 40px', borderRadius: '24px', border: `1px solid ${theme.border}` }}>
+          <div className="form-inner" style={{ backgroundColor: theme.bgFormBlack, padding: '50px 40px', borderRadius: '24px', border: `1px solid ${theme.border}` }}>
         <form noValidate onSubmit={handleApplySubmit} style={{ display: 'flex', flexDirection: 'column', gap: '35px' }}>
               <div>
                 {/* 1. Kişisel Bilgiler Başlığı */}
@@ -1419,7 +1444,7 @@ export default function Home() {
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
                   
                   {/* Satır 1: Tam Adınız & Doğum Tarihi */}
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', width: '100%', marginBottom: '24px' }}>
+                  <div className="form-row-2col" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', width: '100%', marginBottom: '24px' }}>
                     <div>
                       <label style={{ display: 'block', color: theme.textPrimary, fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>{t.lblFullName}</label>
                       <input required type="text" placeholder="Anderson Mikoo" style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none' }} />
@@ -1431,7 +1456,7 @@ export default function Home() {
                   </div>
 
                   {/* Satır 2: E-Posta & Telefon */}
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', width: '100%', marginBottom: '24px' }}>
+                  <div className="form-row-2col" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', width: '100%', marginBottom: '24px' }}>
                     <div>
                       <label style={{ display: 'block', color: theme.textPrimary, fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>{t.lblEmail}</label>
                       <input required type="email" placeholder="user@website.com" style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none' }} />
@@ -1449,7 +1474,7 @@ export default function Home() {
                   </div>
 
                   {/* Satır 4: Cinsiyet & Sosyal Güvenlik Numarası */}
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', width: '100%', marginBottom: '24px' }}>
+                  <div className="form-row-2col" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', width: '100%', marginBottom: '24px' }}>
                     <div>
                       <label style={{ display: 'block', color: theme.textPrimary, fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>{t.lblGender}</label>
                       <select required style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none', cursor: 'pointer' }}>
@@ -1466,7 +1491,7 @@ export default function Home() {
                   </div>
 
                   {/* Satır 5: Çalışma Türü & Maaş Beklentisi */}
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', width: '100%', marginBottom: '24px' }}>
+                  <div className="form-row-2col" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', width: '100%', marginBottom: '24px' }}>
                     <div>
                       <label style={{ display: 'block', color: theme.textPrimary, fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>{t.lblJobType}</label>
                       <select style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none', cursor: 'pointer' }}>
@@ -1519,7 +1544,7 @@ export default function Home() {
                 </h3>
     
                 {/* Satır 1: Okul / Şehir */}
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', width: '100%', marginBottom: '24px' }}>
+                <div className="form-row-2col" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', width: '100%', marginBottom: '24px' }}>
                   <div>
                     <label style={{ display: 'block', color: theme.textPrimary, fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>
                       {t.formSchool}
@@ -1544,7 +1569,7 @@ export default function Home() {
                 </div>
     
                 {/* Satır 2: Başlangıç / Bitiş */}
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', width: '100%', marginBottom: '24px' }}>
+                <div className="form-row-2col" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', width: '100%', marginBottom: '24px' }}>
                   <div>
                     <label style={{ display: 'block', color: theme.textPrimary, fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>
                       {t.formStart}
@@ -1782,7 +1807,7 @@ export default function Home() {
       </footer>
 
       {/*  HOLDING STANDARTLARINDA PREMIUM CANLI DESTEK PANELI (SAĞ ALT KÖŞE) */}
-      <div style={{ position: 'fixed', bottom: '35px', right: '35px', zIndex: 1000, display: 'flex', flexDirection: 'column', gap: '15px', alignItems: 'end', fontFamily: 'sans-serif' }}>
+      <div className="floating-panel" style={{ position: 'fixed', bottom: '35px', right: '35px', zIndex: 1000, display: 'flex', flexDirection: 'column', gap: '15px', alignItems: 'end', fontFamily: 'sans-serif' }}>
         
         {/* --- 1. YAPAY ZEKA ASİSTANI BÖLÜMÜ --- */}
         {aiOpen && (
@@ -1790,7 +1815,8 @@ export default function Home() {
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             style={{
-              width: '380px',
+              width: 'calc(100vw - 40px)',
+              maxWidth: '360px',
               height: '500px',
               backgroundColor: darkMode ? 'rgba(17, 24, 39, 0.85)' : 'rgba(255, 255, 255, 0.85)',
               backdropFilter: 'blur(25px)',
@@ -1867,6 +1893,7 @@ export default function Home() {
         {/* LÜKS YAPAY ZEKA BUTONU */}
         <motion.button
           onClick={() => setAiOpen(!aiOpen)}
+          className="floating-btn"
           whileHover={{ scale: 1.02, backgroundColor: darkMode ? 'rgba(31, 41, 55, 0.9)' : '#ffffff' }}
           style={{
             backgroundColor: darkMode ? 'rgba(17, 24, 39, 0.75)' : 'rgba(255, 255, 255, 0.85)',
@@ -1898,6 +1925,7 @@ export default function Home() {
           href="https://wa.me/491636090266"
           target="_blank"
           rel="noopener noreferrer"
+          className="floating-btn"
           whileHover={{ scale: 1.02, backgroundColor: 'rgba(34, 197, 94, 0.15)' }}
           style={{
             backgroundColor: darkMode ? 'rgba(17, 24, 39, 0.75)' : 'rgba(255, 255, 255, 0.85)',
@@ -1993,6 +2021,7 @@ export default function Home() {
       <AnimatePresence>
         {toast.show && (
           <motion.div
+            className="toast-panel"
             initial={{ opacity: 0, y: -20, x: 20, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, x: 0, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
@@ -2021,37 +2050,166 @@ export default function Home() {
         )}
       </AnimatePresence>
 
-      {/* 🔔 PREMIUM TOAST BİLDİRİM PANELİ */}
-      <AnimatePresence>
-        {toast.show && (
-          <motion.div
-            initial={{ opacity: 0, y: -20, x: 20, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, x: 0, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
-            style={{
-              position: 'fixed',
-              top: '40px',
-              right: '40px',
-              zIndex: 9999,
-              backgroundColor: toast.type === 'success' ? 'rgba(16, 185, 129, 0.15)' : 'rgba(239, 68, 68, 0.15)',
-              backdropFilter: 'blur(15px)',
-              border: `1px solid ${toast.type === 'success' ? 'rgba(16, 185, 129, 0.4)' : 'rgba(239, 68, 68, 0.4)'}`,
-              padding: '16px 24px',
-              borderRadius: '14px',
-              boxShadow: toast.type === 'success' ? '0 10px 40px rgba(16, 185, 129, 0.2)' : '0 10px 40px rgba(239, 68, 68, 0.2)',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '12px',
-              maxWidth: '350px'
-            }}
-          >
-            <span style={{ fontSize: '18px' }}>{toast.type === 'success' ? '🟢' : '🔴'}</span>
-            <span style={{ color: '#ffffff', fontSize: '14px', fontWeight: 600, lineHeight: '1.4', fontFamily: 'sans-serif' }}>
-              {toast.message}
-            </span>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* 📱 MOBİL RESPONSIVE CSS */}
+      <style>{`
+        html, body {
+          margin: 0; padding: 0;
+          overflow-x: hidden;
+          scroll-behavior: smooth;
+        }
+        * { box-sizing: border-box; }
+
+        @media (max-width: 768px) {
+
+          /* ── GENEL ── */
+          html, body { overflow-x: hidden; }
+
+          /* ── NAVBAR ── */
+          nav { padding: 12px 16px !important; }
+
+          /* ── HERO ── */
+          .hero-container-main { padding: 90px 16px 40px 16px !important; }
+          .hero-grid-wrapper {
+            grid-template-columns: 1fr !important;
+            gap: 24px !important;
+          }
+          .hero-text-col { align-items: center !important; text-align: center !important; }
+          .hero-text-col h1 { font-size: 26px !important; line-height: 1.3 !important; }
+          .hero-text-col p { font-size: 14px !important; }
+          .hero-text-col span { margin: 0 auto !important; }
+          .hero-btn-row {
+            flex-direction: column !important;
+            align-items: stretch !important;
+            width: 100% !important;
+          }
+          .hero-btn-row a {
+            width: 100% !important;
+            text-align: center !important;
+          }
+          .hero-img-box { height: 220px !important; }
+          .hero-img-badge {
+            bottom: 10px !important;
+            right: 10px !important;
+            left: 10px !important;
+            padding: 10px 14px !important;
+          }
+          .hero-img-badge h3 { font-size: 15px !important; }
+
+          /* ── HAKKIMIZDA ── */
+          .about-section-main { padding: 60px 16px 40px 16px !important; }
+          .about-flex-wrapper {
+            flex-direction: column !important;
+            gap: 24px !important;
+          }
+          .about-flex-wrapper > div { min-width: unset !important; width: 100% !important; }
+
+          /* ── SAYAÇLAR ── */
+          #stats-section { padding: 40px 16px !important; }
+          #stats-section > div {
+            grid-template-columns: 1fr 1fr !important;
+            gap: 16px !important;
+          }
+
+          /* ── HİZMETLER ── */
+          #services { padding: 60px 16px !important; }
+          .service-card-header {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 12px !important;
+            padding: 20px 16px !important;
+          }
+          .service-card-header > div:first-child {
+            flex-direction: row !important;
+            align-items: flex-start !important;
+            gap: 12px !important;
+            width: 100% !important;
+          }
+          .service-card-header > div:first-child > div:last-child {
+            text-align: left !important;
+          }
+          .service-card-header h3 { font-size: 16px !important; }
+          .service-card-header p { font-size: 13px !important; }
+          .service-steps-grid {
+            grid-template-columns: 1fr !important;
+            gap: 10px !important;
+          }
+
+          /* ── GALERİ ── */
+          #gallery { padding: 60px 16px !important; }
+          #gallery .gallery-grid {
+            grid-template-columns: 1fr !important;
+            gap: 16px !important;
+          }
+          #gallery .gallery-card { height: 200px !important; }
+
+          /* ── RANDEVU ── */
+          #appointment { padding: 60px 16px !important; }
+          #appointment .appt-date-row {
+            grid-template-columns: 1fr !important;
+            gap: 16px !important;
+          }
+
+          /* ── BAŞVURU FORMU ── */
+          #apply { padding: 60px 16px !important; }
+          #apply .form-inner { padding: 24px 16px !important; }
+          #apply .form-row-2col {
+            grid-template-columns: 1fr !important;
+            gap: 16px !important;
+          }
+          input, select, textarea {
+            width: 100% !important;
+          }
+
+          /* ── İLETİŞİM ── */
+          #contact { padding: 60px 16px !important; }
+          #contact > div {
+            grid-template-columns: 1fr !important;
+            gap: 30px !important;
+          }
+          #contact .map-iframe { height: 180px !important; }
+
+          /* ── FOOTER ── */
+          footer { padding: 20px 16px !important; }
+          footer > div { flex-direction: column !important; text-align: center !important; }
+
+          /* ── FLOATING BUTONLAR (KI + WHATSAPP) ── */
+          .floating-panel {
+            right: 12px !important;
+            bottom: 12px !important;
+            left: auto !important;
+            align-items: flex-end !important;
+          }
+          .floating-panel > div { /* AI chat penceresi */
+            width: calc(100vw - 24px) !important;
+            max-width: 360px !important;
+            height: 420px !important;
+            right: 0 !important;
+          }
+          .floating-btn {
+            padding: 10px 16px !important;
+            border-radius: 24px !important;
+          }
+
+          /* ── TOAST ── */
+          .toast-panel {
+            top: 16px !important;
+            right: 12px !important;
+            left: 12px !important;
+            max-width: unset !important;
+          }
+
+          /* ── ROZET BÖLÜMÜ ── */
+          .badge-section { padding: 60px 16px !important; }
+          .badge-grid {
+            grid-template-columns: 1fr 1fr !important;
+            gap: 16px !important;
+          }
+
+          /* ── GENEL YAZI ── */
+          h2 { font-size: 22px !important; line-height: 1.3 !important; }
+          h3 { font-size: 18px !important; }
+        }
+      `}</style>
     </div>
   );
 }
