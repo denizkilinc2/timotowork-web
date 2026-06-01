@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 // TÜM SİTENİN ÇEVİRİ VERİSİ
 const translations = {
   tr: {
-    brand: "Timo to Work International B.V.",
+    brand: "Time to Work International B.V.",
     navHome: "Ana Sayfa",
     navAbout: "Hakkımızda",
     navServices: "Hizmetler",
@@ -15,10 +15,10 @@ const translations = {
     navContact: "İletişim",
     navApplyForm: "Başvuru Formu",
     btnCallNow: "Şimdi Arayın",
-    heroTitle: "Timo to Work International B.V.",
+    heroTitle: "Time to Work International B.V.",
     heroSub: "Küresel pazarlarda güvenilir iş gücü çözümleri, sınır ötesi danışmanlık ve uluslararası ticaret entegrasyonu.",
     sectionTitle: "Faaliyet Alanlarımız & Hizmetlerimiz",
-    sectionSub: "Timo to Work International B.V. çatısı altında sunduğumuz global çözümler",
+    sectionSub: "Time to Work International B.V. çatısı altında sunduğumuz global çözümler",
     card1Title: "Fuar Standı Tasarımı & Proje Planlama",
     card1Desc: "Fuar standı tasarımı, kurulumu ve tüm proje süreçlerini baştan sona planlıyor; ilk fikirden anahtar teslim uygulamaya kadar profesyonel çözümler sunuyoruz.",
     card2Title: "Nitelikli İş Gücü Sağlama",
@@ -35,7 +35,7 @@ const translations = {
     formLabelEmail: "E-Posta Adresi",
     formLabelMsg: "Mesajınız",
     formBtn: "Mesaj Gönder",
-    footerText: "© 2026 Timo to Work International B.V. Tüm Hakları Saklıdır.",
+    footerText: "© 2026 Time to Work International B.V. Tüm Hakları Saklıdır.",
     companyDesc: "Almanya ve Hollanda merkezli operasyonlarımızla, fuar lojistiğinden uluslararası ithalat ve ihracat süreçlerine kadar her alanda yanınızdayız.",
     galleryTitle: "Kurumsal Galeri",
     gallerySub: "Operasyonlarımızdan, fuar kurulumlarımızdan ve küresel lojistik ağımızdan kareler",
@@ -138,10 +138,10 @@ const translations = {
     mapLiveOps: "Mönchengladbach Merkez Ofisi - Canlı Operasyon",
     founderTitle: "Kurucumuzun Mesajı",
     founderRole: "Yönetim Kurulu Başkanı / Kurucu",
-    founderText: "Timo to Work International B.V. olarak, Avrupa ve küresel pazarda fuar stand kurulumundan uluslararası lojistiğe kadar her alanda güven, kalite ve estetiği bir araya getiriyoruz. Sürdürülebilir başarıyı uzman kadromuzla inşa etmeye devam ediyoruz."
+    founderText: "Time to Work International B.V. olarak, Avrupa ve küresel pazarda fuar stand kurulumundan uluslararası lojistiğe kadar her alanda güven, kalite ve estetiği bir araya getiriyoruz. Sürdürülebilir başarıyı uzman kadromuzla inşa etmeye devam ediyoruz."
   },
   de: {
-    brand: "Timo to Work",
+    brand: "Time to Work International B.V.",
     navHome: "Startseite",
     navAbout: "Über uns",
     navServices: "Dienstleistungen",
@@ -150,10 +150,10 @@ const translations = {
     navContact: "Kontakt",
     navApplyForm: "Bewerbungsformular",
     btnCallNow: "Jetzt anrufen",
-    heroTitle: "Timo to Work International B.V.",
+    heroTitle: "Time to Work International B.V.",
     heroSub: "Zuverlässige Arbeitskraftlösungen, grenzüberschreitende Beratung und internationale Handelsintegration auf globalen Märkten.",
     sectionTitle: "Unsere Tätigkeitsbereiche & Dienstleistungen",
-    sectionSub: "Globale Lösungen, die wir unter dem Dach von Timo to Work International B.V. anbieten",
+    sectionSub: "Globale Lösungen, die wir unter dem Dach von Time to Work International B.V. anbieten",
     card1Title: "Messebau & Projektplanung",
     card1Desc: "Wir planen, gestalten und realisieren Messestände – von der ersten Idee bis zur fertigen Umsetzung professionell aus einer Hand.",
     card2Title: "Personalbereitstellung",
@@ -170,7 +170,7 @@ const translations = {
     formLabelEmail: "E-Mail-Adresse",
     formLabelMsg: "Ihre Nachricht",
     formBtn: "Nachricht senden",
-    footerText: "© 2026 Timo to Work International B.V. Alle Rechte vorbehalten.",
+    footerText: "© 2026 Time to Work International B.V. Alle Rechte vorbehalten.",
     companyDesc: "Mit unseren Aktivitäten in Deutschland und den Niederlanden stehen wir Ihnen in jedem Bereich zur Seite, von der Messelogistik bis hin zu Import- und Exportprozessen.",
     galleryTitle: "Unternehmensgalerie",
     gallerySub: "Impressionen aus unseren Aktivitäten, Messebauten und unserem globalen Logistiknetzwerk",
@@ -273,10 +273,10 @@ const translations = {
     mapLiveOps: "Hauptsitz Mönchengladbach - Live-Betrieb",
     founderTitle: "Botschaft des Gründers",
     founderRole: "Vorstandsvorsitzender / Gründer",
-    founderText: "Als Timo to Work International B.V. vereinen wir im europäischen und globalen Markt Vertrauen, Qualität und Ästhetik in allen Bereichen, vom Ausstellungsstandbau bis zur internationalen Logistik. Gemeinsam mit unserem Expertenteam bauen wir weiterhin an nachhaltigem Erfolg."
+    founderText: "Als Time to Work International B.V. vereinen wir im europäischen und globalen Markt Vertrauen, Qualität und Ästhetik in allen Bereichen, vom Ausstellungsstandbau bis zur internationalen Logistik. Gemeinsam mit unserem Expertenteam bauen wir weiterhin an nachhaltigem Erfolg."
   },
   en: {
-    brand: "Timo to Work",
+    brand: "Time to Work International B.V.",
     navHome: "Home",
     navAbout: "About Us",
     navServices: "Services",
@@ -285,10 +285,10 @@ const translations = {
     navContact: "Contact",
     navApplyForm: "Application Form",
     btnCallNow: "Call Now",
-    heroTitle: "Timo to Work International B.V.",
+    heroTitle: "Time to Work International B.V.",
     heroSub: "Reliable workforce solutions, cross-border consultancy, and international trade integration in global markets.",
     sectionTitle: "Our Fields of Activity & Services",
-    sectionSub: "Global solutions we offer under the umbrella of Timo to Work International B.V.",
+    sectionSub: "Global solutions we offer under the umbrella of Time to Work International B.V.",
     card1Title: "Exhibition Stand Design & Project Planning",
     card1Desc: "We plan, design, and realize exhibition stands – providing professional solutions from the initial idea to final implementation.",
     card2Title: "Personnel Provision & Workforce Solutions",
@@ -305,7 +305,7 @@ const translations = {
     formLabelEmail: "Email Address",
     formLabelMsg: "Your Message",
     formBtn: "Send Message",
-    footerText: "© 2026 Timo to Work International B.V. All Rights Reserved.",
+    footerText: "© 2026 Time to Work International B.V. All Rights Reserved.",
     companyDesc: "With our operations based in Germany and the Netherlands, we stand by your side in every field from exhibition logistics to international import and export processes.",
     galleryTitle: "Corporate Gallery",
     gallerySub: "Moments from our operations, exhibition installations, and global logistics network",
@@ -408,7 +408,277 @@ const translations = {
     mapLiveOps: "HQ Mönchengladbach - Live Operations",
     founderTitle: "Founder's Message",
     founderRole: "Chairman of the Board / Founder",
-    founderText: "As Timo to Work International B.V., we combine trust, quality, and aesthetics in every field from exhibition stand construction to international logistics in the European and global markets. We continue to build sustainable success with our expert team."
+    founderText: "As Time to Work International B.V., we combine trust, quality, and aesthetics in every field from exhibition stand construction to international logistics in the European and global markets. We continue to build sustainable success with our expert team."
+  },
+  zh: {
+    brand: "Time to Work International B.V.",
+    navHome: "首页",
+    navAbout: "关于我们",
+    navServices: "服务",
+    navGallery: "图库",
+    navAppointment: "预约",
+    navContact: "联系",
+    navApplyForm: "申请表",
+    btnCallNow: "立即拨打",
+    heroTitle: "Time to Work International B.V.",
+    heroSub: "在全球市场提供可靠的劳动力解决方案、跨境咨询和国际贸易整合。",
+    sectionTitle: "我们的业务领域与服务",
+    sectionSub: "Time to Work International B.V. 旗下提供的全球解决方案",
+    card1Title: "展会展台设计与项目规划",
+    card1Desc: "我们策划、设计并实现展会展台——从最初的想法到最终实施，提供专业的一站式服务。",
+    card2Title: "人员供应与劳动力解决方案",
+    card2Desc: "我们为展会流程、物流、安装和拆卸工作提供所需的专业技术人员。",
+    card3Title: "物流与住宿管理",
+    card3Desc: "我们从住宿安排到现场运营，全程无缝、顺畅地管理一切事务。",
+    card4Title: "国际进口业务",
+    card4Desc: "我们完全遵守国际法规，管理全球制造商优质产品和原材料的采购流程。",
+    card5Title: "全球出口解决方案",
+    card5Desc: "我们将产品和服务与国际市场对接，端到端组织清关、目标市场分析和物流网络管理。",
+    formTitle: "联系我们",
+    formSub: "请填写表格，了解我们的全球贸易和服务解决方案。",
+    formLabelName: "公司 / 全名",
+    formLabelEmail: "电子邮件地址",
+    formLabelMsg: "您的留言",
+    formBtn: "发送消息",
+    footerText: "© 2026 Time to Work International B.V. 版权所有。",
+    companyDesc: "我们在德国和荷兰设有运营基地，在展会物流到国际进出口流程的每个领域都为您提供支持。",
+    galleryTitle: "企业图库",
+    gallerySub: "我们运营、展会安装及全球物流网络的精彩瞬间",
+    aptTitle: "在线预约请求",
+    aptSub: "选择合适的时间段与我们的专家团队咨询并规划您的项目。",
+    aptTopic: "会议主题",
+    aptDate: "选择日期",
+    aptTime: "选择时间段",
+    aptBtn: "提交预约请求",
+    jobTitle: "申请表",
+    jobSub: "请完整填写以下表格，用于我们在德国和荷兰的业务。",
+    secPersonal: "1. 个人信息",
+    lblFullName: "全名 *",
+    lblDate: "日期 *",
+    lblEmail: "电子邮件地址 *",
+    lblPhone: "手机号码 *",
+    lblAddress: "完整地址 *",
+    lblGender: "性别 *",
+    lblGender1: "男",
+    lblGender2: "女",
+    lblGender3: "不愿透露",
+    lblSvNum: "社会保障号码 (SV-Nummer)",
+    lblJobType: "期望就业类型",
+    lblJobType1: "全职",
+    lblJobType2: "兼职",
+    lblSalary: "薪资期望：€",
+    lblPosition: "申请职位",
+    secPermit: "2. 工作许可与经验",
+    lblExperience: "您有职业经验吗？",
+    lblExpDates: "如有，请注明开始和结束日期。",
+    secEducation: "3. 教育信息",
+    lblSchool: "学校 *",
+    lblCity: "城市 / 州 *",
+    lblVon: "开始 *",
+    lblBis: "结束 *",
+    lblAbschluss: "毕业状态？*",
+    lblAbschluss1: "高中",
+    lblAbschluss2: "学士",
+    lblAbschluss3: "硕士 / 博士",
+    lblDiplom: "是否有文凭？",
+    optSelect: "请选择",
+    optYes: "是",
+    optNo: "否",
+    jobBtn: "立即申请",
+    stayInTouch: "保持联系",
+    galCard1Title: "展会搭建项目",
+    galCard1Sub: "展台设计与安装",
+    galCard2Title: "专业劳动力",
+    galCard2Sub: "专家人员供应",
+    galCard3Title: "国际物流",
+    galCard3Sub: "跨境运输与仓储",
+    galCard4Title: "全球进口业务",
+    galCard4Sub: "供应链管理",
+    galCard5Title: "国际出口",
+    galCard5Sub: "全球市场整合",
+    galCard6Title: "欧洲运营中心",
+    galCard6Sub: "阿姆斯特丹与德国协调",
+    statCard1: "已完成展台",
+    statCard2: "在职专业人员",
+    statCard3: "国际贸易国家",
+    statCard4: "客户满意度",
+    stepTitle: "运营流程步骤",
+    card1Steps: ["概念与3D展台设计", "材料选择与生产", "物流与运输至展会场地", "现场安装与交钥匙交付", "展后拆除与储存"],
+    card2Steps: ["提供专家安装团队", "认证叉车与设备操作员", "多语种展会接待人员", "法律合规与AÜG合同管理"],
+    card3Steps: ["欧洲酒店与住宿管理", "VIP接送与团队物流", "现场协调与流程管理", "24/7现场支持与协助"],
+    card4Steps: ["全球制造商与供应商分析", "清关与贸易法规管理", "质量控制与交货跟踪", "跨境物流组织"],
+    card5Steps: ["目标市场分析与客户开发", "国际合同与法律咨询", "海关与出口申报", "端到端物流与分销网络"],
+    badgeTitle: "法律合规与证书",
+    badgeSub: "完全符合欧盟和德国法规的法律保证",
+    badge1Name: "AÜG合规",
+    badge1Desc: "完全符合德国临时劳动法标准的运营管理",
+    badge2Name: "GDPR合规",
+    badge2Desc: "符合欧盟通用数据保护条例的数据安全基础设施",
+    badge3Name: "ISO 9001标准",
+    badge3Desc: "国际质量管理与跨境服务标准化",
+    badge4Name: "欧盟工作许可",
+    badge4Desc: "跨境项目中完整合法的劳动力调动",
+    heroTag: "⚡ 全球运营力量",
+    heroBtnSecondary: "探索服务",
+    visionTitle: "愿景与价值观",
+    vision1Name: "全球信任",
+    vision1Desc: "所有跨境业务100%法律合规。",
+    vision2Name: "速度与灵活性",
+    vision2Desc: "即时调动所需劳动力和物流。",
+    vision3Name: "可持续合作",
+    vision3Desc: "在欧洲市场建立长期、深厚的商业关系。",
+    aiTitle: "TTW 人工智能助手",
+    aiSub: "您可以询问有关我们公司和服务的任何问题。",
+    aiPlaceholder: "输入问题...",
+    aiWelcome: "您好！我是TTW人工智能助手。我可以为您提供展台设计、物流、人员供应或进出口流程方面的帮助。",
+    formSchool: "学校 / 大学 *",
+    formCity: "城市 / 州 *",
+    formStart: "开始日期 *",
+    formEnd: "结束日期 *",
+    formStatus: "毕业状态 *",
+    formSelect: "请选择",
+    formDiploma: "是否有文凭？",
+    formDiplomaYes: "是",
+    formDiplomaNo: "否",
+    mapLiveOps: "门兴格拉德巴赫总部 - 实时运营",
+    founderTitle: "创始人的话",
+    founderRole: "董事会主席 / 创始人",
+    founderText: "作为Time to Work International B.V.，我们在欧洲和全球市场将信任、质量与美学融合于每个领域，从展台建设到国际物流。我们与专业团队携手，持续构建可持续的成功。"
+  },
+  nl: {
+    brand: "Time to Work International B.V.",
+    navHome: "Startpagina",
+    navAbout: "Over ons",
+    navServices: "Diensten",
+    navGallery: "Galerij",
+    navAppointment: "Afspraak",
+    navContact: "Contact",
+    navApplyForm: "Aanmeldingsformulier",
+    btnCallNow: "Nu bellen",
+    heroTitle: "Time to Work International B.V.",
+    heroSub: "Betrouwbare personeelsoplossingen, grensoverschrijdend advies en internationale handelsintegratie op wereldmarkten.",
+    sectionTitle: "Onze activiteitsgebieden & diensten",
+    sectionSub: "Wereldwijde oplossingen die wij aanbieden onder de vlag van Time to Work International B.V.",
+    card1Title: "Standbouw & Projectplanning",
+    card1Desc: "Wij plannen, ontwerpen en realiseren beursstanden, van het eerste idee tot de uiteindelijke uitvoering, professioneel uit één hand.",
+    card2Title: "Personeelsvoorziening & Arbeidsoplossingen",
+    card2Desc: "Wij voorzien professioneel in het gekwalificeerde personeel dat u nodig heeft voor beursprocessen, logistiek, montage en demontage.",
+    card3Title: "Logistiek & Accommodatiebeheer",
+    card3Desc: "Wij beheren alles naadloos van accommodatieregelingen tot operaties ter plaatse, soepel en vlekkeloos.",
+    card4Title: "Internationale Importoperaties",
+    card4Desc: "Wij beheren de inkoopprocessen van topkwaliteitsproducten en grondstoffen van wereldwijde fabrikanten, volledig in overeenstemming met internationale wettelijke voorschriften.",
+    card5Title: "Wereldwijde Exportoplossingen",
+    card5Desc: "Wij verbinden producten en diensten met internationale markten en organiseren van begin tot eind douaneafhandeling, doelmarktanalyse en logistieknetwerkbeheer.",
+    formTitle: "Neem contact met ons op",
+    formSub: "Vul het formulier in voor onze wereldwijde handels- en serviceoplossingen.",
+    formLabelName: "Bedrijf / Volledige naam",
+    formLabelEmail: "E-mailadres",
+    formLabelMsg: "Uw bericht",
+    formBtn: "Bericht verzenden",
+    footerText: "© 2026 Time to Work International B.V. Alle rechten voorbehouden.",
+    companyDesc: "Met onze activiteiten in Duitsland en Nederland staan wij in elk vakgebied voor u klaar, van beurslogistiek tot internationale import- en exportprocessen.",
+    galleryTitle: "Bedrijfsgalerij",
+    gallerySub: "Momenten uit onze activiteiten, beursmontages en wereldwijd logistieknetwerk",
+    aptTitle: "Online Afspraakverzoek",
+    aptSub: "Kies een geschikt tijdslot om met ons expertenteam te overleggen en uw projecten te plannen.",
+    aptTopic: "Vergaderonderwerp",
+    aptDate: "Datum kiezen",
+    aptTime: "Tijdslot kiezen",
+    aptBtn: "Afspraakverzoek indienen",
+    jobTitle: "Aanmeldingsformulier",
+    jobSub: "Vul het onderstaande formulier volledig in voor onze activiteiten in Duitsland en Nederland.",
+    secPersonal: "1. Persoonlijke informatie",
+    lblFullName: "Volledige naam *",
+    lblDate: "Datum *",
+    lblEmail: "E-mailadres *",
+    lblPhone: "Mobiel nummer *",
+    lblAddress: "Volledig adres *",
+    lblGender: "Geslacht *",
+    lblGender1: "Man",
+    lblGender2: "Vrouw",
+    lblGender3: "Niet opgeven",
+    lblSvNum: "Burgerservicenummer (BSN)",
+    lblJobType: "Gewenst dienstverband",
+    lblJobType1: "Voltijd",
+    lblJobType2: "Deeltijd",
+    lblSalary: "Salariserswachting: €",
+    lblPosition: "Sollicitatiefunctie",
+    secPermit: "2. Werkvergunning & Ervaring",
+    lblExperience: "Heeft u beroepservaring?",
+    lblExpDates: "Zo ja, geef start- en einddatum op.",
+    secEducation: "3. Opleidingsinformatie",
+    lblSchool: "School *",
+    lblCity: "Stad / Provincie *",
+    lblVon: "Van *",
+    lblBis: "Tot *",
+    lblAbschluss: "Diploma? *",
+    lblAbschluss1: "Middelbare school",
+    lblAbschluss2: "Bachelor",
+    lblAbschluss3: "Master / Doctoraat",
+    lblDiplom: "Diploma beschikbaar?",
+    optSelect: "Selecteer",
+    optYes: "Ja",
+    optNo: "Nee",
+    jobBtn: "Nu solliciteren",
+    stayInTouch: "Blijf in contact",
+    galCard1Title: "Standbouwprojecten",
+    galCard1Sub: "Standontwerp & Installatie",
+    galCard2Title: "Gekwalificeerd personeel",
+    galCard2Sub: "Deskundige personeelsvoorziening",
+    galCard3Title: "Internationale logistiek",
+    galCard3Sub: "Grensoverschrijdend transport & opslag",
+    galCard4Title: "Mondiale importoperaties",
+    galCard4Sub: "Supply chain management",
+    galCard5Title: "Internationale export",
+    galCard5Sub: "Mondiale marktintegratie",
+    galCard6Title: "Europese operatiecentra",
+    galCard6Sub: "Amsterdam & Duitsland coördinatie",
+    statCard1: "Voltooide beursstanden",
+    statCard2: "Actieve specialisten",
+    statCard3: "Internationale handelslanden",
+    statCard4: "Klanttevredenheid",
+    stepTitle: "Operationele processtappen",
+    card1Steps: ["Concept & 3D standontwerp", "Materiaalselectie & productie", "Logistiek & transport naar beursterrein", "Montage ter plaatse & sleutelklare oplevering", "Demontage & opslag na de beurs"],
+    card2Steps: ["Levering van expert montageteams", "Gecertificeerde heftruck- & apparatuuroperators", "Meertalig beurspersoneel (hostessen/hosts)", "Juridische naleving & AÜG-contractbeheer"],
+    card3Steps: ["Hotel- & accommodatiebeheer in Europa", "VIP-transfer & teamlogistiek", "Coördinatie ter plaatse & procesbeheer", "24/7 ondersteuning & assistentie ter plaatse"],
+    card4Steps: ["Mondiale fabrikant- & leveranciersanalyse", "Douaneafhandeling & handelswetgeving", "Kwaliteitscontrole & leveringsbewaking", "Grensoverschrijdende logistiekorganisatie"],
+    card5Steps: ["Doelmarktanalyse & klantenwerving", "Internationale contracten & juridisch advies", "Douane- & exportaangiften", "End-to-end logistiek & distributienetwerk"],
+    badgeTitle: "Juridische naleving & certificaten",
+    badgeSub: "Volledige juridische zekerheid en naleving van EU- en Duitse normen",
+    badge1Name: "AÜG-naleving",
+    badge1Desc: "Operatiebeheer in volledige overeenstemming met de Duitse wet op tijdelijk werk",
+    badge2Name: "AVG-conform",
+    badge2Desc: "Gegevensbeveiligingsinfrastructuur in overeenstemming met de EU AVG",
+    badge3Name: "ISO 9001-normen",
+    badge3Desc: "Internationale kwaliteitsbeheer en grensoverschrijdende dienststandardisering",
+    badge4Name: "EU-werkvergunning",
+    badge4Desc: "Volledig uitgeruste en legale arbeidsmobilisatie bij grensoverschrijdende projecten",
+    heroTag: "⚡ MONDIALE OPERATIONELE KRACHT",
+    heroBtnSecondary: "Bekijk diensten",
+    visionTitle: "Visie & Waarden",
+    vision1Name: "Mondiaal vertrouwen",
+    vision1Desc: "100% juridische naleving bij alle grensoverschrijdende activiteiten.",
+    vision2Name: "Snelheid & Flexibiliteit",
+    vision2Desc: "Onmiddellijke mobilisatie van benodigde arbeidskrachten en logistiek.",
+    vision3Name: "Duurzame samenwerking",
+    vision3Desc: "Langdurige, diepgewortelde handelsrelaties op de Europese markt.",
+    aiTitle: "TTW AI-Assistent",
+    aiSub: "Vraag alles over ons bedrijf en onze diensten.",
+    aiPlaceholder: "Stel een vraag...",
+    aiWelcome: "Hallo! Ik ben de TTW AI-Assistent. Hoe kan ik u helpen met standbouw, logistiek, personeelsvoorziening of import/exportprocessen?",
+    formSchool: "School / Universiteit *",
+    formCity: "Stad / Provincie *",
+    formStart: "Begindatum *",
+    formEnd: "Einddatum *",
+    formStatus: "Diplomastatus *",
+    formSelect: "Selecteer",
+    formDiploma: "Diploma beschikbaar?",
+    formDiplomaYes: "Ja",
+    formDiplomaNo: "Nee",
+    mapLiveOps: "Hoofdkantoor Mönchengladbach - Live Operaties",
+    founderTitle: "Boodschap van de oprichter",
+    founderRole: "Voorzitter van de Raad van Bestuur / Oprichter",
+    founderText: "Als Time to Work International B.V. combineren wij vertrouwen, kwaliteit en esthetiek in elk vakgebied, van standbouw tot internationale logistiek op de Europese en wereldmarkt. Wij blijven duurzaam succes opbouwen met ons expertenteam."
   }
 };
 
@@ -456,7 +726,7 @@ const AnimatedCounter = ({ target, duration = 1500, triggered }: { target: numbe
 };
 
 export default function Home() {
-  const [lang, setLang] = useState<'tr' | 'de' | 'en'>('de');
+  const [lang, setLang] = useState<'tr' | 'de' | 'en' | 'zh' | 'nl'>('de');
 
   // Next.js Hydration hatasını önlemek için Client-Side kontrol state'i
   const [isMounted, setIsMounted] = useState<boolean>(false);
@@ -479,7 +749,7 @@ export default function Home() {
   const [messages, setMessages] = useState<Array<{ sender: 'user' | 'ai', text: string }>>([]);
   const [inputValue, setInputValue] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(true);
-  const [statsTriggered, setStatsTriggered] = useState<boolean>(true);
+  const [statsTriggered, setStatsTriggered] = useState<boolean>(false);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   // 🌟 TOAST BİLDİRİM STATE ALTYAPISI
@@ -581,6 +851,24 @@ export default function Home() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // 📊 İSTATİSTİK SAYACI İÇİN INTERSECTION OBSERVER (MOBİL + MASAÜSTÜ UYUMLU)
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const statsEl = document.getElementById('stats-section');
+    if (!statsEl) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setStatsTriggered(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(statsEl);
+    return () => observer.disconnect();
+  }, [isMounted]);
+
   // Hızlı soru balonlarına tıklandığında çalışacak motor
   const handleQuickReplyClick = (questionText: string) => {
     // Kullanıcının sorusunu ekrana bas
@@ -598,7 +886,7 @@ export default function Home() {
       
       if (isTurkish) {
         if (lowerText.includes('kurucu') || lowerText.includes('gavas')) {
-          reply = "Timo to Work International B.V., Eyüp Gavas tarafından kurulmuştur. Kendisi şirketimizin kurucusu ve üst düzey yöneticisidir.";
+          reply = "Time to Work International B.V., Eyüp Gavas tarafından kurulmuştur. Kendisi şirketimizin kurucusu ve üst düzey yöneticisidir.";
         } else if (lowerText.includes('fuar') || lowerText.includes('süreç')) {
           reply = "Fuar süreçlerimiz 5 adından oluşur: Konsept ve 3D stand tasarımı, malzeme seçimi/üretim, lojistik nakliye, yerinde anahtar teslim kurulum ve fuar sonrası söküm/depolama. Tüm süreci Eyüp Gavas güvencesiyle tek elden yönetiyoruz.";
         } else if (lowerText.includes('iş') || lowerText.includes('başvuru')) {
@@ -642,7 +930,7 @@ export default function Home() {
            reply = "Harika! Başka bir sorunuz olursa kurucumuz Eyüp Gavas liderliğindeki TTW ekibi olarak her zaman buradayız. Yardımcı olabileceğim başka bir konu var mı?";
          }
          else if (lowerText.includes('teşekkür') || lowerText.includes('sağol') || lowerText.includes('tesekkur')) {
-           reply = "Rica ederim! Timo to Work International B.V. adına size yardımcı olmaktan mutluluk duydum. İyi günler dilerim!";
+           reply = "Rica ederim! Time to Work International B.V. adına size yardımcı olmaktan mutluluk duydum. İyi günler dilerim!";
          }
          else if (lowerText.includes('görüşürüz') || lowerText.includes('hoşça kal') || lowerText.includes('baybay') || lowerText.includes('kapat')) {
            reply = "Görüşmek üzere! İhtiyacınız olduğunda sağ üstteki 'Şimdi Arayın' butonundan veya sol alttaki WhatsApp hattımızdan bize her zaman ulaşabilirsiniz. Kendinize iyi bakın!";
@@ -653,7 +941,7 @@ export default function Home() {
          
          // Kurumsal ve Stratejik Bilgiler
          else if (lowerText.includes('kurucu') || lowerText.includes('sahibi') || lowerText.includes('eyüp') || lowerText.includes('gavas') || lowerText.includes('kim kurdu') || lowerText.includes('yönetici')) {
-           reply = "Timo to Work International B.V., kurucumuz ve üst düzey yöneticimiz Eyüp Gavas tarafından yönetilmektedir. Kendisi Avrupa pazarında fuar lojistiği, AÜG iş gücü mobilizasyonu ve uluslararası ticaret entegrasyonu süreçlerine liderlik etmektedir.";
+           reply = "Time to Work International B.V., kurucumuz ve üst düzey yöneticimiz Eyüp Gavas tarafından yönetilmektedir. Kendisi Avrupa pazarında fuar lojistiği, AÜG iş gücü mobilizasyonu ve uluslararası ticaret entegrasyonu süreçlerine liderlik etmektedir.";
          }
          else if (lowerText.includes('ne iş') || lowerText.includes('hizmet') || lowerText.includes('neler yapıyor') || lowerText.includes('faaliyet') || lowerText.includes('şirket nedir')) {
            reply = "Şirketimiz 5 ana uzmanlık alanında faaliyet gösterir: 1) Fuar Standı Tasarımı & Proje Planlama (Messebau), 2) AÜG yasal mevzuatına uygun Nitelikli İş Gücü Sağlama, 3) Lojistik & Konaklama Yönetimi (Avrupa genelinde transfer/otel), 4) Uluslararası İthalat Operasyonları, 5) Küresel İhracat Çözümleri.";
@@ -692,13 +980,13 @@ export default function Home() {
            reply = "Wunderbar! Wenn Sie weitere Fragen haben, ist das TTW-Team unter der Leitung unseres Gründers Eyüp Gavas jederzeit für Sie da. Kann ich Ihnen noch bei etwas anderem helfen?";
          }
          else if (lowerText.includes('danke') || lowerText.includes('vielen dank')) {
-           reply = "Gern geschehen! Im Namen von Timo to Work International B.V. freue ich mich, Ihnen geholfen zu haben. Ich wünsche Ihnen einen schönen Tag!";
+           reply = "Gern geschehen! Im Namen von Time to Work International B.V. freue ich mich, Ihnen geholfen zu haben. Ich wünsche Ihnen einen schönen Tag!";
          }
          else if (lowerText.includes('tschüss') || lowerText.includes('auf wiedersehen') || lowerText.includes('bye')) {
            reply = "Auf Wiedersehen! Sie können uns jederzeit über den 'Jetzt anrufen'-Button oben rechts oder über unseren WhatsApp-Support unten links erreichen. Machen Sie es gut!";
          }
          else if (lowerText.includes('gründer') || lowerText.includes('inhaber') || lowerText.includes('eyüp') || lowerText.includes('gavas')) {
-           reply = "Timo to Work International B.V. wird von Gründer und Geschäftsführer Eyüp Gavas geleitet. Er führt die Prozesse in den Bereichen Messelogistik, AÜG-Personalbereitstellung und internationalen Handel in Europa an.";
+           reply = "Time to Work International B.V. wird von Gründer und Geschäftsführer Eyüp Gavas geleitet. Er führt die Prozesse in den Bereichen Messelogistik, AÜG-Personalbereitstellung und internationalen Handel in Europa an.";
          }
          else if (lowerText.includes('was macht') || lowerText.includes('dienstleistung') || lowerText.includes('tätigkeit') || lowerText.includes('unternehmen')) {
            reply = "Wir bieten High-End-Lösungen in 5 Bereichen: 1) Messebau & Projektplanung, 2) Rechtssichere Personalbereitstellung (nach AÜG), 3) Logistik- & Hotelmanagement (Europa-Transfers), 4) Internationaler Import, 5) Globaler Export.";
@@ -728,7 +1016,7 @@ export default function Home() {
            reply = "Perfect! If you have any more questions, the TTW team under founder Eyüp Gavas is always here to help. Is there anything else I can assist you with?";
          }
          else if (lowerText.includes('thank')) {
-           reply = "You're welcome! On behalf of Timo to Work International B.V., it was a pleasure helping you. Have a great day!";
+           reply = "You're welcome! On behalf of Time to Work International B.V., it was a pleasure helping you. Have a great day!";
          }
          else if (lowerText.includes('bye') || lowerText.includes('goodbye')) {
            reply = "Goodbye! Feel free to reach out anytime using the 'Call Now' button or our live WhatsApp link. Take care!";
@@ -788,7 +1076,7 @@ export default function Home() {
           
           {/* Logo */}
           <a href="#" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', flexShrink: 0 }}>
-            <img src="/logo.png" alt="Timo to Work Logo" style={{ height: '40px', width: 'auto', objectFit: 'contain', backgroundColor: '#ffffff', padding: '4px 8px', borderRadius: '6px' }} />
+            <img src="/logo.png" alt="Time to Work Logo" style={{ height: '40px', width: 'auto', objectFit: 'contain', backgroundColor: '#ffffff', padding: '4px 8px', borderRadius: '6px' }} />
           </a>
 
           {/* MASAÜSTÜ: Orta linkler — CSS ile gizle/göster (JS hydration sorunu yok) */}
@@ -816,10 +1104,12 @@ export default function Home() {
 
           {/* MASAÜSTÜ: Sağ alan */}
           <div className="nav-desktop-right" style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-              <select value={lang} onChange={(e) => setLang(e.target.value as 'tr' | 'de' | 'en')} style={{ backgroundColor: darkMode ? '#2a2a2a' : '#e2e8f0', color: theme.textPrimary, border: `1px solid ${theme.border}`, padding: '6px 12px', borderRadius: '6px', cursor: 'pointer', fontSize: '14px', outline: 'none' }}>
+              <select value={lang} onChange={(e) => setLang(e.target.value as 'tr' | 'de' | 'en' | 'zh' | 'nl')} style={{ backgroundColor: darkMode ? '#2a2a2a' : '#e2e8f0', color: theme.textPrimary, border: `1px solid ${theme.border}`, padding: '6px 12px', borderRadius: '6px', cursor: 'pointer', fontSize: '14px', outline: 'none' }}>
                 <option value="de">🇩🇪 DE</option>
                 <option value="en">🇺🇸 EN</option>
                 <option value="tr">🇹🇷 TR</option>
+                <option value="zh">🇨🇳 ZH</option>
+                <option value="nl">🇳🇱 NL</option>
               </select>
               <a href="tel:+491636090266" style={{ background: 'linear-gradient(90deg, #7c3aed 0%, #ef4444 100%)', color: '#ffffff', textDecoration: 'none', padding: '10px 24px', borderRadius: '25px', fontWeight: 'bold', fontSize: '14px', boxShadow: '0 4px 15px rgba(124, 58, 237, 0.3)' }}>
                 {t.btnCallNow}
@@ -833,15 +1123,17 @@ export default function Home() {
           <div className="nav-mobile-right" style={{ display: 'none', alignItems: 'center', gap: '8px' }}>
               <select 
                 value={lang} 
-                onChange={(e) => setLang(e.target.value as 'tr' | 'de' | 'en')} 
+                onChange={(e) => setLang(e.target.value as 'tr' | 'de' | 'en' | 'zh' | 'nl')} 
                 style={{ backgroundColor: darkMode ? '#2a2a2a' : '#e2e8f0', color: theme.textPrimary, border: `1px solid ${theme.border}`, padding: '6px 8px', borderRadius: '6px', cursor: 'pointer', fontSize: '13px', outline: 'none' }}
               >
                 <option value="de">🇩🇪</option>
                 <option value="en">🇺🇸</option>
                 <option value="tr">🇹🇷</option>
+                <option value="zh">🇨🇳</option>
+                <option value="nl">🇳🇱</option>
               </select>
               <button 
-                onClick={() => setMobileMenuOpen(prev => !prev)}
+                onClick={(e) => { e.preventDefault(); e.stopPropagation(); setMobileMenuOpen(prev => !prev); }}
                 style={{ 
                   background: 'none', 
                   border: `1px solid ${theme.border}`,
@@ -857,6 +1149,9 @@ export default function Home() {
                   minWidth: '44px',
                   minHeight: '44px',
                   overflow: 'hidden',
+                  pointerEvents: 'auto' as any,
+                  position: 'relative' as any,
+                  zIndex: 1001,
                 }}
                 aria-label={mobileMenuOpen ? 'Menüyü kapat' : 'Menüyü aç'}
                 aria-expanded={mobileMenuOpen}
@@ -951,9 +1246,11 @@ export default function Home() {
               ))}
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '8px' }}>
                 <select value={lang} onChange={(e) => { setLang(e.target.value as any); setMobileMenuOpen(false); }} style={{ backgroundColor: theme.inputBg, color: theme.textPrimary, border: `1px solid ${theme.border}`, padding: '8px 16px', borderRadius: '8px', fontSize: '14px', outline: 'none' }}>
-                  <option value="de">Deutsch</option>
-                  <option value="en">English</option>
-                  <option value="tr">Türkçe</option>
+                  <option value="de">🇩🇪 Deutsch</option>
+                  <option value="en">🇺🇸 English</option>
+                  <option value="tr">🇹🇷 Türkçe</option>
+                  <option value="zh">🇨🇳 中文</option>
+                  <option value="nl">🇳🇱 Nederlands</option>
                 </select>
                 <button onClick={() => { setDarkMode(!darkMode); setMobileMenuOpen(false); }} style={{ padding: '8px 16px', borderRadius: '8px', border: `1px solid ${theme.border}`, backgroundColor: 'transparent', color: theme.textPrimary, fontWeight: 'bold', cursor: 'pointer' }}>
                   {darkMode ? '☀️ Light' : '🌙 Dark'}
@@ -1069,7 +1366,7 @@ export default function Home() {
             {/* Lüks Holding Genel Merkez Binası */}
             <img 
               src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80" 
-              alt="Timo to Work Head Office" 
+              alt="Time to Work Head Office" 
               style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             />
 
@@ -1127,7 +1424,7 @@ export default function Home() {
               {lang === 'tr' ? 'BİZ KİMİZ?' : lang === 'de' ? 'WER WIR SIND?' : 'WHO WE ARE?'}
             </span>
             <h2 style={{ fontSize: '36px', fontWeight: 800, color: theme.textPrimary, marginBottom: '24px', lineHeight: '1.2' }}>
-              Timo to Work International B.V.
+              Time to Work International B.V.
             </h2>
             <p style={{ color: theme.textSecondary, fontSize: '16px', lineHeight: '1.8', marginBottom: '20px' }}>
               {(t as any).aboutText || "Avrupa operasyonlarımızla fuar lojistiğinden uluslararası iş gücü tedariğine kadar küresel standartlarda hizmet sunuyoruz."}
@@ -1175,7 +1472,6 @@ export default function Home() {
         id="stats-section"
         initial={{ opacity: 1, y: 0 }}
         animate={{ opacity: 1, y: 0 }}
-        onViewportEnter={() => setStatsTriggered(true)} // Ekrana girdiği an sayaçları tetikler
         style={{ padding: '60px 20px', maxWidth: '1200px', margin: '0 auto' }}
       >
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '24px' }}>
@@ -1255,7 +1551,7 @@ export default function Home() {
               >
                 {/* Tıklanabilir Üst Başlık Alanı */}
                 <div 
-                  onClick={() => setActiveCard(isOpen ? null : num)}
+                  onClick={(e) => { e.stopPropagation(); setActiveCard(isOpen ? null : num); }}
                   className="service-card-header"
                   style={{ 
                     padding: '30px', 
@@ -1263,7 +1559,9 @@ export default function Home() {
                     alignItems: 'center', 
                     justifyContent: 'space-between', 
                     cursor: 'pointer',
-                    userSelect: 'none'
+                    userSelect: 'none',
+                    WebkitTapHighlightColor: 'transparent' as any,
+                    touchAction: 'manipulation' as any,
                   }}
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
@@ -1946,7 +2244,7 @@ export default function Home() {
 
         {/* LÜKS YAPAY ZEKA BUTONU */}
         <motion.button
-          onClick={() => setAiOpen(!aiOpen)}
+          onClick={(e) => { e.preventDefault(); e.stopPropagation(); setAiOpen(!aiOpen); }}
           className="floating-btn"
           whileHover={{ scale: 1.02, backgroundColor: darkMode ? 'rgba(31, 41, 55, 0.9)' : '#ffffff' }}
           style={{
@@ -1960,7 +2258,12 @@ export default function Home() {
             gap: '12px',
             cursor: 'pointer',
             boxShadow: '0 20px 40px -10px rgba(0,0,0,0.3)',
-            transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)'
+            transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+            WebkitTapHighlightColor: 'transparent' as any,
+            touchAction: 'manipulation' as any,
+            pointerEvents: 'auto' as any,
+            position: 'relative' as any,
+            zIndex: 1001,
           }}
         >
           {/* Geometrik Akıllı Asistan İkonu */}
