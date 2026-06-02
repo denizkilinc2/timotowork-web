@@ -730,20 +730,17 @@ export default function Home() {
 
   // Next.js Hydration hatasını önlemek için Client-Side kontrol state'i
   const [isMounted, setIsMounted] = useState<boolean>(false);
-  const [isMobile, setIsMobile] = useState<boolean>(() => {
-    if (typeof window !== 'undefined') return window.innerWidth <= 968;
-    return false;
-  });
+  const [isMobile, setIsMobile] = useState<boolean>(true); // Güvenli başlangıç: mobil
 
   useEffect(() => {
     setIsMounted(true);
-    const checkMobile = () => setIsMobile(window.innerWidth <= 968);
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
   const [activeCard, setActiveCard] = useState<number | null>(null);
-  const [darkMode, setDarkMode] = useState<boolean>(true);
+  const [darkMode, setDarkMode] = useState<boolean>(false);
   const [aiOpen, setAiOpen] = useState<boolean>(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const [messages, setMessages] = useState<Array<{ sender: 'user' | 'ai', text: string }>>([]);
@@ -851,23 +848,35 @@ export default function Home() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // 📊 İSTATİSTİK SAYACI İÇİN INTERSECTION OBSERVER (MOBİL + MASAÜSTÜ UYUMLU)
+  // 📊 İSTATİSTİK SAYACI
   useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const statsEl = document.getElementById('stats-section');
-    if (!statsEl) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          setStatsTriggered(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1 }
-    );
-    observer.observe(statsEl);
-    return () => observer.disconnect();
-  }, [isMounted]);
+    const trigger = () => {
+      const statsEl = document.getElementById('stats-section');
+      if (!statsEl) return false;
+      const rect = statsEl.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        setStatsTriggered(true);
+        return true;
+      }
+      return false;
+    };
+
+    // Sayfa yüklendiğinde zaten görünüyorsa hemen tetikle
+    const immediate = setTimeout(() => {
+      if (trigger()) return;
+    }, 300);
+
+    // Scroll sırasında kontrol et
+    const onScroll = () => { if (trigger()) window.removeEventListener('scroll', onScroll); };
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    return () => {
+      clearTimeout(immediate);
+      window.removeEventListener('scroll', onScroll);
+    };
+  }, []);
+
+  // (outside click handler kaldırıldı - menü artık isMobile && mobileMenuOpen ile kontrol ediliyor)
 
   // Hızlı soru balonlarına tıklandığında çalışacak motor
   const handleQuickReplyClick = (questionText: string) => {
@@ -1056,218 +1065,233 @@ export default function Home() {
   };
 
   return (
-    <div style={{ backgroundColor: theme.bgPrimary, color: theme.textPrimary, minHeight: '100vh', width: '100%', overflowX: 'hidden', fontFamily: 'sans-serif', margin: 0, padding: 0, transition: 'background-color 0.3s, color 0.3s' }}>
+    <div style={{ backgroundColor: theme.bgPrimary, color: theme.textPrimary, minHeight: '100vh', width: '100%', fontFamily: 'sans-serif', margin: 0, padding: 0, transition: 'background-color 0.3s, color 0.3s' }}>
       
-      {/* 🌐 NAVBAR */}
-      <nav style={{ 
-        backgroundColor: darkMode ? 'rgba(26, 26, 26, 0.95)' : 'rgba(255, 255, 255, 0.95)', 
-        backdropFilter: 'blur(20px)', 
-        borderBottom: `1px solid ${theme.border}`, 
-        padding: '15px 40px', 
-        position: 'fixed', 
-        top: 0, 
-        left: 0,
-        right: 0,
-        zIndex: 1000, 
-        overflow: 'visible',
-        transition: 'background-color 0.3s ease'
+      {/* NAVBAR */}
+      <nav style={{
+        position: 'fixed', top: 0, left: 0, right: 0,
+        zIndex: 9999,
+        backgroundColor: darkMode ? 'rgba(15,23,42,0.97)' : 'rgba(255,255,255,0.97)',
+        borderBottom: `1px solid ${theme.border}`,
+        padding: isMobile ? '10px 16px' : '14px 40px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
       }}>
-        <div style={{ maxWidth: '1400px', margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          
-          {/* Logo */}
-          <a href="#" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', flexShrink: 0 }}>
-            <img src="/logo.png" alt="Time to Work Logo" style={{ height: '40px', width: 'auto', objectFit: 'contain', backgroundColor: '#ffffff', padding: '4px 8px', borderRadius: '6px' }} />
-          </a>
+        {/* Logo */}
+        <a href="#" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', flexShrink: 0 }}>
+          <img src="/logo.png" alt="Logo" style={{ height: '38px', width: 'auto', backgroundColor: '#fff', padding: '3px 6px', borderRadius: '5px' }} />
+        </a>
 
-          {/* MASAÜSTÜ: Orta linkler — CSS ile gizle/göster (JS hydration sorunu yok) */}
-          <div className="nav-desktop-links" style={{ display: 'flex', gap: '24px', alignItems: 'center' }}>
-              {[
-                { id: 'home', text: t.navHome, href: '#' },
-                { id: 'about', text: t.navAbout, href: '#about' },
-                { id: 'services', text: t.navServices, href: '#services' },
-                { id: 'gallery', text: t.navGallery, href: '#gallery' },
-                { id: 'appointment', text: t.navAppointment, href: '#appointment' },
-                { id: 'apply', text: t.navApplyForm, href: '#apply' },
-                { id: 'contact', text: t.navContact, href: '#contact' }
-              ].map((item) => {
-                const isActive = activeSection === item.id;
-                return (
-                  <a key={item.id} href={item.href} style={{ color: isActive ? '#38bdf8' : (darkMode ? '#94a3b8' : '#475569'), textDecoration: 'none', fontSize: '14px', fontWeight: isActive ? 700 : 500, position: 'relative', padding: '8px 0', transition: 'all 0.3s' }}>
-                    {item.text}
-                    {isActive && (
-                      <motion.div layoutId="activeIndicator" style={{ position: 'absolute', bottom: '-4px', left: 0, right: 0, height: '2px', background: 'linear-gradient(90deg, #38bdf8 0%, #7c3aed 100%)', borderRadius: '2px', boxShadow: '0 2px 10px rgba(56, 189, 248, 0.5)' }} transition={{ type: 'spring', stiffness: 380, damping: 30 }} />
-                    )}
-                  </a>
-                );
-              })}
-          </div>
-
-          {/* MASAÜSTÜ: Sağ alan */}
-          <div className="nav-desktop-right" style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-              <select value={lang} onChange={(e) => setLang(e.target.value as 'tr' | 'de' | 'en' | 'zh' | 'nl')} style={{ backgroundColor: darkMode ? '#2a2a2a' : '#e2e8f0', color: theme.textPrimary, border: `1px solid ${theme.border}`, padding: '6px 12px', borderRadius: '6px', cursor: 'pointer', fontSize: '14px', outline: 'none' }}>
-                <option value="de">🇩🇪 DE</option>
-                <option value="en">🇺🇸 EN</option>
-                <option value="tr">🇹🇷 TR</option>
-                <option value="zh">🇨🇳 ZH</option>
-                <option value="nl">🇳🇱 NL</option>
-              </select>
-              <a href="tel:+491636090266" style={{ background: 'linear-gradient(90deg, #7c3aed 0%, #ef4444 100%)', color: '#ffffff', textDecoration: 'none', padding: '10px 24px', borderRadius: '25px', fontWeight: 'bold', fontSize: '14px', boxShadow: '0 4px 15px rgba(124, 58, 237, 0.3)' }}>
-                {t.btnCallNow}
+        {/* MASAÜSTÜ NAV */}
+        <div className="desktop-nav-links" style={{ display: 'flex', alignItems: 'center', gap: '28px' }}>
+            {[
+              { text: t.navHome, href: '#' },
+              { text: t.navAbout, href: '#about' },
+              { text: t.navServices, href: '#services' },
+              { text: t.navGallery, href: '#gallery' },
+              { text: t.navAppointment, href: '#appointment' },
+              { text: t.navApplyForm, href: '#apply' },
+              { text: t.navContact, href: '#contact' },
+            ].map((item, i) => (
+              <a key={i} href={item.href} style={{ color: darkMode ? '#94a3b8' : '#475569', textDecoration: 'none', fontSize: '14px', fontWeight: 500 }}>
+                {item.text}
               </a>
-              <button onClick={() => setDarkMode(!darkMode)} style={{ backgroundColor: darkMode ? '#f97316' : '#1e1b4b', border: 'none', width: '36px', height: '36px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: '#ffffff', fontSize: '18px' }}>
-                {darkMode ? '☀️' : '🌙'}
-              </button>
+            ))}
           </div>
 
-          {/* MOBİL: Sağ alan — lang seçici + hamburger — CSS ile göster */}
-          <div className="nav-mobile-right" style={{ display: 'none', alignItems: 'center', gap: '8px' }}>
-              <select 
-                value={lang} 
-                onChange={(e) => setLang(e.target.value as 'tr' | 'de' | 'en' | 'zh' | 'nl')} 
-                style={{ backgroundColor: darkMode ? '#2a2a2a' : '#e2e8f0', color: theme.textPrimary, border: `1px solid ${theme.border}`, padding: '6px 8px', borderRadius: '6px', cursor: 'pointer', fontSize: '13px', outline: 'none' }}
-              >
-                <option value="de">🇩🇪</option>
-                <option value="en">🇺🇸</option>
-                <option value="tr">🇹🇷</option>
-                <option value="zh">🇨🇳</option>
-                <option value="nl">🇳🇱</option>
-              </select>
-              <button 
-                onClick={(e) => { e.preventDefault(); e.stopPropagation(); setMobileMenuOpen(prev => !prev); }}
-                style={{ 
-                  background: 'none', 
-                  border: `1px solid ${theme.border}`,
-                  borderRadius: '8px',
-                  color: theme.textPrimary, 
-                  cursor: 'pointer', 
-                  padding: '0',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  WebkitTapHighlightColor: 'transparent' as any,
-                  touchAction: 'manipulation' as any,
-                  minWidth: '44px',
-                  minHeight: '44px',
-                  overflow: 'hidden',
-                  pointerEvents: 'auto' as any,
-                  position: 'relative' as any,
-                  zIndex: 1001,
-                }}
-                aria-label={mobileMenuOpen ? 'Menüyü kapat' : 'Menüyü aç'}
-                aria-expanded={mobileMenuOpen}
-              >
-                {/* Animasyonlu SVG Hamburger İkonu */}
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  style={{ display: 'block' }}
-                >
-                  {/* Üst çizgi */}
-                  <line
-                    x1="3"
-                    y1="6"
-                    x2="21"
-                    y2="6"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    style={{
-                      transformOrigin: '12px 6px',
-                      transition: 'transform 0.35s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.2s ease',
-                      transform: mobileMenuOpen
-                        ? 'translateY(6px) rotate(45deg)'
-                        : 'translateY(0) rotate(0deg)',
-                    }}
-                  />
-                  {/* Orta çizgi */}
-                  <line
-                    x1="3"
-                    y1="12"
-                    x2="21"
-                    y2="12"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    style={{
-                      transformOrigin: '12px 12px',
-                      transition: 'opacity 0.2s ease, transform 0.1s ease',
-                      opacity: mobileMenuOpen ? 0 : 1,
-                      transform: mobileMenuOpen ? 'scaleX(0)' : 'scaleX(1)',
-                    }}
-                  />
-                  {/* Alt çizgi */}
-                  <line
-                    x1="3"
-                    y1="18"
-                    x2="21"
-                    y2="18"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    style={{
-                      transformOrigin: '12px 18px',
-                      transition: 'transform 0.35s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.2s ease',
-                      transform: mobileMenuOpen
-                        ? 'translateY(-6px) rotate(-45deg)'
-                        : 'translateY(0) rotate(0deg)',
-                    }}
-                  />
-                </svg>
-              </button>
-            </div>
-
-        </div>
-
-        {/* 📱 MOBİL MENÜ */}
-        <AnimatePresence>
-          {mobileMenuOpen && (
-            <motion.div 
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.2 }}
-              style={{ position: 'fixed', top: '65px', left: 0, right: 0, backgroundColor: theme.bgSecondary, borderBottom: `1px solid ${theme.border}`, padding: '24px', display: 'flex', flexDirection: 'column', gap: '16px', boxShadow: '0 20px 30px rgba(0,0,0,0.15)', zIndex: 999 }}
+        {/* MASAÜSTÜ SAĞ */}
+        <div className="desktop-nav-right" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+            <select
+              value={lang}
+              onChange={(e) => setLang(e.target.value as 'tr'|'de'|'en'|'zh'|'nl')}
+              style={{ backgroundColor: darkMode ? '#1e293b' : '#e2e8f0', color: darkMode ? '#fff' : '#0f172a', border: `1px solid ${theme.border}`, padding: '6px 10px', borderRadius: '6px', fontSize: '14px', cursor: 'pointer' }}
             >
-              {[
-                { text: t.navHome, href: '#' },
-                { text: t.navAbout, href: '#about' },
-                { text: t.navServices, href: '#services' },
-                { text: t.navGallery, href: '#gallery' },
-                { text: t.navAppointment, href: '#appointment' },
-                { text: t.navApplyForm, href: '#apply' },
-                { text: t.navContact, href: '#contact' }
-              ].map((link, lIdx) => (
-                <a key={lIdx} href={link.href} onClick={() => setMobileMenuOpen(false)} style={{ color: theme.textPrimary, textDecoration: 'none', fontSize: '16px', fontWeight: 600, paddingBottom: '8px', borderBottom: `1px solid ${theme.border}` }}>
-                  {link.text}
-                </a>
-              ))}
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '8px' }}>
-                <select value={lang} onChange={(e) => { setLang(e.target.value as any); setMobileMenuOpen(false); }} style={{ backgroundColor: theme.inputBg, color: theme.textPrimary, border: `1px solid ${theme.border}`, padding: '8px 16px', borderRadius: '8px', fontSize: '14px', outline: 'none' }}>
-                  <option value="de">🇩🇪 Deutsch</option>
-                  <option value="en">🇺🇸 English</option>
-                  <option value="tr">🇹🇷 Türkçe</option>
-                  <option value="zh">🇨🇳 中文</option>
-                  <option value="nl">🇳🇱 Nederlands</option>
-                </select>
-                <button onClick={() => { setDarkMode(!darkMode); setMobileMenuOpen(false); }} style={{ padding: '8px 16px', borderRadius: '8px', border: `1px solid ${theme.border}`, backgroundColor: 'transparent', color: theme.textPrimary, fontWeight: 'bold', cursor: 'pointer' }}>
-                  {darkMode ? '☀️ Light' : '🌙 Dark'}
-                </button>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+              <option value="de">🇩🇪 Deutsch</option>
+              <option value="en">🇺🇸 English</option>
+              <option value="tr">🇹🇷 Türkçe</option>
+              <option value="zh">🇨🇳 中文</option>
+              <option value="nl">🇳🇱 Nederlands</option>
+            </select>
+            <a href="tel:+491636090266" style={{ background: 'linear-gradient(90deg,#7c3aed,#ef4444)', color: '#fff', textDecoration: 'none', padding: '9px 20px', borderRadius: '22px', fontWeight: 700, fontSize: '14px' }}>
+              {t.btnCallNow}
+            </a>
+            <button
+              type="button"
+              onClick={() => setDarkMode(d => !d)}
+              style={{ background: 'none', border: `1px solid ${theme.border}`, borderRadius: '50%', width: '36px', height: '36px', cursor: 'pointer', fontSize: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+            >
+              {darkMode ? '☀️' : '🌙'}
+            </button>
+          </div>
+
+        {/* MOBİL SAĞ - her zaman DOM'da, CSS ile gizle/göster */}
+        <div className="mobile-right-btns" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <button
+              type="button"
+              onClick={() => {
+                const menu = document.getElementById('mobile-menu-dom');
+                if (menu) {
+                  const isOpen = menu.style.display === 'flex';
+                  menu.style.display = isOpen ? 'none' : 'flex';
+                  const overlay = document.getElementById('mobile-overlay-dom');
+                  if (overlay) overlay.style.display = isOpen ? 'none' : 'block';
+                }
+              }}
+              style={{
+                background: darkMode ? '#1e293b' : '#e2e8f0',
+                color: darkMode ? '#fff' : '#0f172a',
+                border: 'none',
+                borderRadius: '8px',
+                padding: '10px 12px',
+                fontSize: '13px',
+                fontWeight: 700,
+                cursor: 'pointer',
+                minHeight: '44px',
+                minWidth: '60px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                touchAction: 'manipulation',
+              }}
+            >
+              {lang==='de'?'🇩🇪 DE':lang==='en'?'🇺🇸 EN':lang==='tr'?'🇹🇷 TR':lang==='zh'?'🇨🇳 ZH':'🇳🇱 NL'}
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                const menu = document.getElementById('mobile-menu-dom');
+                if (menu) {
+                  const isOpen = menu.style.display === 'flex';
+                  menu.style.display = isOpen ? 'none' : 'flex';
+                  const overlay = document.getElementById('mobile-overlay-dom');
+                  if (overlay) overlay.style.display = isOpen ? 'none' : 'block';
+                }
+              }}
+              style={{
+                background: 'none',
+                border: `2px solid ${theme.border}`,
+                borderRadius: '8px',
+                color: darkMode ? '#fff' : '#0f172a',
+                cursor: 'pointer',
+                width: '44px',
+                height: '44px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                touchAction: 'manipulation',
+                flexShrink: 0,
+              }}
+            >
+              {mobileMenuOpen
+                ? <span style={{ fontSize: '20px', lineHeight: 1 }}>✕</span>
+                : <span style={{ fontSize: '20px', lineHeight: 1 }}>☰</span>
+              }
+            </button>
+          </div>
       </nav>
 
-      {/* Mobil menü açıkken arka plan karartması */}
-      {mobileMenuOpen && (
-        <div 
-          onClick={() => setMobileMenuOpen(false)}
-          style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, zIndex: 998, background: 'transparent' }}
-        />
-      )}
+      {/* MOBİL MENÜ - her zaman DOM'da, CSS ile göster/gizle */}
+      <div id="mobile-menu-dom" style={{
+        position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
+        zIndex: 99999,
+        backgroundColor: darkMode ? '#0f172a' : '#ffffff',
+        overflowY: 'auto',
+        paddingTop: '70px',
+        padding: '70px 16px 16px 16px',
+        display: mobileMenuOpen ? 'flex' : 'none',
+        flexDirection: 'column',
+        gap: '4px',
+      }}>
+          {[
+            { text: t.navHome, href: '#' },
+            { text: t.navAbout, href: '#about' },
+            { text: t.navServices, href: '#services' },
+            { text: t.navGallery, href: '#gallery' },
+            { text: t.navAppointment, href: '#appointment' },
+            { text: t.navApplyForm, href: '#apply' },
+            { text: t.navContact, href: '#contact' },
+          ].map((item, i) => (
+            <a
+              key={i}
+              href={item.href}
+              onClick={() => { const menu = document.getElementById('mobile-menu-dom'); if (menu) menu.style.display = 'none'; const overlay = document.getElementById('mobile-overlay-dom'); if (overlay) overlay.style.display = 'none'; }}
+              style={{
+                display: 'block',
+                padding: '14px 8px',
+                color: darkMode ? '#e2e8f0' : '#0f172a',
+                textDecoration: 'none',
+                fontSize: '17px',
+                fontWeight: 600,
+                borderBottom: `1px solid ${theme.border}`,
+              }}
+            >
+              {item.text}
+            </a>
+          ))}
+
+          {/* Dil seçici */}
+          <div style={{ paddingTop: '16px' }}>
+            <p style={{ color: '#64748b', fontSize: '12px', fontWeight: 700, textTransform: 'uppercase', margin: '0 0 10px 0' }}>🌐 Dil / Language</p>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+              {([
+                {code:'de',label:'🇩🇪 Deutsch'},
+                {code:'en',label:'🇺🇸 English'},
+                {code:'tr',label:'🇹🇷 Türkçe'},
+                {code:'zh',label:'🇨🇳 中文'},
+                {code:'nl',label:'🇳🇱 Nederlands'},
+              ] as {code:'tr'|'de'|'en'|'zh'|'nl', label:string}[]).map(l => (
+                <button
+                  key={l.code}
+                  type="button"
+                  onClick={() => { setLang(l.code); const menu = document.getElementById('mobile-menu-dom'); if (menu) menu.style.display = 'none'; const overlay = document.getElementById('mobile-overlay-dom'); if (overlay) overlay.style.display = 'none'; }}
+                  style={{
+                    padding: '9px 14px',
+                    borderRadius: '8px',
+                    border: lang===l.code ? '2px solid #38bdf8' : `1px solid ${theme.border}`,
+                    backgroundColor: lang===l.code ? '#0f2d3d' : (darkMode ? '#1e293b' : '#f1f5f9'),
+                    color: lang===l.code ? '#38bdf8' : (darkMode ? '#fff' : '#0f172a'),
+                    fontWeight: 600,
+                    fontSize: '14px',
+                    cursor: 'pointer',
+                    touchAction: 'manipulation',
+                  }}
+                >
+                  {l.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Dark mode toggle */}
+          <div style={{ paddingTop: '12px' }}>
+            <button
+              type="button"
+              onClick={() => { setDarkMode(d => !d); const menu = document.getElementById('mobile-menu-dom'); if (menu) menu.style.display = 'none'; const overlay = document.getElementById('mobile-overlay-dom'); if (overlay) overlay.style.display = 'none'; }}
+              style={{
+                padding: '10px 18px', borderRadius: '8px',
+                border: `1px solid ${theme.border}`,
+                backgroundColor: darkMode ? '#1e293b' : '#f1f5f9',
+                color: darkMode ? '#fff' : '#0f172a',
+                fontWeight: 700, fontSize: '14px', cursor: 'pointer', touchAction: 'manipulation',
+              }}
+            >
+              {darkMode ? '☀️ Aydınlık Mod' : '🌙 Karanlık Mod'}
+            </button>
+          </div>
+        </div>
+
+      {/* Menü açıkken arka plan overlay */}
+      <div
+        id="mobile-overlay-dom"
+        onClick={() => {
+          const menu = document.getElementById('mobile-menu-dom');
+          if (menu) menu.style.display = 'none';
+          const overlay = document.getElementById('mobile-overlay-dom');
+          if (overlay) overlay.style.display = 'none';
+        }}
+        style={{ position: 'fixed', inset: 0, zIndex: 9997, background: 'transparent', display: 'none' }}
+      />
 
       {/* ----------------- GÖSTERİŞLİ BÖLÜNMÜŞ EKRAN HERO (ANA SAYFA) ----------------- */}
       <header id="navbar-top" className="hero-container-main" style={{ 
@@ -1551,7 +1575,7 @@ export default function Home() {
               >
                 {/* Tıklanabilir Üst Başlık Alanı */}
                 <div 
-                  onClick={(e) => { e.stopPropagation(); setActiveCard(isOpen ? null : num); }}
+                  onClick={() => setActiveCard(isOpen ? null : num)}
                   className="service-card-header"
                   style={{ 
                     padding: '30px', 
@@ -2158,156 +2182,120 @@ export default function Home() {
         </div>
       </footer>
 
-      {/*  HOLDING STANDARTLARINDA PREMIUM CANLI DESTEK PANELI (SAĞ ALT KÖŞE) */}
-      <div className="floating-panel" style={{ position: 'fixed', bottom: '35px', right: '35px', zIndex: 1000, display: 'flex', flexDirection: 'column', gap: '15px', alignItems: 'end', fontFamily: 'sans-serif' }}>
-        
-        {/* --- 1. YAPAY ZEKA ASİSTANI BÖLÜMÜ --- */}
-        {aiOpen && (
-          <motion.div 
-            initial={{ opacity: 0, y: 20, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            style={{
-              width: 'calc(100vw - 40px)',
-              maxWidth: '360px',
-              height: '500px',
-              backgroundColor: darkMode ? 'rgba(17, 24, 39, 0.85)' : 'rgba(255, 255, 255, 0.85)',
-              backdropFilter: 'blur(25px)',
-              border: `1px solid ${darkMode ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)'}`,
-              borderRadius: '24px',
-              boxShadow: '0 30px 60px -15px rgba(0,0,0,0.6)',
-              display: 'flex',
-              flexDirection: 'column',
-              overflow: 'hidden',
-              marginBottom: '10px'
-            }}
-          >
-            {/* Asistan Üst Barı */}
-            <div style={{ padding: '24px', backgroundColor: darkMode ? 'rgba(11, 15, 25, 0.6)' : 'rgba(241, 245, 249, 0.6)', borderBottom: `1px solid ${theme.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      {/* FLOATING BUTONLAR */}
+      <div style={{
+        position: 'fixed',
+        bottom: '24px',
+        right: '16px',
+        zIndex: 500,
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '10px',
+        alignItems: 'flex-end',
+      }}>
+        {/* AI Chat Penceresi - her zaman DOM'da, DOM manipulation ile göster/gizle */}
+          <div id="ai-panel-dom" style={{
+            width: 'calc(100vw - 32px)',
+            maxWidth: '360px',
+            height: isMobile ? '420px' : '500px',
+            backgroundColor: darkMode ? '#111827' : '#ffffff',
+            border: `1px solid ${theme.border}`,
+            borderRadius: '20px',
+            boxShadow: '0 20px 60px rgba(0,0,0,0.4)',
+            display: 'none',
+            flexDirection: 'column',
+            overflow: 'hidden',
+          }}>
+            {/* Header */}
+            <div style={{ padding: '16px 20px', backgroundColor: darkMode ? '#0f172a' : '#f8fafc', borderBottom: `1px solid ${theme.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <div>
-                <h4 style={{ margin: 0, fontSize: '15px', fontWeight: 700, color: theme.textPrimary, letterSpacing: '-0.3px' }}>{t.aiTitle}</h4>
-                <p style={{ margin: '4px 0 0 0', fontSize: '11px', color: '#64748b', fontWeight: 500 }}>{t.aiSub}</p>
+                <div style={{ fontWeight: 700, fontSize: '14px', color: theme.textPrimary }}>{t.aiTitle}</div>
+                <div style={{ fontSize: '11px', color: '#64748b', marginTop: '2px' }}>{t.aiSub}</div>
               </div>
-              <button onClick={() => setAiOpen(false)} style={{ background: 'none', border: 'none', color: '#64748b', fontSize: '22px', cursor: 'pointer', lineHeight: '1' }}>×</button>
+              <button type="button" onClick={() => { const ai = document.getElementById('ai-panel-dom'); if (ai) ai.style.display = 'none'; }} style={{ background: 'none', border: 'none', color: '#64748b', fontSize: '22px', cursor: 'pointer', lineHeight: 1, padding: '4px' }}>×</button>
             </div>
-
-            {/* Mesaj Alanı */}
-            <div style={{ flex: 1, padding: '24px', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '16px' }}>
-              <div style={{ alignSelf: 'start', backgroundColor: darkMode ? 'rgba(31, 41, 55, 0.5)' : '#e2e8f0', color: theme.textPrimary, padding: '14px 18px', borderRadius: '16px', borderTopLeftRadius: '0', fontSize: '13px', lineHeight: '1.6', maxWidth: '85%', border: `1px solid ${theme.border}` }}>
+            {/* Messages */}
+            <div style={{ flex: 1, padding: '16px', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              <div style={{ alignSelf: 'flex-start', backgroundColor: darkMode ? '#1e293b' : '#e2e8f0', color: theme.textPrimary, padding: '12px 16px', borderRadius: '14px', borderTopLeftRadius: 0, fontSize: '13px', lineHeight: 1.6, maxWidth: '85%' }}>
                 {t.aiWelcome}
               </div>
-
-              {/* 🏢 PREMIUM HIZLI SORU BALONLARI (QUICK REPLIES) */}
               {messages.length === 0 && (
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '4px', maxWidth: '90%' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                   {[
-                    { text: lang === 'tr' ? '🏢 Kurucumuz Kim?' : lang === 'de' ? '🏢 Wer ist der Gründer?' : '🏢 Who is our Founder?', query: lang === 'tr' ? 'Şirket kurucusu Eyüp Gavas kimdir?' : lang === 'de' ? 'Wer ist der Gründer Eyüp Gavas?' : 'Who is the founder Eyüp Gavas?' },
-                    { text: lang === 'tr' ? '🛠️ Fuar Süreçleri' : lang === 'de' ? '🛠️ Messebau-Prozess' : '🛠️ Exhibition Processes', query: lang === 'tr' ? 'Fuar standı kurulum süreçleriniz nelerdir?' : lang === 'de' ? 'Wie läuft der Messebau-Prozess ab?' : 'What are your exhibition stand installation processes?' },
-                    { text: lang === 'tr' ? '💼 İş Başvurusu Nasıl Yapılır?' : lang === 'de' ? '💼 Wie bewerben?' : '💼 How to Apply?', query: lang === 'tr' ? 'Nasıl iş başvurusu yapabilirim?' : lang === 'de' ? 'Wie kann ich mich bewerben?' : 'How can I apply for a job?' }
-                  ].map((btn, bIdx) => (
-                    <motion.button
-                      key={bIdx}
-                      whileHover={{ scale: 1.02, backgroundColor: 'rgba(56, 189, 248, 0.12)', borderColor: '#38bdf8' }}
-                      onClick={() => handleQuickReplyClick(btn.query)}
-                      style={{
-                        textAlign: 'left',
-                        padding: '10px 14px',
-                        backgroundColor: 'transparent',
-                        border: `1px solid ${darkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}`,
-                        borderRadius: '10px',
-                        color: darkMode ? '#38bdf8' : '#0369a1',
-                        fontSize: '12px',
-                        fontWeight: 600,
-                        cursor: 'pointer',
-                        transition: 'all 0.2s ease'
-                      }}
-                    >
-                      {btn.text}
-                    </motion.button>
+                    { text: lang==='tr'?'🏢 Kurucumuz Kim?':lang==='de'?'🏢 Wer ist der Gründer?':lang==='zh'?'🏢 谁是创始人？':lang==='nl'?'🏢 Wie is de oprichter?':'🏢 Who is our Founder?', query: 'founder' },
+                    { text: lang==='tr'?'🛠️ Fuar Süreçleri':lang==='de'?'🛠️ Messebau-Prozess':lang==='zh'?'🛠️ 展览流程':lang==='nl'?'🛠️ Beursprocessen':'🛠️ Exhibition Processes', query: 'exhibition' },
+                    { text: lang==='tr'?'💼 İş Başvurusu':lang==='de'?'💼 Bewerbung':lang==='zh'?'💼 求职申请':lang==='nl'?'💼 Sollicitatie':'💼 How to Apply?', query: 'apply' },
+                  ].map((btn, i) => (
+                    <button key={i} type="button" onClick={() => handleQuickReplyClick(btn.query)}
+                      style={{ textAlign: 'left', padding: '9px 13px', background: 'transparent', border: `1px solid ${darkMode?'rgba(255,255,255,0.1)':'rgba(0,0,0,0.1)'}`, borderRadius: '10px', color: '#38bdf8', fontSize: '12px', fontWeight: 600, cursor: 'pointer', touchAction: 'manipulation' }}
+                    >{btn.text}</button>
                   ))}
                 </div>
               )}
-
-              {messages.map((msg, index) => (
-                <div key={index} style={{ alignSelf: msg.sender === 'user' ? 'end' : 'start', backgroundColor: msg.sender === 'user' ? '#38bdf8' : (darkMode ? 'rgba(31, 41, 55, 0.5)' : '#e2e8f0'), color: msg.sender === 'user' ? '#0b0f19' : theme.textPrimary, padding: '14px 18px', borderRadius: '16px', fontSize: '13px', lineHeight: '1.6', maxWidth: '85%', fontWeight: msg.sender === 'user' ? 600 : 500, border: msg.sender === 'user' ? 'none' : `1px solid ${theme.border}` }}>
+              {messages.map((msg, i) => (
+                <div key={i} style={{ alignSelf: msg.sender==='user'?'flex-end':'flex-start', backgroundColor: msg.sender==='user'?'#38bdf8':(darkMode?'#1e293b':'#e2e8f0'), color: msg.sender==='user'?'#000':theme.textPrimary, padding: '11px 15px', borderRadius: '14px', fontSize: '13px', lineHeight: 1.6, maxWidth: '85%' }}>
                   {msg.text}
                 </div>
               ))}
             </div>
-
-            {/* Girdi Alanı */}
-            <form onSubmit={handleAiSubmit} style={{ padding: '18px', backgroundColor: darkMode ? 'rgba(11, 15, 25, 0.6)' : 'rgba(241, 245, 249, 0.6)', borderTop: `1px solid ${theme.border}`, display: 'flex', gap: '10px' }}>
-              <input type="text" value={inputValue} onChange={(e) => setInputValue(e.target.value)} placeholder={t.aiPlaceholder} style={{ flex: 1, padding: '12px 18px', backgroundColor: darkMode ? 'rgba(0,0,0,0.2)' : '#ffffff', border: `1px solid ${theme.border}`, borderRadius: '12px', color: theme.textPrimary, fontSize: '13px', outline: 'none' }} />
-              <button type="submit" style={{ backgroundColor: '#38bdf8', border: 'none', borderRadius: '12px', width: '42px', height: '42px', color: '#0b0f19', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '16px' }}>➔</button>
+            {/* Input */}
+            <form onSubmit={handleAiSubmit} style={{ padding: '12px 16px', borderTop: `1px solid ${theme.border}`, display: 'flex', gap: '8px', backgroundColor: darkMode ? '#0f172a' : '#f8fafc' }}>
+              <input type="text" value={inputValue} onChange={e => setInputValue(e.target.value)} placeholder={t.aiPlaceholder}
+                style={{ flex: 1, padding: '10px 14px', backgroundColor: darkMode?'#1e293b':'#fff', border: `1px solid ${theme.border}`, borderRadius: '10px', color: theme.textPrimary, fontSize: '13px', outline: 'none' }}
+              />
+              <button type="submit" style={{ backgroundColor: '#38bdf8', border: 'none', borderRadius: '10px', width: '40px', height: '40px', color: '#000', cursor: 'pointer', fontSize: '16px', flexShrink: 0 }}>➔</button>
             </form>
-          </motion.div>
-        )}
+          </div>
 
-        {/* LÜKS YAPAY ZEKA BUTONU */}
-        <motion.button
-          onClick={(e) => { e.preventDefault(); e.stopPropagation(); setAiOpen(!aiOpen); }}
-          className="floating-btn"
-          whileHover={{ scale: 1.02, backgroundColor: darkMode ? 'rgba(31, 41, 55, 0.9)' : '#ffffff' }}
+        {/* AI Butonu */}
+        <button
+          type="button"
+          onClick={() => { const ai = document.getElementById('ai-panel-dom'); if (ai) { const isOpen = ai.style.display === 'flex'; ai.style.display = isOpen ? 'none' : 'flex'; } }}
           style={{
-            backgroundColor: darkMode ? 'rgba(17, 24, 39, 0.75)' : 'rgba(255, 255, 255, 0.85)',
-            backdropFilter: 'blur(15px)',
-            border: `1px solid ${darkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}`,
-            padding: scrolled ? '15px' : '12px 24px',
-            borderRadius: '30px',
+            backgroundColor: darkMode ? '#1e293b' : '#ffffff',
+            border: `1px solid ${theme.border}`,
+            borderRadius: '50px',
+            padding: scrolled ? '12px 14px' : '12px 20px',
             display: 'flex',
             alignItems: 'center',
-            gap: '12px',
+            gap: '10px',
             cursor: 'pointer',
-            boxShadow: '0 20px 40px -10px rgba(0,0,0,0.3)',
-            transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
-            WebkitTapHighlightColor: 'transparent' as any,
-            touchAction: 'manipulation' as any,
-            pointerEvents: 'auto' as any,
-            position: 'relative' as any,
-            zIndex: 1001,
+            boxShadow: '0 4px 20px rgba(0,0,0,0.2)',
+            touchAction: 'manipulation',
+            color: theme.textPrimary,
           }}
         >
-          {/* Geometrik Akıllı Asistan İkonu */}
-          <div style={{ position: 'relative', display: 'flex', alignItems: 'center', justify: 'center' }}>
-            <span style={{ fontSize: '18px', color: '#38bdf8', animation: 'spin 8s linear infinite' }}>✦</span>
-          </div>
-          {!scrolled && (
-            <span style={{ fontSize: '13px', fontWeight: 700, color: theme.textPrimary, letterSpacing: '0.5px', textTransform: 'uppercase' }}>
-              {lang === 'tr' ? 'Yapay Zeka Asistanı' : lang === 'de' ? 'KI-Assistent' : 'AI Assistant'}
-            </span>
-          )}
-        </motion.button>
+          <span style={{ fontSize: '16px', color: '#38bdf8' }}>✦</span>
+          {!scrolled && <span style={{ fontSize: '12px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+            {lang==='tr'?'Yapay Zeka':lang==='de'?'KI-Assistent':lang==='zh'?'AI助手':lang==='nl'?'AI Assistent':'AI Assistant'}
+          </span>}
+        </button>
 
-        {/* --- 2. LÜKS WHATSAPP DESTEK BUTONU --- */}
-        <motion.a
+        {/* WhatsApp Butonu */}
+        <a
           href="https://wa.me/491636090266"
           target="_blank"
           rel="noopener noreferrer"
-          className="floating-btn"
-          whileHover={{ scale: 1.02, backgroundColor: 'rgba(34, 197, 94, 0.15)' }}
           style={{
-            backgroundColor: darkMode ? 'rgba(17, 24, 39, 0.75)' : 'rgba(255, 255, 255, 0.85)',
-            backdropFilter: 'blur(15px)',
-            border: '1px solid rgba(34, 197, 94, 0.3)',
-            padding: scrolled ? '15px' : '12px 24px',
-            borderRadius: '30px',
+            backgroundColor: darkMode ? '#1e293b' : '#ffffff',
+            border: '1px solid rgba(34,197,94,0.4)',
+            borderRadius: '50px',
+            padding: scrolled ? '12px 14px' : '12px 20px',
             display: 'flex',
             alignItems: 'center',
-            gap: '12px',
+            gap: '10px',
             textDecoration: 'none',
-            boxShadow: '0 20px 40px -10px rgba(0,0,0,0.2)',
-            transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)'
+            boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
+            touchAction: 'manipulation',
           }}
         >
-          {/* İnce ve Minimalist İletişim İkonu */}
-          <span style={{ fontSize: '16px', color: '#22c55e' }}>🟢</span>
-          {!scrolled && (
-            <span style={{ fontSize: '13px', fontWeight: 700, color: theme.textPrimary, letterSpacing: '0.5px', textTransform: 'uppercase' }}>
-              {lang === 'tr' ? 'WhatsApp İletişim' : lang === 'de' ? 'WhatsApp Support' : 'WhatsApp Support'}
-            </span>
-          )}
-        </motion.a>
-
+          <span style={{ fontSize: '14px' }}>🟢</span>
+          {!scrolled && <span style={{ fontSize: '12px', fontWeight: 700, color: theme.textPrimary, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+            {lang==='tr'?'WhatsApp':lang==='de'?'WhatsApp':lang==='zh'?'WhatsApp':lang==='nl'?'WhatsApp':'WhatsApp'}
+          </span>}
+        </a>
       </div>
+
 
       {/* 🌌 ULTRA-MODERN SINEMATIK LIGHTBOX MODÜLÜ */}
       <AnimatePresence>
@@ -2416,15 +2404,14 @@ export default function Home() {
         }
         * { box-sizing: border-box; }
 
-        /* ── NAVBAR RESPONSIVE (CSS tabanlı — JS hydration yok) ── */
-        .nav-desktop-links { display: flex; }
-        .nav-desktop-right  { display: flex; }
-        .nav-mobile-right   { display: none !important; }
-
-        @media (max-width: 968px) {
-          .nav-desktop-links { display: none !important; }
-          .nav-desktop-right  { display: none !important; }
-          .nav-mobile-right   { display: flex !important; }
+        /* ── NAVBAR RESPONSIVE ── */
+        .mobile-right-btns { display: none; }
+        .desktop-nav-links { display: flex; }
+        .desktop-nav-right { display: flex; }
+        @media (max-width: 1023px) {
+          .mobile-right-btns { display: flex !important; }
+          .desktop-nav-links { display: none !important; }
+          .desktop-nav-right { display: none !important; }
         }
 
         @media (max-width: 768px) {
