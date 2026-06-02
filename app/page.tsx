@@ -1415,7 +1415,7 @@ export default function Home() {
                   e.currentTarget.style.backgroundColor = 'transparent';
                 }}
               >
-                {lang === 'tr' ? 'Hizmetlerimizi İnceleyin' : lang === 'de' ? 'Dienstleistungen' : 'Explore Services'}
+                {t.heroBtnSecondary}
               </a>
             </div>
           </motion.div>
