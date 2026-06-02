@@ -880,32 +880,59 @@ export default function Home() {
 
   // Hızlı soru balonlarına tıklandığında çalışacak motor
   const handleQuickReplyClick = (questionText: string) => {
-    // Kullanıcının sorusunu ekrana bas
     const newMessages = [...messages, { sender: 'user' as const, text: questionText }];
     setMessages(newMessages);
 
-    // handleAiSubmit içindeki yapay zeka analiz motorunu tetiklemesi için simüle et
     setTimeout(() => {
       const lowerText = questionText.toLowerCase().trim();
-      let reply = "";
-      
-      // (Daha önce kurduğumuz o devasa akıllı bilgi havuzu burayı otomatik analiz edecek)
-      // Kolaylık olsun diye mevcut handleAiSubmit mantığından gelen eşleşmeyi tetikliyoruz:
-      const isTurkish = /[çğıöşü]/i.test(lowerText) || lowerText.includes('ne is') || lowerText.includes('kim') || lowerText.includes('neler') || lowerText.includes('adres') || lowerText.includes('iletisim');
-      
-      if (isTurkish) {
+      let reply = '';
+
+      if (lang === 'tr') {
         if (lowerText.includes('kurucu') || lowerText.includes('gavas')) {
-          reply = "Time to Work International B.V., Eyüp Gavas tarafından kurulmuştur. Kendisi şirketimizin kurucusu ve üst düzey yöneticisidir.";
+          reply = 'Time to Work International B.V., kurucumuz Eyüp Gavas tarafından yönetilmektedir. Kendisi Avrupa pazarında fuar lojistiği ve uluslararası ticaret entegrasyonuna liderlik etmektedir.';
         } else if (lowerText.includes('fuar') || lowerText.includes('süreç')) {
-          reply = "Fuar süreçlerimiz 5 adından oluşur: Konsept ve 3D stand tasarımı, malzeme seçimi/üretim, lojistik nakliye, yerinde anahtar teslim kurulum ve fuar sonrası söküm/depolama. Tüm süreci Eyüp Gavas güvencesiyle tek elden yönetiyoruz.";
-        } else if (lowerText.includes('iş') || lowerText.includes('başvuru')) {
-          reply = "Almanya ve Hollanda operasyonlarımızda görevlendirilmek üzere sürekli yeni ekip arkadaşları arıyoruz. Sitemizdeki 'Detaylı İş Başvuru Formu' üzerinden bilgilerinizi ileterek başvurabilirsiniz.";
+          reply = 'Fuar süreçlerimiz 5 adımdan oluşur: Konsept ve 3D stand tasarımı, malzeme seçimi/üretim, lojistik nakliye, yerinde kurulum ve fuar sonrası söküm/depolama.';
+        } else if (lowerText.includes('başvuru') || lowerText.includes('iş')) {
+          reply = 'Almanya ve Hollanda operasyonlarımızda görevlendirilmek üzere ekip arkadaşları arıyoruz. Sitemizdeki Detaylı İş Başvuru Formu üzerinden başvurabilirsiniz.';
         } else {
-          reply = "Şirketimiz hakkında fuar stand kurulumu (Messebau), AÜG iş gücü tedariği ve lojistik konularında size detaylı bilgi verebilirim.";
+          reply = 'Fuar stand kurulumu, AÜG iş gücü tedariği ve lojistik konularında size yardımcı olabilirim.';
+        }
+      } else if (lang === 'de') {
+        if (lowerText.includes('gründer') || lowerText.includes('gavas') || lowerText.includes('wer')) {
+          reply = 'Time to Work International B.V. wird von unserem Gründer Eyüp Gavas geleitet. Er führt das Unternehmen im Bereich Messebau, AÜG-Personalvermittlung und internationaler Logistik.';
+        } else if (lowerText.includes('messe') || lowerText.includes('prozess')) {
+          reply = 'Unser Messeprozess umfasst 5 Schritte: Konzept & 3D-Standdesign, Materialbeschaffung, Logistik, schlüsselfertige Montage vor Ort und Abbau nach der Messe.';
+        } else if (lowerText.includes('bewerbung') || lowerText.includes('bewerben')) {
+          reply = 'Wir suchen ständig neue Teammitglieder für unsere Operationen in Deutschland und den Niederlanden. Bitte füllen Sie das Bewerbungsformular auf unserer Website aus.';
+        } else {
+          reply = 'Ich helfe Ihnen gerne bei Fragen zu Messebau, AÜG-Personalüberlassung und Logistik weiter.';
+        }
+      } else if (lang === 'zh') {
+        if (lowerText.includes('创始人') || lowerText.includes('gavas')) {
+          reply = 'Time to Work International B.V.由我们的创始人Eyüp Gavas领导，专注于欧洲展览搭建、劳务派遣和国际物流。';
+        } else if (lowerText.includes('展览') || lowerText.includes('流程')) {
+          reply = '我们的展览流程分5步：概念设计、材料采购、物流运输、现场安装和拆除。';
+        } else {
+          reply = '我可以帮助您了解展览搭建、劳务派遣和物流方面的信息。';
+        }
+      } else if (lang === 'nl') {
+        if (lowerText.includes('oprichter') || lowerText.includes('gavas')) {
+          reply = 'Time to Work International B.V. wordt geleid door onze oprichter Eyüp Gavas, gespecialiseerd in beursbouw, AÜG personeelsdetachering en internationale logistiek.';
+        } else if (lowerText.includes('beurs') || lowerText.includes('proces')) {
+          reply = 'Ons beursproces bestaat uit 5 stappen: conceptontwerp, materiaalinkoop, logistiek transport, montage op locatie en demontage na de beurs.';
+        } else {
+          reply = 'Ik help u graag met vragen over beursbouw, personeelsdetachering en logistiek.';
         }
       } else {
-        // Almanca / İngilizce varsayılan yedek havuz
-        reply = "Unter der Leitung unseres Gründers Eyüp Gavas helfen wir Ihnen gerne bei Fragen zu Messebau, Personalüberlassung (AÜG) und Logistik weiter.";
+        if (lowerText.includes('founder') || lowerText.includes('gavas')) {
+          reply = 'Time to Work International B.V. is led by our founder Eyüp Gavas, specializing in exhibition construction, AÜG staffing and international logistics across Europe.';
+        } else if (lowerText.includes('exhibition') || lowerText.includes('process')) {
+          reply = 'Our exhibition process has 5 steps: concept & 3D design, material sourcing, logistics transport, on-site installation and post-fair dismantling.';
+        } else if (lowerText.includes('apply') || lowerText.includes('job')) {
+          reply = 'We are always looking for new team members for our operations in Germany and the Netherlands. Please fill out the Job Application Form on our website.';
+        } else {
+          reply = 'I can help you with questions about exhibition stands, AÜG staffing and logistics services.';
+        }
       }
 
       setMessages(prev => [...prev, { sender: 'ai' as const, text: reply }]);
@@ -1126,7 +1153,7 @@ export default function Home() {
           </div>
 
         {/* MOBİL SAĞ - her zaman DOM'da, CSS ile gizle/göster */}
-        <div className="mobile-right-btns" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <div className="mobile-right-btns" style={{ alignItems: 'center', gap: '8px' }}>
             <button
               type="button"
               onClick={() => {
@@ -2222,9 +2249,9 @@ export default function Home() {
               {messages.length === 0 && (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                   {[
-                    { text: lang==='tr'?'🏢 Kurucumuz Kim?':lang==='de'?'🏢 Wer ist der Gründer?':lang==='zh'?'🏢 谁是创始人？':lang==='nl'?'🏢 Wie is de oprichter?':'🏢 Who is our Founder?', query: 'founder' },
-                    { text: lang==='tr'?'🛠️ Fuar Süreçleri':lang==='de'?'🛠️ Messebau-Prozess':lang==='zh'?'🛠️ 展览流程':lang==='nl'?'🛠️ Beursprocessen':'🛠️ Exhibition Processes', query: 'exhibition' },
-                    { text: lang==='tr'?'💼 İş Başvurusu':lang==='de'?'💼 Bewerbung':lang==='zh'?'💼 求职申请':lang==='nl'?'💼 Sollicitatie':'💼 How to Apply?', query: 'apply' },
+                    { text: lang==='tr'?'🏢 Kurucumuz Kim?':lang==='de'?'🏢 Wer ist der Gründer?':lang==='zh'?'🏢 谁是创始人？':lang==='nl'?'🏢 Wie is de oprichter?':'🏢 Who is our Founder?', query: lang==='tr'?'Kurucumuz Eyüp Gavas kimdir?':lang==='de'?'Wer ist der Gründer Eyüp Gavas?':lang==='zh'?'创始人是谁？':lang==='nl'?'Wie is de oprichter?':'Who is the founder Eyüp Gavas?' },
+                    { text: lang==='tr'?'🛠️ Fuar Süreçleri':lang==='de'?'🛠️ Messebau-Prozess':lang==='zh'?'🛠️ 展览流程':lang==='nl'?'🛠️ Beursprocessen':'🛠️ Exhibition Processes', query: lang==='tr'?'Fuar standı kurulum süreçleri nelerdir?':lang==='de'?'Wie läuft der Messebau-Prozess ab?':lang==='zh'?'展览搭建流程是什么？':lang==='nl'?'Hoe verloopt het beursproces?':'What are the exhibition stand processes?' },
+                    { text: lang==='tr'?'💼 İş Başvurusu':lang==='de'?'💼 Bewerbung':lang==='zh'?'💼 求职申请':lang==='nl'?'💼 Sollicitatie':'💼 How to Apply?', query: lang==='tr'?'Nasıl iş başvurusu yapabilirim?':lang==='de'?'Wie kann ich mich bewerben?':lang==='zh'?'如何申请工作？':lang==='nl'?'Hoe kan ik solliciteren?':'How can I apply for a job?' },
                   ].map((btn, i) => (
                     <button key={i} type="button" onClick={() => handleQuickReplyClick(btn.query)}
                       style={{ textAlign: 'left', padding: '9px 13px', background: 'transparent', border: `1px solid ${darkMode?'rgba(255,255,255,0.1)':'rgba(0,0,0,0.1)'}`, borderRadius: '10px', color: '#38bdf8', fontSize: '12px', fontWeight: 600, cursor: 'pointer', touchAction: 'manipulation' }}
