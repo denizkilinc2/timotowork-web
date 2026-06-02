@@ -2104,14 +2104,14 @@ export default function Home() {
                 <div style={{ display: 'flex', alignItems: 'start', gap: '15px' }}>
                 <span style={{ fontSize: '20px' }}>📍</span>
                 <div>
-                  <strong style={{ display: 'block', color: '#38bdf8' }}>{lang === 'tr' ? 'Adres' : lang === 'de' ? 'Adresse' : 'Address'}</strong>
-                  <span style={{ color: '#94a3b8', fontSize: '14px', lineHeight: '1.5' }}>Hindenburgstr. 236,<br />41061 Mönchengladbach,<br />{lang === 'tr' ? 'Almanya' : lang === 'de' ? 'Deutschland' : 'Germany'}</span>
+                  <strong style={{ display: 'block', color: '#38bdf8' }}>{lang==='tr'?'Adres':lang==='de'?'Adresse':lang==='zh'?'地址':lang==='nl'?'Adres':'Address'}</strong>
+                  <span style={{ color: '#94a3b8', fontSize: '14px', lineHeight: '1.5' }}>Hindenburgstr. 236,<br />41061 Mönchengladbach,<br />{lang==='tr'?'Almanya':lang==='de'?'Deutschland':lang==='zh'?'德国':lang==='nl'?'Duitsland':'Germany'}</span>
                 </div>
               </div>
                 <div style={{ display: 'flex', alignItems: 'start', gap: '15px' }}>
                 <span style={{ fontSize: '20px' }}>📞</span>
                 <div>
-                  <strong style={{ display: 'block', color: '#38bdf8' }}>{lang === 'tr' ? 'Şimdi Arayın' : lang === 'de' ? 'Jetzt anrufen' : 'Call Now'}</strong>
+                  <strong style={{ display: 'block', color: '#38bdf8' }}>{lang==='tr'?'Şimdi Arayın':lang==='de'?'Jetzt anrufen':lang==='zh'?'立即致电':lang==='nl'?'Nu bellen':'Call Now'}</strong>
                   <a href="tel:+491636090266" style={{ color: '#94a3b8', fontSize: '14px', textDecoration: 'none' }}>+49 (0) 163 6090266</a>
                 </div>
               </div>
@@ -2175,7 +2175,7 @@ export default function Home() {
               }}>
                 <span style={{ width: '6px', height: '6px', backgroundColor: '#22c55e', borderRadius: '50%', boxShadow: '0 0 8px #22c55e' }}></span>
                 <span style={{ color: '#ffffff', fontSize: '11px', fontWeight: 600, letterSpacing: '0.5px' }}>
-                  {lang === 'tr' ? 'Haritada Yol Tarifi Al ➔' : lang === 'de' ? 'Auf der Karte anzeigen ➔' : 'Get Directions ➔'}
+                  {lang==='tr'?'Haritada Yol Tarifi Al ➔':lang==='de'?'Auf der Karte anzeigen ➔':lang==='zh'?'获取路线 ➔':lang==='nl'?'Routebeschrijving ➔':'Get Directions ➔'}
                 </span>
               </div>
               
