@@ -1107,7 +1107,7 @@ export default function Home() {
       }}>
         {/* Logo */}
         <a href="#" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', flexShrink: 0 }}>
-          <img src="/logo.png" alt="Logo" style={{ height: '38px', width: 'auto', backgroundColor: '#fff', padding: '3px 6px', borderRadius: '5px' }} />
+          <img src="/logo.png" alt="Logo" style={{ height: '56px', width: 'auto', backgroundColor: '#fff', padding: '4px 8px', borderRadius: '6px' }} />
         </a>
 
         {/* MASAÜSTÜ NAV */}
