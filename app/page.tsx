@@ -1154,36 +1154,30 @@ export default function Home() {
 
         {/* MOBİL SAĞ - her zaman DOM'da, CSS ile gizle/göster */}
         <div className="mobile-right-btns" style={{ alignItems: 'center', gap: '8px' }}>
-            <button
-              type="button"
-              onClick={() => {
-                const menu = document.getElementById('mobile-menu-dom');
-                if (menu) {
-                  const isOpen = menu.style.display === 'flex';
-                  menu.style.display = isOpen ? 'none' : 'flex';
-                  const overlay = document.getElementById('mobile-overlay-dom');
-                  if (overlay) overlay.style.display = isOpen ? 'none' : 'block';
-                }
-              }}
+            {/* Dil seçici - masaüstü ile aynı select */}
+            <select
+              value={lang}
+              onChange={(e) => setLang(e.target.value as 'tr'|'de'|'en'|'zh'|'nl')}
               style={{
-                background: darkMode ? '#1e293b' : '#e2e8f0',
+                backgroundColor: darkMode ? '#1e293b' : '#e2e8f0',
                 color: darkMode ? '#fff' : '#0f172a',
-                border: 'none',
+                border: `1px solid ${theme.border}`,
                 borderRadius: '8px',
-                padding: '10px 12px',
+                padding: '8px 10px',
                 fontSize: '13px',
                 fontWeight: 700,
                 cursor: 'pointer',
                 minHeight: '44px',
-                minWidth: '60px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
                 touchAction: 'manipulation',
+                outline: 'none',
               }}
             >
-              {lang==='de'?'🇩🇪 DE':lang==='en'?'🇺🇸 EN':lang==='tr'?'🇹🇷 TR':lang==='zh'?'🇨🇳 ZH':'🇳🇱 NL'}
-            </button>
+              <option value="de">🇩🇪 DE</option>
+              <option value="en">🇺🇸 EN</option>
+              <option value="tr">🇹🇷 TR</option>
+              <option value="zh">🇨🇳 ZH</option>
+              <option value="nl">🇳🇱 NL</option>
+            </select>
             <button
               type="button"
               onClick={() => {
@@ -1230,6 +1224,33 @@ export default function Home() {
         flexDirection: 'column',
         gap: '4px',
       }}>
+          {/* Kapatma butonu */}
+          <button
+            type="button"
+            onClick={() => {
+              const menu = document.getElementById('mobile-menu-dom');
+              if (menu) menu.style.display = 'none';
+              const overlay = document.getElementById('mobile-overlay-dom');
+              if (overlay) overlay.style.display = 'none';
+            }}
+            style={{
+              position: 'absolute',
+              top: '14px',
+              right: '16px',
+              background: 'none',
+              border: `2px solid ${theme.border}`,
+              borderRadius: '8px',
+              color: darkMode ? '#fff' : '#0f172a',
+              width: '44px',
+              height: '44px',
+              fontSize: '22px',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              touchAction: 'manipulation',
+            }}
+          >✕</button>
           {[
             { text: t.navHome, href: '#' },
             { text: t.navAbout, href: '#about' },
@@ -1303,7 +1324,10 @@ export default function Home() {
                 fontWeight: 700, fontSize: '14px', cursor: 'pointer', touchAction: 'manipulation',
               }}
             >
-              {darkMode ? '☀️ Aydınlık Mod' : '🌙 Karanlık Mod'}
+              {darkMode
+                ? (lang==='tr'?'☀️ Aydınlık Mod':lang==='de'?'☀️ Heller Modus':lang==='zh'?'☀️ 亮色模式':lang==='nl'?'☀️ Lichte modus':'☀️ Light Mode')
+                : (lang==='tr'?'🌙 Karanlık Mod':lang==='de'?'🌙 Dunkler Modus':lang==='zh'?'🌙 深色模式':lang==='nl'?'🌙 Donkere modus':'🌙 Dark Mode')
+              }
             </button>
           </div>
         </div>
@@ -1478,7 +1502,7 @@ export default function Home() {
               Time to Work International B.V.
             </h2>
             <p style={{ color: theme.textSecondary, fontSize: '16px', lineHeight: '1.8', marginBottom: '20px' }}>
-              {(t as any).aboutText || "Avrupa operasyonlarımızla fuar lojistiğinden uluslararası iş gücü tedariğine kadar küresel standartlarda hizmet sunuyoruz."}
+              {(t as any).aboutText || t.companyDesc}
             </p>
           </div>
 
@@ -1533,7 +1557,7 @@ export default function Home() {
               +{statsTriggered ? <AnimatedCounter target={150} triggered={statsTriggered} /> : '0'}
             </div>
             <div style={{ color: '#64748b', fontSize: '14px', fontWeight: 500 }}>
-              {lang === 'tr' ? 'Tamamlanan Fuar Standı' : lang === 'de' ? 'Abgeschlossene Messestände' : 'Completed Exhibition Stands'}
+              {t.statCard1}
             </div>
           </div>
 
@@ -1543,7 +1567,7 @@ export default function Home() {
               +{statsTriggered ? <AnimatedCounter target={500} triggered={statsTriggered} /> : '0'}
             </div>
             <div style={{ color: '#64748b', fontSize: '14px', fontWeight: 500 }}>
-              {lang === 'tr' ? 'Aktif Uzman Kadro' : lang === 'de' ? 'Aktive Fachkräfte' : 'Active Specialists'}
+              {t.statCard2}
             </div>
           </div>
 
@@ -1553,7 +1577,7 @@ export default function Home() {
               {statsTriggered ? <AnimatedCounter target={12} duration={1000} triggered={statsTriggered} /> : '0'}
             </div>
             <div style={{ color: '#64748b', fontSize: '14px', fontWeight: 500 }}>
-              {lang === 'tr' ? 'Uluslararası Ticaret Ülkesi' : lang === 'de' ? 'Internationale Handelsländer' : 'International Trading Countries'}
+              {t.statCard3}
             </div>
           </div>
 
@@ -1563,7 +1587,7 @@ export default function Home() {
               {statsTriggered ? <AnimatedCounter target={100} triggered={statsTriggered} /> : '0'}%
             </div>
             <div style={{ color: '#64748b', fontSize: '14px', fontWeight: 500 }}>
-              {lang === 'tr' ? 'Müşteri Memnuniyeti' : lang === 'de' ? 'Kundenzufriedenheit' : 'Customer Satisfaction'}
+              {t.statCard4}
             </div>
           </div>
 
@@ -2036,7 +2060,7 @@ export default function Home() {
                     fontSize: '15px'
                   }}
                 >
-                  {t.btnSubmit || "Şimdi Başvur"}
+                  {t.jobBtn}
                 </button>
               </div>
 
@@ -2339,7 +2363,7 @@ export default function Home() {
               height: '100vh',
               backgroundColor: 'rgba(3, 7, 18, 0.95)',
               backdropFilter: 'blur(15px)',
-              zIndex: 1100,
+              zIndex: 99999,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center'
@@ -2348,9 +2372,9 @@ export default function Home() {
             {/* Kapatma Butonu */}
             <button 
               onClick={() => setLightboxIndex(null)}
-              style={{ position: 'absolute', top: '30px', right: '40px', background: 'none', border: 'none', color: '#ffffff', fontSize: '35px', cursor: 'pointer', opacity: 0.7 }}
+              style={{ position: 'absolute', top: '16px', right: '16px', background: 'rgba(0,0,0,0.6)', border: '2px solid rgba(255,255,255,0.5)', borderRadius: '50%', color: '#ffffff', fontSize: '22px', cursor: 'pointer', width: '48px', height: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center', touchAction: 'manipulation', zIndex: 10 }}
             >
-              ×
+              ✕
             </button>
 
             {/* Sol Ok Butonu */}
