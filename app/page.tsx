@@ -1904,10 +1904,11 @@ export default function Home() {
                   {t.aptTopic}
                 </label>
                 <select required name="topic" style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none', cursor: 'pointer' }}>
-                  <option value="messebau">{t.card1Title}</option>
-                  <option value="personal">{t.card2Title}</option>
-                  <option value="logistics">{t.card3Title}</option>
-                  <option value="import">{t.card4Title}</option>
+                  <option value={t.card1Title}>{t.card1Title}</option>
+                  <option value={t.card2Title}>{t.card2Title}</option>
+                  <option value={t.card3Title}>{t.card3Title}</option>
+                  <option value={t.card4Title}>{t.card4Title}</option>
+                  <option value={lang==='tr'?'Diğer':lang==='de'?'Sonstiges':lang==='zh'?'其他':lang==='nl'?'Overig':'Other'}>{lang==='tr'?'Diğer':lang==='de'?'Sonstiges':lang==='zh'?'其他':lang==='nl'?'Overig':'Other'}</option>
                 </select>
               </div>
 
