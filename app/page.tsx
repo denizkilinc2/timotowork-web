@@ -1851,6 +1851,23 @@ export default function Home() {
           </div>
           <div style={{ backgroundColor: theme.bgPrimary, padding: '40px', borderRadius: '24px', border: `1px solid ${theme.border}` }}>
         <form noValidate onSubmit={handleAppointmentSubmit}>
+              {/* Ad Soyad & Telefon */}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px', marginBottom: '24px' }}>
+                <div>
+                  <label style={{ display: 'block', color: theme.textSecondary, fontSize: '14px', fontWeight: 600, marginBottom: '10px' }}>{lang==='tr'?'Ad Soyad *':lang==='de'?'Name *':lang==='zh'?'姓名 *':lang==='nl'?'Naam *':'Full Name *'}</label>
+                  <input required name="name" type="text" placeholder={lang==='tr'?'Adınız Soyadınız':lang==='de'?'Ihr Name':lang==='zh'?'您的姓名':lang==='nl'?'Uw naam':'Your Name'} style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none', boxSizing: 'border-box' }} />
+                </div>
+                <div>
+                  <label style={{ display: 'block', color: theme.textSecondary, fontSize: '14px', fontWeight: 600, marginBottom: '10px' }}>{lang==='tr'?'Telefon *':lang==='de'?'Telefon *':lang==='zh'?'电话 *':lang==='nl'?'Telefoon *':'Phone *'}</label>
+                  <input required name="phone" type="tel" placeholder="+49 / +31 / +90..." style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none', boxSizing: 'border-box' }} />
+                </div>
+              </div>
+
+              {/* E-Mail */}
+              <div style={{ marginBottom: '24px' }}>
+                <label style={{ display: 'block', color: theme.textSecondary, fontSize: '14px', fontWeight: 600, marginBottom: '10px' }}>{lang==='tr'?'E-Posta *':lang==='de'?'E-Mail *':lang==='zh'?'电子邮件 *':lang==='nl'?'E-mail *':'E-Mail *'}</label>
+                <input required name="email" type="email" placeholder="ornek@email.com" style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none', boxSizing: 'border-box' }} />
+              </div>
               {/* Görüşme Konusu Satırı */}
               <div style={{ marginBottom: '24px' }}>
                 <label style={{ display: 'block', color: theme.textSecondary, fontSize: '14px', fontWeight: 600, marginBottom: '10px' }}>
