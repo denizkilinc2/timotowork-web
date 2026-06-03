@@ -791,9 +791,14 @@ export default function Home() {
     }
     const form = e.currentTarget;
     const data = new FormData(form);
-    const params: Record<string, string> = { title: 'Online Randevu Talebi' };
-    data.forEach((v, k) => { params[k] = v.toString(); });
-    params['message'] = Object.entries(params).map(([k, v]) => `${k}: ${v}`).join('\n');
+    const lines: string[] = [];
+    data.forEach((v, k) => { if (v.toString().trim()) lines.push(`${k}: ${v}`); });
+    const params = {
+      title: 'Online Randevu Talebi',
+      name: data.get('name')?.toString() || '-',
+      email: data.get('email')?.toString() || '-',
+      message: lines.join('\n'),
+    };
     sendEmail(params).then(() => {
       showToastNotification(lang === 'tr' ? 'Talebiniz başarıyla alındı. En kısa sürede dönüş sağlanacaktır.' : lang === 'de' ? 'Ihre Anfrage wurde erfolgreich entgegengenommen.' : 'Your request has been successfully received.', 'success');
       form.reset();
@@ -810,9 +815,14 @@ export default function Home() {
     }
     const form = e.currentTarget;
     const data = new FormData(form);
-    const params: Record<string, string> = { title: 'Detaylı İş Başvuru Formu' };
-    data.forEach((v, k) => { params[k] = v.toString(); });
-    params['message'] = Object.entries(params).map(([k, v]) => `${k}: ${v}`).join('\n');
+    const lines: string[] = [];
+    data.forEach((v, k) => { if (v.toString().trim()) lines.push(`${k}: ${v}`); });
+    const params = {
+      title: 'Detaylı İş Başvuru Formu',
+      name: data.get('fullname')?.toString() || '-',
+      email: data.get('email')?.toString() || '-',
+      message: lines.join('\n'),
+    };
     sendEmail(params).then(() => {
       showToastNotification(lang === 'tr' ? 'Başvurunuz başarıyla alındı. En kısa sürede dönüş sağlanacaktır.' : lang === 'de' ? 'Ihre Bewerbung wurde erfolgreich entgegengenommen.' : 'Your application has been successfully received.', 'success');
       form.reset();
@@ -829,9 +839,14 @@ export default function Home() {
     }
     const form = e.currentTarget;
     const data = new FormData(form);
-    const params: Record<string, string> = { title: 'İletişim Formu' };
-    data.forEach((v, k) => { params[k] = v.toString(); });
-    params['message'] = Object.entries(params).map(([k, v]) => `${k}: ${v}`).join('\n');
+    const lines: string[] = [];
+    data.forEach((v, k) => { if (v.toString().trim()) lines.push(`${k}: ${v}`); });
+    const params = {
+      title: 'İletişim Formu',
+      name: data.get('name')?.toString() || '-',
+      email: data.get('email')?.toString() || '-',
+      message: lines.join('\n'),
+    };
     sendEmail(params).then(() => {
       showToastNotification(lang === 'tr' ? 'Mesajınız başarıyla iletildi.' : lang === 'de' ? 'Ihre Nachricht wurde erfolgreich gesendet.' : 'Your message has been successfully sent.', 'success');
       form.reset();
