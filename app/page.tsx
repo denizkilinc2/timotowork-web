@@ -791,8 +791,12 @@ export default function Home() {
     }
     const form = e.currentTarget;
     const data = new FormData(form);
+    const labelMap: Record<string, string> = {
+      name: 'Ad Soyad', phone: 'Telefon', email: 'E-Posta',
+      topic: 'Görüşme Konusu', date: 'Tarih', time: 'Saat',
+    };
     const lines: string[] = [];
-    data.forEach((v, k) => { if (v.toString().trim()) lines.push(`${k}: ${v}`); });
+    data.forEach((v, k) => { if (v.toString().trim()) lines.push(`${labelMap[k] || k}: ${v}`); });
     const params = {
       title: 'Online Randevu Talebi',
       name: data.get('name')?.toString() || '-',
@@ -815,8 +819,16 @@ export default function Home() {
     }
     const form = e.currentTarget;
     const data = new FormData(form);
+    const labelMap: Record<string, string> = {
+      fullname: 'Ad Soyad', birthdate: 'Doğum Tarihi', email: 'E-Posta', phone: 'Telefon',
+      address: 'Adres', gender: 'Cinsiyet', svnum: 'SV Numarası', jobtype: 'Çalışma Türü',
+      salary: 'Maaş Beklentisi', position: 'Başvurulan Pozisyon', experience: 'Deneyim',
+      expdates: 'Deneyim Tarihleri', school: 'Okul', city: 'Şehir',
+      edu_start: 'Eğitim Başlangıç', edu_end: 'Eğitim Bitiş',
+      edu_status: 'Mezuniyet Durumu', diploma: 'Diploma',
+    };
     const lines: string[] = [];
-    data.forEach((v, k) => { if (v.toString().trim()) lines.push(`${k}: ${v}`); });
+    data.forEach((v, k) => { if (v.toString().trim()) lines.push(`${labelMap[k] || k}: ${v}`); });
     const params = {
       title: 'Detaylı İş Başvuru Formu',
       name: data.get('fullname')?.toString() || '-',
@@ -839,8 +851,11 @@ export default function Home() {
     }
     const form = e.currentTarget;
     const data = new FormData(form);
+    const labelMap: Record<string, string> = {
+      name: 'Ad Soyad', email: 'E-Posta', message: 'Mesaj',
+    };
     const lines: string[] = [];
-    data.forEach((v, k) => { if (v.toString().trim()) lines.push(`${k}: ${v}`); });
+    data.forEach((v, k) => { if (v.toString().trim()) lines.push(`${labelMap[k] || k}: ${v}`); });
     const params = {
       title: 'İletişim Formu',
       name: data.get('name')?.toString() || '-',
