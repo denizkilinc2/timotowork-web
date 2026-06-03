@@ -766,7 +766,7 @@ export default function Home() {
 
   // --- FORM GÖNDERİM FONKSİYONLARI ---
   const EMAILJS_SERVICE_ID = 'service_kflsqbt';
-  const EMAILJS_TEMPLATE_ID = 'fqquk8p';
+  const EMAILJS_TEMPLATE_ID = 'template_q57yiqa';
   const EMAILJS_PUBLIC_KEY = 'd2d-oTdujICmm5Pml';
 
   const sendEmail = (templateParams: Record<string, string>) => {
@@ -2663,4 +2663,4 @@ export default function Home() {
       `}</style>
     </div>
   );
-} 
+}
