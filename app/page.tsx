@@ -765,14 +765,40 @@ export default function Home() {
   };
 
   // --- FORM GÖNDERİM FONKSİYONLARI ---
+  const EMAILJS_SERVICE_ID = 'service_kflsqbt';
+  const EMAILJS_TEMPLATE_ID = 'fqquk8p';
+  const EMAILJS_PUBLIC_KEY = 'd2d-oTdujICmm5Pml';
+
+  const sendEmail = (templateParams: Record<string, string>) => {
+    return fetch('https://api.emailjs.com/api/v1.0/email/send', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        service_id: EMAILJS_SERVICE_ID,
+        template_id: EMAILJS_TEMPLATE_ID,
+        user_id: EMAILJS_PUBLIC_KEY,
+        template_params: templateParams,
+      }),
+    });
+  };
+
   const handleAppointmentSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!e.currentTarget.checkValidity()) {
       showToastNotification(lang === 'tr' ? 'Lütfen zorunlu alanları eksiksiz doldurunuz.' : lang === 'de' ? 'Bitte füllen Sie die Pflichtfelder aus.' : 'Please fill in all required fields.', 'error');
       return;
     }
-    showToastNotification(lang === 'tr' ? 'Talebiniz başarıyla alındı. En kısa sürede dönüş sağlanacaktır.' : lang === 'de' ? 'Ihre Anfrage wurde erfolgreich entgegengenommen.' : 'Your request has been successfully received.', 'success');
-    e.currentTarget.reset();
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    const params: Record<string, string> = { title: 'Online Randevu Talebi' };
+    data.forEach((v, k) => { params[k] = v.toString(); });
+    params['message'] = Object.entries(params).map(([k, v]) => `${k}: ${v}`).join('\n');
+    sendEmail(params).then(() => {
+      showToastNotification(lang === 'tr' ? 'Talebiniz başarıyla alındı. En kısa sürede dönüş sağlanacaktır.' : lang === 'de' ? 'Ihre Anfrage wurde erfolgreich entgegengenommen.' : 'Your request has been successfully received.', 'success');
+      form.reset();
+    }).catch(() => {
+      showToastNotification(lang === 'tr' ? 'Gönderim sırasında bir hata oluştu.' : lang === 'de' ? 'Beim Senden ist ein Fehler aufgetreten.' : 'An error occurred while sending.', 'error');
+    });
   };
 
   const handleApplySubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -781,8 +807,17 @@ export default function Home() {
       showToastNotification(lang === 'tr' ? 'Lütfen zorunlu alanları eksiksiz doldurunuz.' : lang === 'de' ? 'Bitte füllen Sie die Pflichtfelder aus.' : 'Please fill in all required fields.', 'error');
       return;
     }
-    showToastNotification(lang === 'tr' ? 'Başvurunuz başarıyla alındı. En kısa sürede dönüş sağlanacaktır.' : lang === 'de' ? 'Ihre Bewerbung wurde erfolgreich entgegengenommen.' : 'Your application has been successfully received.', 'success');
-    e.currentTarget.reset();
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    const params: Record<string, string> = { title: 'Detaylı İş Başvuru Formu' };
+    data.forEach((v, k) => { params[k] = v.toString(); });
+    params['message'] = Object.entries(params).map(([k, v]) => `${k}: ${v}`).join('\n');
+    sendEmail(params).then(() => {
+      showToastNotification(lang === 'tr' ? 'Başvurunuz başarıyla alındı. En kısa sürede dönüş sağlanacaktır.' : lang === 'de' ? 'Ihre Bewerbung wurde erfolgreich entgegengenommen.' : 'Your application has been successfully received.', 'success');
+      form.reset();
+    }).catch(() => {
+      showToastNotification(lang === 'tr' ? 'Gönderim sırasında bir hata oluştu.' : lang === 'de' ? 'Beim Senden ist ein Fehler aufgetreten.' : 'An error occurred while sending.', 'error');
+    });
   };
 
   const handleContactSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -791,8 +826,17 @@ export default function Home() {
       showToastNotification(lang === 'tr' ? 'Lütfen zorunlu alanları eksiksiz doldurunuz.' : lang === 'de' ? 'Bitte füllen Sie die Pflichtfelder aus.' : 'Please fill in all required fields.', 'error');
       return;
     }
-    showToastNotification(lang === 'tr' ? 'Mesajınız başarıyla iletildi.' : lang === 'de' ? 'Ihre Nachricht wurde erfolgreich gesendet.' : 'Your message has been successfully sent.', 'success');
-    e.currentTarget.reset();
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    const params: Record<string, string> = { title: 'İletişim Formu' };
+    data.forEach((v, k) => { params[k] = v.toString(); });
+    params['message'] = Object.entries(params).map(([k, v]) => `${k}: ${v}`).join('\n');
+    sendEmail(params).then(() => {
+      showToastNotification(lang === 'tr' ? 'Mesajınız başarıyla iletildi.' : lang === 'de' ? 'Ihre Nachricht wurde erfolgreich gesendet.' : 'Your message has been successfully sent.', 'success');
+      form.reset();
+    }).catch(() => {
+      showToastNotification(lang === 'tr' ? 'Gönderim sırasında bir hata oluştu.' : lang === 'de' ? 'Beim Senden ist ein Fehler aufgetreten.' : 'An error occurred while sending.', 'error');
+    });
   };
 
   const galleryImages = [
