@@ -2157,15 +2157,15 @@ export default function Home() {
         <form noValidate onSubmit={handleContactSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
               <div>
                 <label style={{ display: 'block', fontSize: '13px', color: theme.textSecondary, marginBottom: '8px', fontWeight: 500 }}>{t.formLabelName}</label>
-            <input required type="text" style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '10px', fontSize: '14px', outline: 'none', transition: 'all 0.3s ease' }} />
+            <input required name="name" type="text" style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '10px', fontSize: '14px', outline: 'none', transition: 'all 0.3s ease' }} />
               </div>
               <div>
                 <label style={{ display: 'block', fontSize: '13px', color: theme.textSecondary, marginBottom: '8px', fontWeight: 500 }}>{t.formLabelEmail}</label>
-            <input required type="email" style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '10px', fontSize: '14px', outline: 'none', transition: 'all 0.3s ease' }} />
+            <input required name="email" type="email" style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '10px', fontSize: '14px', outline: 'none', transition: 'all 0.3s ease' }} />
               </div>
               <div>
                 <label style={{ display: 'block', fontSize: '13px', color: theme.textSecondary, marginBottom: '8px', fontWeight: 500 }}>{t.formLabelMsg}</label>
-            <textarea required rows={4} style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '10px', fontSize: '14px', outline: 'none', resize: 'none', transition: 'all 0.3s ease' }}></textarea>
+            <textarea required name="message" rows={4} style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '10px', fontSize: '14px', outline: 'none', resize: 'none', transition: 'all 0.3s ease' }}></textarea>
               </div>
           <button type="submit" style={{ backgroundColor: '#38bdf8', color: '#0b0f19', fontWeight: 'bold', padding: '14px', borderRadius: '10px', border: 'none', cursor: 'pointer', transition: '0.3s' }}>{t.formBtn}</button>
             </form>
