@@ -1873,7 +1873,7 @@ export default function Home() {
                 <label style={{ display: 'block', color: theme.textSecondary, fontSize: '14px', fontWeight: 600, marginBottom: '10px' }}>
                   {t.aptTopic}
                 </label>
-                <select required style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none', cursor: 'pointer' }}>
+                <select required name="topic" style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none', cursor: 'pointer' }}>
                   <option value="messebau">{t.card1Title}</option>
                   <option value="personal">{t.card2Title}</option>
                   <option value="logistics">{t.card3Title}</option>
@@ -1897,7 +1897,7 @@ export default function Home() {
                   <label style={{ display: 'block', color: theme.textSecondary, fontSize: '14px', fontWeight: 600, marginBottom: '10px' }}>
                     {t.aptTime}
                   </label>
-                  <select required style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none', cursor: 'pointer' }}>
+                  <select required name="time" style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none', cursor: 'pointer' }}>
                     <option>09:00 - 11:00</option>
                     <option>11:00 - 13:00</option>
                     <option>14:00 - 16:00</option>
@@ -1936,11 +1936,11 @@ export default function Home() {
                   <div className="form-row-2col" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', width: '100%', marginBottom: '24px' }}>
                     <div>
                       <label style={{ display: 'block', color: theme.textPrimary, fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>{t.lblFullName}</label>
-                      <input required type="text" placeholder="Anderson Mikoo" style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none' }} />
+                      <input required type="text" name="fullname" placeholder="Anderson Mikoo" style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none' }} />
                     </div>
                     <div>
                       <label style={{ display: 'block', color: theme.textPrimary, fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>{t.lblDate}</label>
-                      <input required type="date" style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none' }} />
+                      <input required name="birthdate" type="date" style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none' }} />
                     </div>
                   </div>
 
@@ -1948,25 +1948,25 @@ export default function Home() {
                   <div className="form-row-2col" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', width: '100%', marginBottom: '24px' }}>
                     <div>
                       <label style={{ display: 'block', color: theme.textPrimary, fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>{t.lblEmail}</label>
-                      <input required type="email" placeholder="user@website.com" style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none' }} />
+                      <input required type="email" name="email" placeholder="user@website.com" style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none' }} />
                     </div>
                     <div>
                       <label style={{ display: 'block', color: theme.textPrimary, fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>{t.lblPhone}</label>
-                      <input required type="tel" placeholder="+1 212-695-1962" style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none' }} />
+                      <input required type="tel" name="phone" placeholder="+1 212-695-1962" style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none' }} />
                     </div>
                   </div>
 
                   {/* Satır 3: Tam Adresiniz (Tekli Geniş Alan) */}
                   <div style={{ marginBottom: '24px', width: '100%' }}>
                     <label style={{ display: 'block', color: theme.textPrimary, fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>{t.lblAddress}</label>
-                    <input required type="text" style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none' }} />
+                    <input required name="address" type="text" style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none' }} />
                   </div>
 
                   {/* Satır 4: Cinsiyet & Sosyal Güvenlik Numarası */}
                   <div className="form-row-2col" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', width: '100%', marginBottom: '24px' }}>
                     <div>
                       <label style={{ display: 'block', color: theme.textPrimary, fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>{t.lblGender}</label>
-                      <select required style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none', cursor: 'pointer' }}>
+                      <select required name="gender" style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none', cursor: 'pointer' }}>
                         <option value="">{t.formSelect}</option>
                         <option value="male">{t.lblGender1}</option>
                         <option value="female">{t.lblGender2}</option>
@@ -1975,7 +1975,7 @@ export default function Home() {
                     </div>
                     <div>
                       <label style={{ display: 'block', color: theme.textPrimary, fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>{t.lblSvNum}</label>
-                      <input type="text" placeholder="SV-Nummer" style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none' }} />
+                      <input type="text" name="svnum" placeholder="SV-Nummer" style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none' }} />
                     </div>
                   </div>
 
@@ -1983,7 +1983,7 @@ export default function Home() {
                   <div className="form-row-2col" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', width: '100%', marginBottom: '24px' }}>
                     <div>
                       <label style={{ display: 'block', color: theme.textPrimary, fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>{t.lblJobType}</label>
-                      <select style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none', cursor: 'pointer' }}>
+                      <select name="jobtype" style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none', cursor: 'pointer' }}>
                         <option value="">{t.formSelect}</option>
                         <option value="full">{t.lblJobType1}</option>
                         <option value="part">{t.lblJobType2}</option>
@@ -1991,7 +1991,7 @@ export default function Home() {
                     </div>
                     <div>
                       <label style={{ display: 'block', color: theme.textPrimary, fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>{t.lblSalary}</label>
-                      <select style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none', cursor: 'pointer' }}>
+                      <select name="salary" style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none', cursor: 'pointer' }}>
                         <option value="">{t.formSelect}</option>
                         <option value="2000-3000">2000€ - 3000€</option>
                         <option value="3000-4000">3000€ - 4000€</option>
@@ -2003,7 +2003,7 @@ export default function Home() {
                   {/* Satır 6: Başvurulan Pozisyon (Tekli Geniş Alan) */}
                   <div style={{ marginBottom: '32px', width: '100%' }}>
                     <label style={{ display: 'block', color: theme.textPrimary, fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>{t.lblPosition}</label>
-                    <input type="text" placeholder="..." style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none' }} />
+                    <input name="position" type="text" placeholder="..." style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none' }} />
                   </div>
                 </div>
               </div>
