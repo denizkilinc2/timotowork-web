@@ -1004,7 +1004,7 @@ export default function Home() {
            reply = "Şirketimizin ana operasyon merkezi Almanya'dadır. Resmi Adresimiz: Hindenburgstr. 236, 41061 Mönchengladbach, Deutschland. Ayrıca Amsterdam ve Almanya koordinasyon merkezlerimiz aktiftir.";
          }
          else if (lowerText.includes('iletişim') || lowerText.includes('telefon') || lowerText.includes('e-posta') || lowerText.includes('mail') || lowerText.includes('numara')) {
-           reply = "Bize doğrudan +49 (0) 163 6090266 numaralı telefondan ulaşabilir, info@mge-dienstleistungen.de adresine e-posta gönderebilir veya sol alttaki parlayan WhatsApp Canlı Destek butonunu kullanabilirsiniz.";
+           reply = "Bize doğrudan +49 (0) 163 6090266 numaralı telefondan ulaşabilir, info@ttw-international.de adresine e-posta gönderebilir veya sol alttaki parlayan WhatsApp Canlı Destek butonunu kullanabilirsiniz.";
          }
          else {
            reply = "Sorunuzu tam olarak eşleştiremedim. Ancak Kurucumuz Eyüp Gavas yönetimindeki TTW International hakkında; Fuar Stand Kurulumu (Messebau), AÜG İş Gücü Tedariği, Lojistik, Randevu Planlama veya İş Başvurusu konularında spesifik sorular sorarak bilgi alabilirsiniz.";
@@ -1040,7 +1040,7 @@ export default function Home() {
            reply = "Unser Hauptsitz liegt in Deutschland: Hindenburgstr. 236, 41061 Mönchengladbach, Deutschland. Wir koordinieren auch Standorte in Amsterdam.";
          }
          else if (lowerText.includes('kontakt') || lowerText.includes('telefon') || lowerText.includes('e-mail')) {
-           reply = "Sie erreichen uns direkt unter +49 (0) 163 6090266, per E-Mail an info@mge-dienstleistungen.de oder über den integrierten WhatsApp-Button.";
+           reply = "Sie erreichen uns direkt unter +49 (0) 163 6090266, per E-Mail an info@ttw-international.de oder über den integrierten WhatsApp-Button.";
          }
          else {
            reply = "Ich konnte Ihre Anfrage nicht exakt zuordnen. Unter der Leitung von Eyüp Gavas helfen wir Ihnen jedoch gerne bei Fragen zu Messebau, Personalüberlassung (AÜG), Logistik oder Bewerbungen weiter.";
@@ -1064,7 +1064,7 @@ export default function Home() {
            reply = "We specialize in 5 global fields: Exhibition Stand Design & Build (Messebau), Qualified Personnel Provision (AÜG compliant), Logistics & Accommodation Management, International Import, and Global Export Solutions.";
          }
          else if (lowerText.includes('contact') || lowerText.includes('phone') || lowerText.includes('email') || lowerText.includes('address')) {
-           reply = "Reach us at +49 (0) 163 6090266, info@mge-dienstleistungen.de, or visit our headquarters at Hindenburgstr. 236, 41061 Mönchengladbach, Germany.";
+           reply = "Reach us at +49 (0) 163 6090266, info@ttw-international.de, or visit our headquarters at Hindenburgstr. 236, 41061 Mönchengladbach, Germany.";
          }
          else {
            reply = "I couldn't match your exact request. However, under our founder Eyüp Gavas, I can guide you thoroughly regarding exhibition stands, AÜG temporary staffing, European logistics, or job applications.";
@@ -2119,7 +2119,7 @@ export default function Home() {
                 <span style={{ fontSize: '20px' }}>✉️</span>
                 <div>
                   <strong style={{ display: 'block', color: '#38bdf8' }}>{t.stayInTouch}</strong>
-                  <a href="mailto:info@mge-dienstleistungen.de" style={{ color: '#94a3b8', fontSize: '14px', textDecoration: 'none' }}>info@mge-dienstleistungen.de</a>
+                  <a href="mailto:info@ttw-international.de" style={{ color: '#94a3b8', fontSize: '14px', textDecoration: 'none' }}>info@ttw-international.de</a>
                 </div>
               </div>
             </div>
