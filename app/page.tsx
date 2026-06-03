@@ -1904,6 +1904,7 @@ export default function Home() {
                   </label>
                   <input 
                     required
+                    name="date"
                     type="date" 
                     style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none' }}
                   />
@@ -2029,7 +2030,7 @@ export default function Home() {
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '24px', width: '100%', marginBottom: '10px' }}>
                   <div style={{ flex: 1 }}>
                     <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: theme.textPrimary, marginBottom: '8px' }}>{t.lblExperience}</label>
-                    <select style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '10px', fontSize: '14px', outline: 'none', cursor: 'pointer', transition: 'all 0.3s ease' }}>
+                    <select name="experience" style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '10px', fontSize: '14px', outline: 'none', cursor: 'pointer', transition: 'all 0.3s ease' }}>
                       <option value="">{t.formSelect}</option>
                       <option value="yes">{t.formDiplomaYes}</option>
                       <option value="no">{t.formDiplomaNo}</option>
@@ -2037,7 +2038,7 @@ export default function Home() {
                   </div>
                   <div style={{ flex: 1 }}>
                     <label style={{ display: 'block', fontSize: '14px', fontWeight: 'bold', color: theme.textPrimary, marginBottom: '8px' }}>{t.lblExpDates}</label>
-                    <input type="text" placeholder="..." style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '10px', fontSize: '14px', outline: 'none', transition: 'all 0.3s ease' }} />
+                    <input name="expdates" type="text" placeholder="..." style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '10px', fontSize: '14px', outline: 'none', transition: 'all 0.3s ease' }} />
                   </div>
                 </div>
               </div>
@@ -2056,7 +2057,7 @@ export default function Home() {
                     <input 
                       required
                       type="text" 
-                      placeholder="Alex High School"
+                      name="school" placeholder="Alex High School"
                       style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none' }}
                     />
                   </div>
@@ -2066,7 +2067,7 @@ export default function Home() {
                     </label>
                     <input 
                       required
-                      type="text" 
+                      name="city" type="text" 
                       style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none' }}
                     />
                   </div>
@@ -2080,7 +2081,7 @@ export default function Home() {
                     </label>
                     <input 
                       required
-                      type="date" 
+                      name="edu_start" type="date" 
                       style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none' }}
                     />
                   </div>
@@ -2090,7 +2091,7 @@ export default function Home() {
                     </label>
                     <input 
                       required
-                      type="date" 
+                      name="edu_end" type="date" 
                       style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none' }}
                     />
                   </div>
@@ -2102,7 +2103,7 @@ export default function Home() {
                     <label style={{ display: 'block', color: theme.textPrimary, fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>
                       {t.formStatus}
                     </label>
-                    <select required style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none', cursor: 'pointer' }}>
+                    <select required name="edu_status" style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none', cursor: 'pointer' }}>
                       <option value="">{t.formSelect}</option>
                       <option value="highschool">{t.lblAbschluss1}</option>
                       <option value="bachelor">{t.lblAbschluss2}</option>
@@ -2113,7 +2114,7 @@ export default function Home() {
                     <label style={{ display: 'block', color: theme.textPrimary, fontSize: '14px', fontWeight: 600, marginBottom: '8px' }}>
                       {t.formDiploma}
                     </label>
-                    <select style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none', cursor: 'pointer' }}>
+                    <select name="diploma" style={{ width: '100%', padding: '14px 16px', backgroundColor: theme.inputBg, color: theme.inputText, border: `1px solid ${theme.border}`, borderRadius: '12px', fontSize: '14px', outline: 'none', cursor: 'pointer' }}>
                       <option value="">{t.formSelect}</option>
                       <option value="yes">{t.formDiplomaYes}</option>
                       <option value="no">{t.formDiplomaNo}</option>
