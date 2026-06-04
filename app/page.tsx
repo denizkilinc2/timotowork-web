@@ -23,8 +23,8 @@ const translations = {
     card1Desc: "Fuar standı tasarımı, kurulumu ve tüm proje süreçlerini baştan sona planlıyor; ilk fikirden anahtar teslim uygulamaya kadar profesyonel çözümler sunuyoruz.",
     card2Title: "Nitelikli İş Gücü Sağlama",
     card2Desc: "Fuar süreçleri, lojistik operasyonlar, kurulum ve söküm işleri için ihtiyaç duyduğunuz nitelikli ve uzman iş gücünü profesyonelce sağlıyoruz.",
-    card3Title: "Lojistik Yönetimi",
-    card3Desc: "Taşıma organizasyonlarından saha operasyonlarına kadar tüm lojistik süreçlerin yerinde, pürüzsüz ve kusursuz bir şekilde yürütülmesini yönetiyoruz.",
+    card3Title: "Lojistik & Konaklama Yönetimi",
+    card3Desc: "Konaklama organizasyonlarından saha operasyonlarına kadar tüm süreçlerin yerinde, pürüzsüz ve kusursuz bir şekilde yürütülmesini yönetiyoruz.",
     card4Title: "Uluslararası İthalat Operasyonları",
     card4Desc: "Dünya genelindeki üreticilerden en kaliteli ürün ve ham maddelerin tedarik süreçlerini, yasal mevzuatlara tam uyumlu olarak sınır ötesi operasyonlarla yönetiyoruz.",
     card5Title: "Küresel İhracat Çözümleri",
@@ -98,7 +98,7 @@ const translations = {
     stepTitle: "Operasyonel Süreç Adımları",
     card1Steps: ["Konsept ve 3D Stand Tasarımı", "Malzeme Seçimi ve Üretim", "Lojistik ve Fuar Alanına Nakliye", "Yerinde Kurulum ve Anahtar Teslim", "Fuar Sonrası Söküm ve Depolama"],
     card2Steps: ["Uzman Montaj Kadrosu Tedariği", "Sertifikalı Forklift ve Ekipman Operatörleri", "Çok Dilli Fuar Host ve Hostesleri", "Yasal Mevzuat ve AÜG Sözleşme Yönetimi"],
-    card3Steps: ["Avrupa Genelinde Taşımacılık ve Lojistik Organizasyonu", "VIP Transfer ve Ekip Lojistiği", "Saha Koordinasyon ve Süreç Yönetimi", "7/24 Yerinde Destek ve Asistanlık"],
+    card3Steps: ["Avrupa Genelinde Otel ve Konaklama Organizasyonu", "VIP Transfer ve Ekip Lojistiği", "Saha Koordinasyon ve Süreç Yönetimi", "7/24 Yerinde Destek ve Asistanlık"],
     card4Steps: ["Global Üretici ve Tedarikçi Analizi", "Gümrükleme ve Uluslararası Mevzuat Yönetimi", "Kalite Kontrol ve Teslimat Takibi", "Sınır Ötesi Lojistik Organizasyonu"],
     card5Steps: ["Hedef Pazar Analizi ve Müşteri Bulma", "Uluslararası Sözleşme ve Hukuki Danışmanlık", "Gümrük ve İhracat Beyanname İşlemleri", "Uçtan Uca Lojistik ve Dağıtım Ağı"],
     badgeTitle: "Yasal Uyumluluk & Sertifikalar",
@@ -136,7 +136,7 @@ const translations = {
     mapLiveOps: "Mönchengladbach Merkez Ofisi - Canlı Operasyon",
     founderTitle: "Kurucumuzun Mesajı",
     founderRole: "Yönetim Kurulu Başkanı / Kurucu",
-    founderText: "Time to Work International B.V. olarak, Avrupa ve küresel pazarda fuar stand kurulumundan uluslararası lojistiğe kadar her alanda güven, kalite ve estetiği bir araya getiriyoruz. Sürdürülebilir başarıyı uzman kadromuzla inşa etmeye devam ediyoruz."
+    founderText: "Time to Work International B.V. olarak, Avrupa'nın lider işçi kiralama çözüm ortağıyız. Lojistik depolarından depo operasyonlarına, üretim tesislerinden dağıtım merkezlerine kadar ihtiyaç duyduğunuz nitelikli ve esnek iş gücünü zamanında, güvenilir ve yasal güvence altında temin ediyoruz."
   },
   de: {
     brand: "Time to Work International B.V.",
@@ -156,8 +156,8 @@ const translations = {
     card1Desc: "Wir planen, gestalten und realisieren Messestände – von der ersten Idee bis zur fertigen Umsetzung professionell aus einer Hand.",
     card2Title: "Personalbereitstellung",
     card2Desc: "Qualifizierte Fachkräfte für Aufbau, Abbau, Logistik, Betreuung und alle Messeprozesse stellen wir Ihnen professionell zur Verfügung.",
-    card3Title: "Logistikmanagement",
-    card3Desc: "Reibungslose Organisation von Transporten, Logistik und Abläufen vor Ort wird von uns perfekt gesteuert.",
+    card3Title: "Logistik & Hotelmanagement",
+    card3Desc: "Reibungslose Organisation von Unterkünften, Logistik vor Ort und Abläufen vor Ort wird von uns perfekt gesteuert.",
     card4Title: "Internationaler Import",
     card4Desc: "Wir verwalten die Beschaffungsprozesse der hochwertigsten Produkte und Rohstoffe von globalen Herstellern in voller Übereinstimmung mit den gesetzlichen Vorschriften.",
     card5Title: "Globaler Export",
@@ -231,7 +231,7 @@ const translations = {
     stepTitle: "Operative Prozessschritte",
     card1Steps: ["Konzept & 3D-Standdesign", "Materialauswahl & Produktion", "Logistik & Transport zum Messegelände", "Montage vor Ort & Schlüsselfertige Übergabe", "Demontage & Einlagerung nach der Messe"],
     card2Steps: ["Bereitstellung von erfahrenen Monteuren", "Zertifizierte Stapler- & Gerätefahrer", "Mehrsprachiges Messepersonal (Hostessen/Hosts)", "Rechtliche Absicherung & AÜG-Konformität"],
-    card3Steps: ["Transport- & Logistikmanagement in Europa", "VIP-Transfer & Teamlogistik", "Koordination vor Ort & Prozessleitung", "7/24 Support & Assistenz vor Ort"],
+    card3Steps: ["Hotel- & Unterkunftsmanagement in Europa", "VIP-Transfer & Teamlogistik", "Koordination vor Ort & Prozessleitung", "7/24 Support & Assistenz vor Ort"],
     card4Steps: ["Globale Hersteller- & Lieferantenanalyse", "Zollabwicklung & Außenhandelsrecht", "Qualitätskontrolle & Lieferantenüberwachung", "Grenzüberschreitende Logistikorganisation"],
     card5Steps: ["Zielmarktanalyse & Kundenakquise", "Internationale Verträge & Rechtsberatung", "Zoll- & Exportanmeldungen", "End-to-End Logistik & Vertriebsnetzwerk"],
     badgeTitle: "Rechtliche Konformität & Zertifikate",
@@ -269,7 +269,7 @@ const translations = {
     mapLiveOps: "Hauptsitz Mönchengladbach - Live-Betrieb",
     founderTitle: "Botschaft des Gründers",
     founderRole: "Vorstandsvorsitzender / Gründer",
-    founderText: "Als Time to Work International B.V. vereinen wir im europäischen und globalen Markt Vertrauen, Qualität und Ästhetik in allen Bereichen, vom Ausstellungsstandbau bis zur internationalen Logistik. Gemeinsam mit unserem Expertenteam bauen wir weiterhin an nachhaltigem Erfolg."
+    founderText: "Als Time to Work International B.V. sind wir Ihr führender Partner für Arbeitnehmerüberlassung in Europa. Von Logistikzentren über Lagerhaltung bis hin zu Produktionsanlagen und Distributionszentren – wir stellen Ihnen qualifizierte und flexible Arbeitskräfte pünktlich, zuverlässig und rechtlich abgesichert zur Verfügung."
   },
   en: {
     brand: "Time to Work International B.V.",
@@ -289,8 +289,8 @@ const translations = {
     card1Desc: "We plan, design, and realize exhibition stands – providing professional solutions from the initial idea to final implementation.",
     card2Title: "Personnel Provision & Workforce Solutions",
     card2Desc: "We professionally provide the qualified and expert workforce you need for exhibition processes, logistics, installation, and dismantling.",
-    card3Title: "Logistics Management",
-    card3Desc: "We seamlessly manage everything from transport organizations to on-site logistics operations smoothly and flawlessly.",
+    card3Title: "Logistics & Accommodation Management",
+    card3Desc: "We seamlessly manage everything from accommodation organizations to on-site operations smoothly and flawlessly.",
     card4Title: "International Import Operations",
     card4Desc: "We manage the procurement processes of top-quality products and raw materials from global manufacturers, fully complying with international legal regulations.",
     card5Title: "Global Export Solutions",
@@ -364,7 +364,7 @@ const translations = {
     stepTitle: "Operational Process Steps",
     card1Steps: ["Concept & 3D Stand Design", "Material Selection & Production", "Logistics & Transport to Exhibition Ground", "On-site Installation & Turnkey Delivery", "Dismantling & Storage Post-Exhibition"],
     card2Steps: ["Provision of Expert Installation Crews", "Certified Forklift & Equipment Operators", "Multilingual Exhibition Hosts & Hostesses", "Legal Compliance & AÜG Contract Management"],
-    card3Steps: ["Transport & Logistics Management Across Europe", "VIP Transfer & Team Logistics", "On-site Coordination & Process Management", "24/7 On-site Support & Assistance"],
+    card3Steps: ["Hotel & Accommodation Management Across Europe", "VIP Transfer & Team Logistics", "On-site Coordination & Process Management", "24/7 On-site Support & Assistance"],
     card4Steps: ["Global Manufacturer & Supplier Analysis", "Customs Clearance & Trade Regulation Management", "Quality Control & Delivery Tracking", "Cross-Border Logistics Organization"],
     card5Steps: ["Target Market Analysis & Client Acquisition", "International Contracts & Legal Consultancy", "Customs & Export Declarations", "End-to-End Logistics & Distribution Network"],
     badgeTitle: "Legal Compliance & Certificates",
@@ -402,7 +402,7 @@ const translations = {
     mapLiveOps: "HQ Mönchengladbach - Live Operations",
     founderTitle: "Founder's Message",
     founderRole: "Chairman of the Board / Founder",
-    founderText: "As Time to Work International B.V., we combine trust, quality, and aesthetics in every field from exhibition stand construction to international logistics in the European and global markets. We continue to build sustainable success with our expert team."
+    founderText: "As Time to Work International B.V., we are your leading workforce leasing partner across Europe. From logistics warehouses to production facilities and distribution centers — we supply qualified, flexible workforce on time, reliably, and in full legal compliance."
   },
   zh: {
     brand: "Time to Work International B.V.",
@@ -422,8 +422,8 @@ const translations = {
     card1Desc: "我们策划、设计并实现展会展台——从最初的想法到最终实施，提供专业的一站式服务。",
     card2Title: "人员供应与劳动力解决方案",
     card2Desc: "我们为展会流程、物流、安装和拆卸工作提供所需的专业技术人员。",
-    card3Title: "物流管理",
-    card3Desc: "我们从运输安排到现场物流运营，全程无缝、顺畅地管理一切事务。",
+    card3Title: "物流与住宿管理",
+    card3Desc: "我们从住宿安排到现场运营，全程无缝、顺畅地管理一切事务。",
     card4Title: "国际进口业务",
     card4Desc: "我们完全遵守国际法规，管理全球制造商优质产品和原材料的采购流程。",
     card5Title: "全球出口解决方案",
@@ -497,7 +497,7 @@ const translations = {
     stepTitle: "运营流程步骤",
     card1Steps: ["概念与3D展台设计", "材料选择与生产", "物流与运输至展会场地", "现场安装与交钥匙交付", "展后拆除与储存"],
     card2Steps: ["提供专家安装团队", "认证叉车与设备操作员", "多语种展会接待人员", "法律合规与AÜG合同管理"],
-    card3Steps: ["欧洲运输与物流管理", "VIP接送与团队物流", "现场协调与流程管理", "24/7现场支持与协助"],
+    card3Steps: ["欧洲酒店与住宿管理", "VIP接送与团队物流", "现场协调与流程管理", "24/7现场支持与协助"],
     card4Steps: ["全球制造商与供应商分析", "清关与贸易法规管理", "质量控制与交货跟踪", "跨境物流组织"],
     card5Steps: ["目标市场分析与客户开发", "国际合同与法律咨询", "海关与出口申报", "端到端物流与分销网络"],
     badgeTitle: "法律合规与证书",
@@ -535,7 +535,7 @@ const translations = {
     mapLiveOps: "门兴格拉德巴赫总部 - 实时运营",
     founderTitle: "创始人的话",
     founderRole: "董事会主席 / 创始人",
-    founderText: "作为Time to Work International B.V.，我们在欧洲和全球市场将信任、质量与美学融合于每个领域，从展台建设到国际物流。我们与专业团队携手，持续构建可持续的成功。"
+    founderText: "作为Time to Work International B.V.，我们是欧洲领先的劳务派遣合作伙伴。从物流仓库到生产设施和配送中心，我们为您按时、可靠且合法地提供合格的灵活劳动力。"
   },
   nl: {
     brand: "Time to Work International B.V.",
@@ -555,8 +555,8 @@ const translations = {
     card1Desc: "Wij plannen, ontwerpen en realiseren beursstanden, van het eerste idee tot de uiteindelijke uitvoering, professioneel uit één hand.",
     card2Title: "Personeelsvoorziening & Arbeidsoplossingen",
     card2Desc: "Wij voorzien professioneel in het gekwalificeerde personeel dat u nodig heeft voor beursprocessen, logistiek, montage en demontage.",
-    card3Title: "Logistiekbeheer",
-    card3Desc: "Wij beheren alles naadloos van transportregelingen tot logistieke operaties ter plaatse, soepel en vlekkeloos.",
+    card3Title: "Logistiek & Accommodatiebeheer",
+    card3Desc: "Wij beheren alles naadloos van accommodatieregelingen tot operaties ter plaatse, soepel en vlekkeloos.",
     card4Title: "Internationale Importoperaties",
     card4Desc: "Wij beheren de inkoopprocessen van topkwaliteitsproducten en grondstoffen van wereldwijde fabrikanten, volledig in overeenstemming met internationale wettelijke voorschriften.",
     card5Title: "Wereldwijde Exportoplossingen",
@@ -630,7 +630,7 @@ const translations = {
     stepTitle: "Operationele processtappen",
     card1Steps: ["Concept & 3D standontwerp", "Materiaalselectie & productie", "Logistiek & transport naar beursterrein", "Montage ter plaatse & sleutelklare oplevering", "Demontage & opslag na de beurs"],
     card2Steps: ["Levering van expert montageteams", "Gecertificeerde heftruck- & apparatuuroperators", "Meertalig beurspersoneel (hostessen/hosts)", "Juridische naleving & AÜG-contractbeheer"],
-    card3Steps: ["Transport- & logistiekbeheer in Europa", "VIP-transfer & teamlogistiek", "Coördinatie ter plaatse & procesbeheer", "24/7 ondersteuning & assistentie ter plaatse"],
+    card3Steps: ["Hotel- & accommodatiebeheer in Europa", "VIP-transfer & teamlogistiek", "Coördinatie ter plaatse & procesbeheer", "24/7 ondersteuning & assistentie ter plaatse"],
     card4Steps: ["Mondiale fabrikant- & leveranciersanalyse", "Douaneafhandeling & handelswetgeving", "Kwaliteitscontrole & leveringsbewaking", "Grensoverschrijdende logistiekorganisatie"],
     card5Steps: ["Doelmarktanalyse & klantenwerving", "Internationale contracten & juridisch advies", "Douane- & exportaangiften", "End-to-end logistiek & distributienetwerk"],
     badgeTitle: "Juridische naleving & certificaten",
@@ -668,7 +668,7 @@ const translations = {
     mapLiveOps: "Hoofdkantoor Mönchengladbach - Live Operaties",
     founderTitle: "Boodschap van de oprichter",
     founderRole: "Voorzitter van de Raad van Bestuur / Oprichter",
-    founderText: "Als Time to Work International B.V. combineren wij vertrouwen, kwaliteit en esthetiek in elk vakgebied, van standbouw tot internationale logistiek op de Europese en wereldmarkt. Wij blijven duurzaam succes opbouwen met ons expertenteam."
+    founderText: "Als Time to Work International B.V. zijn wij uw toonaangevende partner voor uitzendoplossingen in Europa. Van logistieke centra tot productiefaciliteiten en distributiecentra — wij leveren gekwalificeerde, flexibele arbeidskrachten op tijd, betrouwbaar en juridisch gewaarborgd."
   }
 };
 
@@ -953,17 +953,17 @@ export default function Home() {
 
       if (lang === 'tr') {
         if (lowerText.includes('kurucu') || lowerText.includes('gavas')) {
-          reply = 'Time to Work International B.V., kurucumuz Xu Manman tarafından yönetilmektedir. Kendisi Avrupa pazarında fuar lojistiği ve uluslararası ticaret entegrasyonuna liderlik etmektedir.';
+          reply = 'Time to Work International B.V., kurucumuz Xu Manman tarafından yönetilmektedir. Şirketimiz Avrupa\'nın lider işçi kiralama çözüm ortağıdır; lojistik depoları, üretim tesisleri ve dağıtım merkezlerine nitelikli iş gücü temin etmekteyiz.';
         } else if (lowerText.includes('fuar') || lowerText.includes('süreç')) {
           reply = 'Fuar süreçlerimiz 5 adımdan oluşur: Konsept ve 3D stand tasarımı, malzeme seçimi/üretim, lojistik nakliye, yerinde kurulum ve fuar sonrası söküm/depolama.';
         } else if (lowerText.includes('başvuru') || lowerText.includes('iş')) {
           reply = 'Almanya ve Hollanda operasyonlarımızda görevlendirilmek üzere ekip arkadaşları arıyoruz. Sitemizdeki Detaylı İş Başvuru Formu üzerinden başvurabilirsiniz.';
         } else {
-          reply = 'Fuar stand kurulumu, AÜG iş gücü tedariği ve lojistik yönetimi konularında size yardımcı olabilirim.';
+          reply = 'Fuar stand kurulumu, AÜG iş gücü tedariği ve lojistik konularında size yardımcı olabilirim.';
         }
       } else if (lang === 'de') {
         if (lowerText.includes('gründer') || lowerText.includes('gavas') || lowerText.includes('wer')) {
-          reply = 'Time to Work International B.V. wird von unserem Gründer Xu Manman geleitet. Er führt das Unternehmen im Bereich Messebau, AÜG-Personalvermittlung und internationaler Logistik.';
+          reply = 'Time to Work International B.V. wird von unserer Gründerin Xu Manman geleitet. Wir sind Ihr führender AÜG-Partner in Europa und stellen qualifizierte Arbeitskräfte für Logistikzentren, Produktionsanlagen und Distributionszentren bereit.';
         } else if (lowerText.includes('messe') || lowerText.includes('prozess')) {
           reply = 'Unser Messeprozess umfasst 5 Schritte: Konzept & 3D-Standdesign, Materialbeschaffung, Logistik, schlüsselfertige Montage vor Ort und Abbau nach der Messe.';
         } else if (lowerText.includes('bewerbung') || lowerText.includes('bewerben')) {
@@ -989,7 +989,7 @@ export default function Home() {
         }
       } else {
         if (lowerText.includes('founder') || lowerText.includes('gavas')) {
-          reply = 'Time to Work International B.V. is led by our founder Xu Manman, specializing in exhibition construction, AÜG staffing and international logistics across Europe.';
+          reply = 'Time to Work International B.V. is led by our founder Xu Manman. We are Europe\'s leading workforce leasing partner, supplying qualified staff to logistics warehouses, production facilities and distribution centers.';
         } else if (lowerText.includes('exhibition') || lowerText.includes('process')) {
           reply = 'Our exhibition process has 5 steps: concept & 3D design, material sourcing, logistics transport, on-site installation and post-fair dismantling.';
         } else if (lowerText.includes('apply') || lowerText.includes('job')) {
@@ -1044,7 +1044,7 @@ export default function Home() {
            reply = "Time to Work International B.V., kurucumuz ve üst düzey yöneticimiz Xu Manman tarafından yönetilmektedir. Kendisi Avrupa pazarında fuar lojistiği, AÜG iş gücü mobilizasyonu ve uluslararası ticaret entegrasyonu süreçlerine liderlik etmektedir.";
          }
          else if (lowerText.includes('ne iş') || lowerText.includes('hizmet') || lowerText.includes('neler yapıyor') || lowerText.includes('faaliyet') || lowerText.includes('şirket nedir')) {
-           reply = "Şirketimiz 5 ana uzmanlık alanında faaliyet gösterir: 1) Fuar Standı Tasarımı & Proje Planlama (Messebau), 2) AÜG yasal mevzuatına uygun Nitelikli İş Gücü Sağlama, 3) Lojistik Yönetimi (Avrupa genelinde taşımacılık ve transfer), 4) Uluslararası İthalat Operasyonları, 5) Küresel İhracat Çözümleri.";
+           reply = "Şirketimiz 5 ana uzmanlık alanında faaliyet gösterir: 1) Fuar Standı Tasarımı & Proje Planlama (Messebau), 2) AÜG yasal mevzuatına uygun Nitelikli İş Gücü Sağlama, 3) Lojistik & Konaklama Yönetimi (Avrupa genelinde transfer/otel), 4) Uluslararası İthalat Operasyonları, 5) Küresel İhracat Çözümleri.";
          }
          else if (lowerText.includes('fuar') || lowerText.includes('stand') || lowerText.includes('messebau') || lowerText.includes('tasarım')) {
            reply = "Fuar süreçlerimiz 5 adımdan oluşur: Konsept ve 3D stand tasarımı, malzeme seçimi/üretim, lojistik nakliye, yerinde anahtar teslim kurulum ve fuar sonrası söküm/depolama. Tüm süreci Xu Manman güvencesiyle tek elden yönetiyoruz.";
@@ -1089,7 +1089,7 @@ export default function Home() {
            reply = "Time to Work International B.V. wird von Gründer und Geschäftsführer Xu Manman geleitet. Er führt die Prozesse in den Bereichen Messelogistik, AÜG-Personalbereitstellung und internationalen Handel in Europa an.";
          }
          else if (lowerText.includes('was macht') || lowerText.includes('dienstleistung') || lowerText.includes('tätigkeit') || lowerText.includes('unternehmen')) {
-           reply = "Wir bieten High-End-Lösungen in 5 Bereichen: 1) Messebau & Projektplanung, 2) Rechtssichere Personalbereitstellung (nach AÜG), 3) Logistikmanagement (Europa-Transfers), 4) Internationaler Import, 5) Globaler Export.";
+           reply = "Wir bieten High-End-Lösungen in 5 Bereichen: 1) Messebau & Projektplanung, 2) Rechtssichere Personalbereitstellung (nach AÜG), 3) Logistik- & Hotelmanagement (Europa-Transfers), 4) Internationaler Import, 5) Globaler Export.";
          }
          else if (lowerText.includes('messe') || lowerText.includes('stand') || lowerText.includes('messebau')) {
            reply = "Unser Messebau-Prozess umfasst Konzept & 3D-Design, Materialauswahl, Logistik/Transport, Montage vor Ort und schlüsselfertige Übergabe sowie anschließende Demontage und Einlagerung.";
@@ -1125,7 +1125,7 @@ export default function Home() {
            reply = "TTW International B.V. was founded and is led by senior executive Xu Manman, pioneering exhibition logistics, temporary staffing (AÜG), and global cross-border trade.";
          }
          else if (lowerText.includes('service') || lowerText.includes('what do') || lowerText.includes('business')) {
-           reply = "We specialize in 5 global fields: Exhibition Stand Design & Build (Messebau), Qualified Personnel Provision (AÜG compliant), Logistics Management, International Import, and Global Export Solutions.";
+           reply = "We specialize in 5 global fields: Exhibition Stand Design & Build (Messebau), Qualified Personnel Provision (AÜG compliant), Logistics & Accommodation Management, International Import, and Global Export Solutions.";
          }
          else if (lowerText.includes('contact') || lowerText.includes('phone') || lowerText.includes('email') || lowerText.includes('address')) {
            reply = "Reach us at +49 (0) 163 6090266, info@ttw-international.nl, or visit our headquarters at Hindenburgstr. 236, 41061 Mönchengladbach, Germany.";
