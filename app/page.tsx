@@ -133,7 +133,7 @@ const translations = {
     formDiploma: "Diploma Mevcut mu?",
     formDiplomaYes: "Evet",
     formDiplomaNo: "Hayır",
-    mapLiveOps: "Mönchengladbach Merkez Ofisi - Canlı Operasyon",
+    mapLiveOps: "Venlo Merkez Ofisi - Canlı Operasyon",
     founderTitle: "Kurucumuzun Mesajı",
     founderRole: "Yönetim Kurulu Başkanı / Kurucu",
     founderText: "Time to Work International B.V. olarak bir işçi kiralama şirketiyiz. Tüm lojistik depolarına işçi kiralama ve işçi gönderme alanında Avrupa'nın güvenilir çözüm ortağıyız. Depo operasyonları, üretim hatları ve dağıtım merkezlerine ihtiyaç duyduğunuz işçiyi hızlı, yasal ve kesintisiz olarak gönderiyoruz."
@@ -266,7 +266,7 @@ const translations = {
     formDiploma: "Diplom vorhanden?",
     formDiplomaYes: "Ja",
     formDiplomaNo: "Nein",
-    mapLiveOps: "Hauptsitz Mönchengladbach - Live-Betrieb",
+    mapLiveOps: "Hauptsitz Venlo - Live-Betrieb",
     founderTitle: "Botschaft des Gründers",
     founderRole: "Vorstandsvorsitzender / Gründer",
     founderText: "Time to Work International B.V. ist Ihr Arbeitnehmerüberlassungsunternehmen in Europa. Wir sind spezialisiert auf die Überlassung und Entsendung von Arbeitskräften an alle Logistikdepots, Lagerhäuser und Produktionsanlagen — schnell, rechtssicher und zuverlässig."
@@ -399,7 +399,7 @@ const translations = {
     formDiploma: "Diploma Available?",
     formDiplomaYes: "Yes",
     formDiplomaNo: "No",
-    mapLiveOps: "HQ Mönchengladbach - Live Operations",
+    mapLiveOps: "HQ Venlo - Live Operations",
     founderTitle: "Founder's Message",
     founderRole: "Chairman of the Board / Founder",
     founderText: "Time to Work International B.V. is a workforce leasing company. We specialize in workforce leasing and sending workers to all logistics warehouses, production lines and distribution centers across Europe — fast, legal and reliable."
@@ -665,7 +665,7 @@ const translations = {
     formDiploma: "Diploma beschikbaar?",
     formDiplomaYes: "Ja",
     formDiplomaNo: "Nee",
-    mapLiveOps: "Hoofdkantoor Mönchengladbach - Live Operaties",
+    mapLiveOps: "Hoofdkantoor Venlo - Live Operaties",
     founderTitle: "Boodschap van de oprichter",
     founderRole: "Voorzitter van de Raad van Bestuur / Oprichter",
     founderText: "Time to Work International B.V. is een uitzendbedrijf. Wij zijn gespecialiseerd in het uitzenden en detacheren van arbeidskrachten naar alle logistieke depots, magazijnen en productiefaciliteiten — snel, juridisch correct en betrouwbaar."
@@ -1065,7 +1065,7 @@ export default function Home() {
            reply = "Almanya ve Hollanda operasyonlarımızda görevlendirilmek üzere sürekli yeni ekip arkadaşları arıyoruz. Sitemizdeki 'Detaylı İş Başvuru Formu' üzerinden kişisel bilgilerinizi, SV-Nummer (Sosyal Güvenlik No), çalışma türü tercihinizi ve eğitim durumunuzu eksiksiz doldurarak bize iletebilirsiniz.";
          }
          else if (lowerText.includes('adres') || lowerText.includes('nerede') || lowerText.includes('konum') || lowerText.includes('merkez') || lowerText.includes('hollanda') || lowerText.includes('almanya')) {
-           reply = "Şirketimizin ana operasyon merkezi Almanya'dadır. Resmi Adresimiz: Hindenburgstr. 236, 41061 Mönchengladbach, Deutschland. Ayrıca Amsterdam ve Almanya koordinasyon merkezlerimiz aktiftir.";
+           reply = "Şirketimizin resmi adresi: Noorderpoort 33, 5916 PJ Venlo, Hollanda.";
          }
          else if (lowerText.includes('iletişim') || lowerText.includes('telefon') || lowerText.includes('e-posta') || lowerText.includes('mail') || lowerText.includes('numara')) {
            reply = "Bize doğrudan +49 (0) 163 6090266 numaralı telefondan ulaşabilir, info@ttw-international.nl adresine e-posta gönderebilir veya sol alttaki parlayan WhatsApp Canlı Destek butonunu kullanabilirsiniz.";
@@ -1101,7 +1101,7 @@ export default function Home() {
            reply = "Wir garantieren höchste Konformität: Volle Einhaltung des Arbeitnehmerüberlassungsgesetzes (AÜG), DSGVO-Datensicherheit, ISO 9001 Qualitätsstandards und voll ausgestattete EU-Arbeitserlaubnis-Prozesse.";
          }
          else if (lowerText.includes('adresse') || lowerText.includes('wo') || lowerText.includes('standort')) {
-           reply = "Unser Hauptsitz liegt in Deutschland: Hindenburgstr. 236, 41061 Mönchengladbach, Deutschland. Wir koordinieren auch Standorte in Amsterdam.";
+           reply = "Unsere offizielle Adresse: Noorderpoort 33, 5916 PJ Venlo, Niederlande.";
          }
          else if (lowerText.includes('kontakt') || lowerText.includes('telefon') || lowerText.includes('e-mail')) {
            reply = "Sie erreichen uns direkt unter +49 (0) 163 6090266, per E-Mail an info@ttw-international.nl oder über den integrierten WhatsApp-Button.";
@@ -1128,7 +1128,7 @@ export default function Home() {
            reply = "We specialize in 5 global fields: Exhibition Stand Design & Build (Messebau), Qualified Personnel Provision (AÜG compliant), Logistics & Accommodation Management, International Import, and Global Export Solutions.";
          }
          else if (lowerText.includes('contact') || lowerText.includes('phone') || lowerText.includes('email') || lowerText.includes('address')) {
-           reply = "Reach us at +49 (0) 163 6090266, info@ttw-international.nl, or visit our headquarters at Hindenburgstr. 236, 41061 Mönchengladbach, Germany.";
+           reply = "Reach us at info@ttw-international.nl, or visit our headquarters at Noorderpoort 33, 5916 PJ Venlo, Netherlands.";
          }
          else {
            reply = "I couldn't match your exact request. However, under our founder Xu Manman, I can guide you thoroughly regarding exhibition stands, AÜG temporary staffing, European logistics, or job applications.";
@@ -1545,7 +1545,7 @@ export default function Home() {
               
               {/* Lokasyon Alt Bilgisi */}
               <p style={{ margin: '8px 0 0 0', fontSize: '11px', color: '#64748b', fontWeight: 500, letterSpacing: '0.5px' }}>
-                Germany & Netherlands Hub
+                Venlo, Netherlands Hub
               </p>
             </div>
           </motion.div>
@@ -2188,7 +2188,7 @@ export default function Home() {
                 <span style={{ fontSize: '20px' }}>📍</span>
                 <div>
                   <strong style={{ display: 'block', color: '#38bdf8' }}>{lang==='tr'?'Adres':lang==='de'?'Adresse':lang==='zh'?'地址':lang==='nl'?'Adres':'Address'}</strong>
-                  <span style={{ color: '#94a3b8', fontSize: '14px', lineHeight: '1.5' }}>Hindenburgstr. 236,<br />41061 Mönchengladbach,<br />{lang==='tr'?'Almanya':lang==='de'?'Deutschland':lang==='zh'?'德国':lang==='nl'?'Duitsland':'Germany'}</span>
+                  <span style={{ color: '#94a3b8', fontSize: '14px', lineHeight: '1.5' }}>Noorderpoort 33,<br />5916 PJ Venlo,<br />{lang==='tr'?'Hollanda':lang==='de'?'Niederlande':lang==='zh'?'荷兰':lang==='nl'?'Nederland':'Netherlands'}</span>
                 </div>
               </div>
                 <div style={{ display: 'flex', alignItems: 'start', gap: '15px' }}>
@@ -2210,7 +2210,7 @@ export default function Home() {
 
             {/* 🗺️ PREMİUM, TIKLANABİLİR GOOGLE HARİTALAR ENTEGRASYONU */}
             <motion.a 
-              href="https://maps.google.com/?q=Hindenburgstr.+236,+41061+Mönchengladbach,+Germany"
+              href="https://maps.google.com/?q=Noorderpoort+33,+5916+PJ+Venlo,+Netherlands"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.01, borderColor: '#38bdf8' }}
@@ -2230,7 +2230,7 @@ export default function Home() {
             >
               {/* Google Maps Embed Iframe (Koyu Mod Efektli / Saturation Ayarlı) */}
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2503.2206775986423!2d6.435773277085731!3d51.19655633390314!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b8abc0b70eb209%3A0x9d90ecfe821869e9!2sHindenburgstraße%20236%2C%2041061%20Mönchengladbach%2C%20Almanya!5e0!3m2!1str!2str!4v1717012345678!5m2!1str!2str"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2484.8!2d6.174!3d51.370!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c6d9a1a1a1a1a1%3A0x1a1a1a1a1a1a1a1a!2sNoorderpoort+33%2C+5916+PJ+Venlo%2C+Nederland!5e0!3m2!1snl!2snl!4v1717012345679!5m2!1snl!2snl"
                 width="100%"
                 height="100%"
                 style={{ 
