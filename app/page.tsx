@@ -81,14 +81,12 @@ const translations = {
     optNo: "Hayır",
     jobBtn: "Şimdi Başvur",
     stayInTouch: "İletişimde Kalın",
-    galCard1Title: "Messebau Projeleri",
-    galCard1Sub: "Stand Tasarım & Kurulum",
-    galCard2Title: "Nitelikli İş Gücü",
-    galCard2Sub: "Uzman Kadro Tedariği",
-    galCard3Title: "Uluslararası Lojistik",
-    galCard3Sub: "Sınır Ötesi Taşıma & Depolama",
-    galCard4Title: "Küresel İthalat Operasyonları",
-    galCard4Sub: "Tedarik Zinciri Yönetimi",
+    galCard1Title: "Nitelikli İş Gücü",
+    galCard1Sub: "Uzman Kadro Tedariği",
+    galCard2Title: "Uluslararası Lojistik",
+    galCard2Sub: "Sınır Ötesi Taşıma & Depolama",
+    galCard3Title: "Küresel İthalat Operasyonları",
+    galCard3Sub: "Tedarik Zinciri Yönetimi",
     galCard5Title: "Uluslararası İhracat",
     galCard5Sub: "Global Pazar Entegrasyonu",
     galCard6Title: "Avrupa Operasyon Merkezleri",
@@ -216,14 +214,12 @@ const translations = {
     optNo: "Nein",
     jobBtn: "Jetzt bewerben",
     stayInTouch: "Bleiben Sie in Kontakt",
-    galCard1Title: "Messebau-Projekte",
-    galCard1Sub: "Standdesign & Installation",
-    galCard2Title: "Qualifizierte Arbeitskräfte",
-    galCard2Sub: "Experten-Personalbereitstellung",
-    galCard3Title: "Internationale Logistik",
-    galCard3Sub: "Grenzüberschreitender Transport & Lagerung",
-    galCard4Title: "Globale Importgeschäfte",
-    galCard4Sub: "Lieferkettenmanagement",
+    galCard1Title: "Qualifizierte Arbeitskräfte",
+    galCard1Sub: "Experten-Personalbereitstellung",
+    galCard2Title: "Internationale Logistik",
+    galCard2Sub: "Grenzüberschreitender Transport & Lagerung",
+    galCard3Title: "Globale Importgeschäfte",
+    galCard3Sub: "Lieferkettenmanagement",
     galCard5Title: "Internationaler Export",
     galCard5Sub: "Globale Marktintegration",
     galCard6Title: "Europäische Betriebsleiter",
@@ -351,14 +347,12 @@ const translations = {
     optNo: "No",
     jobBtn: "Apply Now",
     stayInTouch: "Stay in Touch",
-    galCard1Title: "Messebau Projects",
-    galCard1Sub: "Stand Design & Installation",
-    galCard2Title: "Qualified Workforce",
-    galCard2Sub: "Expert Personnel Provision",
-    galCard3Title: "International Logistics",
-    galCard3Sub: "Cross-Border Transport & Storage",
-    galCard4Title: "Global Import Operations",
-    galCard4Sub: "Supply Chain Management",
+    galCard1Title: "Qualified Workforce",
+    galCard1Sub: "Expert Personnel Provision",
+    galCard2Title: "International Logistics",
+    galCard2Sub: "Cross-Border Transport & Storage",
+    galCard3Title: "Global Import Operations",
+    galCard3Sub: "Supply Chain Management",
     galCard5Title: "International Export",
     galCard5Sub: "Global Market Integration",
     galCard6Title: "European Operation Centers",
@@ -486,14 +480,12 @@ const translations = {
     optNo: "否",
     jobBtn: "立即申请",
     stayInTouch: "保持联系",
-    galCard1Title: "展会搭建项目",
-    galCard1Sub: "展台设计与安装",
-    galCard2Title: "专业劳动力",
-    galCard2Sub: "专家人员供应",
-    galCard3Title: "国际物流",
-    galCard3Sub: "跨境运输与仓储",
-    galCard4Title: "全球进口业务",
-    galCard4Sub: "供应链管理",
+    galCard1Title: "专业劳动力",
+    galCard1Sub: "专家人员供应",
+    galCard2Title: "国际物流",
+    galCard2Sub: "跨境运输与仓储",
+    galCard3Title: "全球进口业务",
+    galCard3Sub: "供应链管理",
     galCard5Title: "国际出口",
     galCard5Sub: "全球市场整合",
     galCard6Title: "欧洲运营中心",
@@ -621,14 +613,12 @@ const translations = {
     optNo: "Nee",
     jobBtn: "Nu solliciteren",
     stayInTouch: "Blijf in contact",
-    galCard1Title: "Standbouwprojecten",
-    galCard1Sub: "Standontwerp & Installatie",
-    galCard2Title: "Gekwalificeerd personeel",
-    galCard2Sub: "Deskundige personeelsvoorziening",
-    galCard3Title: "Internationale logistiek",
-    galCard3Sub: "Grensoverschrijdend transport & opslag",
-    galCard4Title: "Mondiale importoperaties",
-    galCard4Sub: "Supply chain management",
+    galCard1Title: "Gekwalificeerd personeel",
+    galCard1Sub: "Deskundige personeelsvoorziening",
+    galCard2Title: "Internationale logistiek",
+    galCard2Sub: "Grensoverschrijdend transport & opslag",
+    galCard3Title: "Mondiale importoperaties",
+    galCard3Sub: "Supply chain management",
     galCard5Title: "Internationale export",
     galCard5Sub: "Mondiale marktintegratie",
     galCard6Title: "Europese operatiecentra",
@@ -740,7 +730,7 @@ export default function Home() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
   const [activeCard, setActiveCard] = useState<number | null>(null);
-  const [darkMode, setDarkMode] = useState<boolean>(false);
+  const [darkMode, setDarkMode] = useState<boolean>(true);
   const [aiOpen, setAiOpen] = useState<boolean>(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const [messages, setMessages] = useState<Array<{ sender: 'user' | 'ai', text: string }>>([]);
@@ -871,10 +861,9 @@ export default function Home() {
   };
 
   const galleryImages = [
-    "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80",
     "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=600&q=80",
-    "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=600&q=80",
-    "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=600&q=80",
+    "/photo2.png",
+    "/photo1.png",
     "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80",
     "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80"
   ];
@@ -964,7 +953,7 @@ export default function Home() {
 
       if (lang === 'tr') {
         if (lowerText.includes('kurucu') || lowerText.includes('gavas')) {
-          reply = 'Time to Work International B.V., kurucumuz Eyüp Gavas tarafından yönetilmektedir. Kendisi Avrupa pazarında fuar lojistiği ve uluslararası ticaret entegrasyonuna liderlik etmektedir.';
+          reply = 'Time to Work International B.V., kurucumuz Xu Manman tarafından yönetilmektedir. Kendisi Avrupa pazarında fuar lojistiği ve uluslararası ticaret entegrasyonuna liderlik etmektedir.';
         } else if (lowerText.includes('fuar') || lowerText.includes('süreç')) {
           reply = 'Fuar süreçlerimiz 5 adımdan oluşur: Konsept ve 3D stand tasarımı, malzeme seçimi/üretim, lojistik nakliye, yerinde kurulum ve fuar sonrası söküm/depolama.';
         } else if (lowerText.includes('başvuru') || lowerText.includes('iş')) {
@@ -974,7 +963,7 @@ export default function Home() {
         }
       } else if (lang === 'de') {
         if (lowerText.includes('gründer') || lowerText.includes('gavas') || lowerText.includes('wer')) {
-          reply = 'Time to Work International B.V. wird von unserem Gründer Eyüp Gavas geleitet. Er führt das Unternehmen im Bereich Messebau, AÜG-Personalvermittlung und internationaler Logistik.';
+          reply = 'Time to Work International B.V. wird von unserem Gründer Xu Manman geleitet. Er führt das Unternehmen im Bereich Messebau, AÜG-Personalvermittlung und internationaler Logistik.';
         } else if (lowerText.includes('messe') || lowerText.includes('prozess')) {
           reply = 'Unser Messeprozess umfasst 5 Schritte: Konzept & 3D-Standdesign, Materialbeschaffung, Logistik, schlüsselfertige Montage vor Ort und Abbau nach der Messe.';
         } else if (lowerText.includes('bewerbung') || lowerText.includes('bewerben')) {
@@ -984,7 +973,7 @@ export default function Home() {
         }
       } else if (lang === 'zh') {
         if (lowerText.includes('创始人') || lowerText.includes('gavas')) {
-          reply = 'Time to Work International B.V.由我们的创始人Eyüp Gavas领导，专注于欧洲展览搭建、劳务派遣和国际物流。';
+          reply = 'Time to Work International B.V.由我们的创始人Xu Manman领导，专注于欧洲展览搭建、劳务派遣和国际物流。';
         } else if (lowerText.includes('展览') || lowerText.includes('流程')) {
           reply = '我们的展览流程分5步：概念设计、材料采购、物流运输、现场安装和拆除。';
         } else {
@@ -992,7 +981,7 @@ export default function Home() {
         }
       } else if (lang === 'nl') {
         if (lowerText.includes('oprichter') || lowerText.includes('gavas')) {
-          reply = 'Time to Work International B.V. wordt geleid door onze oprichter Eyüp Gavas, gespecialiseerd in beursbouw, AÜG personeelsdetachering en internationale logistiek.';
+          reply = 'Time to Work International B.V. wordt geleid door onze oprichter Xu Manman, gespecialiseerd in beursbouw, AÜG personeelsdetachering en internationale logistiek.';
         } else if (lowerText.includes('beurs') || lowerText.includes('proces')) {
           reply = 'Ons beursproces bestaat uit 5 stappen: conceptontwerp, materiaalinkoop, logistiek transport, montage op locatie en demontage na de beurs.';
         } else {
@@ -1000,7 +989,7 @@ export default function Home() {
         }
       } else {
         if (lowerText.includes('founder') || lowerText.includes('gavas')) {
-          reply = 'Time to Work International B.V. is led by our founder Eyüp Gavas, specializing in exhibition construction, AÜG staffing and international logistics across Europe.';
+          reply = 'Time to Work International B.V. is led by our founder Xu Manman, specializing in exhibition construction, AÜG staffing and international logistics across Europe.';
         } else if (lowerText.includes('exhibition') || lowerText.includes('process')) {
           reply = 'Our exhibition process has 5 steps: concept & 3D design, material sourcing, logistics transport, on-site installation and post-fair dismantling.';
         } else if (lowerText.includes('apply') || lowerText.includes('job')) {
@@ -1038,7 +1027,7 @@ export default function Home() {
          
          // Nezaket ve Sohbet Sonlandırma Kökleri (image_f326d7.png Çözümü)
          if (lowerText === 'tamam' || lowerText === 'ok' || lowerText.includes('anladım') || lowerText.includes('Harika') || lowerText.includes('süper')) {
-           reply = "Harika! Başka bir sorunuz olursa kurucumuz Eyüp Gavas liderliğindeki TTW ekibi olarak her zaman buradayız. Yardımcı olabileceğim başka bir konu var mı?";
+           reply = "Harika! Başka bir sorunuz olursa kurucumuz Xu Manman liderliğindeki TTW ekibi olarak her zaman buradayız. Yardımcı olabileceğim başka bir konu var mı?";
          }
          else if (lowerText.includes('teşekkür') || lowerText.includes('sağol') || lowerText.includes('tesekkur')) {
            reply = "Rica ederim! Time to Work International B.V. adına size yardımcı olmaktan mutluluk duydum. İyi günler dilerim!";
@@ -1052,13 +1041,13 @@ export default function Home() {
          
          // Kurumsal ve Stratejik Bilgiler
          else if (lowerText.includes('kurucu') || lowerText.includes('sahibi') || lowerText.includes('eyüp') || lowerText.includes('gavas') || lowerText.includes('kim kurdu') || lowerText.includes('yönetici')) {
-           reply = "Time to Work International B.V., kurucumuz ve üst düzey yöneticimiz Eyüp Gavas tarafından yönetilmektedir. Kendisi Avrupa pazarında fuar lojistiği, AÜG iş gücü mobilizasyonu ve uluslararası ticaret entegrasyonu süreçlerine liderlik etmektedir.";
+           reply = "Time to Work International B.V., kurucumuz ve üst düzey yöneticimiz Xu Manman tarafından yönetilmektedir. Kendisi Avrupa pazarında fuar lojistiği, AÜG iş gücü mobilizasyonu ve uluslararası ticaret entegrasyonu süreçlerine liderlik etmektedir.";
          }
          else if (lowerText.includes('ne iş') || lowerText.includes('hizmet') || lowerText.includes('neler yapıyor') || lowerText.includes('faaliyet') || lowerText.includes('şirket nedir')) {
            reply = "Şirketimiz 5 ana uzmanlık alanında faaliyet gösterir: 1) Fuar Standı Tasarımı & Proje Planlama (Messebau), 2) AÜG yasal mevzuatına uygun Nitelikli İş Gücü Sağlama, 3) Lojistik & Konaklama Yönetimi (Avrupa genelinde transfer/otel), 4) Uluslararası İthalat Operasyonları, 5) Küresel İhracat Çözümleri.";
          }
          else if (lowerText.includes('fuar') || lowerText.includes('stand') || lowerText.includes('messebau') || lowerText.includes('tasarım')) {
-           reply = "Fuar süreçlerimiz 5 adımdan oluşur: Konsept ve 3D stand tasarımı, malzeme seçimi/üretim, lojistik nakliye, yerinde anahtar teslim kurulum ve fuar sonrası söküm/depolama. Tüm süreci Eyüp Gavas güvencesiyle tek elden yönetiyoruz.";
+           reply = "Fuar süreçlerimiz 5 adımdan oluşur: Konsept ve 3D stand tasarımı, malzeme seçimi/üretim, lojistik nakliye, yerinde anahtar teslim kurulum ve fuar sonrası söküm/depolama. Tüm süreci Xu Manman güvencesiyle tek elden yönetiyoruz.";
          }
          else if (lowerText.includes('personel') || lowerText.includes('iş gücü') || lowerText.includes('kadro') || lowerText.includes('tedarik')) {
            reply = "Avrupa'daki fuar, kurulum ve lojistik projeleriniz için uzman montaj kadrosu, sertifikalı forklift operatörleri ve çok dilli fuar host/hostesleri sağlıyoruz. Tüm kadromuz Alman İş Gücü Sağlama Kanunu (AÜG) ile tam uyumludur.";
@@ -1079,16 +1068,16 @@ export default function Home() {
            reply = "Şirketimizin ana operasyon merkezi Almanya'dadır. Resmi Adresimiz: Hindenburgstr. 236, 41061 Mönchengladbach, Deutschland. Ayrıca Amsterdam ve Almanya koordinasyon merkezlerimiz aktiftir.";
          }
          else if (lowerText.includes('iletişim') || lowerText.includes('telefon') || lowerText.includes('e-posta') || lowerText.includes('mail') || lowerText.includes('numara')) {
-           reply = "Bize doğrudan +49 (0) 163 6090266 numaralı telefondan ulaşabilir, info@ttw-international.de adresine e-posta gönderebilir veya sol alttaki parlayan WhatsApp Canlı Destek butonunu kullanabilirsiniz.";
+           reply = "Bize doğrudan +49 (0) 163 6090266 numaralı telefondan ulaşabilir, info@ttw-international.nl adresine e-posta gönderebilir veya sol alttaki parlayan WhatsApp Canlı Destek butonunu kullanabilirsiniz.";
          }
          else {
-           reply = "Sorunuzu tam olarak eşleştiremedim. Ancak Kurucumuz Eyüp Gavas yönetimindeki TTW International hakkında; Fuar Stand Kurulumu (Messebau), AÜG İş Gücü Tedariği, Lojistik, Randevu Planlama veya İş Başvurusu konularında spesifik sorular sorarak bilgi alabilirsiniz.";
+           reply = "Sorunuzu tam olarak eşleştiremedim. Ancak Kurucumuz Xu Manman yönetimindeki TTW International hakkında; Fuar Stand Kurulumu (Messebau), AÜG İş Gücü Tedariği, Lojistik, Randevu Planlama veya İş Başvurusu konularında spesifik sorular sorarak bilgi alabilirsiniz.";
          }
        } 
        else if (replyLang === 'de') {
          // --- ALMANCA GELİŞMİŞ BİLGİ HAVUZU & SOHBET SONLANDIRMA ---
          if (lowerText === 'tamam' || lowerText === 'ok' || lowerText.includes('verstanden') || lowerText.includes('alles klar') || lowerText.includes('super')) {
-           reply = "Wunderbar! Wenn Sie weitere Fragen haben, ist das TTW-Team unter der Leitung unseres Gründers Eyüp Gavas jederzeit für Sie da. Kann ich Ihnen noch bei etwas anderem helfen?";
+           reply = "Wunderbar! Wenn Sie weitere Fragen haben, ist das TTW-Team unter der Leitung unseres Gründers Xu Manman jederzeit für Sie da. Kann ich Ihnen noch bei etwas anderem helfen?";
          }
          else if (lowerText.includes('danke') || lowerText.includes('vielen dank')) {
            reply = "Gern geschehen! Im Namen von Time to Work International B.V. freue ich mich, Ihnen geholfen zu haben. Ich wünsche Ihnen einen schönen Tag!";
@@ -1097,7 +1086,7 @@ export default function Home() {
            reply = "Auf Wiedersehen! Sie können uns jederzeit über den 'Jetzt anrufen'-Button oben rechts oder über unseren WhatsApp-Support unten links erreichen. Machen Sie es gut!";
          }
          else if (lowerText.includes('gründer') || lowerText.includes('inhaber') || lowerText.includes('eyüp') || lowerText.includes('gavas')) {
-           reply = "Time to Work International B.V. wird von Gründer und Geschäftsführer Eyüp Gavas geleitet. Er führt die Prozesse in den Bereichen Messelogistik, AÜG-Personalbereitstellung und internationalen Handel in Europa an.";
+           reply = "Time to Work International B.V. wird von Gründer und Geschäftsführer Xu Manman geleitet. Er führt die Prozesse in den Bereichen Messelogistik, AÜG-Personalbereitstellung und internationalen Handel in Europa an.";
          }
          else if (lowerText.includes('was macht') || lowerText.includes('dienstleistung') || lowerText.includes('tätigkeit') || lowerText.includes('unternehmen')) {
            reply = "Wir bieten High-End-Lösungen in 5 Bereichen: 1) Messebau & Projektplanung, 2) Rechtssichere Personalbereitstellung (nach AÜG), 3) Logistik- & Hotelmanagement (Europa-Transfers), 4) Internationaler Import, 5) Globaler Export.";
@@ -1115,16 +1104,16 @@ export default function Home() {
            reply = "Unser Hauptsitz liegt in Deutschland: Hindenburgstr. 236, 41061 Mönchengladbach, Deutschland. Wir koordinieren auch Standorte in Amsterdam.";
          }
          else if (lowerText.includes('kontakt') || lowerText.includes('telefon') || lowerText.includes('e-mail')) {
-           reply = "Sie erreichen uns direkt unter +49 (0) 163 6090266, per E-Mail an info@ttw-international.de oder über den integrierten WhatsApp-Button.";
+           reply = "Sie erreichen uns direkt unter +49 (0) 163 6090266, per E-Mail an info@ttw-international.nl oder über den integrierten WhatsApp-Button.";
          }
          else {
-           reply = "Ich konnte Ihre Anfrage nicht exakt zuordnen. Unter der Leitung von Eyüp Gavas helfen wir Ihnen jedoch gerne bei Fragen zu Messebau, Personalüberlassung (AÜG), Logistik oder Bewerbungen weiter.";
+           reply = "Ich konnte Ihre Anfrage nicht exakt zuordnen. Unter der Leitung von Xu Manman helfen wir Ihnen jedoch gerne bei Fragen zu Messebau, Personalüberlassung (AÜG), Logistik oder Bewerbungen weiter.";
          }
        } 
        else {
          // --- İNGİLİZCE GELİŞMİŞ BİLGİ HAVUZU & SOHBET SONLANDIRMA ---
          if (lowerText === 'ok' || lowerText === 'okay' || lowerText.includes('understand') || lowerText.includes('great') || lowerText.includes('perfect')) {
-           reply = "Perfect! If you have any more questions, the TTW team under founder Eyüp Gavas is always here to help. Is there anything else I can assist you with?";
+           reply = "Perfect! If you have any more questions, the TTW team under founder Xu Manman is always here to help. Is there anything else I can assist you with?";
          }
          else if (lowerText.includes('thank')) {
            reply = "You're welcome! On behalf of Time to Work International B.V., it was a pleasure helping you. Have a great day!";
@@ -1133,16 +1122,16 @@ export default function Home() {
            reply = "Goodbye! Feel free to reach out anytime using the 'Call Now' button or our live WhatsApp link. Take care!";
          }
          if (lowerText.includes('founder') || lowerText.includes('owner') || lowerText.includes('eyüp') || lowerText.includes('gavas')) {
-           reply = "TTW International B.V. was founded and is led by senior executive Eyüp Gavas, pioneering exhibition logistics, temporary staffing (AÜG), and global cross-border trade.";
+           reply = "TTW International B.V. was founded and is led by senior executive Xu Manman, pioneering exhibition logistics, temporary staffing (AÜG), and global cross-border trade.";
          }
          else if (lowerText.includes('service') || lowerText.includes('what do') || lowerText.includes('business')) {
            reply = "We specialize in 5 global fields: Exhibition Stand Design & Build (Messebau), Qualified Personnel Provision (AÜG compliant), Logistics & Accommodation Management, International Import, and Global Export Solutions.";
          }
          else if (lowerText.includes('contact') || lowerText.includes('phone') || lowerText.includes('email') || lowerText.includes('address')) {
-           reply = "Reach us at +49 (0) 163 6090266, info@ttw-international.de, or visit our headquarters at Hindenburgstr. 236, 41061 Mönchengladbach, Germany.";
+           reply = "Reach us at +49 (0) 163 6090266, info@ttw-international.nl, or visit our headquarters at Hindenburgstr. 236, 41061 Mönchengladbach, Germany.";
          }
          else {
-           reply = "I couldn't match your exact request. However, under our founder Eyüp Gavas, I can guide you thoroughly regarding exhibition stands, AÜG temporary staffing, European logistics, or job applications.";
+           reply = "I couldn't match your exact request. However, under our founder Xu Manman, I can guide you thoroughly regarding exhibition stands, AÜG temporary staffing, European logistics, or job applications.";
          }
        }
 
@@ -1588,8 +1577,8 @@ export default function Home() {
               {/* profil.png Dikey Fotoğraf Kartı */}
               <div style={{ width: '150px', flexShrink: 0, borderRadius: '16px', overflow: 'hidden', border: `1px solid ${theme.border}`, boxShadow: '0 10px 20px rgba(0,0,0,0.2)' }}>
                 <img 
-                  src="/profil.png" 
-                  alt="Eyüp Gavas" 
+                  src="/pp-photo.png" 
+                  alt="Xu Manman" 
                   style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'cover' }} 
                 />
               </div>
@@ -1600,7 +1589,7 @@ export default function Home() {
                   {t.founderTitle}
                 </h4>
                 <h3 style={{ fontSize: '22px', fontWeight: 800, color: theme.textPrimary, margin: 0 }}>
-                  Eyüp Gavas
+                  Xu Manman
                 </h3>
                 <span style={{ fontSize: '12px', fontWeight: 600, color: '#64748b', fontStyle: 'italic' }}>
                   {t.founderRole}
@@ -2213,7 +2202,7 @@ export default function Home() {
                 <span style={{ fontSize: '20px' }}>✉️</span>
                 <div>
                   <strong style={{ display: 'block', color: '#38bdf8' }}>{t.stayInTouch}</strong>
-                  <a href="mailto:info@ttw-international.de" style={{ color: '#94a3b8', fontSize: '14px', textDecoration: 'none' }}>info@ttw-international.de</a>
+                  <a href="mailto:info@ttw-international.nl" style={{ color: '#94a3b8', fontSize: '14px', textDecoration: 'none' }}>info@ttw-international.nl</a>
                 </div>
               </div>
             </div>
@@ -2367,7 +2356,7 @@ export default function Home() {
               {messages.length === 0 && (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                   {[
-                    { text: lang==='tr'?'🏢 Kurucumuz Kim?':lang==='de'?'🏢 Wer ist der Gründer?':lang==='zh'?'🏢 谁是创始人？':lang==='nl'?'🏢 Wie is de oprichter?':'🏢 Who is our Founder?', query: lang==='tr'?'Kurucumuz Eyüp Gavas kimdir?':lang==='de'?'Wer ist der Gründer Eyüp Gavas?':lang==='zh'?'创始人是谁？':lang==='nl'?'Wie is de oprichter?':'Who is the founder Eyüp Gavas?' },
+                    { text: lang==='tr'?'🏢 Kurucumuz Kim?':lang==='de'?'🏢 Wer ist der Gründer?':lang==='zh'?'🏢 谁是创始人？':lang==='nl'?'🏢 Wie is de oprichter?':'🏢 Who is our Founder?', query: lang==='tr'?'Kurucumuz Xu Manman kimdir?':lang==='de'?'Wer ist der Gründer Xu Manman?':lang==='zh'?'创始人是谁？':lang==='nl'?'Wie is de oprichter?':'Who is the founder Xu Manman?' },
                     { text: lang==='tr'?'🛠️ Fuar Süreçleri':lang==='de'?'🛠️ Messebau-Prozess':lang==='zh'?'🛠️ 展览流程':lang==='nl'?'🛠️ Beursprocessen':'🛠️ Exhibition Processes', query: lang==='tr'?'Fuar standı kurulum süreçleri nelerdir?':lang==='de'?'Wie läuft der Messebau-Prozess ab?':lang==='zh'?'展览搭建流程是什么？':lang==='nl'?'Hoe verloopt het beursproces?':'What are the exhibition stand processes?' },
                     { text: lang==='tr'?'💼 İş Başvurusu':lang==='de'?'💼 Bewerbung':lang==='zh'?'💼 求职申请':lang==='nl'?'💼 Sollicitatie':'💼 How to Apply?', query: lang==='tr'?'Nasıl iş başvurusu yapabilirim?':lang==='de'?'Wie kann ich mich bewerben?':lang==='zh'?'如何申请工作？':lang==='nl'?'Hoe kan ik solliciteren?':'How can I apply for a job?' },
                   ].map((btn, i) => (
