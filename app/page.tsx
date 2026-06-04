@@ -136,7 +136,7 @@ const translations = {
     mapLiveOps: "Mönchengladbach Merkez Ofisi - Canlı Operasyon",
     founderTitle: "Kurucumuzun Mesajı",
     founderRole: "Yönetim Kurulu Başkanı / Kurucu",
-    founderText: "Time to Work International B.V. olarak, Avrupa'nın lider işçi kiralama çözüm ortağıyız. Lojistik depolarından depo operasyonlarına, üretim tesislerinden dağıtım merkezlerine kadar ihtiyaç duyduğunuz nitelikli ve esnek iş gücünü zamanında, güvenilir ve yasal güvence altında temin ediyoruz."
+    founderText: "Time to Work International B.V. olarak bir işçi kiralama şirketiyiz. Tüm lojistik depolarına işçi kiralama ve işçi gönderme alanında Avrupa'nın güvenilir çözüm ortağıyız. Depo operasyonları, üretim hatları ve dağıtım merkezlerine ihtiyaç duyduğunuz işçiyi hızlı, yasal ve kesintisiz olarak gönderiyoruz."
   },
   de: {
     brand: "Time to Work International B.V.",
@@ -269,7 +269,7 @@ const translations = {
     mapLiveOps: "Hauptsitz Mönchengladbach - Live-Betrieb",
     founderTitle: "Botschaft des Gründers",
     founderRole: "Vorstandsvorsitzender / Gründer",
-    founderText: "Als Time to Work International B.V. sind wir Ihr führender Partner für Arbeitnehmerüberlassung in Europa. Von Logistikzentren über Lagerhaltung bis hin zu Produktionsanlagen und Distributionszentren – wir stellen Ihnen qualifizierte und flexible Arbeitskräfte pünktlich, zuverlässig und rechtlich abgesichert zur Verfügung."
+    founderText: "Time to Work International B.V. ist Ihr Arbeitnehmerüberlassungsunternehmen in Europa. Wir sind spezialisiert auf die Überlassung und Entsendung von Arbeitskräften an alle Logistikdepots, Lagerhäuser und Produktionsanlagen — schnell, rechtssicher und zuverlässig."
   },
   en: {
     brand: "Time to Work International B.V.",
@@ -402,7 +402,7 @@ const translations = {
     mapLiveOps: "HQ Mönchengladbach - Live Operations",
     founderTitle: "Founder's Message",
     founderRole: "Chairman of the Board / Founder",
-    founderText: "As Time to Work International B.V., we are your leading workforce leasing partner across Europe. From logistics warehouses to production facilities and distribution centers — we supply qualified, flexible workforce on time, reliably, and in full legal compliance."
+    founderText: "Time to Work International B.V. is a workforce leasing company. We specialize in workforce leasing and sending workers to all logistics warehouses, production lines and distribution centers across Europe — fast, legal and reliable."
   },
   zh: {
     brand: "Time to Work International B.V.",
@@ -535,7 +535,7 @@ const translations = {
     mapLiveOps: "门兴格拉德巴赫总部 - 实时运营",
     founderTitle: "创始人的话",
     founderRole: "董事会主席 / 创始人",
-    founderText: "作为Time to Work International B.V.，我们是欧洲领先的劳务派遣合作伙伴。从物流仓库到生产设施和配送中心，我们为您按时、可靠且合法地提供合格的灵活劳动力。"
+    founderText: "Time to Work International B.V. 是一家劳务派遣公司。我们专注于向所有物流仓库、生产线和配送中心派遣工人——快速、合法、可靠。"
   },
   nl: {
     brand: "Time to Work International B.V.",
@@ -668,7 +668,7 @@ const translations = {
     mapLiveOps: "Hoofdkantoor Mönchengladbach - Live Operaties",
     founderTitle: "Boodschap van de oprichter",
     founderRole: "Voorzitter van de Raad van Bestuur / Oprichter",
-    founderText: "Als Time to Work International B.V. zijn wij uw toonaangevende partner voor uitzendoplossingen in Europa. Van logistieke centra tot productiefaciliteiten en distributiecentra — wij leveren gekwalificeerde, flexibele arbeidskrachten op tijd, betrouwbaar en juridisch gewaarborgd."
+    founderText: "Time to Work International B.V. is een uitzendbedrijf. Wij zijn gespecialiseerd in het uitzenden en detacheren van arbeidskrachten naar alle logistieke depots, magazijnen en productiefaciliteiten — snel, juridisch correct en betrouwbaar."
   }
 };
 
